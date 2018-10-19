@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
-class Menu extends Component {
+class List extends Component {
 	render() {
 		return (
 			<div>
-				
+				111111
 			</div>
 		);
 	}
 }
 
-export default Menu;
+export default List;

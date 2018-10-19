@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dotenv": "^6.1.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
+    "react-dropzone": "^6.2.4",
     "react-google-recaptcha": "^1.0.4",
     "react-owl-carousel": "^2.3.1",
     "react-redux": "^5.0.7",

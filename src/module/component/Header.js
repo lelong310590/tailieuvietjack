@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import Menu from "./support/Menu";
 
 class Header extends Component {
 	render() {
@@ -16,6 +17,8 @@ class Header extends Component {
 							</div>
 							<div className="menu-button">
 								<a href="javascript:;"><i className="fas fa-bars"></i></a>
+
+								<Menu/>
 							</div>
 						</div>
 
