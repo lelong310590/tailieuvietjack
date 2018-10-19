@@ -1,0 +1,45 @@
+//Color
+$primary: #ff9700
+
+@mixin prefixBlock($content: "", $top: "", $right: "", $bottom: "", $left: "", $width: "", $height: "", $z: "")
+    position: absolute
+    @if $content
+        content: $content
+
+    @if $top != ""
+        top: $top
+
+    @if $right != ""
+        right: $right
+
+    @if $bottom != ""
+        bottom: $bottom
+
+    @if $left != ""
+        left: $left
+
+    @if $height != ""
+        height: $height
+
+    @if $width != ""
+        width: $width
+
+    z-index: $z
+    display: block
+
+@mixin absolutePosition($top: "", $left: "", $right: "", $bottom: "", $z: "")
+    position: absolute
+    @if $top != ""
+        top: $top
+
+    @if $right != ""
+        right: $right
+
+    @if $bottom != ""
+        bottom: $bottom
+
+    @if $left != ""
+        left: $left
+        
+    @if $z != ""
+        z-index: $z
