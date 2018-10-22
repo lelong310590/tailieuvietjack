@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import _ from 'lodash';
 import Dropzone from 'react-dropzone'
 import Policy from "./Policy";
 
@@ -10,12 +12,55 @@ class Intro extends Component {
 			accepted: [],
 			rejected: [],
 			disabled: true,
-			modalPolicy: false
+			modalPolicy: false,
+			percent: 0,
+			onupload: false
 		}
 	}
 
 	onDrop = (accepted, rejected) => {
-		console.log(accepted);
+
+		const CancelToken = axios.CancelToken;
+		const source = CancelToken.source();
+		this.setState({
+			token: source,
+			accepted: accepted
+		});
+
+		const config = {
+			headers: {'Content-Type': 'multipart/form-data'},
+			onUploadProgress: progressEvent => {
+				let percent = Math.round(progressEvent.loaded / progressEvent.total * 100);
+				this.setState({
+					percent,
+					onupload: true,
+				});
+			},
+			cancelToken: source.token
+		};
+
+		_.map(accepted, (file) => {
+			let formData = new FormData();
+			let size = file.size;
+			formData.append('file', file);
+
+			axios.post('', formData, config)
+				.then((response) => {
+					console.log(response);
+					if (response.status === 200) {
+						this.setState({
+							fileData: response.data.video
+						});
+					}
+				})
+				.catch((error) => {
+					if (axios.isCancel(error)) {
+						this.setState({onupload: false})
+					} else {
+						console.log(error);
+					}
+				})
+		});
 	};
 
 	policyModal = (value) => {
@@ -28,9 +73,7 @@ class Intro extends Component {
 		if (value === true) {
 			this.setState({
 				disabled: false,
-			});
-
-			this.refs.dropzoneRef.open();
+			},() => this.refs.dropzoneRef.open());
 		}
 
 		this.setState({

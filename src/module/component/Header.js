@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
+import * as actions from './../action/Index';
 import Menu from "./support/Menu";
 
 class Header extends Component {
+
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
+
+		let {AuthReducer} = this.props;
+		console.log(1, AuthReducer.loggedIn);
+
 		return (
 			<header className="header" id="header">
 				<div className="container">
@@ -16,8 +27,7 @@ class Header extends Component {
 								</Link>
 							</div>
 							<div className="menu-button">
-								<a href="javascript:;"><i className="fas fa-bars"></i></a>
-
+								<a href="#"><i className="fas fa-bars"></i></a>
 								<Menu/>
 							</div>
 						</div>
@@ -45,10 +55,21 @@ class Header extends Component {
 							<div className="header-about">
 								<a href=""><i className="fas fa-award"></i></a>
 							</div>
-							<div className="header-authentication">
-								<Link to={'/dang-ky'} className="action-button button-blank">Đăng ký</Link>
-								<Link to={'/dang-nhap'} className="action-button button-blank">Đăng nhập</Link>
-							</div>
+
+							{!AuthReducer.loggedIn ? (
+								<div className="header-authentication">
+									<Link to={'/dang-ky'} className="action-button button-blank">Đăng ký</Link>
+									<Link to={'/dang-nhap'} className="action-button button-blank">Đăng nhập</Link>
+								</div>
+							) : (
+								<div className="header-authentication">
+									<div className="header-user">
+										<img src="lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
+										<p className="header-user-name">Long Le Ngoc</p>
+									</div>
+								</div>
+							)}
+
 						</div>
 					</div>
 				</div>
@@ -57,4 +78,8 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (Header);

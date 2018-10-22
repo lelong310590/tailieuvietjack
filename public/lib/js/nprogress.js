@@ -419,7 +419,7 @@
   })();
 
   /**
-   * (Internal) Determines if an element or space separated list of class names contains a class name.
+   * (Internal) Determines if an element or space separated listDoc of class names contains a class name.
    */
 
   function hasClass(element, name) {
@@ -459,9 +459,9 @@
   }
 
   /**
-   * (Internal) Gets a space separated list of the class names on the element.
-   * The list is wrapped with a single space on each end to facilitate finding
-   * matches within the list.
+   * (Internal) Gets a space separated listDoc of the class names on the element.
+   * The listDoc is wrapped with a single space on each end to facilitate finding
+   * matches within the listDoc.
    */
 
   function classList(element) {

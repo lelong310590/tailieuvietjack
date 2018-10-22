@@ -9,7 +9,7 @@ import Login from "./module/component/login/Login";
 import ForgotPassword from "./module/component/login/ForgotPassword";
 import ChangeForgotPassword from "./module/component/login/ChangeForgotPassword";
 import Intro from "./module/component/upload/Intro";
-import List from "./module/component/list/List";
+import List from "./module/component/listDoc/List";
 import ErrorNoPage from "./module/component/support/ErrorNoPage";
 
 class App extends Component {

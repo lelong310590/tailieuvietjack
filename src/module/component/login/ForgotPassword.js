@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SocialLogin from "../support/SocialLogin";
 
 class ForgotPassword extends Component {
 	render() {
