@@ -30,7 +30,7 @@ class Footer extends Component {
 					<div className="container">
 						<div className="footer-logo">
 							<Link to="/">
-								<img src="lib/images/logo.png" alt="" className="img-responsive"/>
+								<img src="/lib/images/logo.png" alt="" className="img-responsive"/>
 							</Link>
 							<p>Bản quyền thuộc về VietJack © 2018.</p>
 						</div>

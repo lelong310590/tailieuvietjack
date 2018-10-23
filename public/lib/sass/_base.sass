@@ -1,5 +1,17 @@
 .header
 	border-bottom: 1px solid #e8e8e8
+	position: fixed
+	z-index: 999
+	width: 100%
+	background: #fff
+	height: 68px
+	top: 0
+	left: 0
+.main
+	margin-top: 68px
+
+.home-wrapper
+	background: #f8f8f8
 
 .header-wrapper
 	display: flex
@@ -60,6 +72,48 @@
 					animation: shake 0.82s
 	.header-authentication
 		display: flex
+	.logged-in
+		padding: 17px 10px
+		position: relative
+		cursor: pointer
+		&:hover
+			.user-menu
+				display: block
+		.user-menu
+			position: absolute
+			top: 100%
+			right: 0
+			background: #fff
+			z-index: 9999
+			display: block
+			border: 1px solid #e8e8e8
+			min-width: 180px
+			display: none
+			ul
+				list-style: none
+				margin: 0
+				padding: 0
+				li
+					font-size: 13px
+					padding: 10px
+					position: relative
+					display: flex
+					justify-content: space-between
+					align-items: center
+					background: #f9f9f9
+					&:first-child
+						background: #fff
+					&:last-child
+						background: #fff
+					a
+						color: #222!important
+						&:hover
+							color: $primary!important
+							text-decoration: none
+						.money
+							color: $primary
+							font-weight: 600
+							margin-left: 3px
 
 .section-slider
 	position: relative
@@ -423,7 +477,6 @@
 .header-user
 	display: flex
 	align-items: center
-	padding: 0 10px
 	.user-avatar
 		max-width: 33px
 		border-radius: 3px
@@ -439,6 +492,12 @@
 .document-list
 	background: #f8f8f8
 	padding: 25px 0
+	.document-list-title
+		padding-bottom: 10px
+		padding-right: 30px
+		margin-bottom: 30px
+		border-bottom: 2px solid $primary
+		display: inline-block
 .document-item
 	background: #fff
 	border-radius: 4px
@@ -475,9 +534,208 @@
 		&:hover
 			color: $primary
 			text-decoration: none
-	.document-info
+.document-info
+	display: flex
+	justify-content: space-between
+	align-items: center
+	color: #aaa
+	font-size: 11px
+.upload-file-edit
+	padding: 20px 0
+	max-width: 900px
+	margin: 20px auto
+	.upload-result-wrapper
+		background: #fff
+	.upload-file-edit-title
+		color: #222
+		font-weight: 600
+		font-size: 25px
+	.upload-file-upload-more
+		margin: 25px auto
+		font-size: 15px
+		background-color: $primary
+		border-radius: 5px
+		text-align: center
+		color: #fff
+		border: none
+		padding: 10px 50px
+		font-weight: 600
+	.save-all-mode
+		.cb-save-all
+			border: 1px solid #f0f0f0
+			padding: 15px
+			border-bottom: none
+			background: #f1f1f1
+			label
+				display: flex
+				align-items: center
+				margin: 0
+			.react-toggle
+				margin-right: 10px
+.upload-result
+	padding: 15px
+	border: 1px solid #f0f0f0
+	display: flex
+	.upload-result-left
+		width: 180px
+	.upload-result-right
+		flex: 1
+	.upload-result-content
 		display: flex
-		justify-content: space-between
 		align-items: center
-		color: #aaa
-		font-size: 11px
+		margin-bottom: 15px
+		.upload-result-content-input
+			margin: 0
+			width: 100%
+			.manual-price
+				margin-top: 5px
+				max-width: 200px
+		.upload-result-content-title
+			width: 120px
+			margin-right: 15px
+			text-align: right
+			font-size: 13px
+			.upload-result-content-required
+				color: red
+				font-weight: 700
+	.upload-result-submit
+		button
+			background: $primary
+			color: #fff
+			border: none
+			padding: 3px 25px
+			border-radius: 3px
+			font-size: 15px
+			font-weight: 600
+.breadcrumb-wrapper
+	margin-top: 20px
+	margin-bottom: 10px
+	ul
+		margin: 0
+		padding: 0
+		li
+			display: inline-block
+			margin-right: 10px
+			&:first-child
+				i
+					margin-left: 0
+			a
+				color: #717171
+				&:hover 
+					color: $primary
+					text-decoration: none
+				i
+					font-size: 10px
+					margin-left: 5px
+.document-wrapper
+	background: #f8f8f8
+	.document-detail
+		.document-detail-title
+			font-size: 25px
+			color: #333
+			line-height: 1.5em
+			margin: 0
+		.document-info
+			justify-content: normal
+			margin-top: 15px
+			& > div
+				margin-right: 30px
+		.document-stats
+			margin-bottom: 15px
+			margin-top: 15px
+			display: flex
+			justify-content: space-between
+			.document-user
+				display: flex
+				align-items: center
+			.document-report
+				margin-left: 15px
+				button
+					font-size: 12px
+					background: #ce2222
+					border: none
+					box-shadow: none
+					color: #fff
+		.document-download-top-button
+			cursor: pointer
+			&:hover
+				.document-download-text
+					background: #fb0
+				.document-download-count
+					background-color: #fa0
+					&:before
+						border-right-color: #fa0
+			.document-download-text
+				height: 35px
+				width: 114px
+				float: left
+				text-align: center
+				line-height: 35px
+				color: #fff
+				text-transform: uppercase
+				background-color: #fa0
+				margin-right: 0
+				display: inline-block
+				font-size: 15px
+				padding: 0 15px
+			.document-download-count
+				display: inline-block
+				height: 35px
+				padding: 0 7px
+				line-height: 35px
+				text-align: center
+				background-color: #fb0
+				float: left
+				position: relative
+				color: #fff
+				font-size: 14px
+				font-weight: 600
+				&:before
+					content: ''
+					border: 7px solid transparent
+					border-right-color: #fb0
+					position: absolute
+					top: 10.5px
+					left: -13px
+		.document-detail-download-button
+			text-align: center
+			button
+				width: 80%
+				background: $primary
+				color: #fff
+				border: none
+				box-shadow: none
+				margin: 15px auto
+				padding: 15px
+				font-size: 17px
+				font-weight: 600
+				border-radius: 5px
+				&:hover
+					background: #fa0
+.document-detail-nfomation-content, .document-detail-tags-list, .facebook-comment
+	background: #fff
+	padding: 20px 20px 10px 20px
+	border-radius: 5px
+.facebook-comment
+	margin-bottom: 30px
+.document-detail-tags
+	margin: 30px 0
+.document-detail-tags-list
+	ul
+		list-style: none
+		margin: 0
+		padding: 0
+		overflow: hidden
+		li
+			float: left
+			margin-right: 10px
+			margin-bottom: 10px
+			a
+				font-size: 13px
+				color: #333
+				border: 1px solid #ddd
+				border-radius: 3px
+				padding: 0 10px
+				&:hover
+					text-decoration: none
+					border-color: $primary

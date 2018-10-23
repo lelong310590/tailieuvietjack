@@ -1,7 +1,7 @@
 import * as types from './../const/ActionType';
 
 let initialState = {
-	loggedIn: false,
+	loggedIn: true,
 };
 
 let AuthReducer = (state = initialState, action) => {

@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 import SocialLogin from "../support/SocialLogin";
 import {Link} from "react-router-dom";
+import MetaTags from 'react-meta-tags';
 
 class Login extends Component {
 	render() {
 		return (
 			<div className="page-wrapper">
+				<MetaTags>
+					<title>Page 1</title>
+					<meta name="description" content="Some description." />
+					<meta property="og:title" content="MyApp" />
+					<meta property="og:image" content="path/to/image.jpg" />
+				</MetaTags>
 				<div className="container">
 					<div className="authen-wrapper">
 						<h1 className="text-center">ĐĂNG NHẬP</h1>

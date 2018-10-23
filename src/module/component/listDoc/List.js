@@ -8,23 +8,26 @@ class List extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: [1,2,3,4,5,6,7,8,9,10,11,12]
+			items: [1,2,3,4,5,6],
+			itemClass: this.props.itemClass,
+			title: this.props.title
 		}
 	}
 
 	render() {
-		let {items} = this.state;
-		let documents = _.map(items, () => {
+		let {items, itemClass, title} = this.state;
+
+		let documents = _.map(items, (value, index) => {
 			return (
-				<div className="col-xs-6 col-md-2">
+				<div className={itemClass} key={value}>
 					<div className="document-item">
-						<Link to="" className="document-thumbnail">
-							<img src="lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+						<Link to="/tai-lieu/123456" className="document-thumbnail">
+							<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
 						</Link>
-						<Link to="" className="document-title">
+						<Link to="/tai-lieu/123456" className="document-title">
 							Bảng công thức tích phân - đạo hàm - Mũ - logarit
 						</Link>
-						<Link to="" className="document-author">
+						<Link to="/tai-lieu/123456" className="document-author">
 							Trần Quang
 						</Link>
 						<div className="document-info">
@@ -38,16 +41,14 @@ class List extends Component {
 		});
 
 		return (
-			<section className="document-list">
-				<div className="container">
-					<h4 className="document-list-title">Tài liệu nổi bật</h4>
-					<div className="document-list-wrapper">
-						<div className="row">
-							{documents}
-						</div>
+			<div className="document-list">
+				<h4 className="document-list-title">{title}</h4>
+				<div className="document-list-wrapper">
+					<div className="row">
+						{documents}
 					</div>
 				</div>
-			</section>
+			</div>
 		);
 	}
 }

@@ -10,6 +10,7 @@ import ForgotPassword from "./module/component/login/ForgotPassword";
 import ChangeForgotPassword from "./module/component/login/ChangeForgotPassword";
 import Intro from "./module/component/upload/Intro";
 import List from "./module/component/listDoc/List";
+import Document from "./module/component/doc/Document";
 import ErrorNoPage from "./module/component/support/ErrorNoPage";
 
 class App extends Component {
@@ -19,20 +20,23 @@ class App extends Component {
 				<ScrollToTop>
 					<Header/>
 
-					<Switch>
-						<Route exact={true} path={'/'} component={Home}/>
-						<Route path={'/dang-ky'} component={Register}/>
-						<Route path={'/dang-nhap'} component={Login}/>
-						<Route path={'/quen-mat-khau'} component={ForgotPassword}/>
-						<Route path={'/doi-lai-mat-khau/:token'} component={ChangeForgotPassword}/>
+					<main className="main" id="main">
+						<Switch>
+							<Route exact={true} path={'/'} component={Home}/>
+							<Route path={'/dang-ky'} component={Register}/>
+							<Route path={'/dang-nhap'} component={Login}/>
+							<Route path={'/quen-mat-khau'} component={ForgotPassword}/>
+							<Route path={'/doi-lai-mat-khau/:token'} component={ChangeForgotPassword}/>
 
-						<Route path={'/upload-tai-lieu'} component={Intro}/>
-						<Route path={'/:class/:subject'} component={List}/>
-						<Route path={'/:class'} component={List}/>
+							<Route path={'/upload-tai-lieu'} component={Intro}/>
+							<Route path={'cat/:class/:subject'} component={List}/>
+							<Route path={'cat/:class'} component={List}/>
 
-						<Route component={ErrorNoPage}/>
-					</Switch>
+							<Route path={'/tai-lieu/:slug'} component={Document}/>
 
+							<Route component={ErrorNoPage}/>
+						</Switch>
+					</main>
 					<Footer/>
 				</ScrollToTop>
 			</Router>

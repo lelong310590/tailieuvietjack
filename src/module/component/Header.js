@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import * as actions from './../action/Index';
 import Menu from "./support/Menu";
+import UserMenu from "./support/UserMenu";
 
 class Header extends Component {
 
@@ -13,7 +14,6 @@ class Header extends Component {
 	render() {
 
 		let {AuthReducer} = this.props;
-		console.log(1, AuthReducer.loggedIn);
 
 		return (
 			<header className="header" id="header">
@@ -22,7 +22,7 @@ class Header extends Component {
 						<div className="header-main">
 							<div className="main-logo">
 								<Link to="/">
-									<img src="./lib/images/logo.png" alt=""
+									<img src="/lib/images/logo.png" alt=""
 									     className="img-responsive logo"/>
 								</Link>
 							</div>
@@ -62,11 +62,13 @@ class Header extends Component {
 									<Link to={'/dang-nhap'} className="action-button button-blank">Đăng nhập</Link>
 								</div>
 							) : (
-								<div className="header-authentication">
+								<div className="header-authentication logged-in">
 									<div className="header-user">
-										<img src="lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
+										<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
 										<p className="header-user-name">Long Le Ngoc</p>
 									</div>
+
+									<UserMenu/>
 								</div>
 							)}
 
