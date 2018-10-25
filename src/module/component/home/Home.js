@@ -1,20 +1,16 @@
 import React, {Component, Fragment} from 'react';
 import Slider from "./Slider";
 import Introduction from "./Introduction";
-import Subject from "./Subject";
 import List from "../listDoc/List";
-import MetaTags from 'react-meta-tags';
+import Meta from "../support/Meta";
 
 class Home extends Component {
 	render() {
 		return (
 			<Fragment>
-				<MetaTags>
-					<title>Homepage</title>
-					<meta name="description" content="Some description." />
-					<meta property="og:title" content="MyApp" />
-					<meta property="og:image" content="path/to/image.jpg" />
-				</MetaTags>
+
+				<Meta/>
+
 				<Slider/>
 				<Introduction/>
 

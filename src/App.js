@@ -12,6 +12,7 @@ import Intro from "./module/component/upload/Intro";
 import List from "./module/component/listDoc/List";
 import Document from "./module/component/doc/Document";
 import ErrorNoPage from "./module/component/support/ErrorNoPage";
+import Information from "./module/component/user/Information";
 
 class App extends Component {
 	render() {
@@ -33,6 +34,8 @@ class App extends Component {
 							<Route path={'cat/:class'} component={List}/>
 
 							<Route path={'/tai-lieu/:slug'} component={Document}/>
+
+							<Route path={'/tai-khoan/:id/thong-tin'} component={Information} />
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

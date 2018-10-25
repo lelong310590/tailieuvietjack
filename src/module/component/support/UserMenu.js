@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 class UserMenu extends Component {
 	render() {
 		return (
 			<div className="user-menu">
 				<ul>
-					<li><Link to="">Thông tin cá nhân</Link> <i className="fas fa-angle-right"></i></li>
-					<li><Link to="">Doanh thu: <span className="money">0 đ</span></Link></li>
-					<li><Link to="">Số dư: <span className="money">0 đ</span></Link></li>
-					<li><Link to="">Nạp tiền</Link> <i className="fas fa-angle-right"></i></li>
-					<li><Link to="">Rút tiền</Link> <i className="fas fa-angle-right"></i></li>
-					<li><Link to="">Đăng xuất</Link></li>
+					<li><NavLink to="/tai-khoan/1/thong-tin" exact={true} activeClassName={'active'}>Thông tin cá nhân</NavLink> <i className="fas fa-angle-right"></i></li>
+					<li><NavLink to="">Doanh thu: <span className="money">0 đ</span></NavLink></li>
+					<li><NavLink to="">Số dư: <span className="money">0 đ</span></NavLink></li>
+					<li><NavLink to="">Nạp tiền</NavLink> <i className="fas fa-angle-right"></i></li>
+					<li><NavLink to="">Rút tiền</NavLink> <i className="fas fa-angle-right"></i></li>
+					<li><NavLink to="">Đăng xuất</NavLink></li>
 				</ul>
 			</div>
 		);

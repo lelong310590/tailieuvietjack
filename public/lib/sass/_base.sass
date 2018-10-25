@@ -10,6 +10,11 @@
 .main
 	margin-top: 68px
 
+.form-error
+	color: red
+	margin-top: 5px
+	font-size: 12px
+
 .home-wrapper
 	background: #f8f8f8
 
@@ -31,9 +36,9 @@
 			padding: 22px 50px 22px 0
 			a
 				color: #ccc
-				&:hover
+				&:hover, &:focus, &:active
 					color: $primary
-			&:hover
+			&:hover, &:focus, &:active
 				.menu-list
 					display: block
 	.header-sub
@@ -68,7 +73,7 @@
 			border-right: 1px solid #f1f1f1
 			a
 				color: $primary
-				&:hover
+				&:hover, &:focus, &:active
 					animation: shake 0.82s
 	.header-authentication
 		display: flex
@@ -76,7 +81,7 @@
 		padding: 17px 10px
 		position: relative
 		cursor: pointer
-		&:hover
+		&:hover, &:focus, &:active
 			.user-menu
 				display: block
 		.user-menu
@@ -107,7 +112,7 @@
 						background: #fff
 					a
 						color: #222!important
-						&:hover
+						&:hover, &:focus, &:active
 							color: $primary!important
 							text-decoration: none
 						.money
@@ -215,7 +220,7 @@
 				font-weight: 700
 			a
 				color: #003845
-				&:hover
+				&:hover, &:focus, &:active
 					color: $primary
 					text-decoration: none
 	.copyright
@@ -308,7 +313,7 @@
 	border: 1px solid #e8e8e8
 	.has-child
 		position: relative
-		&:hover
+		&:hover, &:focus, &:active
 			.subject-level-menu
 				display: block
 		.subject-level-menu
@@ -337,7 +342,7 @@
 				font-size: 15px
 				display: block
 				padding: 10px 15px
-				&:hover
+				&:hover, &:focus, &:active
 					text-decoration: none
 					background: #eee
 					color: $primary!important
@@ -505,7 +510,7 @@
 	margin-bottom: 20px
 	box-shadow: 1px 1px 1px 0 #ddd
 	padding: 15px
-	&:hover
+	&:hover, &:focus, &:active
 		box-shadow: 1px 3px 4px 1px #ddd
 	.document-thumbnail
 		margin-bottom: 15px
@@ -519,7 +524,7 @@
 		overflow: hidden
 		color: #222
 		margin-bottom: 5px
-		&:hover
+		&:hover, &:focus, &:active
 			color: $primary
 			text-decoration: none
 	.document-author
@@ -531,14 +536,14 @@
 		white-space: nowrap
 		text-overflow: ellipsis
 		overflow: hidden
-		&:hover
+		&:hover, &:focus, &:active
 			color: $primary
 			text-decoration: none
 .document-info
 	display: flex
 	justify-content: space-between
 	align-items: center
-	color: #aaa
+	color: #696969
 	font-size: 11px
 .upload-file-edit
 	padding: 20px 0
@@ -621,7 +626,7 @@
 					margin-left: 0
 			a
 				color: #717171
-				&:hover 
+				&:hover, &:focus, &:active
 					color: $primary
 					text-decoration: none
 				i
@@ -658,7 +663,7 @@
 					color: #fff
 		.document-download-top-button
 			cursor: pointer
-			&:hover
+			&:hover, &:focus, &:active
 				.document-download-text
 					background: #fb0
 				.document-download-count
@@ -710,7 +715,7 @@
 				font-size: 17px
 				font-weight: 600
 				border-radius: 5px
-				&:hover
+				&:hover, &:focus, &:active
 					background: #fa0
 .document-detail-nfomation-content, .document-detail-tags-list, .facebook-comment
 	background: #fff
@@ -736,6 +741,177 @@
 				border: 1px solid #ddd
 				border-radius: 3px
 				padding: 0 10px
-				&:hover
+				&:hover, &:focus, &:active
 					text-decoration: none
 					border-color: $primary
+.widget
+	background: #fff
+	padding: 10px 5px
+	border-radius: 5px
+	border: 1px solid #ddd
+	margin-bottom: 20px
+	.widget-title
+		h4
+			font-size: 16px
+			padding-bottom: 10px
+			border-bottom: 1px solid #ddd
+.featured-document-item
+	color: #2b2b2b
+	display: flex
+	align-items: center
+	justify-content: flex-start
+	margin-bottom: 20px
+	&:hover, &:focus, &:active
+		text-decoration: none
+	&:first-child
+		.no-document-item
+			background: #ec0d0d
+	&:nth-child(2)
+		.no-document-item
+			background: $primary
+	&:nth-child(3)
+		.no-document-item
+			background: #30a989
+	.no-document-item
+		width: 40px
+		height: 40px
+		display: flex
+		justify-content: center
+		align-items: center
+		color: #fff
+		background: #bbbbbb
+		border-radius: 100%
+		font-weight: 700
+		margin-right: 15px
+.featured-document-info, .related
+	flex: 1
+	.featured-document-info-title
+		font-size: 14px
+		font-weight: 400
+	.document-info
+		justify-content: normal
+		& > div
+			margin-right: 25px
+.related
+	.related-item
+		margin-bottom: 20px
+	.related-title
+		h4
+			font-size: 15px
+			padding-bottom: 15px
+			border-bottom: 1px solid #ddd
+	.related-item-title
+		margin-bottom: 5px
+		a
+			color: #2b2b2b
+			&:hover, &:focus, &:active
+				color: $primary
+				text-decoration: none
+.user-cover-photo
+	background-image: url('./../images/bg_tab.png')
+	background-repeat: repeat-x
+	background-color: #da9f4a
+	width: 100%
+	height: 98px
+.user-main-info
+	height: 62px
+	.user-main-info-wrapper
+		display: flex
+		justify-content: space-between
+	.header-user
+		max-height: 62px
+		.header-user-name
+			font-size: 25px
+			max-width: unset
+			margin-left: 15px
+		.user-avatar
+			max-width: 96px
+			border: 2px solid #fff
+			top: -33px
+			position: relative
+	.user-stats
+		display: flex
+		.user-stats-item
+			display: flex
+			flex-direction: column
+			align-items: center
+			justify-content: center
+			padding: 0 15px
+			border-left: 1px solid #e8e8e8
+			&:last-child
+				border-right: 1px solid #e8e8e8
+			p
+				font-size: 10px
+				color: #999
+				font-weight: 600
+				margin-bottom: 5px
+			span
+				font-weight: 700
+				font-size: 16px
+.user-main-wrapper
+	background: #f8f8f8
+	padding: 35px 0
+	.user-main-menu
+		margin-top: 42px
+	ul
+		padding: 0
+		margin: 0
+		li
+			list-style: none
+			margin-bottom: 5px
+			.active
+				background: $primary
+				color: #fff
+			a
+				background-color: #fff
+				border: 1px solid #e8e8e8
+				border-radius: 3px
+				box-sizing: border-box
+				padding: 12px 0 10px 25px
+				color: #999
+				display: block
+				i
+					margin-right: 10px
+				&:hover 
+					background: $primary
+					color: #fff
+					text-decoration: none
+.user-main-setting-wrapper
+	.user-main-setting-content
+		background-color: #fff
+		margin-top: 8px
+		border-radius: 4px
+		padding-bottom: 40px
+		box-shadow: 0 2px 2px 0 #e8e8e8
+		.info-user-cnt
+			.react-date-picker
+				display: block
+				.react-date-picker__wrapper
+					width: 100%
+					padding: 6px 12px
+					font-size: 14px
+					line-height: 1.42857143
+					color: #555
+					background-color: #fff
+					background-image: none
+					border: 1px solid #ccc
+					border-radius: 4px
+	.user-main-setting-title
+		margin-top: 0
+		font-size: 25px
+		margin-bottom: 15px
+	.info-user-cnt
+		max-width: 530px
+		margin: 0 auto
+		padding-top: 40px
+	.user-setting-button
+		button
+			background: $primary
+			color: #fff
+			padding: 5px 25px
+			border-radius: 3px
+			border: none
+			box-shadow: none
+			margin-top: 10px
+			&:hover
+				background: #fa0

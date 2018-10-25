@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
-import * as actions from './../action/Index';
 import Menu from "./support/Menu";
 import UserMenu from "./support/UserMenu";
 
 class Header extends Component {
-
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
-
 		let {AuthReducer} = this.props;
 
 		return (

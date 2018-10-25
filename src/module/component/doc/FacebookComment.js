@@ -7,7 +7,7 @@ class FacebookComment extends Component {
 			<div className="facebook-comment">
 				<FacebookProvider appId="1642028219373274">
 					<Comments
-						href="http://www.facebook.com"
+						href="https://www.facebook.com/hoc.cung.vietjack/"
 						width="100%"
 					/>
 				</FacebookProvider>

@@ -7,15 +7,15 @@ class Register extends Component {
 
 	handleSocialLogin = (user) => {
 		console.log(user)
-	}
+	};
 
 	handleSocialLoginFailure = (err) => {
 		console.error(err)
-	}
+	};
 
 	onChange = (value) => {
 		console.log("Captcha value:", value);
-	}
+	};
 
 	render() {
 		return (
@@ -26,7 +26,7 @@ class Register extends Component {
 						<div className="social-login-wrapper">
 							<SocialLogin
 								provider='facebook'
-								appId='11111'
+								appId='185415292298335'
 								onLoginSuccess={this.handleSocialLogin}
 								onLoginFailure={this.handleSocialLoginFailure}
 							>

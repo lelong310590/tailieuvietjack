@@ -5,19 +5,16 @@ import Introduction from "../home/Introduction";
 import Infomation from "./Infomation";
 import Tags from "./Tags";
 import FacebookComment from "./FacebookComment";
+import Breadcrumb from "./Breadcrumb";
+import Sidebar from "./Sidebar";
 
 class Document extends Component {
 	render() {
 		return (
 			<section className="document-wrapper">
 				<div className="container">
-					<div className="breadcrumb-wrapper">
-						<ul>
-							<li><Link to="/"><i className="fas fa-home"></i> Trang chủ</Link></li>
-							<li><Link to="/"><i className="fas fa-chevron-right"></i> Lớp 8</Link></li>
-							<li><Link to="/"><i className="fas fa-chevron-right"></i> Môn toán</Link></li>
-						</ul>
-					</div>
+					<Breadcrumb/>
+
 					<div className="row">
 						<div className="col-xs-12 col-md-9 document-detail">
 							<h1 className="document-detail-title">Bảng công thức tích phân - đạo hàm - Mũ - logarit</h1>
@@ -65,6 +62,8 @@ class Document extends Component {
 
 							<FacebookComment/>
 						</div>
+
+						<Sidebar/>
 					</div>
 				</div>
 			</section>
