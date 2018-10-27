@@ -6,15 +6,27 @@ import thunkMiddleware from 'redux-thunk';
 import MainReducer from './module/reducer/MainReducer';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import crosstabSync from 'redux-persist-crosstab';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
+const persistConfig = {
+	keyPrefix: 'root2',
+};
+
+const finalCreateStore = compose(autoRehydrate({ log: process.env.NODE_ENV !== 'production' }))(createStore);
+
+const store = finalCreateStore(
 	MainReducer,
 	composeEnhancers(
 		applyMiddleware(thunkMiddleware)
 	)
-)
+);
+
+const persistor = persistStore(store, persistConfig, () => { });
+
+crosstabSync(persistor, persistConfig);
 
 ReactDOM.render(
 	<Provider store={store}>

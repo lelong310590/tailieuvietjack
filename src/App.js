@@ -68,11 +68,11 @@ class App extends Component {
 					<main className="main" id="main">
 						<Switch>
 							<Route exact={true} path={'/'} component={Home}/>
-							<Route path={'/dang-ky'} component={Register}/>
+							<Route path={'/dang-ky'} component={isUnauthenticatedUser(Register)}/>
 							<Route path={'/dang-nhap'} component={isUnauthenticatedUser(Login)}/>
 							<Route path={'/dang-xuat'} component={isAuthenticatedUser(Logout)}/>
-							<Route path={'/quen-mat-khau'} component={ForgotPassword}/>
-							<Route path={'/doi-lai-mat-khau/:token'} component={ChangeForgotPassword}/>
+							<Route path={'/quen-mat-khau'} component={isUnauthenticatedUser(ForgotPassword)}/>
+							<Route path={'/doi-lai-mat-khau/:token'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
 
 							<Route path={'/upload-tai-lieu'} component={Intro}/>
 							<Route path={'cat/:class/:subject'} component={List}/>

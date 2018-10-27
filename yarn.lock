@@ -5624,7 +5624,7 @@ json-stable-stringify@^1.0.1:
   dependencies:
     jsonify "~0.0.0"
 
-json-stringify-safe@~5.0.1:
+json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
@@ -5823,7 +5823,7 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash-es@^4.17.5:
+lodash-es@^4.17.4, lodash-es@^4.17.5:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.11.tgz#145ab4a7ac5c5e52a3531fb4f310255a152b4be0"
   integrity sha512-DHb1ub+rMjjrxqlB3H56/6MXtm1lSksDp2rA2cNWjG8mlDUYFhUj3Di2Zn5IwSU87xLv8tNIQ7sSwE/YOX/D/Q==
@@ -8333,6 +8333,20 @@ redux-auth-wrapper@^2.0.3:
     lodash.isempty "4.4.0"
     prop-types "^15.5.0"
     query-string "4.3.4"
+
+redux-persist-crosstab@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/redux-persist-crosstab/-/redux-persist-crosstab-3.7.0.tgz#7d516bf80f8ff9bd958f8ab04aafd9474798f7cf"
+  integrity sha512-bI95jPU7YslFgY8SW0gaVYE/s8I415ghH6QxudL+pAAf8SwLYTgiz2XKBoHGarvOkVrDdxTLWUrQf6jDwG0hJw==
+
+redux-persist@4.10.2:
+  version "4.10.2"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-4.10.2.tgz#8efdb16cfe882c521a78a6d0bfdfef2437f49f96"
+  integrity sha512-U+e0ieMGC69Zr72929iJW40dEld7Mflh6mu0eJtVMLGfMq/aJqjxUM1hzyUWMR1VUyAEEdPHuQmeq5ti9krIgg==
+  dependencies:
+    json-stringify-safe "^5.0.1"
+    lodash "^4.17.4"
+    lodash-es "^4.17.4"
 
 redux-thunk@^2.3.0:
   version "2.3.0"

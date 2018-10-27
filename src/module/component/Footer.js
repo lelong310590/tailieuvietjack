@@ -23,7 +23,7 @@ class Footer extends Component {
 
 							<div className="footer-right col-xs-12 col-md-3">
 								<FacebookProvider appId="185415292298335">
-									<Page href="https://www.facebook.com/hoc.cung.vietjack/" data-small-header="true"/>
+									<Page href="https://www.facebook.com/hoc.cung.vietjack/" smallHeader="true"/>
 								</FacebookProvider>
 							</div>
 						</div>
