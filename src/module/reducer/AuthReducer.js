@@ -1,21 +1,21 @@
 import * as types from './../const/ActionType';
 
 let initialState = {
-	loggedIn: true,
-	email: '',
-	password: '',
+	loggedIn: false,
 };
 
 let AuthReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case types.LOGIN_EMAIL_HANDLE:
-			let email = action.email;
-			state.email = email;
-			return state;
-		case types.LOGIN_PASSWORD_HANDLE:
-			let password = action.password;
-			state.password = password;
-			return state;
+		case types.HANDLE_LOGIN_USER:
+			return {
+				...state,
+				loggedIn: true
+			};
+		case types.HANDLE_LOGOUT_USER:
+			return {
+				...state,
+				loggedIn: false
+			};
 		default:
 			return state;
 	}

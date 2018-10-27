@@ -1,21 +1,29 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 class UserMenu extends Component {
 	render() {
+
+		let {id, profit, totalMoney} = this.props.UserReducer;
+
 		return (
 			<div className="user-menu">
 				<ul>
-					<li><NavLink to="/tai-khoan/1/thong-tin" exact={true} activeClassName={'active'}>Thông tin cá nhân</NavLink> <i className="fas fa-angle-right"></i></li>
-					<li><NavLink to="">Doanh thu: <span className="money">0 đ</span></NavLink></li>
-					<li><NavLink to="">Số dư: <span className="money">0 đ</span></NavLink></li>
+					<li><NavLink to={'/tai-khoan/'+ id +'/thong-tin'} exact={true} activeClassName={'active'}>Thông tin cá nhân</NavLink> <i className="fas fa-angle-right"></i></li>
+					<li><p>Doanh thu: <span className="money">{profit} đ</span></p></li>
+					<li><p>Số dư: <span className="money">{totalMoney} đ</span></p></li>
 					<li><NavLink to="">Nạp tiền</NavLink> <i className="fas fa-angle-right"></i></li>
 					<li><NavLink to="">Rút tiền</NavLink> <i className="fas fa-angle-right"></i></li>
-					<li><NavLink to="">Đăng xuất</NavLink></li>
+					<li><Link to="/dang-xuat">Đăng xuất</Link></li>
 				</ul>
 			</div>
 		);
 	}
 }
 
-export default UserMenu;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (UserMenu);

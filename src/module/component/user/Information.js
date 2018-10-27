@@ -4,19 +4,36 @@ import Menu from "./Menu";
 import DatePicker from 'react-date-picker';
 import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
+import { withRouter } from "react-router";
+import Meta from "../support/Meta";
+
 
 class Information extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			fullName: this.props.UserReducer.fullName,
-			birth: new Date(),
-			gender: 1,
+			id: 0,
+			firstName: '',
+			lastName: '',
+			email: '',
+			thumbnail: '',
+			birth: new Date(2017, 0, 1),
+			docCount: 0,
+			docDownload: 0,
 			address: '',
-			email: 'longlengoc90@gmail.com'
+			gender: 0,
+			profit: 0,
+			totalMoney: 0
 		}
 	}
+
+	componentWillMount = () => {
+		let {id, firstName, lastName, email, thumbnail, address, gender} = this.props.UserReducer;
+		this.setState({
+			id, firstName, lastName, email, thumbnail, address, gender
+		})
+	};
 
 	onHandleChange = (event) => {
 		let target = event.target;
@@ -27,12 +44,22 @@ class Information extends Component {
 		})
 	};
 
+	onHandleSubmit = (event) => {
+		event.preventDefault();
+
+	};
+
 	render() {
 
-		let {fullName, birth, gender, address, email} = this.state;
+		let {firstName, lastName, birth, gender, address, email} = this.state;
 
 		return (
 			<section className="user-wrapper">
+
+				<Meta
+					title={firstName}
+				/>
+
 				<div className="user-cover-photo"></div>
 
 				<div className="user-main-info">
@@ -50,13 +77,24 @@ class Information extends Component {
 								<div className="user-main-setting-wrapper">
 									<h1 className="user-main-setting-title">Thông tin cá nhân</h1>
 									<div className="user-main-setting-content">
-										<form className="info-user-cnt">
+										<form className="info-user-cnt" onSubmit={this.onHandleSubmit}>
 											<div className="form-group">
-												<label>Tên hiện thị</label>
+												<label>Họ và tên đệm</label>
 												<input
 													type="text"
-													name="fullName"
-													value={fullName}
+													name="firstName"
+													value={firstName}
+													className="form-control"
+													onChange={this.onHandleChange}
+												/>
+											</div>
+
+											<div className="form-group">
+												<label>Tên</label>
+												<input
+													type="text"
+													name="lastName"
+													value={lastName}
 													className="form-control"
 													onChange={this.onHandleChange}
 												/>
@@ -126,12 +164,4 @@ const mapStateToProps = (state) => {
 	return state;
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		handleChangeName: (name) => {
-			dispatch(actions.handleUserName(name))
-		}
-	}
-};
-
-export default connect(mapStateToProps, mapDispatchToProps) (Information);
+export default withRouter(connect(mapStateToProps, null) (Information));

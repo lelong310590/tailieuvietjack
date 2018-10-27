@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
 import _ from 'lodash';
 import Dropzone from 'react-dropzone'
 import Policy from "./Policy";
@@ -16,7 +17,7 @@ class Intro extends Component {
 			modalPolicy: false,
 			percent: 0,
 			onupload: false,
-			showContent: false //Test thoi
+			showContent: true
 		}
 	}
 
@@ -66,9 +67,16 @@ class Intro extends Component {
 	};
 
 	policyModal = (value) => {
-		this.setState({
-			modalPolicy: value
-		})
+		let loggedIn = this.props.AuthReducer.loggedIn;
+		if (loggedIn) {
+			this.setState({
+				modalPolicy: value
+			})
+		} else {
+			alert("Bạn hãy đăng nhập để tải lên tài liệu bạn muốn!");
+			this.props.history.push('/dang-nhap')
+		}
+
 	};
 
 	policyResponse = (value) => {
@@ -156,4 +164,8 @@ class Intro extends Component {
 	}
 }
 
-export default Intro;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (Intro);

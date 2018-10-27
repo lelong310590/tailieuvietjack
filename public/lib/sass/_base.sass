@@ -119,6 +119,13 @@
 							color: $primary
 							font-weight: 600
 							margin-left: 3px
+					p
+						margin: 0
+						.money
+							color: $primary
+							font-weight: 600
+							margin-left: 3px
+
 
 .section-slider
 	position: relative
@@ -241,6 +248,7 @@
 	background-color: #f7f7f7 !important
 	box-shadow: none !important
 	padding: 1.8em 0.9em 1.8em 0.9em
+	position: relative
 	h1
 		font-size: 18px
 		margin-bottom: 15px
@@ -292,6 +300,8 @@
 				font-size: 17px
 				padding: 10px
 				border-radius: 2px
+				&:hover, &:active, &:focus
+					outline: none
 	.form-recapcha div
 		margin: 0 auto
 	.form-forgot-word
@@ -908,10 +918,40 @@
 		button
 			background: $primary
 			color: #fff
-			padding: 5px 25px
+			padding: 7px 25px
 			border-radius: 3px
 			border: none
 			box-shadow: none
 			margin-top: 10px
-			&:hover
+			font-size: 15px
+			&:hover, &:focus, &:active
 				background: #fa0
+.document-manager-filter-bar
+	border: 1px solid #e8e8e8
+	background: #fff
+	margin-bottom: 18px
+	display: flex
+	justify-content: space-between
+	align-items: center
+	padding: 10px 20px
+	.document-filter-radio
+		display: flex
+		align-items: center
+		.document-manager-filter-item
+			margin-right: 20px
+	.document-filter-search
+		min-width: 300px
+		.form-group
+			margin: 0
+			position: relative
+			button
+				background: none
+				border: none
+				box-shadow: none
+				color: $primary
+				position: absolute
+				top: 7px
+				right: 3px
+				&:hover, &:active, &:focus
+					background: none
+					outline: none

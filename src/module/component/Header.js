@@ -5,8 +5,18 @@ import Menu from "./support/Menu";
 import UserMenu from "./support/UserMenu";
 
 class Header extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			loggedIn: false
+		}
+	}
+
 	render() {
-		let {AuthReducer} = this.props;
+		let {AuthReducer, UserReducer} = this.props;
+
+		let {firstName, lastName} = UserReducer;
 
 		return (
 			<header className="header" id="header">
@@ -27,7 +37,7 @@ class Header extends Component {
 
 						<div className="header-sub">
 							<div className="main-search">
-								<form action="" method="post" role="form">
+								<form>
 
 									<div className="form-group">
 										<input type="text" className="form-control" name="" id=""
@@ -58,13 +68,12 @@ class Header extends Component {
 								<div className="header-authentication logged-in">
 									<div className="header-user">
 										<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
-										<p className="header-user-name">Long Le Ngoc</p>
+										<p className="header-user-name">{firstName} {lastName}</p>
 									</div>
 
 									<UserMenu/>
 								</div>
 							)}
-
 						</div>
 					</div>
 				</div>

@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class UserCover extends Component {
 	render() {
+
+		let {firstName, lastName, docCount, docDownload, thumbnail} = this.props.UserReducer;
+
 		return (
 			<div className="user-main-info-wrapper">
 				<div className="header-user">
 					<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
-					<p className="header-user-name">Long Le Ngoc</p>
+					<p className="header-user-name">{firstName} {lastName}</p>
 				</div>
 
 				<div className="user-stats">
 					<div className="user-stats-item text-center text-uppercase">
 						<p>Tài liệu</p>
-						<span>0</span>
+						<span>{docCount}</span>
 					</div>
 
 					<div className="user-stats-item text-center text-uppercase">
 						<p>Lượt tải</p>
-						<span>0</span>
+						<span>{docDownload}</span>
 					</div>
 				</div>
 			</div>
@@ -25,4 +29,8 @@ class UserCover extends Component {
 	}
 }
 
-export default UserCover;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (UserCover);

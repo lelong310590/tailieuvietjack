@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import { FacebookProvider, Page } from 'react-facebook';
 
 class Footer extends Component {
 	render() {
@@ -19,9 +20,12 @@ class Footer extends Component {
 									<li><Link to="">Hướng dẫn thanh toán</Link></li>
 								</ul>
 							</div>
-						</div>
-						<div className="footer-right col-xs-12 col-md-3">
 
+							<div className="footer-right col-xs-12 col-md-3">
+								<FacebookProvider appId="185415292298335">
+									<Page href="https://www.facebook.com/hoc.cung.vietjack/" data-small-header="true"/>
+								</FacebookProvider>
+							</div>
 						</div>
 					</div>
 				</div>

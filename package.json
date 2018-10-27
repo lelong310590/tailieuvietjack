@@ -23,6 +23,7 @@
     "react-social-login": "^3.4.2",
     "react-toggle": "^4.0.2",
     "redux": "^4.0.1",
+    "redux-auth-wrapper": "^2.0.3",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

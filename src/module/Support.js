@@ -7,3 +7,4 @@ export const validatePassword = (password) => {
 	let length = password.length;
 	return length >= 6;
 };
+
