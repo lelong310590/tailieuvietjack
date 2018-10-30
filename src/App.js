@@ -83,6 +83,9 @@ class App extends Component {
 							<Route path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
 
+							<Route path={'/cat/:class'} component={List} />
+							<Route path={'/cat/:class/:subject'} component={List} />
+
 							<Route component={ErrorNoPage}/>
 						</Switch>
 					</main>

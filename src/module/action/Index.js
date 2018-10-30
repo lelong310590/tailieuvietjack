@@ -38,3 +38,31 @@ export const getUserInfo = (token) => {
 			.catch(error => dispatch(getUserInfoFail(error)))
 	}
 };
+
+// get menu
+export const getMainMenuRequest = () => ({
+	type: types.GET_MAIN_MENU_REQUEST
+});
+
+export const getMainMenuSuccess = (data) => ({
+	type: types.GET_MAIN_MENU_SUCCESS,
+	payload: data
+});
+
+export const getMainMenuError = (err) => ({
+	type: types.GET_MAIN_MENU_ERROR,
+	payload: err
+});
+
+export const getMainMenu = () => {
+	return (dispatch) => {
+		dispatch(getMainMenuRequest());
+		return axios.get(api.API_GET_MENU)
+			.then(response => {
+				dispatch(getMainMenuSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getMainMenuError(err))
+			})
+	}
+};

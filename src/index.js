@@ -12,7 +12,7 @@ import crosstabSync from 'redux-persist-crosstab';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const persistConfig = {
-	keyPrefix: 'root2',
+	keyPrefix: 'root',
 };
 
 const finalCreateStore = compose(autoRehydrate({ log: process.env.NODE_ENV !== 'production' }))(createStore);

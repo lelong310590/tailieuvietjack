@@ -100,7 +100,6 @@
 				padding: 0
 				li
 					font-size: 13px
-					padding: 10px
 					position: relative
 					display: flex
 					justify-content: space-between
@@ -112,6 +111,7 @@
 						background: #fff
 					a
 						color: #222!important
+						padding: 10px
 						&:hover, &:focus, &:active
 							color: $primary!important
 							text-decoration: none
@@ -121,10 +121,13 @@
 							margin-left: 3px
 					p
 						margin: 0
+						padding: 10px
 						.money
 							color: $primary
 							font-weight: 600
 							margin-left: 3px
+					i
+						margin-right: 10px
 
 
 .section-slider
@@ -322,7 +325,7 @@
 	display: none
 	border: 1px solid #e8e8e8
 	.has-child
-		position: relative
+		//position: relative
 		&:hover, &:focus, &:active
 			.subject-level-menu
 				display: block
@@ -561,6 +564,7 @@
 	margin: 20px auto
 	.upload-result-wrapper
 		background: #fff
+		margin-bottom: 15px
 	.upload-file-edit-title
 		color: #222
 		font-weight: 600
@@ -955,3 +959,28 @@
 				&:hover, &:active, &:focus
 					background: none
 					outline: none
+.upload-result-title
+	background: #f0f0f0
+	border-right: 1px solid #f0f0f0
+	border-left: 1px solid #f0f0f0
+	border-bottom: 1px solid #f0f0f0
+	padding: 25px 15px
+	position: relative
+	display: flex
+	justify-content: space-between
+	align-items: center
+	p
+		margin: 0
+	.upload-result-percent
+		position: absolute
+		bottom: 10px
+		left: 0
+		height: 5px
+		width: 0
+		background: $primary
+	button
+		background: none
+		border: none
+		color: #d40505
+		&:hover
+			color: $primary

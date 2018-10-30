@@ -5,60 +5,71 @@ import _ from 'lodash';
 import Dropzone from 'react-dropzone'
 import Policy from "./Policy";
 import UploadContent from "./UploadContent";
+import OnUpload from "./OnUpload";
 
 class Intro extends Component {
 
 	constructor() {
 		super();
 		this.state = {
+			welcome: true, //default true
 			accepted: [],
 			rejected: [],
 			disabled: true,
 			modalPolicy: false,
-			percent: 0,
-			onupload: false,
-			showContent: true
+			onupload: false, // default false,
+			listDocs: []
 		}
 	}
 
 	onDrop = (accepted, rejected) => {
 
-		const CancelToken = axios.CancelToken;
-		const source = CancelToken.source();
 		this.setState({
-			token: source,
-			accepted: accepted
+			accepted: accepted,
+			onupload: true
 		});
 
-		const config = {
-			headers: {'Content-Type': 'multipart/form-data'},
-			onUploadProgress: progressEvent => {
-				let percent = Math.round(progressEvent.loaded / progressEvent.total * 100);
-				this.setState({
-					percent,
-					onupload: true,
-				});
-			},
-			cancelToken: source.token
-		};
+		let token = localStorage.getItem('accessToken');
 
-		_.map(accepted, (file) => {
+		_.map(accepted, (file, index) => {
+
+			let cancelUploadToken = axios.CancelToken.source();
+			accepted[index].cancelUploadToken = cancelUploadToken;
+			this.setState({accepted});
+
 			let formData = new FormData();
-			let size = file.size;
-			formData.append('file', file);
+			let userEmail = this.props.UserReducer.email;
 
-			axios.post('', formData, config)
-				.then((response) => {
-					console.log(response);
-					if (response.status === 200) {
-						this.setState({
-							fileData: response.data.video
-						});
+			formData.append('file', file);
+			formData.append('userEmail', userEmail);
+
+			let config = {
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'multipart/form-data',
+					Authorization: token
+				},
+				onUploadProgress: progressEvent => {
+					let percent = Math.round(progressEvent.loaded / progressEvent.total * 100);
+					if (accepted[index] !== undefined) {
+						accepted[index].percent = percent;
 					}
+
+					this.setState({accepted})
+				},
+				cancelToken: accepted[index].cancelUploadToken.token
+			};
+
+			axios.post('http://0ab81d06.ngrok.io/v1/doc/upload', formData, config)
+				.then((response) => {
+					let {listDocs} = this.state;
+					listDocs.push(response.data);
 				})
 				.catch((error) => {
 					if (axios.isCancel(error)) {
-						this.setState({onupload: false})
+						if (this.state.accepted.length === 0) {
+							this.setState({onupload: false})
+						}
 					} else {
 						console.log(error);
 					}
@@ -91,9 +102,16 @@ class Intro extends Component {
 		})
 	};
 
+	cancelUpload = (index) => {
+		let {accepted} = this.state;
+		accepted[index].cancelUploadToken.cancel();
+		accepted.splice(index, 1);
+		this.setState({accepted})
+	};
+
 	render() {
 
-		let {disabled, modalPolicy} = this.state;
+		let {disabled, modalPolicy, accepted, onupload, welcome} = this.state;
 
 		return (
 			<div className="default-content-wrapper">
@@ -105,7 +123,7 @@ class Intro extends Component {
 				}
 
 				<div className="container">
-					{this.state.showContent ? (
+					{(welcome && !onupload) &&
 						<div className="upload-file-wrapper">
 							<h1 className="upload-file-intro text-center">Đăng bán và chia sẻ tài liệu lên thư viện điện tử lớn nhất Việt Nam</h1>
 							<p className="upload-file-description text-center">VietJack sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế nữa</p>
@@ -155,9 +173,25 @@ class Intro extends Component {
 								</div>
 							</div>
 						</div>
-					) : (
-						<UploadContent/>
-					)}
+					}
+
+					{this.state.onupload &&
+						<section className="upload-file-edit">
+							<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
+							<button className="upload-file-upload-more center-block">Tải thêm</button>
+							{_.map(accepted, (value, index) => {
+								return (
+									<OnUpload
+										key={index}
+										percent={value.percent}
+										name={value.name}
+										cancelUpload={this.cancelUpload}
+										index={index}
+									/>
+								)
+							})}
+						</section>
+					}
 				</div>
 			</div>
 		);
