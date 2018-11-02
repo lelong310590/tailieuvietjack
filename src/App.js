@@ -19,6 +19,7 @@ import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import LocationHelper from 'redux-auth-wrapper/history4/locationHelper';
 import * as actions from "./module/action/Index";
 import Logout from "./module/component/login/Logout";
+import CatDoc from "./module/component/listDoc/CatDoc";
 
 const locationHelper = LocationHelper({});
 
@@ -83,8 +84,8 @@ class App extends Component {
 							<Route path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
 
-							<Route path={'/cat/:class'} component={List} />
-							<Route path={'/cat/:class/:subject'} component={List} />
+							<Route path={'/cat/:class'} component={CatDoc} />
+							<Route path={'/cat/:class/:subject'} component={CatDoc} />
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

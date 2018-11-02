@@ -16,7 +16,7 @@ class Related extends Component {
 		let {docs} = this.state;
 
 		let docsElem = _.map(docs, (value, index) => (
-			<div className="related-item">
+			<div className="related-item" key={index}>
 				<div className="related-item-title">
 					<Link to="/tai-lieu/45678">Bảng công thức tích phân đạo hàm mũ logarit</Link>
 				</div>

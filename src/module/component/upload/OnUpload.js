@@ -1,15 +1,44 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import * as actions from './../../action/Index';
+import _ from 'lodash';
 
 class OnUpload extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: this.props.name
+		}
+	}
+
+	componentWillMount = () => {
+		this.props.getClasses();
+	};
 
 	cancelUpload = (index) => {
 		this.props.cancelUpload(index)
 	};
 
-	render() {
+	handleChangeName = (event) => {
+		let name = event.target.value;
+		this.setState({name})
+	};
 
+	handleChangeClass = (event) => {
+		let classes = event.target.value;
+		console.log(classes);
+	};
+
+	render() {
+		let {classes} = this.props.ClassesReducer;
 		let {percent, name, index} = this.props;
+
+		let classesElem = _.map(classes, (value, index) => {
+			return (
+				<option value={value.id} key={index}>{value.name}</option>
+			)
+		});
 
 		return (
 			<div className="upload-result-wrapper">
@@ -33,11 +62,26 @@ class OnUpload extends Component {
 							<div className="upload-result-right">
 								<div className="upload-result-content">
 									<div className="upload-result-content-title">
+										Tên tài liệu <span className="upload-result-content-required">(*)</span>
+									</div>
+									<div className="upload-result-content-input form-group">
+										<input
+											type="text"
+											className="form-control"
+											name="name"
+											value={this.state.name}
+											onChange={this.handleChangeName}
+										/>
+									</div>
+								</div>
+
+								<div className="upload-result-content">
+									<div className="upload-result-content-title">
 										Trình độ <span className="upload-result-content-required">(*)</span>
 									</div>
 									<div className="upload-result-content-input form-group">
 										<select className="form-control">
-											<option value="">Lớp 8</option>
+											{classesElem}
 										</select>
 									</div>
 								</div>
@@ -47,9 +91,18 @@ class OnUpload extends Component {
 										Môn học <span className="upload-result-content-required">(*)</span>
 									</div>
 									<div className="upload-result-content-input form-group">
-										<select className="form-control">
+										<select className="form-control" onChange={this.handleChangeClass}>
 											<option value="">Toán</option>
 										</select>
+									</div>
+								</div>
+
+								<div className="upload-result-content">
+									<div className="upload-result-content-title">
+										Miêu tả
+									</div>
+									<div className="upload-result-content-input form-group">
+										<textarea name="" cols="30" rows="5" className="form-control"></textarea>
 									</div>
 								</div>
 
@@ -100,4 +153,16 @@ const mapStateToProps = (state) => {
 	return state;
 };
 
-export default connect(mapStateToProps, null) (OnUpload);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		getClasses: () => {
+			dispatch(actions.getClasses());
+		},
+
+		getSubjectViaClass: (classId) => {
+			dispatch(actions.getSubjectViaClass(classId))
+		}
+	}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps) (OnUpload);

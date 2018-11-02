@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
+import FilterList from "./FilterList";
 
 class List extends Component {
 
@@ -10,16 +11,17 @@ class List extends Component {
 		this.state = {
 			items: [1,2,3,4,5,6],
 			itemClass: this.props.itemClass,
-			title: this.props.title
+			title: this.props.title,
+			filterBar: this.props.filterBar
 		}
 	}
 
 	render() {
-		let {items, itemClass, title} = this.state;
+		let {items, itemClass, title, filterBar} = this.state;
 
 		let documents = _.map(items, (value, index) => {
 			return (
-				<div className={itemClass} key={value}>
+				<div className={itemClass} key={index}>
 					<div className="document-item">
 						<Link to="/tai-lieu/123456" className="document-thumbnail">
 							<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
@@ -42,7 +44,15 @@ class List extends Component {
 
 		return (
 			<div className="document-list">
-				<h4 className="document-list-title">{title}</h4>
+				{title &&
+					<h4 className="document-list-title">{title}</h4>
+				}
+
+				{filterBar &&
+					<FilterList/>
+				}
+
+
 				<div className="document-list-wrapper">
 					<div className="row">
 						{documents}

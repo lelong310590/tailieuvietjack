@@ -19,7 +19,6 @@ let UserReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.GET_USER_INFO_SUCCESS:
 			let user = action.payload.data;
-			//console.log(user);
 			return {
 				...state,
 				id: user.id,
@@ -29,7 +28,6 @@ let UserReducer = (state = initialState, action) => {
 				thumbnail: user.thumbnail
 			};
 		case types.GET_USER_INFO_FAIL:
-			console.log(action);
 			return {
 				...state
 			};

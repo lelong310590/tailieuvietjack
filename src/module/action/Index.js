@@ -66,3 +66,91 @@ export const getMainMenu = () => {
 			})
 	}
 };
+
+//get classes
+export const getClassesRequest = () => ({
+	type: types.GET_CLASSES_REQUEST
+});
+
+export const getClassesSuccess = (data) => ({
+	type: types.GET_CLASSES_SUCCESS,
+	payload: data
+});
+
+export const getClassesError = (err) => ({
+	type: types.GET_CLASSES_ERROR,
+	payload: err
+});
+
+export const getClasses = () => {
+	return (dispatch) => {
+		dispatch(getClassesRequest());
+		return axios.get(api.API_GET_CLASSES)
+			.then(response => {
+				dispatch(getClassesSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getClassesError(err))
+			})
+	}
+};
+
+//get all subjects
+export const getSubjectRequest = () => ({
+	type: types.GET_SUBJECT_REQUEST
+});
+
+export const getSubjectSuccess = (data) => ({
+	type: types.GET_SUBJECT_SUCCESS,
+	payload: data
+});
+
+export const getSubjectError = (err) => ({
+	type: types.GET_SUBJECT_ERROR,
+	payload: err
+});
+
+export const getSubjects = () => {
+	return (dispatch) => {
+		dispatch(getSubjectRequest());
+		axios.get(api.API_GET_SUBJECTS)
+			.then(response => {
+				dispatch(getSubjectSuccess(response));
+			})
+			.catch(err => {
+				dispatch(getSubjectError(err));
+			})
+	}
+};
+
+//get subject via class id
+export const getSubjectViaClassRequest = () => ({
+	type: types.GET_SUBJECT_VIA_CLASSES_REQUEST
+});
+
+export const getSubjectViaClassSuccess = (data) => ({
+	type: types.GET_SUBJECT_VIA_CLASSES_SUCCESS,
+	payload: data
+});
+
+export const getSubjectViaClassError = (err) => ({
+	type: types.GET_SUBJECT_VIA_CLASSES_ERROR,
+	payload: err
+});
+
+export const getSubjectViaClass = (classId) => {
+	return (dispatch) => {
+		dispatch(getSubjectViaClassRequest());
+		axios.get(api.API_GET_SUBJECT_VIA_CLASSES, {
+			params: {
+				classId
+			}
+		})
+			.then(response => {
+				dispatch(getSubjectViaClassSuccess(response));
+			})
+			.catch(err => {
+				dispatch(getSubjectViaClassError(err));
+			});
+	}
+};

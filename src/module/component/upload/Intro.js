@@ -6,6 +6,7 @@ import Dropzone from 'react-dropzone'
 import Policy from "./Policy";
 import UploadContent from "./UploadContent";
 import OnUpload from "./OnUpload";
+import * as api from './../../const/Api';
 
 class Intro extends Component {
 
@@ -60,15 +61,18 @@ class Intro extends Component {
 				cancelToken: accepted[index].cancelUploadToken.token
 			};
 
-			axios.post('http://0ab81d06.ngrok.io/v1/doc/upload', formData, config)
+			axios.post(api.API_UPLOAD_DOC, formData, config)
 				.then((response) => {
+					// Save response data to state
 					let {listDocs} = this.state;
 					listDocs.push(response.data);
 				})
 				.catch((error) => {
 					if (axios.isCancel(error)) {
 						if (this.state.accepted.length === 0) {
-							this.setState({onupload: false})
+							this.setState({
+								onupload: false
+							})
 						}
 					} else {
 						console.log(error);
@@ -132,7 +136,7 @@ class Intro extends Component {
 								<Dropzone
 									className="dropzone"
 									ref="dropzoneRef"
-									accept="image/jpeg, image/png"
+									accept="application/pdf, application/msword"
 									onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
 									disabled={this.state.disabled}
 								>
@@ -158,7 +162,7 @@ class Intro extends Component {
 
 									<div className="upload-promotion text-center col-xs-12 col-md-3">
 										<i className="fas fa-users"></i>
-										<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
+										<p>Gia tăng thu nhập từ chính ấn phẩm của bạn</p>
 									</div>
 
 									<div className="upload-promotion text-center col-xs-12 col-md-3">
@@ -175,7 +179,7 @@ class Intro extends Component {
 						</div>
 					}
 
-					{this.state.onupload &&
+					{onupload &&
 						<section className="upload-file-edit">
 							<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
 							<button className="upload-file-upload-more center-block">Tải thêm</button>

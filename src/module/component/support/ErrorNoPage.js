@@ -7,7 +7,7 @@ class ErrorNoPage extends Component {
 			<div className="default-content-wrapper">
 				<div className="error-page">
 					<div className="container">
-						<img src="lib/images/404.png" alt="" className="img-responsive center-block"/>
+						<img src="/lib/images/404.png" alt="" className="img-responsive center-block"/>
 
 						<h1 className="error-title text-center">OH! CÓ LỖI XẢY RA</h1>
 						<p className="error-content text-center">Nội dung bạn tìm kiếm không tồn tại</p>
