@@ -2,7 +2,7 @@ import * as types from './../const/ActionType';
 
 let initialState = {
 	subjects: [],
-	subjectInClass: []
+	subjectInClass: [],
 };
 
 let SubjectReducer = (state = initialState, action) => {

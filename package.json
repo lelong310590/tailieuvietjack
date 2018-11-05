@@ -9,6 +9,7 @@
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
+    "react-cropper": "^1.0.1",
     "react-date-picker": "^7.0.0",
     "react-dom": "^16.5.2",
     "react-dropzone": "^6.2.4",

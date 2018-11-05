@@ -424,7 +424,7 @@
 				font-weight: 600
 				font-size: 25px
 	.upload-button
-		button
+		.upload-file-button
 			margin: 25px 0
 			font-size: 20px
 			background-color: #00a884
@@ -597,6 +597,12 @@
 	display: flex
 	.upload-result-left
 		width: 180px
+		img
+			cursor: pointer
+			border: 1px solid #ccc
+			&:hover
+				-webkit-filter: grayscale(100%)
+				filter: grayscale(100%)
 	.upload-result-right
 		flex: 1
 	.upload-result-content
@@ -1026,3 +1032,41 @@
 		.widget-title
 			h4
 				background-color: $primary
+.crop-modal
+	background: rgba(0,0,0,.5)
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	z-index: 9999
+	display: flex
+	justify-content: center
+	align-items: center
+	.crop-modal-inner
+		max-width: 500px
+		height: auto
+		.crop-modal-guide
+			background: #fff
+			margin: 0
+			padding: 10px
+			i
+				color: blue
+		.crop-modal-action
+			background: #fff
+			margin: 0
+			padding: 10px
+			display: flex
+			justify-content: flex-end
+			align-items: center
+			button
+				color: #fff
+				border: none
+				box-shadow: none
+				padding: 5px 15px
+				border-radius: 3px
+			.crop-modal-submit
+				background: $primary
+				margin-right: 15px
+			.crop-modal-cancel
+				color: #222

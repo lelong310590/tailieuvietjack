@@ -14,3 +14,11 @@ export const validatePassword = (password) => {
 export const validateSamePassword = (pass, repass) => {
 	return pass === repass;
 };
+
+export const trimFileName = (filename) => {
+	if (filename) {
+		return filename.split('.').slice(0, -1).join('.')
+	}
+
+	return filename;
+};

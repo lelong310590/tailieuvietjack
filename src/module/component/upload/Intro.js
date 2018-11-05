@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import _ from 'lodash';
@@ -14,16 +14,19 @@ class Intro extends Component {
 		super();
 		this.state = {
 			welcome: true, //default true
-			accepted: [],
+			accepted: [], // default empty
 			rejected: [],
 			disabled: true,
 			modalPolicy: false,
 			onupload: false, // default false,
-			listDocs: []
+			//listDocs: []
 		}
 	}
 
 	onDrop = (accepted, rejected) => {
+
+		//console.log(accepted);
+		//console.log(acceptedFiles.length);
 
 		this.setState({
 			accepted: accepted,
@@ -33,9 +36,9 @@ class Intro extends Component {
 		let token = localStorage.getItem('accessToken');
 
 		_.map(accepted, (file, index) => {
-
 			let cancelUploadToken = axios.CancelToken.source();
 			accepted[index].cancelUploadToken = cancelUploadToken;
+			accepted[index].onProgress = true;
 			this.setState({accepted});
 
 			let formData = new FormData();
@@ -63,9 +66,17 @@ class Intro extends Component {
 
 			axios.post(api.API_UPLOAD_DOC, formData, config)
 				.then((response) => {
+					//console.log(response);
 					// Save response data to state
-					let {listDocs} = this.state;
-					listDocs.push(response.data);
+					accepted[index].id = response.data.id;
+					accepted[index].error = false;
+					accepted[index].onProgress = false;
+					accepted[index].totalPage = response.data.countpage;
+					// let {listDocs} = this.state;
+					// console.log(response);
+					// listDocs.push(response.data);
+
+					this.setState({accepted})
 				})
 				.catch((error) => {
 					if (axios.isCancel(error)) {
@@ -75,6 +86,9 @@ class Intro extends Component {
 							})
 						}
 					} else {
+						accepted[index].error = true;
+						accepted[index].onProgress = false;
+						this.setState({accepted});
 						console.log(error);
 					}
 				})
@@ -127,75 +141,91 @@ class Intro extends Component {
 				}
 
 				<div className="container">
-					{(welcome && !onupload) &&
+
 						<div className="upload-file-wrapper">
-							<h1 className="upload-file-intro text-center">Đăng bán và chia sẻ tài liệu lên thư viện điện tử lớn nhất Việt Nam</h1>
-							<p className="upload-file-description text-center">VietJack sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế nữa</p>
+							{(welcome && !onupload) &&
+								<Fragment>
+									<h1 className="upload-file-intro text-center">Đăng bán và chia sẻ tài liệu lên thư viện điện
+										tử lớn nhất Việt Nam</h1>
+									< p className="upload-file-description text-center">VietJack sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế nữa</p>
 
-							<div className="upload-file-dropzone">
-								<Dropzone
-									className="dropzone"
-									ref="dropzoneRef"
-									accept="application/pdf, application/msword"
-									onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
-									disabled={this.state.disabled}
-								>
-									<p className="dropzone-title">Tải tài liệu lên VietJack</p>
-									<div className="upload-button">
-										{disabled ? (
-											<button onClick={() => this.policyModal(true)}>Tải lên</button>
-										) : (
-											<button>Tải lên</button>
-										)}
+									<div className="upload-file-dropzone">
+										<Dropzone
+											className="dropzone"
+											ref="dropzoneRef"
+											accept="application/pdf, application/msword"
+											onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
+											disabled={this.state.disabled}
+										>
+											{(welcome && !onupload) &&
+											<p className="dropzone-title">Tải tài liệu lên VietJack</p>
+											}
+											<div className="upload-button">
+												{disabled ? (
+													<button className="upload-file-button" onClick={() => this.policyModal(true)}>Tải lên</button>
+												) : (
+													<button className="upload-file-button">Tải lên</button>
+												)}
+											</div>
+
+											{(welcome && !onupload) &&
+											<p>Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả vào
+												đây</p>
+											}
+										</Dropzone>
 									</div>
-									<p>Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả vào đây</p>
-								</Dropzone>
-							</div>
+								</Fragment>
+							}
 
-							<div className="upload-promotion text-center">
-								<h4>Lý do bạn đăng tài liệu tại VietJack</h4>
-								<div className="row">
-									<div className="upload-promotion text-center col-xs-12 col-md-3">
-										<i className="fas fa-users"></i>
-										<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
-									</div>
+							{(welcome && !onupload) &&
+								<div className="upload-promotion text-center">
+									<h4>Lý do bạn đăng tài liệu tại VietJack</h4>
+									<div className="row">
+										<div className="upload-promotion text-center col-xs-12 col-md-3">
+											<i className="fas fa-users"></i>
+											<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
+										</div>
 
-									<div className="upload-promotion text-center col-xs-12 col-md-3">
-										<i className="fas fa-users"></i>
-										<p>Gia tăng thu nhập từ chính ấn phẩm của bạn</p>
-									</div>
+										<div className="upload-promotion text-center col-xs-12 col-md-3">
+											<i className="fas fa-users"></i>
+											<p>Gia tăng thu nhập từ chính ấn phẩm của bạn</p>
+										</div>
 
-									<div className="upload-promotion text-center col-xs-12 col-md-3">
-										<i className="fas fa-users"></i>
-										<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
-									</div>
+										<div className="upload-promotion text-center col-xs-12 col-md-3">
+											<i className="fas fa-users"></i>
+											<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
+										</div>
 
-									<div className="upload-promotion text-center col-xs-12 col-md-3">
-										<i className="fas fa-users"></i>
-										<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
+										<div className="upload-promotion text-center col-xs-12 col-md-3">
+											<i className="fas fa-users"></i>
+											<p>Tiếp cận 10 triệu độc giả hàng tháng</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-					}
+							}
 
-					{onupload &&
-						<section className="upload-file-edit">
-							<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
-							<button className="upload-file-upload-more center-block">Tải thêm</button>
-							{_.map(accepted, (value, index) => {
-								return (
-									<OnUpload
-										key={index}
-										percent={value.percent}
-										name={value.name}
-										cancelUpload={this.cancelUpload}
-										index={index}
-									/>
-								)
-							})}
-						</section>
-					}
+							{onupload &&
+							<section className="upload-file-edit">
+								<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
+								<button className="upload-file-upload-more center-block">Tải thêm</button>
+								{_.map(accepted, (value, index) => {
+									return (
+										<OnUpload
+											key={index}
+											percent={value.percent}
+											name={value.name}
+											cancelUpload={this.cancelUpload}
+											id={value.id}
+											upLoadError={value.error}
+											totalPage={value.totalPage}
+											onProgress={value.onProgress}
+										/>
+									)
+								})}
+							</section>
+							}
+						</div>
+
 				</div>
 			</div>
 		);
