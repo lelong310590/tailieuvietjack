@@ -23,10 +23,18 @@ class Intro extends Component {
 		}
 	}
 
-	onDrop = (accepted, rejected) => {
+	onDrop = (fileAccepted, rejected) => {
 
-		//console.log(accepted);
+		//console.log(fileAccepted);
 		//console.log(acceptedFiles.length);
+
+		let {accepted} = this.state;
+
+		_.map(fileAccepted, (f, idx) => {
+			accepted.push(f);
+		});
+
+		console.log('accepted: ', accepted);
 
 		this.setState({
 			accepted: accepted,
@@ -36,16 +44,15 @@ class Intro extends Component {
 		let token = localStorage.getItem('accessToken');
 
 		_.map(accepted, (file, index) => {
-			let cancelUploadToken = axios.CancelToken.source();
-			accepted[index].cancelUploadToken = cancelUploadToken;
-			accepted[index].onProgress = true;
-			this.setState({accepted});
-
 			let formData = new FormData();
 			let userEmail = this.props.UserReducer.email;
 
-			formData.append('file', file);
-			formData.append('userEmail', userEmail);
+			let cancelUploadToken = axios.CancelToken.source();
+			accepted[index].cancelUploadToken = cancelUploadToken;
+			accepted[index].onProgress = true; // check file in on upload progresscing - default true
+			accepted[index].fileUploaded = false; //check file is uploaded - default false
+
+			this.setState({accepted});
 
 			let config = {
 				headers: {
@@ -64,34 +71,42 @@ class Intro extends Component {
 				cancelToken: accepted[index].cancelUploadToken.token
 			};
 
-			axios.post(api.API_UPLOAD_DOC, formData, config)
-				.then((response) => {
-					//console.log(response);
-					// Save response data to state
-					accepted[index].id = response.data.id;
-					accepted[index].error = false;
-					accepted[index].onProgress = false;
-					accepted[index].totalPage = response.data.countpage;
-					// let {listDocs} = this.state;
-					// console.log(response);
-					// listDocs.push(response.data);
+			if (!accepted[index].fileUploaded) {
 
-					this.setState({accepted})
-				})
-				.catch((error) => {
-					if (axios.isCancel(error)) {
-						if (this.state.accepted.length === 0) {
-							this.setState({
-								onupload: false
-							})
-						}
-					} else {
-						accepted[index].error = true;
+				formData.append('file', file);
+				formData.append('userEmail', userEmail);
+
+				axios.post(api.API_UPLOAD_DOC, formData, config)
+					.then((response) => {
+						//console.log(response);
+						// Save response data to state
+						accepted[index].id = response.data.id;
+						accepted[index].error = false;
 						accepted[index].onProgress = false;
-						this.setState({accepted});
-						console.log(error);
-					}
-				})
+						accepted[index].totalPage = response.data.countpage;
+						accepted[index].fileUploaded = true;
+						// let {listDocs} = this.state;
+						// console.log(response);
+						// listDocs.push(response.data);
+
+						this.setState({accepted})
+					})
+					.catch((error) => {
+						if (axios.isCancel(error)) {
+							if (this.state.accepted.length === 0) {
+								this.setState({
+									onupload: false
+								})
+							}
+						} else {
+							accepted[index].error = true;
+							accepted[index].onProgress = false;
+							this.setState({accepted});
+							console.log(error);
+						}
+					})
+			}
+
 		});
 	};
 
@@ -148,34 +163,44 @@ class Intro extends Component {
 									<h1 className="upload-file-intro text-center">Đăng bán và chia sẻ tài liệu lên thư viện điện
 										tử lớn nhất Việt Nam</h1>
 									< p className="upload-file-description text-center">VietJack sẽ mang đến cho bạn hơn 10 triệu độc giả , thu nhập, danh tiếng và hơn thế nữa</p>
+								</Fragment>
+							}
 
-									<div className="upload-file-dropzone">
-										<Dropzone
-											className="dropzone"
-											ref="dropzoneRef"
-											accept="application/pdf, application/msword"
-											onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
-											disabled={this.state.disabled}
-										>
-											{(welcome && !onupload) &&
-											<p className="dropzone-title">Tải tài liệu lên VietJack</p>
-											}
-											<div className="upload-button">
-												{disabled ? (
-													<button className="upload-file-button" onClick={() => this.policyModal(true)}>Tải lên</button>
+							<div className={onupload ? 'upload-file-edit' : 'upload-file-dropzone'}>
+
+								{onupload &&
+									<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
+								}
+
+								<Dropzone
+									className="dropzone"
+									ref="dropzoneRef"
+									accept="application/pdf, application/msword"
+									onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
+									disabled={this.state.disabled}
+								>
+									{(welcome && !onupload) &&
+										<p className="dropzone-title">Tải tài liệu lên VietJack</p>
+									}
+									<div className="upload-button">
+										{disabled ? (
+											<button className="upload-file-button" onClick={() => this.policyModal(true)}>Tải lên</button>
+										) : (
+											<Fragment>
+												{onupload ? (
+													<button className="upload-file-upload-more center-block">Tải thêm</button>
 												) : (
 													<button className="upload-file-button">Tải lên</button>
 												)}
-											</div>
-
-											{(welcome && !onupload) &&
-											<p>Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả vào
-												đây</p>
-											}
-										</Dropzone>
+											</Fragment>
+										)}
 									</div>
-								</Fragment>
-							}
+
+									{(welcome && !onupload) &&
+										<p>Chọn nút tải lên để chọn nhiều file từ máy tính của bạn hoặc kéo file thả vào đây</p>
+									}
+								</Dropzone>
+							</div>
 
 							{(welcome && !onupload) &&
 								<div className="upload-promotion text-center">
@@ -206,8 +231,7 @@ class Intro extends Component {
 
 							{onupload &&
 							<section className="upload-file-edit">
-								<h4 className="upload-file-edit-title text-center">Tải tài liệu lên VietJack</h4>
-								<button className="upload-file-upload-more center-block">Tải thêm</button>
+
 								{_.map(accepted, (value, index) => {
 									return (
 										<OnUpload

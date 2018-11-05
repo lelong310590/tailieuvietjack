@@ -9,4 +9,4 @@ export const API_GET_CLASSES = BASE_URL + 'class/get';
 export const API_GET_SUBJECTS = BASE_URL + 'subject/all-subject';
 export const API_GET_SUBJECT_VIA_CLASSES = BASE_URL + 'class/get-subject-via-class';
 
-export const API_UPLOAD_DOC = 'http://a5ce0ac5.ngrok.io/v1/doc/upload';
+export const API_UPLOAD_DOC = BASE_URL + 'doc/upload';
