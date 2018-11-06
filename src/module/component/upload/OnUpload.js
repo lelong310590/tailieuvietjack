@@ -4,7 +4,8 @@ import * as actions from './../../action/Index';
 import * as helpers from './../../Support';
 import _ from 'lodash';
 import Cropper from 'react-cropper'; //Import Cropper Component
-import 'cropperjs/dist/cropper.css';  //Import file style
+import 'cropperjs/dist/cropper.css';
+import TagEditor from "./TagEditor";  //Import file style
 
 class OnUpload extends Component {
 
@@ -26,7 +27,11 @@ class OnUpload extends Component {
 			id: 0,
 			page: 0,
 			totalPage: 0,
-			onProgress: true
+			onProgress: true,
+			duplicate: false,
+			duplicateFile: {id: 0, name: null},
+			tags: [],
+			tagSuggest: []
 		}
 	}
 
@@ -35,12 +40,17 @@ class OnUpload extends Component {
 	};
 
 	UNSAFE_componentWillReceiveProps = (nextProps) => {
-		let {percent, upLoadError, id, page, totalPage, onProgress} = nextProps;
+		let {
+			percent, upLoadError, id, page, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
+		} = nextProps;
 		//console.log(upLoadError === false);
+
+		this.setState({duplicate, duplicateFile});
+
 		if (percent === 100) {
 			this.setState({
 				upLoadError: (upLoadError === undefined) ? true : upLoadError,
-				id, page, totalPage, onProgress
+				id, page, totalPage, onProgress, tagSuggest
 			})
 		}
 	};
@@ -129,13 +139,23 @@ class OnUpload extends Component {
 		this.setState({modalCrop: false})
 	};
 
+	onChangeTags = (t) => {
+		let {tags} = this.state;
+		// console.log('t: ', t);
+		// console.log('tags: ', tags);
+		this.setState({
+			tags: tags.push(t)
+		})
+	};
+
 	render() {
 		let {classes} = this.props.ClassesReducer;
 		let {subjectInClass} = this.props.SubjectReducer;
 		let {percent, name, index} = this.props;
 		let {
 			customPrice, tempThumbnail, modalCrop, thumbnail, subject, description, price,
-			pagePreview, customPagePreview, upLoadError, totalPage, onProgress
+			pagePreview, customPagePreview, upLoadError, totalPage, onProgress, duplicate, duplicateFile,
+			tagSuggest
 		} = this.state;
 
 		let classesElem = _.map(classes, (value, index) => {
@@ -181,21 +201,33 @@ class OnUpload extends Component {
 						<p>• {name}</p>
 					</div>
 				) : (
-					<div className="upload-result-title">
+					<div className={duplicate ? 'upload-result-title upload-result-title-error' : 'upload-result-title'}>
+						
+						{!duplicate ? (
+							<Fragment>
+								<p>{percent}% tải lên  •  {name}</p>
 
-						<p>{percent}% tải lên  •  {name}</p>
+								{percent !== 100 &&
+								<button className="upload-cancel" onClick={() => this.cancelUpload(index)}>
+									Hủy tải lên <i className="far fa-times-circle"></i>
+								</button>
+								}
 
-						{percent !== 100 &&
-						<button className="upload-cancel" onClick={() => this.cancelUpload(index)}>
-							Hủy tải lên <i className="far fa-times-circle"></i>
-						</button>
-						}
-
-						<div className="upload-result-percent" style={{width: percent + '%'}}></div>
+								<div className="upload-result-percent" style={{width: percent + '%'}}></div>
+							</Fragment>
+						) : (
+							<p>
+								<i className="fas fa-exclamation-triangle"></i>
+								Tài liệu "{helpers.trimFileName(duplicateFile.name)}" trùng với tài liệu đang chờ duyệt trên hệ thống, ID=>{duplicateFile.id}<br/>
+								<span style={{color: 'red'}}> • {helpers.trimFileName(duplicateFile.name)}</span>
+							</p>
+						)}
+						
+						
 					</div>
 				)}
 
-				{!upLoadError &&
+				{!upLoadError & !duplicate ? (
 					<div className="save-all-mode">
 						<div className="upload-result">
 							<div className="upload-result-left">
@@ -254,6 +286,19 @@ class OnUpload extends Component {
 
 								<div className="upload-result-content">
 									<div className="upload-result-content-title">
+										Từ khóa <span className="upload-result-content-required">(*)</span>
+									</div>
+									<div className="upload-result-content-input form-group">
+										<TagEditor
+											tags={this.state.tags}
+											tagSuggest={tagSuggest}
+											onChangeTags={this.onChangeTags}
+										/>
+									</div>
+								</div>
+
+								<div className="upload-result-content">
+									<div className="upload-result-content-title">
 										Miêu tả
 									</div>
 									<div className="upload-result-content-input form-group">
@@ -274,43 +319,43 @@ class OnUpload extends Component {
 										</select>
 
 										{customPrice &&
-											<input
-												type="number"
-												className="form-control manual-price"
-												required
-												value={price}
-												onChange={this.handleChangePrice}
-											/>
+										<input
+											type="number"
+											className="form-control manual-price"
+											required
+											value={price}
+											onChange={this.handleChangePrice}
+										/>
 										}
 									</div>
 								</div>
 
 								{customPrice &&
-									<div className="upload-result-content">
-										<div className="upload-result-content-title">
-											Số trang xem trước <span className="upload-result-content-required">(*)</span>
-										</div>
-										<div className="upload-result-content-input form-group">
-											<select className="form-control" value={customPagePreview} onChange={this.handleChangeCustomPagePreview}>
-												<option value={0}>Tự chọn</option>
-												<option value={1}>20%</option>
-												<option value={2}>50%</option>
-											</select>
-
-											{customPagePreview === 0 &&
-												<Fragment>
-													<input
-														type="number"
-														className="form-control manual-price"
-														min={1}
-														max={totalPage}
-													/>
-													<span style={{color: 'red'}}>Tài liệu có: {totalPage} trang</span>
-												</Fragment>
-
-											}
-										</div>
+								<div className="upload-result-content">
+									<div className="upload-result-content-title">
+										Số trang xem trước <span className="upload-result-content-required">(*)</span>
 									</div>
+									<div className="upload-result-content-input form-group">
+										<select className="form-control" value={customPagePreview} onChange={this.handleChangeCustomPagePreview}>
+											<option value={0}>Tự chọn</option>
+											<option value={1}>20%</option>
+											<option value={2}>50%</option>
+										</select>
+
+										{customPagePreview === 0 &&
+										<Fragment>
+											<input
+												type="number"
+												className="form-control manual-price"
+												min={1}
+												max={totalPage}
+											/>
+											<span style={{color: 'red'}}>Tài liệu có: {totalPage} trang</span>
+										</Fragment>
+
+										}
+									</div>
+								</div>
 								}
 
 								<hr/>
@@ -321,7 +366,9 @@ class OnUpload extends Component {
 							</form>
 						</div>
 					</div>
-				}
+				) : (
+					<Fragment></Fragment>
+				)}
 			</div>
 		);
 	}

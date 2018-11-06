@@ -24,90 +24,101 @@ class Intro extends Component {
 	}
 
 	onDrop = (fileAccepted, rejected) => {
-
 		//console.log(fileAccepted);
 		//console.log(acceptedFiles.length);
-
 		let {accepted} = this.state;
+
+		let idx = _.findIndex(accepted, (f) => {
+			return f.lastModified === fileAccepted[0].lastModified
+		});
 
 		_.map(fileAccepted, (f, idx) => {
 			accepted.push(f);
 		});
 
-		console.log('accepted: ', accepted);
+		if (idx > -1) {
+			fileAccepted[0].duplicate = true;
+			fileAccepted[0].duplicateFile = accepted[idx];
+		}
 
 		this.setState({
 			accepted: accepted,
 			onupload: true
 		});
 
-		let token = localStorage.getItem('accessToken');
+		if (idx < 0) {
+			let token = localStorage.getItem('accessToken');
 
-		_.map(accepted, (file, index) => {
-			let formData = new FormData();
-			let userEmail = this.props.UserReducer.email;
+			_.map(accepted, (file, index) => {
+				let formData = new FormData();
+				let userEmail = this.props.UserReducer.email;
 
-			let cancelUploadToken = axios.CancelToken.source();
-			accepted[index].cancelUploadToken = cancelUploadToken;
-			accepted[index].onProgress = true; // check file in on upload progresscing - default true
-			accepted[index].fileUploaded = false; //check file is uploaded - default false
+				let cancelUploadToken = axios.CancelToken.source();
+				accepted[index].cancelUploadToken = cancelUploadToken;
+				accepted[index].onProgress = true; // check file in on upload progresscing - default true
+				accepted[index].fileUploaded = false; //check file is uploaded - default false
+				accepted[index].duplicate = false; //check file is duplicated or not ?
+				accepted[index].duplicateFile = {id: 0, name: null}; //reset the duplicate file
 
-			this.setState({accepted});
+				this.setState({accepted});
 
-			let config = {
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'multipart/form-data',
-					Authorization: token
-				},
-				onUploadProgress: progressEvent => {
-					let percent = Math.round(progressEvent.loaded / progressEvent.total * 100);
-					if (accepted[index] !== undefined) {
-						accepted[index].percent = percent;
-					}
-
-					this.setState({accepted})
-				},
-				cancelToken: accepted[index].cancelUploadToken.token
-			};
-
-			if (!accepted[index].fileUploaded) {
-
-				formData.append('file', file);
-				formData.append('userEmail', userEmail);
-
-				axios.post(api.API_UPLOAD_DOC, formData, config)
-					.then((response) => {
-						//console.log(response);
-						// Save response data to state
-						accepted[index].id = response.data.id;
-						accepted[index].error = false;
-						accepted[index].onProgress = false;
-						accepted[index].totalPage = response.data.countpage;
-						accepted[index].fileUploaded = true;
-						// let {listDocs} = this.state;
-						// console.log(response);
-						// listDocs.push(response.data);
+				let config = {
+					headers: {
+						Accept: 'application/json',
+						'Content-Type': 'multipart/form-data',
+						Authorization: token
+					},
+					onUploadProgress: progressEvent => {
+						let percent = Math.round(progressEvent.loaded / progressEvent.total * 100);
+						if (accepted[index] !== undefined) {
+							accepted[index].percent = percent;
+						}
 
 						this.setState({accepted})
-					})
-					.catch((error) => {
-						if (axios.isCancel(error)) {
-							if (this.state.accepted.length === 0) {
-								this.setState({
-									onupload: false
-								})
-							}
-						} else {
-							accepted[index].error = true;
-							accepted[index].onProgress = false;
-							this.setState({accepted});
-							console.log(error);
-						}
-					})
-			}
+					},
+					cancelToken: accepted[index].cancelUploadToken.token
+				};
 
-		});
+				if (!accepted[index].fileUploaded) {
+
+					formData.append('file', file);
+					formData.append('userEmail', userEmail);
+
+					axios.post(api.API_UPLOAD_DOC, formData, config)
+						.then((response) => {
+							//console.log(response);
+							// Save response data to state
+							accepted[index].id = response.data.id;
+							accepted[index].error = false;
+							accepted[index].onProgress = false;
+							accepted[index].totalPage = response.data.countpage;
+							accepted[index].fileUploaded = true;
+							accepted[index].tagSuggest = response.data.tags;
+							// let {listDocs} = this.state;
+							// console.log(response);
+							// listDocs.push(response.data);
+
+							this.setState({accepted})
+						})
+						.catch((error) => {
+							if (axios.isCancel(error)) {
+								if (this.state.accepted.length === 0) {
+									this.setState({
+										onupload: false
+									})
+								}
+							} else {
+								accepted[index].error = true;
+								accepted[index].onProgress = false;
+								accepted[index].fileUploaded = false;
+								this.setState({accepted});
+								console.log(error);
+							}
+						})
+				}
+
+			});
+		}
 	};
 
 	policyModal = (value) => {
@@ -243,6 +254,9 @@ class Intro extends Component {
 											upLoadError={value.error}
 											totalPage={value.totalPage}
 											onProgress={value.onProgress}
+											duplicate={value.duplicate}
+											duplicateFile={value.duplicateFile}
+											tagSuggest={value.tagSuggest}
 										/>
 									)
 								})}

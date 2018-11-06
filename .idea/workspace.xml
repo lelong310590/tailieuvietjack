@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/login/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/login/Logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/module/component/upload/Intro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/Intro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/const/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/const/Api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,10 +28,10 @@
     <session id="-974998285">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="40" />
+          <entry key="project.closed" value="41" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
-          <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="4" />
           <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="4" />
@@ -44,7 +49,7 @@
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="43" />
+          <entry key="project.opened" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -53,11 +58,11 @@
           <entry key="env" value="3" />
           <entry key="html" value="1" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="258" />
+          <entry key="js" value="259" />
           <entry key="json" value="4" />
           <entry key="jsx" value="3" />
           <entry key="png" value="1" />
-          <entry key="sass" value="17" />
+          <entry key="sass" value="18" />
           <entry key="ts" value="2" />
         </counts>
       </usages-collector>
@@ -69,31 +74,31 @@
           <entry key="Image" value="2" />
           <entry key="JSON" value="4" />
           <entry key="JSX Harmony" value="3" />
-          <entry key="JavaScript" value="258" />
+          <entry key="JavaScript" value="259" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Sass" value="17" />
+          <entry key="Sass" value="18" />
           <entry key="TypeScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="4" />
-          <entry key="js" value="36791" />
+          <entry key="js" value="39443" />
           <entry key="json" value="2" />
-          <entry key="sass" value="9644" />
+          <entry key="sass" value="10208" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="4" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="36791" />
-          <entry key="Sass" value="9644" />
+          <entry key="JavaScript" value="39443" />
+          <entry key="Sass" value="10208" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="37" />
+          <entry key="ESLintLanguageService" value="38" />
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
@@ -101,11 +106,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/module/component/upload/Intro.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="451">
+              <caret line="258" column="54" selection-start-line="258" selection-start-column="44" selection-end-line="258" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="143" column="30" lean-forward="true" selection-start-line="143" selection-start-column="30" selection-end-line="143" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+                <element signature="e#268#304#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="402">
+              <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="1088" selection-start-line="1088" selection-end-line="1088" />
             </state>
           </provider>
         </entry>
@@ -113,17 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="229" lean-forward="true" selection-start-line="229" selection-end-line="229" />
+            <state relative-caret-position="253">
+              <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -139,11 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>document-detail-tags</find>
-      <find>&amp;:hover</find>
-      <find>featured-document-item</find>
-      <find>document-info</find>
-      <find>user-main-setting-content</find>
       <find>user-main-menu</find>
       <find>.authen-wrapper</find>
       <find>submit-form</find>
@@ -169,6 +197,11 @@
       <find>upload-file-button</find>
       <find>upload-button</find>
       <find>actionChangeThumbnail</find>
+      <find>upload-result-title-error</find>
+      <find>upload-result-title</find>
+      <find>helpers.trimFileName(duplicateFile.name)</find>
+      <find>.tag-wrapper</find>
+      <find>tagSuggest</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/lib/sass/_desktop.sass" />
         <option value="$PROJECT_DIR$/src/module/component/upload/UploadContent.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/SaveAll.js" />
         <option value="$PROJECT_DIR$/src/module/component/doc/Infomation.js" />
@@ -223,11 +255,12 @@
         <option value="$PROJECT_DIR$/src/module/action/Index.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/SubjectReducer.js" />
         <option value="$PROJECT_DIR$/src/module/Support.js" />
-        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
-        <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
-        <option value="$PROJECT_DIR$/src/module/const/Api.js" />
         <option value="$PROJECT_DIR$/src/module/component/login/Logout.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/Intro.js" />
+        <option value="$PROJECT_DIR$/src/module/const/Api.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
       </list>
     </option>
   </component>
@@ -318,6 +351,21 @@
               <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -413,12 +461,13 @@
       <workItem from="1541345965947" duration="2022000" />
       <workItem from="1541400798389" duration="12000" />
       <workItem from="1541400873492" duration="11848000" />
-      <workItem from="1541427498839" duration="6631000" />
+      <workItem from="1541427498839" duration="7890000" />
+      <workItem from="1541475553239" duration="13988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185217000" />
+    <option name="totallyTimeSpent" value="200464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -430,7 +479,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3296582" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3296582" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -438,7 +487,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2028666" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5016538" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -452,13 +501,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_global.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="94" column="23" selection-start-line="94" selection-start-column="23" selection-end-line="94" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/support/Loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -734,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9798">
-          <caret line="426" column="27" selection-start-line="426" selection-start-column="9" selection-end-line="426" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/Support.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
@@ -752,9 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -779,24 +811,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/Intro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="258" column="54" selection-start-line="258" selection-start-column="44" selection-end-line="258" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="253">
+          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="1088" selection-start-line="1088" selection-end-line="1088" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="229" lean-forward="true" selection-start-line="229" selection-end-line="229" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/Intro.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="233">
+          <caret line="143" column="30" lean-forward="true" selection-start-line="143" selection-start-column="30" selection-end-line="143" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#268#304#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

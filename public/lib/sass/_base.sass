@@ -965,6 +965,11 @@
 				&:hover, &:active, &:focus
 					background: none
 					outline: none
+.upload-result-title-error
+	border: 1px solid #ffaa00!important
+	color: #ffaa00
+	background: #fffcee!important
+
 .upload-result-title
 	background: #f0f0f0
 	border-right: 1px solid #f0f0f0
@@ -1070,3 +1075,53 @@
 				margin-right: 15px
 			.crop-modal-cancel
 				color: #222
+.tag-wrapper
+	width: 100%
+	padding: 6px 12px
+	font-size: 14px
+	line-height: 1.42857143
+	color: #555
+	background-color: #fff
+	background-image: none
+	border: 1px solid #ccc
+	border-radius: 4px
+	display: flex
+	align-items: center
+	.tag-selected
+		margin: 0
+		padding: 0
+		list-style: none
+		display: inline-flex
+		.tag-items
+			color: #00a888
+			border: 1px solid #00a888
+			padding: 3px 5px
+			font-size: 13px
+			border-radius: 4px
+			margin-right: 5px
+			.tag-items-close
+				color: red
+				cursor: pointer
+	.tag-input
+		border: none
+		box-shadow: none
+		flex: 1
+		margin-left: 10px
+		&:hover, &:focus
+			outline: none
+.tag-suggest
+	margin-top: 5px
+	ul
+		list-style: none
+		margin: 0
+		padding: 0
+		display: inline-flex
+		li
+			margin-right: 5px
+			border: 1px solid #ccc
+			padding: 3px 5px
+			border-radius: 3px
+			background: #eaeaea
+			cursor: pointer
+			&:hover
+				background: #ccc
