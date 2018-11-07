@@ -143,9 +143,8 @@ class OnUpload extends Component {
 		let {tags} = this.state;
 		// console.log('t: ', t);
 		// console.log('tags: ', tags);
-		this.setState({
-			tags: tags.push(t)
-		})
+		tags.push(t);
+		this.setState({tags})
 	};
 
 	render() {

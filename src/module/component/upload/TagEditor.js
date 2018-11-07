@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import _ from 'lodash';
+import axios from 'axios';
+import * as api from './../../const/Api';
 
 class TagEditor extends Component {
 
@@ -8,7 +10,8 @@ class TagEditor extends Component {
 		this.state = {
 			tags: [],
 			tagSuggest: [],
-			input: ''
+			input: '',
+			tagAutocompleteList: []
 		}
 	}
 
@@ -19,17 +22,75 @@ class TagEditor extends Component {
 
 	selectSuggestTags = (tag) => {
 		let {tags, tagSuggest} = this.state;
-		tags.push(tag);
+
+		let checkAvaiable = _.findIndex(tags, (t) => {
+			return t.id === tag.id;
+		});
+
+		if (checkAvaiable < 0) {
+			tags.push(tag);
+		}
+
 		_.remove(tagSuggest, (t) => {
 			return t.id === tag.id
 		});
+
 		this.setState({tags});
+		this.props.onChangeTags(tag.name);
 	};
 
 	handleInputChange = (event) => {
 		let input = event.target.value;
+		let {tags} = this.state;
+		let exclude = [];
+
+		_.map(tags, (t, i) => {
+			exclude.push(t.id);
+		});
+
+		console.log(exclude);
+
+		if (input.length > 4) {
+			let token = localStorage.getItem('accessToken');
+			let config = {
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'multipart/form-data',
+					Authorization: token
+				},
+			};
+			let formData = new FormData();
+			formData.append('keyword', input);
+			formData.append('exclude', exclude);
+			axios.post(api.API_GET_AUTOCOMPLETE_TAG, formData, config)
+				.then(response => {
+					let tagAutocompleteList = response.data;
+					this.setState({tagAutocompleteList})
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		}
+
 		this.setState({input});
 
+	};
+
+	selectAutocompleteTag = (event, tag) => {
+		let {input, tags, tagAutocompleteList} = this.state;
+
+		let checkAvaiable = _.findIndex(tags, (t) => {
+			return t.id === tag.id;
+		});
+
+		if (checkAvaiable < 0) {
+			tags.push(tag);
+			input = ''; //reset
+			tagAutocompleteList = []; //reset
+			this.setState({
+				tags, input, tagAutocompleteList
+			})
+		}
 	};
 
 	handleKeyPress = (event) => {
@@ -42,9 +103,18 @@ class TagEditor extends Component {
 		}
 	};
 
+	removeTag = (event, tag) => {
+		let {tagSuggest, tags} = this.state;
+		_.remove(tags, (t) => {
+			return t === tag
+		});
+		tagSuggest.push(tag);
+		this.setState({tagSuggest, tags})
+	};
+
 	render() {
 
-		let {tagSuggest, tags, input} = this.state;
+		let {tagSuggest, tags, input, tagAutocompleteList} = this.state;
 
 		return (
 			<Fragment>
@@ -54,7 +124,8 @@ class TagEditor extends Component {
 							{_.map(tags, (t, idx) => {
 								return (
 									<li className="tag-items" key={idx}>
-										{t.name} <span className="tag-items-close">x</span>
+										{t.name}
+										<span className="tag-items-close" onClick={(event) => this.removeTag(event, t)}>x</span>
 									</li>
 								)
 							})}
@@ -67,6 +138,18 @@ class TagEditor extends Component {
 						onChange={this.handleInputChange}
 						onKeyUp={this.handleKeyPress}
 					/>
+
+					{tagAutocompleteList.length > 0 &&
+						<div className="tag-autocompelte-list">
+							<ul>
+								{_.map(tagAutocompleteList, (tag, index) => {
+									return (
+										<li key={index} onClick={(event) => this.selectAutocompleteTag(event, tag)}>{tag.name}</li>
+									)
+								})}
+							</ul>
+						</div>
+					}
 				</div>
 
 				{tagSuggest.length > 0 &&
@@ -75,7 +158,7 @@ class TagEditor extends Component {
 						<ul>
 							{_.map(tagSuggest, (tag, idx) => {
 								return (
-									<li key={idx} onClick={() => this.selectSuggestTags(tag)}>{tag.name}</li>
+									<li key={idx} onClick={() => this.selectSuggestTags(tag)}>+ {tag.name}</li>
 								)
 							})}
 						</ul>

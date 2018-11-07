@@ -10,3 +10,4 @@ export const API_GET_SUBJECTS = BASE_URL + 'subject/all-subject';
 export const API_GET_SUBJECT_VIA_CLASSES = BASE_URL + 'class/get-subject-via-class';
 
 export const API_UPLOAD_DOC = BASE_URL + 'doc/upload';
+export const API_GET_AUTOCOMPLETE_TAG = BASE_URL + 'tag/get-autocomplete-tag';

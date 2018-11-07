@@ -112,7 +112,6 @@ class Intro extends Component {
 								accepted[index].onProgress = false;
 								accepted[index].fileUploaded = false;
 								this.setState({accepted});
-								console.log(error);
 							}
 						})
 				}
