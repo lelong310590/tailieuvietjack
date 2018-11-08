@@ -9,7 +9,7 @@ class UserCover extends Component {
 		return (
 			<div className="user-main-info-wrapper">
 				<div className="header-user">
-					<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
+					<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
 					<p className="header-user-name">{firstName} {lastName}</p>
 				</div>
 

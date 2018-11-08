@@ -48,8 +48,6 @@ class TagEditor extends Component {
 			exclude.push(t.id);
 		});
 
-		console.log(exclude);
-
 		if (input.length > 4) {
 			let token = localStorage.getItem('accessToken');
 			let config = {
@@ -152,7 +150,7 @@ class TagEditor extends Component {
 					}
 				</div>
 
-				{tagSuggest.length > 0 &&
+				{!_.isEmpty(tagSuggest)  &&
 					<div className="tag-suggest">
 						<p>Từ khóa gựi ý:</p>
 						<ul>

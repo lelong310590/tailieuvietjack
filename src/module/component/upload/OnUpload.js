@@ -6,6 +6,11 @@ import _ from 'lodash';
 import Cropper from 'react-cropper'; //Import Cropper Component
 import 'cropperjs/dist/cropper.css';
 import TagEditor from "./TagEditor";  //Import file style
+import axios from 'axios';
+import * as api from './../../const/Api';
+import Loading from "../support/Loading";
+import ReactHtmlParser from 'react-html-parser';
+import EditComplete from "./EditComplete";
 
 class OnUpload extends Component {
 
@@ -25,23 +30,30 @@ class OnUpload extends Component {
 			pagePreview: 1,
 			upLoadError: true,
 			id: 0,
-			page: 0,
 			totalPage: 0,
 			onProgress: true,
 			duplicate: false,
 			duplicateFile: {id: 0, name: null},
 			tags: [],
-			tagSuggest: []
+			tagSuggest: [],
+			isSubmit: false,
+			errorMess: '',
+			editComplete: false,
+
+			returnClass: {id: '', name: ''},
+			returnSubject: {id: '', name: ''},
+			returnPrice: ''
 		}
 	}
 
 	componentWillMount = () => {
 		this.props.getClasses();
+		this.props.getPrice();
 	};
 
 	UNSAFE_componentWillReceiveProps = (nextProps) => {
 		let {
-			percent, upLoadError, id, page, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
+			percent, upLoadError, id, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
 		} = nextProps;
 		//console.log(upLoadError === false);
 
@@ -50,7 +62,7 @@ class OnUpload extends Component {
 		if (percent === 100) {
 			this.setState({
 				upLoadError: (upLoadError === undefined) ? true : upLoadError,
-				id, page, totalPage, onProgress, tagSuggest
+				id, totalPage, onProgress, tagSuggest
 			})
 		}
 	};
@@ -112,14 +124,31 @@ class OnUpload extends Component {
 
 	handleCustomPrice = (event) => {
 		let value = parseInt(event.target.value);
-		if (value === 1) {
-			this.setState({customPrice: true})
-		} else {
+		if (value === 0) {
 			this.setState({
 				customPrice: false,
-				price: 0,
-				pagePreview: 2
+				price: 0
 			})
+		} else if (value === 1) {
+			this.setState({
+				customPrice: true,
+				pagePreview: 1,
+				price: 1
+			})
+		} else {
+			this.setState({
+				price: value,
+				customPrice: true,
+				pagePreview: 1
+			})
+		}
+	};
+
+	changePagePreview = (event) => {
+		let {totalPage} = this.state;
+		let pagePreview = event.target.value;
+		if (pagePreview <= totalPage & pagePreview > 0) {
+			this.setState({pagePreview})
 		}
 	};
 
@@ -147,14 +176,79 @@ class OnUpload extends Component {
 		this.setState({tags})
 	};
 
+	//Upload file
+	handleEditFile = (event) => {
+		event.preventDefault();
+		let {email} = this.props.UserReducer;
+		let {
+			name, customPagePreview, thumbnail, classes,
+			subject, description, price, pagePreview, id, tags, totalPage
+		} = this.state;
+
+		let errorMess = '';
+		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
+		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
+		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
+
+		this.setState({errorMess});
+
+		let formData = new FormData();
+		formData.append('id', id);
+		formData.append('name', name);
+		formData.append('category', classes);
+		formData.append('subject', subject);
+		formData.append('excerpt', description);
+		formData.append('price', price);
+		formData.append('thumbnail', thumbnail);
+		formData.append('tags', tags);
+		formData.append('email', email);
+
+		formData.append('custom_page_review', customPagePreview);
+		formData.append('page_preview', pagePreview);
+		formData.append('total_page', totalPage);
+
+		let token = localStorage.getItem('accessToken');
+		let config = {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'multipart/form-data',
+				Authorization: token
+			},
+		};
+
+		if (errorMess === '') {
+			this.setState({isSubmit: true});
+
+			axios.post(api.API_UPDATE_DOC_AFTER_UPLOAD, formData, config)
+				.then(response => {
+					this.setState({
+						editComplete: true,
+						returnClass: response.data.classes,
+						name: response.data.name,
+						thumbnail: response.data.thumbnail,
+						returnSubject: response.data.subject,
+						tags: response.data.tags,
+						returnPrice: response.data.price
+					});
+				})
+				.catch(err => {
+					console.log(err);
+				})
+				.finally(() => {
+					this.setState({isSubmit: false})
+				})
+		}
+	};
+
 	render() {
 		let {classes} = this.props.ClassesReducer;
+		let priceList = this.props.PriceReducer.price;
 		let {subjectInClass} = this.props.SubjectReducer;
 		let {percent, name, index} = this.props;
 		let {
 			customPrice, tempThumbnail, modalCrop, thumbnail, subject, description, price,
 			pagePreview, customPagePreview, upLoadError, totalPage, onProgress, duplicate, duplicateFile,
-			tagSuggest
+			tagSuggest, isSubmit, errorMess, editComplete, returnClass ,returnPrice, returnSubject
 		} = this.state;
 
 		let classesElem = _.map(classes, (value, index) => {
@@ -170,205 +264,238 @@ class OnUpload extends Component {
 		});
 
 		return (
-			<div className="upload-result-wrapper">
+			<Fragment>
+				{editComplete ? (
+					<EditComplete
+						name={name}
+						classes={returnClass.name}
+						subject={returnSubject.name}
+						price={returnPrice}
+						tags={this.state.tags}
+						description={description}
+						thumbnail={thumbnail}
+					/>
+				) : (
+					<div className="upload-result-wrapper">
 
-				{modalCrop &&
-					<div className="crop-modal">
-						<div className="crop-modal-inner">
-							<p className="crop-modal-guide">
-								<i className="fas fa-info-circle"></i> Sử dụng thanh cuộn chuột để zoom ảnh
-							</p>
-							<Cropper
-								ref={cropper => { this.cropper = cropper; }}
-								src={tempThumbnail}
-								style={{height: 400, maxWidth: 500}}
-								// Cropper.js options
-								aspectRatio={150 / 180}
-								guides={true}
-							/>
-							<div className="crop-modal-action">
-								<button className="crop-modal-submit" onClick={() => this.onCrop()}>Crop ảnh</button>
-								<button className="crop-modal-cancel" onClick={() => this.onCancelCrop()}>Thoát</button>
+						{isSubmit &&
+						<Loading/>
+						}
+
+						{modalCrop &&
+						<div className="crop-modal">
+							<div className="crop-modal-inner">
+								<p className="crop-modal-guide">
+									<i className="fas fa-info-circle"></i> Sử dụng thanh cuộn chuột để zoom ảnh
+								</p>
+								<Cropper
+									ref={cropper => { this.cropper = cropper; }}
+									src={tempThumbnail}
+									style={{height: 400, maxWidth: 500}}
+									// Cropper.js options
+									aspectRatio={150 / 180}
+									guides={true}
+								/>
+								<div className="crop-modal-action">
+									<button className="crop-modal-submit" onClick={() => this.onCrop()}>Crop ảnh</button>
+									<button className="crop-modal-cancel" onClick={() => this.onCancelCrop()}>Thoát</button>
+								</div>
 							</div>
 						</div>
-					</div>
-				}
+						}
 
-				{upLoadError & !onProgress ? (
-					<div className="alert alert-warning">
-						<p><i className="fas fa-exclamation-triangle"></i> Lỗi xảy ra khi tải tài liệu</p>
-						<p>• {name}</p>
-					</div>
-				) : (
-					<div className={duplicate ? 'upload-result-title upload-result-title-error' : 'upload-result-title'}>
-						
-						{!duplicate ? (
-							<Fragment>
-								<p>{percent}% tải lên  •  {name}</p>
-
-								{percent !== 100 &&
-								<button className="upload-cancel" onClick={() => this.cancelUpload(index)}>
-									Hủy tải lên <i className="far fa-times-circle"></i>
-								</button>
-								}
-
-								<div className="upload-result-percent" style={{width: percent + '%'}}></div>
-							</Fragment>
-						) : (
-							<p>
-								<i className="fas fa-exclamation-triangle"></i>
-								Tài liệu "{helpers.trimFileName(duplicateFile.name)}" trùng với tài liệu đang chờ duyệt trên hệ thống, ID=>{duplicateFile.id}<br/>
-								<span style={{color: 'red'}}> • {helpers.trimFileName(duplicateFile.name)}</span>
-							</p>
-						)}
-						
-						
-					</div>
-				)}
-
-				{!upLoadError & !duplicate ? (
-					<div className="save-all-mode">
-						<div className="upload-result">
-							<div className="upload-result-left">
-								<img
-									src={thumbnail ? thumbnail : '/lib/images/bg_changeImg.jpg'}
-									alt=""
-									className="img-responsive"
-									onClick={this.actionChangeThumbnail}
-									width={152}
-									height={182}
-								/>
+						{upLoadError & !onProgress ? (
+							<div className="alert alert-warning">
+								<p><i className="fas fa-exclamation-triangle"></i> Lỗi xảy ra khi tải tài liệu</p>
+								<p>• {name}</p>
 							</div>
-							<form className="upload-result-right">
+						) : (
+							<div className={duplicate ? 'upload-result-title upload-result-title-error' : 'upload-result-title'}>
 
-								<input type="file" ref="fileUploader" className="hidden" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleChangeThumbnail}/>
+								{!duplicate ? (
+									<Fragment>
+										<p>{percent}% tải lên  •  {name}</p>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Tên tài liệu <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<input
-											type="text"
-											className="form-control"
-											name="name"
-											value={this.state.name}
-											onChange={this.handleChangeName}
-											required
+										{percent !== 100 &&
+										<button className="upload-cancel" onClick={() => this.cancelUpload(index)}>
+											Hủy tải lên <i className="far fa-times-circle"></i>
+										</button>
+										}
+
+										<div className="upload-result-percent" style={{width: percent + '%'}}></div>
+									</Fragment>
+								) : (
+									<p>
+										<i className="fas fa-exclamation-triangle"></i>
+										Tài liệu "{helpers.trimFileName(duplicateFile.name)}" trùng với tài liệu đang chờ duyệt trên hệ thống, ID=>{duplicateFile.id}<br/>
+										<span style={{color: 'red'}}> • {helpers.trimFileName(duplicateFile.name)}</span>
+									</p>
+								)}
+							</div>
+						)}
+
+						{errorMess !== '' &&
+						<div className="alert alert-danger">
+							{ReactHtmlParser(errorMess)}
+						</div>
+						}
+
+						{!upLoadError & !duplicate ? (
+							<div className="save-all-mode">
+								<div className="upload-result">
+									<div className="upload-result-left">
+										<img
+											src={thumbnail ? thumbnail : '/lib/images/bg_changeImg.jpg'}
+											alt=""
+											className="img-responsive"
+											onClick={this.actionChangeThumbnail}
+											width={152}
+											height={182}
 										/>
 									</div>
-								</div>
+									<form className="upload-result-right" onSubmit={this.handleEditFile}>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Trình độ <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<select className="form-control" onChange={this.handleChangeClass} required value={this.state.classes}>
-											<option value={0}>Chọn trình độ cho tài liệu</option>
-											{classesElem}
-										</select>
-									</div>
-								</div>
+										<input type="file" ref="fileUploader" className="hidden" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleChangeThumbnail}/>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Môn học <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<select className="form-control" required onChange={this.handleChangeSubject} value={subject}>
-											<option value={0}>Chọn môn học cho tài liệu</option>
-											{subjectsElem}
-										</select>
-									</div>
-								</div>
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Tên tài liệu <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<input
+													type="text"
+													className="form-control"
+													name="name"
+													value={this.state.name}
+													onChange={this.handleChangeName}
+													required
+												/>
+											</div>
+										</div>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Từ khóa <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<TagEditor
-											tags={this.state.tags}
-											tagSuggest={tagSuggest}
-											onChangeTags={this.onChangeTags}
-										/>
-									</div>
-								</div>
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Trình độ <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" onChange={this.handleChangeClass} required value={this.state.classes}>
+													<option value={0}>Chọn trình độ cho tài liệu</option>
+													{classesElem}
+												</select>
+											</div>
+										</div>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Miêu tả
-									</div>
-									<div className="upload-result-content-input form-group">
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Môn học <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" required onChange={this.handleChangeSubject} value={subject}>
+													<option value={0}>Chọn môn học cho tài liệu</option>
+													{subjectsElem}
+												</select>
+											</div>
+										</div>
+
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Từ khóa <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<TagEditor
+													tags={this.state.tags}
+													tagSuggest={tagSuggest}
+													onChangeTags={this.onChangeTags}
+												/>
+											</div>
+										</div>
+
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Miêu tả
+											</div>
+											<div className="upload-result-content-input form-group">
 										<textarea
 											rows="5" className="form-control" onChange={this.handleChangeDescription}
 										>{description}</textarea>
-									</div>
-								</div>
+											</div>
+										</div>
 
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Chọn giá bán <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<select className="form-control" onChange={this.handleCustomPrice}>
-											<option value="0">Miễn phí</option>
-											<option value="1">Tự đặt giá</option>
-										</select>
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Chọn giá bán <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" onChange={this.handleCustomPrice}>
+													<option value="0">Miễn phí</option>
+													{_.map(priceList, (p, i) => {
+														return(
+															<option value={p.moneys} key={i}>{p.name}</option>
+														)
+													})}
+													<option value="1">Tự đặt giá</option>
+												</select>
+
+												{customPrice &&
+												<Fragment>
+													{price === 1 &&
+													<input
+														type="number"
+														className="form-control manual-price"
+														required
+														value={price}
+														onChange={this.handleChangePrice}
+													/>
+													}
+												</Fragment>
+												}
+											</div>
+										</div>
 
 										{customPrice &&
-										<input
-											type="number"
-											className="form-control manual-price"
-											required
-											value={price}
-											onChange={this.handleChangePrice}
-										/>
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Số trang xem trước <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" value={customPagePreview} onChange={this.handleChangeCustomPagePreview}>
+													<option value={0}>Tự chọn</option>
+													<option value={1}>20%</option>
+													<option value={2}>50%</option>
+												</select>
+
+												{customPagePreview === 0 &&
+												<Fragment>
+													<input
+														type="number"
+														className="form-control manual-price"
+														min={1}
+														max={totalPage}
+														value={pagePreview}
+														onChange={this.changePagePreview}
+													/>
+													<span style={{color: 'red'}}>Tài liệu có: {totalPage} trang</span>
+												</Fragment>
+
+												}
+											</div>
+										</div>
 										}
-									</div>
+
+										<hr/>
+
+										<div className="upload-result-submit text-right">
+											<button type="submit">Lưu</button>
+										</div>
+									</form>
 								</div>
-
-								{customPrice &&
-								<div className="upload-result-content">
-									<div className="upload-result-content-title">
-										Số trang xem trước <span className="upload-result-content-required">(*)</span>
-									</div>
-									<div className="upload-result-content-input form-group">
-										<select className="form-control" value={customPagePreview} onChange={this.handleChangeCustomPagePreview}>
-											<option value={0}>Tự chọn</option>
-											<option value={1}>20%</option>
-											<option value={2}>50%</option>
-										</select>
-
-										{customPagePreview === 0 &&
-										<Fragment>
-											<input
-												type="number"
-												className="form-control manual-price"
-												min={1}
-												max={totalPage}
-											/>
-											<span style={{color: 'red'}}>Tài liệu có: {totalPage} trang</span>
-										</Fragment>
-
-										}
-									</div>
-								</div>
-								}
-
-								<hr/>
-
-								<div className="upload-result-submit text-right">
-									<button type="submit">Lưu</button>
-								</div>
-							</form>
-						</div>
+							</div>
+						) : (
+							<Fragment></Fragment>
+						)}
 					</div>
-				) : (
-					<Fragment></Fragment>
 				)}
-			</div>
+			</Fragment>
 		);
 	}
 }
@@ -385,6 +512,10 @@ const mapDispatchToProps = (dispatch) => {
 
 		getSubjectViaClass: (classId) => {
 			dispatch(actions.getSubjectViaClass(classId))
+		},
+
+		getPrice: () => {
+			dispatch(actions.getPrice())
 		}
 	}
 };

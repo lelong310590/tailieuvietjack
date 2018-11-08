@@ -16,7 +16,7 @@ class Header extends Component {
 	render() {
 		let {AuthReducer, UserReducer} = this.props;
 
-		let {firstName, lastName} = UserReducer;
+		let {firstName, lastName, thumbnail} = UserReducer;
 
 		return (
 			<header className="header" id="header">
@@ -67,7 +67,7 @@ class Header extends Component {
 							) : (
 								<div className="header-authentication logged-in">
 									<div className="header-user">
-										<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
+										<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
 										<p className="header-user-name">{firstName} {lastName}</p>
 									</div>
 

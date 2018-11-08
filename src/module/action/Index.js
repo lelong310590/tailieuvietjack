@@ -154,3 +154,31 @@ export const getSubjectViaClass = (classId) => {
 			});
 	}
 };
+
+//get price list
+export const getPriceRequest = () => ({
+	type: types.GET_PRICE_REQUEST
+});
+
+export const getPriceSuccess = (data) => ({
+	type: types.GET_PRICE_SUCCESS,
+	payload: data
+});
+
+export const getPriceError = (err) => ({
+	type: types.GET_PRICE_ERROR,
+	payload: err
+});
+
+export const getPrice = () => {
+	return (dispatch) => {
+		dispatch(getPriceRequest());
+		axios.get(api.API_GET_PRICE)
+			.then(response => {
+				dispatch(getPriceSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getPriceError(err))
+			})
+	}
+}

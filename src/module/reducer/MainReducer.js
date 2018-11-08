@@ -5,6 +5,7 @@ import UserReducer from './UserReducer';
 import MenuReducer from './MenuReducer';
 import ClassesReducer from './ClassesReducer';
 import SubjectReducer from './SubjectReducer';
+import PriceReducer from './PriceReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -12,7 +13,8 @@ const MainReducer = combineReducers({
 	UserReducer,
 	MenuReducer,
 	ClassesReducer,
-	SubjectReducer
+	SubjectReducer,
+	PriceReducer
 });
 
 export default MainReducer;

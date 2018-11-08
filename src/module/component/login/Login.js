@@ -48,8 +48,8 @@ class Login extends Component {
 		let {email, password} = this.state;
 		let formData = new FormData();
 		formData.append('grant_type', 'password');
-		formData.append('client_id', '2');
-		formData.append('client_secret', 'fRc0vgW6OhB98hcYRhyeZ42IzoxCJ2sP67nS715Z');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
 		formData.append('username', email);
 		formData.append('password', password);
 		formData.append('scope', '');
@@ -61,7 +61,6 @@ class Login extends Component {
 		})
 			.then((response) => {
 				this.setState({
-					onProcess: false,
 					error: ''
 				});
 				//handle success
@@ -77,9 +76,11 @@ class Login extends Component {
 			})
 			.catch((err) => {
 				this.setState({
-					onProcess: false,
 					error: 'Tài khoản hoặc mật khẩu không đúng'
 				})
+			})
+			.finally(() => {
+				this.setState({onProcess: false})
 			})
 	};
 

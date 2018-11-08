@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import Dropzone from 'react-dropzone'
 import Policy from "./Policy";
-import UploadContent from "./UploadContent";
 import OnUpload from "./OnUpload";
 import * as api from './../../const/Api';
 
