@@ -30,3 +30,16 @@ export const convertPrice = (price) => {
 
 	return price;
 };
+
+export const renderNavLink = (url, onsort, page, keyword = '') => {
+	const path = {
+		pathname: url,
+		search: 'onsort=' + onsort + '&page=' + page
+	};
+
+	if (keyword !== '') {
+		path.search = 'onsort=' + onsort + '&keyword=' + keyword + '&page=' + page
+	}
+
+	return path;
+};

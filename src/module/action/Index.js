@@ -202,7 +202,7 @@ export const getUserDocumentError = (err) => ({
 	payload: err
 });
 
-export const getUserDocument = (userId, filter, token, page) => {
+export const getUserDocument = (userId, filter, token, page, keyword) => {
 	return (dispatch) => {
 		dispatch(getUserDocumentRequest());
 
@@ -214,7 +214,8 @@ export const getUserDocument = (userId, filter, token, page) => {
 			params: {
 				userId,
 				filter,
-				page
+				page,
+				keyword
 			}
 		})
 			.then(response => {

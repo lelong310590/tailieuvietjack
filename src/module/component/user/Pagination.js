@@ -1,5 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import * as helper from './../../Support';
 
 class Pagination extends Component {
 
@@ -13,19 +14,20 @@ class Pagination extends Component {
 			next_page_url: '',
 			prev_page_url: '',
 			url: '',
-			onsort: ''
+			onsort: '',
+			keyword: ''
 		}
 	}
 
 	componentDidMount() {
 		let {
 			current_page, first_page_url, last_page, last_page_url,
-			next_page_url, prev_page_url, url, onsort
+			next_page_url, prev_page_url, url, onsort, keyword
 		} = this.props;
 
 		this.setState({
 			current_page, first_page_url, last_page, last_page_url,
-			next_page_url, prev_page_url, url, onsort
+			next_page_url, prev_page_url, url, onsort, keyword
 		})
 	}
 
@@ -33,7 +35,8 @@ class Pagination extends Component {
 		if (this.props !== nextProps) {
 			this.setState({
 				current_page: nextProps.current_page,
-				last_page: nextProps.last_page
+				last_page: nextProps.last_page,
+				keyword: nextProps.keyword
 			});
 		}
 		return this.props === nextProps;
@@ -46,7 +49,7 @@ class Pagination extends Component {
 	render() {
 		let {
 			current_page, first_page_url, last_page, last_page_url,
-			next_page_url, prev_page_url, url, onsort
+			next_page_url, prev_page_url, url, onsort, keyword
 		} = this.state;
 
 		let leftPage = current_page - 1;
@@ -56,13 +59,13 @@ class Pagination extends Component {
 		// console.log('LeftPage: ', leftPage);
 		// console.log('RightPage: ', rightPage);
 
-		console.log(rightPage === last_page);
+		// console.log(rightPage === last_page);
 
 		return (
 			<div className="document-manager-pagination text-center">
 				<ul className="pagination">
 					{current_page > 1 &&
-						<li><Link to={{ pathname: url, search: 'onsort=' + onsort + '&page=' + 1}} onClick={() => this.clickPage(onsort, 1)}>1</Link></li>
+						<li><Link to={helper.renderNavLink(url, onsort, 1, keyword)}>1</Link></li>
 					}
 
 					{current_page - 1 >= 3 &&
@@ -70,13 +73,13 @@ class Pagination extends Component {
 					}
 
 					{leftPage > 1 &&
-						<li><Link to={{ pathname: url, search: 'onsort=' + onsort + '&page=' + leftPage}} onClick={() => this.clickPage(onsort, leftPage)}>{leftPage}</Link></li>
+						<li><Link to={helper.renderNavLink(url, onsort, leftPage, keyword)}>{leftPage}</Link></li>
 					}
 
-					<li className={'active'}><Link to={{ pathname: url, search: 'onsort=' + onsort + '&page=' + current_page}} onClick={() => this.clickPage(onsort, current_page)}>{current_page}</Link></li>
+					<li className={'active'}><Link to={helper.renderNavLink(url, onsort, current_page, keyword)}>{current_page}</Link></li>
 
 					{current_page !== last_page &&
-						<li><Link to={{ pathname: url, search: 'onsort=' + onsort + '&page=' + rightPage}} onClick={() => this.clickPage(onsort, rightPage)}>{rightPage}</Link></li>
+						<li><Link to={helper.renderNavLink(url, onsort, rightPage, keyword)}>{rightPage}</Link></li>
 					}
 
 					{last_page - current_page >= 3 &&
@@ -84,7 +87,7 @@ class Pagination extends Component {
 					}
 
 					{rightPage < last_page &&
-						<li><Link to={{ pathname: url, search: 'onsort=' + onsort + '&page=' + last_page}} onClick={() => this.clickPage(onsort, last_page)}>{last_page}</Link></li>
+						<li><Link to={helper.renderNavLink(url, onsort, last_page, keyword)}>{last_page}</Link></li>
 					}
 				</ul>
 			</div>

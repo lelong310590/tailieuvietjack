@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
 import DocItem from "./DocItem";
 import Pagination from "./Pagination";
+import DocSearch from "./DocSearch";
 
 class DocManager extends Component {
 
@@ -16,6 +17,7 @@ class DocManager extends Component {
 			filter: 'active',
 			page: 1,
 			url: this.props.location.pathname,
+			keyword: ''
 		}
 	}
 
@@ -24,7 +26,7 @@ class DocManager extends Component {
 		let token = localStorage.getItem('accessToken');
 		let userId = localStorage.getItem('userId');
 		let value = queryString.parse(search);
-		let {page} = this.state;
+		let {page, keyword} = this.state;
 
 		if (_.has(value, 'onsort')) {
 			this.setState({
@@ -42,16 +44,38 @@ class DocManager extends Component {
 			})
 		}
 
-		this.props.getUserDocument(userId, value.onsort, token, page);
+		if (_.has(value, 'keyword')) {
+			this.setState({
+				keyword: value.keyword
+			})
+		}
+
+		this.props.getUserDocument(userId, value.onsort, token, value.page, value.keyword);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
 		if (this.props !== nextProps) {
-			const search = nextProps.location.search;
+			let oldSearch = this.props.location.search;
+			let oldValue = queryString.parse(oldSearch);
+
+			let search = nextProps.location.search;
 			let value = queryString.parse(search);
 			this.setState({
-				filter: value.onsort
+				filter: value.onsort,
+				keyword: value.keyword
 			});
+
+			if (value.keyword !== oldValue.keyword) {
+				let token = localStorage.getItem('accessToken');
+				let userId = localStorage.getItem('userId');
+				this.props.getUserDocument(userId, value.onsort, token, 1, value.keyword);
+			}
+
+			if (value.page !== oldValue.page) {
+				let token = localStorage.getItem('accessToken');
+				let userId = localStorage.getItem('userId');
+				this.props.getUserDocument(userId, value.onsort, token, value.page, value.keyword);
+			}
 		}
 
 		return this.props === nextProps;
@@ -62,21 +86,26 @@ class DocManager extends Component {
 		this.setState({filter});
 		let url = this.props.match.url;
 		this.props.history.push(url + '?onsort=' + filter);
-
-		let token = localStorage.getItem('accessToken');
-		let userId = this.props.UserReducer.id;
-		this.props.getUserDocument(userId, filter, token, 1);
 	};
 
-	clickPage = (onsort, page) => {
-		let token = localStorage.getItem('accessToken');
-		let userId = this.props.UserReducer.id;
-		this.props.getUserDocument(userId, onsort, token, page);
+	clickPage = (onsort, page, keyword) => {
+		let url = this.props.match.url;
+		if (keyword !== undefined) {
+			this.props.history.push(url + '?onsort=' + onsort + '&keyword=' + keyword + '&page=' + page);
+		} else {
+			this.props.history.push(url + '?onsort=' + onsort + '&page=' + page);
+		}
+	};
+
+	search = (keyword) => {
+		let {filter} = this.state;
+		let {pathname} = this.props.location;
+		this.props.history.push(pathname + '?onsort=' + filter + '&keyword=' + keyword);
 	};
 
 	render() {
 
-		let {filter} = this.state;
+		let {filter, keyword, url} = this.state;
 		let {docs} = this.props.UserDocument;
 
 		return (
@@ -123,12 +152,9 @@ class DocManager extends Component {
 											</div>
 										</div>
 
-										<div className="document-filter-search">
-											<div className="form-group">
-												<input type="text" className="form-control" placeholder="Tìm kiếm..."/>
-												<button type="button"><i className="fas fa-search"></i></button>
-											</div>
-										</div>
+										<DocSearch
+											search={this.search}
+										/>
 									</div>
 
 									<div className="document-manager-list">
@@ -152,8 +178,9 @@ class DocManager extends Component {
 
 										{docs.last_page > 1 &&
 											<Pagination
-												url={this.state.url}
-												onsort={this.state.filter}
+												url={url}
+												onsort={filter}
+												keyword={keyword}
 												current_page={docs.current_page}
 												first_page_url={docs.first_page_url}
 												last_page={docs.last_page}
@@ -180,8 +207,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getUserDocument: (userId, filter, token, page) => {
-			dispatch(actions.getUserDocument(userId, filter, token, page))
+		getUserDocument: (userId, filter, token, page = 1, keywords = '',) => {
+			dispatch(actions.getUserDocument(userId, filter, token, page, keywords))
 		}
 	}
 };
