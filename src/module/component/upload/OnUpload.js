@@ -46,7 +46,7 @@ class OnUpload extends Component {
 		}
 	}
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		this.props.getClasses();
 		this.props.getPrice();
 	};
@@ -138,7 +138,7 @@ class OnUpload extends Component {
 		} else {
 			this.setState({
 				price: value,
-				customPrice: true,
+				customPrice: false,
 				pagePreview: 1
 			})
 		}
@@ -438,7 +438,6 @@ class OnUpload extends Component {
 
 												{customPrice &&
 												<Fragment>
-													{price === 1 &&
 													<input
 														type="number"
 														className="form-control manual-price"
@@ -446,13 +445,12 @@ class OnUpload extends Component {
 														value={price}
 														onChange={this.handleChangePrice}
 													/>
-													}
 												</Fragment>
 												}
 											</div>
 										</div>
 
-										{customPrice &&
+										{price >= 1 &&
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
 												Số trang xem trước <span className="upload-result-content-required">(*)</span>

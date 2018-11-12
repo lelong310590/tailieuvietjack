@@ -1152,3 +1152,72 @@
 			cursor: pointer
 			&:hover
 				background: #ccc
+.doc-item-horizontal
+	background: #fff
+	border-radius: 4px
+	position: relative
+	margin-bottom: 20px
+	box-shadow: 1px 1px 1px 0 #ddd
+	padding: 15px
+	display: flex
+	justify-content: space-between
+	&:hover
+		box-shadow: 1px 3px 4px 1px #ddd
+	.doc-item-horizontal-image
+		max-width: 80px
+		border: 1px solid #ccc
+		margin-right: 30px
+		img
+			cursor: pointer
+	.doc-item-horizontal-info
+		flex: 1
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		h4
+			margin-top: 0
+		.document-info
+			justify-content: normal
+			& > div
+				margin-right: 25px
+	.doc-item-horizontal-action
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		.doc-item-horizontal-date
+			color: #999
+			font-size: 13px
+		.doc-item-horizontal-action-button
+			display: flex
+			justify-content: flex-end
+			button
+				background: none
+				border: none
+				margin-left: 10px
+				&:hover, &:focus
+					outline: none
+					color: $primary
+.document-info-price
+	color: $primary
+	font-weight: 700
+
+.document-manager-pagination
+	ul
+		li
+			a
+				padding: 6px 12px
+				margin-right: 5px
+				background: #ddd
+				color: #333
+				&:hover
+					background: $primary
+					color: #fff
+			span
+				margin-right: 5px
+				background: #ddd
+				color: #333
+				&:hover
+					background: #ddd
+					color: #333
+
+

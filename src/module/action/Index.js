@@ -28,14 +28,18 @@ export const getUserInfoFail = (err) => ({
 export const getUserInfo = (token) => {
 	return (dispatch) => {
 		dispatch(getUserInfoRequest());
-		return axios.get(api.API_GET_USER, {
+		axios.get(api.API_GET_USER, {
 			headers: {
 				Accept: 'application/json',
 				Authorization: token
 			}
 		})
-			.then(response => dispatch(getUserInfoSuccess(response)))
-			.catch(error => dispatch(getUserInfoFail(error)))
+			.then(response => {
+				dispatch(getUserInfoSuccess(response))
+			})
+			.catch(error => {
+				dispatch(getUserInfoFail(error))
+			})
 	}
 };
 
@@ -57,7 +61,7 @@ export const getMainMenuError = (err) => ({
 export const getMainMenu = () => {
 	return (dispatch) => {
 		dispatch(getMainMenuRequest());
-		return axios.get(api.API_GET_MENU)
+		axios.get(api.API_GET_MENU)
 			.then(response => {
 				dispatch(getMainMenuSuccess(response))
 			})
@@ -85,7 +89,7 @@ export const getClassesError = (err) => ({
 export const getClasses = () => {
 	return (dispatch) => {
 		dispatch(getClassesRequest());
-		return axios.get(api.API_GET_CLASSES)
+		axios.get(api.API_GET_CLASSES)
 			.then(response => {
 				dispatch(getClassesSuccess(response))
 			})
@@ -181,4 +185,43 @@ export const getPrice = () => {
 				dispatch(getPriceError(err))
 			})
 	}
-}
+};
+
+//get user documents list
+export const getUserDocumentRequest = () => ({
+	type: types.GET_USER_DOCUMENT_REQUEST
+});
+
+export const getUserDocumentSuccess = (data) => ({
+	type: types.GET_USER_DOCUMENT_SUCCESS,
+	payload: data
+});
+
+export const getUserDocumentError = (err) => ({
+	type: types.GET_USER_DOCUMENT_ERROR,
+	payload: err
+});
+
+export const getUserDocument = (userId, filter, token, page) => {
+	return (dispatch) => {
+		dispatch(getUserDocumentRequest());
+
+		axios.get(api.API_GET_USER_DOCUMENT, {
+			headers: {
+				Accept: 'application/json',
+				Authorization: token
+			},
+			params: {
+				userId,
+				filter,
+				page
+			}
+		})
+			.then(response => {
+				dispatch(getUserDocumentSuccess(response))
+			})
+			.catch(error => {
+				dispatch(getUserDocumentError(error))
+			})
+	};
+};

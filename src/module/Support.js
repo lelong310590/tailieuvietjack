@@ -22,3 +22,11 @@ export const trimFileName = (filename) => {
 
 	return filename;
 };
+
+export const convertPrice = (price) => {
+	if (price === 0) {
+		return 'Miễn phí'
+	}
+
+	return price;
+};

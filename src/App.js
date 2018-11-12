@@ -45,14 +45,7 @@ const isUnauthenticatedUser = connectedRouterRedirect({
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			token: localStorage.getItem('accessToken')
-		}
-	}
-
-	componentWillMount = () => {
+	componentDidMount = () => {
 		let token = localStorage.getItem('accessToken');
 		if (token) {
 			this.props.handleLogedIn();
@@ -69,23 +62,23 @@ class App extends Component {
 					<main className="main" id="main">
 						<Switch>
 							<Route exact={true} path={'/'} component={Home}/>
-							<Route path={'/dang-ky'} component={isUnauthenticatedUser(Register)}/>
-							<Route path={'/dang-nhap'} component={isUnauthenticatedUser(Login)}/>
-							<Route path={'/dang-xuat'} component={isAuthenticatedUser(Logout)}/>
-							<Route path={'/quen-mat-khau'} component={isUnauthenticatedUser(ForgotPassword)}/>
-							<Route path={'/doi-lai-mat-khau/:token'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
+							<Route exact={true} path={'/dang-ky'} component={isUnauthenticatedUser(Register)}/>
+							<Route exact={true} path={'/dang-nhap'} component={isUnauthenticatedUser(Login)}/>
+							<Route exact={true} path={'/dang-xuat'} component={isAuthenticatedUser(Logout)}/>
+							<Route exact={true} path={'/quen-mat-khau'} component={isUnauthenticatedUser(ForgotPassword)}/>
+							<Route exact={true} path={'/doi-lai-mat-khau/:token'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
 
-							<Route path={'/upload-tai-lieu'} component={Intro}/>
-							<Route path={'cat/:class/:subject'} component={List}/>
-							<Route path={'cat/:class'} component={List}/>
+							<Route exact={true} path={'/upload-tai-lieu'} component={Intro}/>
+							<Route exact={true} path={'cat/:class/:subject'} component={List}/>
+							<Route exact={true} path={'cat/:class'} component={List}/>
 
-							<Route path={'/tai-lieu/:slug'} component={Document}/>
+							<Route exact={true} path={'/tai-lieu/:slug'} component={Document}/>
 
-							<Route path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
-							<Route path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
+							<Route exact={true} path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
+							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
 
-							<Route path={'/cat/:class'} component={CatDoc} />
-							<Route path={'/cat/:class/:subject'} component={CatDoc} />
+							<Route exact={true} path={'/cat/:class'} component={CatDoc} />
+							<Route exact={true} path={'/cat/:class/:subject'} component={CatDoc} />
 
 							<Route component={ErrorNoPage}/>
 						</Switch>
@@ -96,10 +89,6 @@ class App extends Component {
 		);
 	}
 }
-
-const mapStateToProps = (state) => {
-	return state;
-};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -113,4 +102,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default connect(null, mapDispatchToProps) (App);

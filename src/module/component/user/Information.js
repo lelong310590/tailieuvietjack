@@ -28,7 +28,7 @@ class Information extends Component {
 		}
 	}
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		let {id, firstName, lastName, email, thumbnail, address, gender} = this.props.UserReducer;
 		this.setState({
 			id, firstName, lastName, email, thumbnail, address, gender

@@ -12,13 +12,14 @@ let initialState = {
 	address: '',
 	gender: 0,
 	profit: 0,
-	totalMoney: 0
+	totalMoney: 0,
 };
 
 let UserReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case types.GET_USER_INFO_SUCCESS:
 			let user = action.payload.data;
+			localStorage.setItem('userId', user.id);
 			return {
 				...state,
 				id: user.id,
@@ -27,10 +28,12 @@ let UserReducer = (state = initialState, action) => {
 				email: user.email,
 				thumbnail: user.thumbnail
 			};
+
 		case types.GET_USER_INFO_FAIL:
 			return {
 				...state
 			};
+
 		default:
 			return state;
 	}

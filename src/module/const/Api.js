@@ -1,7 +1,8 @@
 export const BASE_URL = 'http://apitailieu.test/v1/';
 
 export const API_LOGIN = 'http://apitailieu.test/oauth/token';
-export const API_GET_USER = 'http://apitailieu.test/api/user';
+export const API_GET_USER = BASE_URL + 'user/profile';
+export const API_GET_USER_DOCUMENT = BASE_URL + 'user/document';
 export const API_REGISTER = '';
 
 export const API_GET_MENU = BASE_URL + 'class/get-all-class';
