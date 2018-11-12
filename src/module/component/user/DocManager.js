@@ -60,22 +60,27 @@ class DocManager extends Component {
 
 			let search = nextProps.location.search;
 			let value = queryString.parse(search);
+
+			let token = localStorage.getItem('accessToken');
+			let userId = localStorage.getItem('userId');
+
 			this.setState({
 				filter: value.onsort,
 				keyword: value.keyword
 			});
 
 			if (value.keyword !== oldValue.keyword) {
-				let token = localStorage.getItem('accessToken');
-				let userId = localStorage.getItem('userId');
 				this.props.getUserDocument(userId, value.onsort, token, 1, value.keyword);
 			}
 
 			if (value.page !== oldValue.page) {
-				let token = localStorage.getItem('accessToken');
-				let userId = localStorage.getItem('userId');
 				this.props.getUserDocument(userId, value.onsort, token, value.page, value.keyword);
 			}
+
+			if (value.onsort !== oldValue.onsort) {
+				this.props.getUserDocument(userId, value.onsort, token);
+			}
+
 		}
 
 		return this.props === nextProps;
