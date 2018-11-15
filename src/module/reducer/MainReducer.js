@@ -7,6 +7,7 @@ import ClassesReducer from './ClassesReducer';
 import SubjectReducer from './SubjectReducer';
 import PriceReducer from './PriceReducer';
 import UserDocument from './UserDocument';
+import DocReducer from './DocReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -16,7 +17,8 @@ const MainReducer = combineReducers({
 	ClassesReducer,
 	SubjectReducer,
 	PriceReducer,
-	UserDocument
+	UserDocument,
+	DocReducer
 });
 
 export default MainReducer;

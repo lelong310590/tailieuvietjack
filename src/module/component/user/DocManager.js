@@ -1,13 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import UserCover from "./UserCover";
 import Menu from "./Menu";
 import queryString from 'query-string';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
+import axios from 'axios';
+import * as api from './../../const/Api';
 import DocItem from "./DocItem";
 import Pagination from "./Pagination";
 import DocSearch from "./DocSearch";
+import Loading from "../support/Loading";
 
 class DocManager extends Component {
 
@@ -17,7 +20,8 @@ class DocManager extends Component {
 			filter: 'active',
 			page: 1,
 			url: this.props.location.pathname,
-			keyword: ''
+			keyword: '',
+			onAction: false
 		}
 	}
 
@@ -26,7 +30,6 @@ class DocManager extends Component {
 		let token = localStorage.getItem('accessToken');
 		let userId = localStorage.getItem('userId');
 		let value = queryString.parse(search);
-		let {page, keyword} = this.state;
 
 		if (_.has(value, 'onsort')) {
 			this.setState({
@@ -80,7 +83,6 @@ class DocManager extends Component {
 			if (value.onsort !== oldValue.onsort) {
 				this.props.getUserDocument(userId, value.onsort, token);
 			}
-
 		}
 
 		return this.props === nextProps;
@@ -108,9 +110,32 @@ class DocManager extends Component {
 		this.props.history.push(pathname + '?onsort=' + filter + '&keyword=' + keyword);
 	};
 
+	deleteDoc = (id) => {
+		let formData = new FormData();
+		let token = localStorage.getItem('accessToken');
+		formData.append('docId', id);
+		this.setState({onAction: true});
+		axios.post(api.API_POST_DELETE_DOCUMENT, formData, {
+			headers: {
+				Accept: 'application/json',
+				Authorization: token
+			},
+		})
+			.then(response => {
+				console.log(response);
+				this.props.postDeleteDocument(id);
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({onAction: false})
+			});
+	};
+
 	render() {
 
-		let {filter, keyword, url} = this.state;
+		let {filter, keyword, url, onAction} = this.state;
 		let {docs} = this.props.UserDocument;
 
 		return (
@@ -164,6 +189,12 @@ class DocManager extends Component {
 
 									<div className="document-manager-list">
 										<div className="document-manager-item">
+											<Fragment>
+												{onAction &&
+													<Loading/>
+												}
+											</Fragment>
+
 											{_.map(docs.data, (d, i) => {
 												return (
 													<DocItem
@@ -176,6 +207,10 @@ class DocManager extends Component {
 														pages={d.pages}
 														views={d.views}
 														downloaded={d.downloaded}
+														status={d.status}
+														onAction={d.onactive}
+														format={d.formats}
+														deleteDoc={this.deleteDoc}
 													/>
 												)
 											})}
@@ -214,6 +249,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getUserDocument: (userId, filter, token, page = 1, keywords = '',) => {
 			dispatch(actions.getUserDocument(userId, filter, token, page, keywords))
+		},
+
+		postDeleteDocument: (id) => {
+			dispatch(actions.postDeleteDocument(id))
 		}
 	}
 };

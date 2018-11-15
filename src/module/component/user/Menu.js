@@ -16,7 +16,7 @@ class Menu extends Component {
 						<li><NavLink
 							to={{ pathname: '/tai-khoan/'+ id +'/quan-ly-tai-lieu', search: 'onsort=active'}}
 							exact={true}
-							activeClassName={'active'}
+							className={(this.props.path === '/tai-khoan/:id/quan-ly-tai-lieu' || this.props.path === '/tai-lieu/sua-tai-lieu/:slug') ? 'active' : ''}
 						><i className="far fa-file-alt"></i> Quản lý tài liệu</NavLink></li>
 
 						<li><NavLink to="/1"><i className="fas fa-file-invoice-dollar"></i> Quản lý tài chính</NavLink></li>

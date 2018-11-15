@@ -20,6 +20,16 @@ class TagEditor extends Component {
 		this.setState({tagSuggest})
 	};
 
+	shouldComponentUpdate = (nextProps, nextState) => {
+		if (this.props.tags !== nextProps.tags) {
+			this.setState({
+				tags: nextProps.tags
+			})
+		};
+
+		return this.props === nextProps;
+	};
+
 	selectSuggestTags = (tag) => {
 		let {tags, tagSuggest} = this.state;
 

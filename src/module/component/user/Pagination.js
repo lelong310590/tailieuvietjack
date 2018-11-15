@@ -48,18 +48,11 @@ class Pagination extends Component {
 
 	render() {
 		let {
-			current_page, first_page_url, last_page, last_page_url,
-			next_page_url, prev_page_url, url, onsort, keyword
+			current_page, last_page, url, onsort, keyword
 		} = this.state;
 
 		let leftPage = current_page - 1;
 		let rightPage = current_page + 1;
-
-		// console.log('Current: ', current_page);
-		// console.log('LeftPage: ', leftPage);
-		// console.log('RightPage: ', rightPage);
-
-		// console.log(rightPage === last_page);
 
 		return (
 			<div className="document-manager-pagination text-center">

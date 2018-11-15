@@ -1,12 +1,36 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import * as helper from './../../Support';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import DocumentTag from "../support/DocumentTag"; // Import css
+import {Link} from 'react-router-dom';
 
 class DocItem extends Component {
+
+	deleteDoc = (mess) => {
+		confirmAlert({
+			title: '',
+			message: mess,
+			buttons: [
+				{
+					label: 'Đồng ý',
+					onClick: () => this.props.deleteDoc(this.props.id)
+				},
+				{
+					label: 'Quay lại',
+					onClick: () => {}
+				}
+			]
+		})
+	};
 
 	render() {
 		return (
 			<div className="doc-item-horizontal">
 				<div className="doc-item-horizontal-image">
+					<DocumentTag
+						format={this.props.format}
+					/>
 					<img src={this.props.thumbnail ? this.props.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
 				</div>
 				<div className="doc-item-horizontal-info">
@@ -23,8 +47,20 @@ class DocItem extends Component {
 						<span>Ngày tải lên: {this.props.createdAt}</span>
 					</div>
 					<div className="doc-item-horizontal-action-button">
-						<button><i className="far fa-trash-alt"></i> Xóa</button>
-						<button><i className="far fa-edit"></i> Sửa</button>
+						{this.props.status === 'active' &&
+							<button onClick={() => this.deleteDoc('Bạn muốn xóa ngưng xuất bản tài liệu đã chọn')}>
+								<i className="fas fa-angle-double-down"></i> Ngưng xuất bản
+							</button>
+						}
+
+						{this.props.status === 'disable' &&
+							<Fragment>
+								<Link to={'/tai-lieu/sua-tai-lieu/' + this.props.id} exact="true"><i className="far fa-edit"></i> Sửa</Link>
+								<button onClick={() => this.deleteDoc('Bạn muốn xóa tài liệu đã chọn')}>
+									<i className="far fa-trash-alt"></i> Xóa
+								</button>
+							</Fragment>
+						}
 					</div>
 				</div>
 			</div>

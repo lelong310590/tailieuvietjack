@@ -211,12 +211,7 @@ export const getUserDocument = (userId, filter, token, page, keyword) => {
 				Accept: 'application/json',
 				Authorization: token
 			},
-			params: {
-				userId,
-				filter,
-				page,
-				keyword
-			}
+			params: {userId, filter, token, page, keyword}
 		})
 			.then(response => {
 				dispatch(getUserDocumentSuccess(response))
@@ -225,4 +220,44 @@ export const getUserDocument = (userId, filter, token, page, keyword) => {
 				dispatch(getUserDocumentError(error))
 			})
 	};
+};
+
+//delete documents
+export const postDeleteDocument = (id) => ({
+	type: types.POST_USER_DOCUMENT_DELETE,
+	payload: id
+});
+
+//get document info
+export const getDocumentInfoRequest = () => ({
+	type: types.GET_DOCUMENT_INFO_REQUEST
+});
+
+export const getDocumentInfoSuccess = (data) => ({
+	type: types.GET_DOCUMENT_INFO_SUCCESS,
+	payload: data
+});
+
+export const getDocumentInfoError = (err) => ({
+	type: types.GET_DOCUMENT_INFO_ERROR,
+	payload: err
+});
+
+export const getDocumentInfo = (docid, token) => {
+	return (dispatch) => {
+		dispatch(getDocumentInfoRequest());
+		axios.get(api.API_GET_DOC_INFO, {
+			headers: {
+				Accept: 'application/json',
+				Authorization: token
+			},
+			params: {docid}
+		})
+			.then(response => {
+				dispatch(getDocumentInfoSuccess(response));
+			})
+			.catch(err => {
+				dispatch(getDocumentInfoError(err));
+			})
+	}
 };

@@ -3,10 +3,8 @@ import UserCover from "./UserCover";
 import Menu from "./Menu";
 import DatePicker from 'react-date-picker';
 import {connect} from 'react-redux';
-import * as actions from './../../action/Index';
 import { withRouter } from "react-router";
 import Meta from "../support/Meta";
-
 
 class Information extends Component {
 
@@ -71,7 +69,9 @@ class Information extends Component {
 				<div className="user-main-wrapper">
 					<div className="container">
 						<div className="row">
-							<Menu/>
+							<Menu
+								path={this.props.match.path}
+							/>
 
 							<div className="col-xs-12 col-md-9">
 								<div className="user-main-setting-wrapper">

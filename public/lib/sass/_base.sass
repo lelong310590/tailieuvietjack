@@ -1190,6 +1190,7 @@
 		.doc-item-horizontal-action-button
 			display: flex
 			justify-content: flex-end
+			align-items: center
 			button
 				background: none
 				border: none
@@ -1197,6 +1198,12 @@
 				&:hover, &:focus
 					outline: none
 					color: $primary
+			a
+				margin-left: 10px
+				color: #222
+				&:hover, &:focus
+					color: $primary
+					text-decoration: none
 .document-info-price
 	color: $primary
 	font-weight: 700
@@ -1219,5 +1226,10 @@
 				&:hover
 					background: #ddd
 					color: #333
+.edit-result-wrapper
+	background: #fff
+	padding: 30px
+	.upload-result
+		border: none!important
 
 
