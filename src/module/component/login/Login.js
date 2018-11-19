@@ -47,6 +47,7 @@ class Login extends Component {
 		event.preventDefault();
 		let {email, password} = this.state;
 		let formData = new FormData();
+
 		formData.append('grant_type', 'password');
 		formData.append('client_id', '8');
 		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');

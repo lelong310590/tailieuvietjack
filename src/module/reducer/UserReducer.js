@@ -20,13 +20,16 @@ let UserReducer = (state = initialState, action) => {
 		case types.GET_USER_INFO_SUCCESS:
 			let user = action.payload.data;
 			localStorage.setItem('userId', user.id);
+			localStorage.setItem('userEmail', user.email);
 			return {
 				...state,
 				id: user.id,
 				firstName: user.first_name,
 				lastName: user.last_name,
 				email: user.email,
-				thumbnail: user.thumbnail
+				thumbnail: user.thumbnail,
+				profit: parseInt(user.get_wallet.balance_page),
+				totalMoney: parseInt(user.get_wallet.balance_page + user.get_wallet.balance_pay)
 			};
 
 		case types.GET_USER_INFO_FAIL:

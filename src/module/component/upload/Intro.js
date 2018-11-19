@@ -55,7 +55,6 @@ class Intro extends Component {
 				let cancelUploadToken = axios.CancelToken.source();
 				accepted[index].cancelUploadToken = cancelUploadToken;
 				accepted[index].onProgress = true; // check file in on upload progresscing - default true
-				accepted[index].fileUploaded = false; //check file is uploaded - default false
 				accepted[index].duplicate = false; //check file is duplicated or not ?
 				accepted[index].duplicateFile = {id: 0, name: null}; //reset the duplicate file
 
