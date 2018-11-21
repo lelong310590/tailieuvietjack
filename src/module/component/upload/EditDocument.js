@@ -5,6 +5,10 @@ import TagEditor from "./TagEditor";
 import _ from "lodash";
 import * as actions from "../../action/Index";
 import {connect} from 'react-redux';
+import axios from "axios";
+import * as api from "../../const/Api";
+import Loading from "../support/Loading";
+import ReactHtmlParser from "react-html-parser";
 
 class EditDocument extends Component {
 
@@ -21,6 +25,9 @@ class EditDocument extends Component {
 			price: 0,
 			pagePreview: 1,
 			customPagePreview: 0,
+			errorMess: '',
+			isSubmit: false,
+			editComplete: false
 		}
 	}
 
@@ -131,6 +138,64 @@ class EditDocument extends Component {
 		}
 	};
 
+	submit = (event) => {
+		event.preventDefault();
+		let {email} = this.props.UserReducer;
+		let id = this.props.match.params.slug;
+
+		let {
+			name, classes, description, price, tags,
+			subject, customPagePreview, pagePreview, totalPage
+		} = this.state;
+
+		let errorMess = '';
+		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
+		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
+		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
+
+		this.setState({errorMess});
+
+		let formData = new FormData();
+		formData.append('id', id);
+		formData.append('name', name);
+		formData.append('category', classes);
+		formData.append('subject', subject);
+		formData.append('excerpt', description);
+		formData.append('price', price);
+		formData.append('tags', JSON.stringify(tags));
+		formData.append('email', email);
+
+		formData.append('custom_page_review', customPagePreview);
+		formData.append('page_preview', pagePreview);
+
+		let token = localStorage.getItem('accessToken');
+		let config = {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'multipart/form-data',
+				Authorization: token
+			},
+		};
+
+		if (errorMess === '') {
+			this.setState({isSubmit: true});
+
+			axios.post(api.API_UPDATE_DOC_AFTER_UPLOAD, formData, config)
+				.then(response => {
+					this.setState({
+						editComplete: true,
+					});
+				})
+				.catch(err => {
+					console.log(err);
+				})
+				.finally(() => {
+					this.setState({isSubmit: false})
+				})
+		}
+
+	};
+
 	render() {
 
 		let {classes} = this.props.ClassesReducer;
@@ -139,7 +204,7 @@ class EditDocument extends Component {
 
 		let {
 			subject, description, tagSuggest, price, customPrice, customPagePreview,
-			totalPage, pagePreview, name, tags
+			totalPage, pagePreview, name, tags, isSubmit, errorMess, editComplete
 		} = this.state;
 
 
@@ -176,8 +241,27 @@ class EditDocument extends Component {
 								<div className="user-main-setting-wrapper">
 									<h1 className="user-main-setting-title"> Chỉnh sửa thông tin tài liệu</h1>
 									<div className="edit-result-wrapper">
+
+										{isSubmit &&
+											<Loading/>
+										}
+
+										{errorMess !== '' &&
+										<div className="alert alert-danger">
+											{ReactHtmlParser(errorMess)}
+										</div>
+										}
+
+										{editComplete &&
+											<div className="alert alert-success">
+												Tài liệu đã cập nhật thông tin thành công.
+											</div>
+										}
+
+
 										<div className="upload-result">
-											<form className="upload-result-right">
+
+											<form className="upload-result-right" onSubmit={this.submit}>
 												<div className="upload-result-content">
 													<div className="upload-result-content-title">
 														Tên tài liệu <span className="upload-result-content-required">(*)</span>
@@ -301,6 +385,13 @@ class EditDocument extends Component {
 														</div>
 													</div>
 												}
+
+												<hr/>
+
+												<div className="upload-result-submit text-right">
+													<button type="submit">Lưu</button>
+												</div>
+
 											</form>
 										</div>
 									</div>

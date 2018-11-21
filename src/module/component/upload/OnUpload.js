@@ -169,12 +169,11 @@ class OnUpload extends Component {
 	};
 
 	onChangeTags = (t) => {
-		console.log(t);
-		//let {tags} = this.state;
+		let {tags} = this.state;
 		// console.log('t: ', t);
 		// console.log('tags: ', tags);
-		//tags.push(t);
-		//this.setState({tags})
+		tags.push(t);
+		this.setState({tags})
 	};
 
 	//Upload file

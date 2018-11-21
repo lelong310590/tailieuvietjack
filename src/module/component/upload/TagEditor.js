@@ -21,11 +21,11 @@ class TagEditor extends Component {
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-		// if (this.props.tags !== nextProps.tags) {
-		// 	this.setState({
-		// 		tags: nextProps.tags
-		// 	})
-		// };
+		if (this.props.tags !== nextProps.tags) {
+			this.setState({
+				tags: nextProps.tags
+			})
+		};
 
 		if (this.props.tagSuggest !== nextProps.tagSuggest) {
 			console.log(nextProps.tagSuggest);
@@ -50,11 +50,9 @@ class TagEditor extends Component {
 				return t.id === tag.id
 			});
 
-			tags.push(tag);
+			this.setState({tagSuggest});
 
-			this.setState({tags, tagSuggest});
-
-			this.props.onChangeTags(tag.name);
+			this.props.onChangeTags(tag);
 		}
 	};
 

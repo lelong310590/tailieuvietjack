@@ -9,10 +9,7 @@
       <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/sass/_global.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_global.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -28,13 +25,13 @@
     <session id="-974998285">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="66" />
+          <entry key="project.closed" value="67" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.10" value="6" />
           <entry key="project.open.time.11" value="8" />
           <entry key="project.open.time.12" value="7" />
-          <entry key="project.open.time.13" value="7" />
+          <entry key="project.open.time.13" value="8" />
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.16" value="6" />
@@ -50,7 +47,7 @@
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="70" />
+          <entry key="project.opened" value="71" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -63,7 +60,7 @@
           <entry key="json" value="5" />
           <entry key="jsx" value="3" />
           <entry key="png" value="1" />
-          <entry key="sass" value="24" />
+          <entry key="sass" value="25" />
           <entry key="ts" value="3" />
         </counts>
       </usages-collector>
@@ -77,24 +74,24 @@
           <entry key="JSX Harmony" value="3" />
           <entry key="JavaScript" value="376" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Sass" value="24" />
+          <entry key="Sass" value="25" />
           <entry key="TypeScript" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="4" />
-          <entry key="js" value="58044" />
+          <entry key="js" value="58331" />
           <entry key="json" value="2" />
-          <entry key="sass" value="11294" />
+          <entry key="sass" value="11313" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="4" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="58044" />
-          <entry key="Sass" value="11294" />
+          <entry key="JavaScript" value="58331" />
+          <entry key="Sass" value="11313" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -107,11 +104,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="3473">
+              <caret line="161" column="44" selection-start-line="161" selection-start-column="44" selection-end-line="161" selection-end-column="44" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
               </folding>
@@ -119,11 +116,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="455">
+              <caret line="1151" column="27" selection-start-line="1151" selection-start-column="27" selection-end-line="1151" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3887">
-              <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
+            <state relative-caret-position="7613">
+              <caret line="341" column="25" selection-start-line="337" selection-start-column="24" selection-end-line="341" selection-end-column="25" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
                 <element signature="e#268#304#0" expanded="true" />
@@ -136,8 +142,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+            <state relative-caret-position="2714">
+              <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -264,11 +270,11 @@
         <option value="$PROJECT_DIR$/src/module/reducer/UserReducer.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/Intro.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" />
-        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
         <option value="$PROJECT_DIR$/public/lib/sass/_global.sass" />
         <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
       </list>
     </option>
   </component>
@@ -493,16 +499,16 @@
       <workItem from="1542421122600" duration="662000" />
       <workItem from="1542612828000" duration="7764000" />
       <workItem from="1542696420683" duration="4254000" />
-      <workItem from="1542768538924" duration="1399000" />
+      <workItem from="1542768538924" duration="6291000" />
+      <workItem from="1542793798050" duration="464000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="310827000" />
+    <option name="totallyTimeSpent" value="316183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13027427" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -546,7 +552,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js</url>
-          <line>133</line>
+          <line>198</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -557,7 +563,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js</url>
           <line>22</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -761,9 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="73" column="30" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="73" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -836,13 +838,6 @@
     <entry file="file://$PROJECT_DIR$/public/lib/images/bg_changeImg.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="1170" column="11" lean-forward="true" selection-start-line="1170" selection-start-column="11" selection-end-line="1170" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/lib/sass/_global.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="461">
@@ -860,15 +855,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3473">
+          <caret line="161" column="44" selection-start-line="161" selection-start-column="44" selection-end-line="161" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3887">
-          <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
+        <state relative-caret-position="7613">
+          <caret line="341" column="25" selection-start-line="337" selection-start-column="24" selection-end-line="341" selection-end-column="25" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
             <element signature="e#268#304#0" expanded="true" />
             <element signature="e#363#389#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2714">
+          <caret line="121" column="33" selection-start-line="121" selection-start-column="33" selection-end-line="121" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -893,20 +905,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="455">
+          <caret line="1151" column="27" selection-start-line="1151" selection-start-column="27" selection-end-line="1151" selection-end-column="27" />
         </state>
       </provider>
     </entry>
