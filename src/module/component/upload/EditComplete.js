@@ -28,7 +28,7 @@ class EditComplete extends Component {
 					<div className="upload-result">
 						<div className="on-edit-complete">
 							<img
-								src={'/lib/images/bg_changeImg.jpg'}
+								src={this.props.thumbnail ? this.props.thumbnail : '/lib/images/bg_changeImg.jpg'}
 								alt=""
 								className="img-responsive"
 								width={152}

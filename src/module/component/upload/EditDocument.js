@@ -48,6 +48,7 @@ class EditDocument extends Component {
 			let customPrice = priceIdx < 0 ? true : false;
 
 			let tags = nextProps.DocReducer.doc.currentTag;
+			let tagSuggest = nextProps.DocReducer.doc.suggestTag;
 
 			this.setState({
 				name,
@@ -56,11 +57,11 @@ class EditDocument extends Component {
 				price,
 				description: excerpt,
 				pagePreview: pages,
-				tags, customPrice
+				tags, customPrice, tagSuggest
 			})
 		}
 
-		return this.props === nextProps;
+		return true;
 	};
 
 	handleChangeName = (event) => {
@@ -133,7 +134,6 @@ class EditDocument extends Component {
 	render() {
 
 		let {classes} = this.props.ClassesReducer;
-		console.log(this.props.ClassesReducer);
 		let {subjectInClass} = this.props.SubjectReducer;
 		let priceList = this.props.PriceReducer.price;
 
@@ -226,7 +226,7 @@ class EditDocument extends Component {
 														<textarea
 															rows="5" className="form-control"
 															onChange={this.handleChangeDescription}
-															value={description}></textarea>
+															value={description ? description : ''}></textarea>
 													</div>
 												</div>
 

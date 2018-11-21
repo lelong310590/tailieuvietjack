@@ -15,22 +15,30 @@ class TagEditor extends Component {
 		}
 	}
 
-	componentWillMount = () => {
-		let {tagSuggest} = this.props;
-		this.setState({tagSuggest})
+	componentDidMount = () => {
+		let {tagSuggest, tags} = this.props;
+		this.setState({tagSuggest, tags})
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-		if (this.props.tags !== nextProps.tags) {
-			this.setState({
-				tags: nextProps.tags
-			})
-		};
+		// if (this.props.tags !== nextProps.tags) {
+		// 	this.setState({
+		// 		tags: nextProps.tags
+		// 	})
+		// };
 
-		return this.props === nextProps;
+		if (this.props.tagSuggest !== nextProps.tagSuggest) {
+			console.log(nextProps.tagSuggest);
+			this.setState({
+				tagSuggest: nextProps.tagSuggest
+			})
+		}
+
+		return true;
 	};
 
 	selectSuggestTags = (tag) => {
+
 		let {tags, tagSuggest} = this.state;
 
 		let checkAvaiable = _.findIndex(tags, (t) => {
@@ -38,15 +46,16 @@ class TagEditor extends Component {
 		});
 
 		if (checkAvaiable < 0) {
+			_.remove(tagSuggest, (t) => {
+				return t.id === tag.id
+			});
+
 			tags.push(tag);
+
+			this.setState({tags, tagSuggest});
+
+			this.props.onChangeTags(tag.name);
 		}
-
-		_.remove(tagSuggest, (t) => {
-			return t.id === tag.id
-		});
-
-		this.setState({tags});
-		this.props.onChangeTags(tag.name);
 	};
 
 	handleInputChange = (event) => {
@@ -58,7 +67,7 @@ class TagEditor extends Component {
 			exclude.push(t.id);
 		});
 
-		if (input.length > 4) {
+		if (input.length > 4 && input.length < 10) {
 			let token = localStorage.getItem('accessToken');
 			let config = {
 				headers: {
@@ -106,8 +115,7 @@ class TagEditor extends Component {
 		if (event.key === ',') {
 			tags.push({name: input.slice(0, -1)});
 			this.props.onChangeTags(input.slice(0, -1));
-			input = '';
-			this.setState({input, tags});
+			this.setState({tags, input: ''});
 		}
 	};
 
@@ -139,6 +147,7 @@ class TagEditor extends Component {
 							})}
 						</ul>
 					}
+
 					<input
 						type="text"
 						className="tag-input"

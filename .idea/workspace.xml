@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/upload/Intro.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/Intro.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/const/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/const/Api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/reducer/UserReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/reducer/UserReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/sass/_global.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_global.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,12 +28,12 @@
     <session id="-974998285">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="64" />
+          <entry key="project.closed" value="66" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.10" value="6" />
           <entry key="project.open.time.11" value="8" />
-          <entry key="project.open.time.12" value="5" />
+          <entry key="project.open.time.12" value="7" />
           <entry key="project.open.time.13" value="7" />
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="3" />
@@ -46,7 +50,7 @@
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="68" />
+          <entry key="project.opened" value="70" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -54,13 +58,13 @@
           <entry key="css" value="3" />
           <entry key="env" value="3" />
           <entry key="html" value="1" />
-          <entry key="jpg" value="2" />
-          <entry key="js" value="365" />
+          <entry key="jpg" value="4" />
+          <entry key="js" value="376" />
           <entry key="json" value="5" />
           <entry key="jsx" value="3" />
           <entry key="png" value="1" />
-          <entry key="sass" value="22" />
-          <entry key="ts" value="2" />
+          <entry key="sass" value="24" />
+          <entry key="ts" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -68,34 +72,34 @@
           <entry key=".env file" value="2" />
           <entry key="CSS" value="3" />
           <entry key="HTML" value="1" />
-          <entry key="Image" value="3" />
+          <entry key="Image" value="5" />
           <entry key="JSON" value="5" />
           <entry key="JSX Harmony" value="3" />
-          <entry key="JavaScript" value="365" />
+          <entry key="JavaScript" value="376" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Sass" value="22" />
-          <entry key="TypeScript" value="2" />
+          <entry key="Sass" value="24" />
+          <entry key="TypeScript" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="4" />
-          <entry key="js" value="57432" />
+          <entry key="js" value="58044" />
           <entry key="json" value="2" />
-          <entry key="sass" value="11233" />
+          <entry key="sass" value="11294" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="4" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="57432" />
-          <entry key="Sass" value="11233" />
+          <entry key="JavaScript" value="58044" />
+          <entry key="Sass" value="11294" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="61" />
+          <entry key="ESLintLanguageService" value="63" />
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
@@ -104,10 +108,63 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/module/component/upload/Intro.js">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="508">
+              <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3887">
+              <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+                <element signature="e#268#304#0" expanded="true" />
+                <element signature="e#363#389#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5658">
+              <caret line="248" column="31" selection-start-line="248" selection-start-column="31" selection-end-line="248" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/reducer/UserDocument.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="368">
+              <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -123,13 +180,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cancelUploadToken</find>
-      <find>doc-filter-bar</find>
-      <find>OnUplo</find>
-      <find>manual-price</find>
-      <find>cancelUp</find>
-      <find>upLoadError</find>
-      <find>ref</find>
       <find>fileUploader</find>
       <find>upload-file-button</find>
       <find>upload-button</find>
@@ -153,6 +203,13 @@
       <find>excerpt</find>
       <find>getU</find>
       <find>getUserInfo</find>
+      <find>&lt;EditComplete</find>
+      <find>document-tags</find>
+      <find>Từ khóa gựi ý:</find>
+      <find>&lt;text</find>
+      <find>current</find>
+      <find>console.log</find>
+      <find>onChangeTags</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,8 +242,6 @@
         <option value="$PROJECT_DIR$/src/module/reducer/SubjectReducer.js" />
         <option value="$PROJECT_DIR$/src/module/component/login/Logout.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/PriceReducer.js" />
-        <option value="$PROJECT_DIR$/public/lib/sass/_global.sass" />
-        <option value="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" />
         <option value="$PROJECT_DIR$/src/module/component/Header.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/UserCover.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/DocSearch.js" />
@@ -195,23 +250,25 @@
         <option value="$PROJECT_DIR$/src/module/component/support/DocumentTag.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/DocManager.js" />
-        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
         <option value="$PROJECT_DIR$/src/module/component/user/Pagination.js" />
-        <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/Information.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/MainReducer.js" />
         <option value="$PROJECT_DIR$/src/module/const/ActionType.js" />
         <option value="$PROJECT_DIR$/src/module/action/Index.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/Menu.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/DocReducer.js" />
-        <option value="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" />
         <option value="$PROJECT_DIR$/src/module/component/user/DocItem.js" />
-        <option value="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" />
         <option value="$PROJECT_DIR$/src/module/const/Api.js" />
         <option value="$PROJECT_DIR$/src/module/component/login/Login.js" />
         <option value="$PROJECT_DIR$/src/module/component/register/Register.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/UserReducer.js" />
         <option value="$PROJECT_DIR$/src/module/component/upload/Intro.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/EditComplete.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_global.sass" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/TagEditor.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/EditDocument.js" />
       </list>
     </option>
   </component>
@@ -284,6 +341,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,26 +352,30 @@
             <path>
               <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
               <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
               <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tailieureact" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tailieureact" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-              <item name="reducer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,12 +491,14 @@
       <workItem from="1542360858622" duration="3229000" />
       <workItem from="1542364994227" duration="173000" />
       <workItem from="1542421122600" duration="662000" />
-      <workItem from="1542612828000" duration="337000" />
+      <workItem from="1542612828000" duration="7764000" />
+      <workItem from="1542696420683" duration="4254000" />
+      <workItem from="1542768538924" duration="1399000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297747000" />
+    <option name="totallyTimeSpent" value="310827000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -472,17 +536,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js</url>
-          <line>179</line>
+          <line>180</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js</url>
-          <line>242</line>
+          <line>243</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js</url>
-          <line>132</line>
+          <line>133</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -490,23 +554,16 @@
           <line>59</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js</url>
+          <line>22</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/module/component/doc/TopWeekDoc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="43" column="18" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="43" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/images/bg_changeImg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/images/bg_tab.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/support/ErrorNoPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -580,13 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_global.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="95" column="17" selection-start-line="95" selection-start-column="17" selection-end-line="95" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-router-dom/es/NavLink.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -620,9 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/images/thumbnail.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/home/Introduction.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -654,13 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/reducer/UserDocument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/support/UserMenu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -675,24 +715,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditComplete.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-450">
-          <caret line="22" column="12" lean-forward="true" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/upload/UploadContent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="1232" column="30" selection-start-line="1232" selection-start-column="30" selection-end-line="1232" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -731,17 +757,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/user/Information.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="73" column="30" lean-forward="true" selection-start-line="71" selection-start-column="28" selection-end-line="73" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -759,23 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4025">
@@ -790,37 +795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="38" column="14" selection-start-line="38" selection-start-column="14" selection-end-line="38" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="49" column="32" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#268#304#0" expanded="true" />
-            <element signature="e#363#389#0" expanded="true" />
-            <element signature="e#7111#7843#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/user/DocManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="255" column="9" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -833,8 +811,102 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/upload/Intro.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-75">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="495">
+          <caret line="260" column="29" lean-forward="true" selection-start-line="260" selection-start-column="29" selection-end-line="260" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditComplete.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="40" column="87" selection-start-line="40" selection-start-column="87" selection-end-line="40" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/thumbnail.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/bg_changeImg.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="1170" column="11" lean-forward="true" selection-start-line="1170" selection-start-column="11" selection-end-line="1170" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_global.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="97" column="14" lean-forward="true" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Tags.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/react.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="828" column="8" selection-start-line="828" selection-start-column="8" selection-end-line="828" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3887">
+          <caret line="179" column="17" selection-start-line="179" selection-start-column="17" selection-end-line="179" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#268#304#0" expanded="true" />
+            <element signature="e#363#389#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5658">
+          <caret line="248" column="31" selection-start-line="248" selection-start-column="31" selection-end-line="248" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/UserDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="58" selection-start-line="16" selection-start-column="58" selection-end-line="16" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
