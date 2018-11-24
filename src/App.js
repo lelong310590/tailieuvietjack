@@ -21,6 +21,7 @@ import * as actions from "./module/action/Index";
 import Logout from "./module/component/login/Logout";
 import CatDoc from "./module/component/listDoc/CatDoc";
 import EditDocument from "./module/component/upload/EditDocument";
+import Download from "./module/component/doc/Download";
 
 const locationHelper = LocationHelper({});
 
@@ -74,7 +75,8 @@ class App extends Component {
 							<Route exact={true} path={'cat/:class'} component={List}/>
 
 							<Route exact={true} path={'/tai-lieu/:slug'} component={Document}/>
-							<Route exact={true} path={'/tai-lieu/sua-tai-lieu/:slug'} component={EditDocument}/>
+							<Route exact={true} path={'/tai-lieu/sua-tai-lieu/:slug'} component={isAuthenticatedUser(EditDocument)}/>
+							<Route exact={true} path={'/tai-lieu/download/:slug'} component={Download}/>
 
 							<Route exact={true} path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />

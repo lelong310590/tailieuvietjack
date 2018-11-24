@@ -1,41 +1,81 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import _ from 'lodash';
 import FilterList from "./FilterList";
+import axios from 'axios';
+import * as api from './../../const/Api';
+import Loading from "../support/Loading";
 
 class List extends Component {
 
 	constructor(props) {
 		super(props);
+
 		this.state = {
-			items: [1,2,3,4,5,6],
+			items: [],
 			itemClass: this.props.itemClass,
 			title: this.props.title,
-			filterBar: this.props.filterBar
+			filterBar: this.props.filterBar,
+			//option
+			classLevel: this.props.classLevel,
+			onLoading: true
 		}
 	}
 
+	componentDidMount() {
+		let {classLevel, user, week, getRelated} = this.props;
+
+		let apiUrl = api.API_GET_LIST_DOC_BY_CAT;
+		let defaultParams = {
+			classLevel,
+			user,
+			week
+		};
+
+		if (getRelated) {
+			apiUrl = api.API_GET_RELATED_DOC;
+			defaultParams = getRelated
+		}
+
+		axios.get(apiUrl, {
+			params: defaultParams
+		})
+			.then(response => {
+				this.setState({
+					items: response.data
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({
+					onLoading: false
+				})
+			})
+	}
+
 	render() {
-		let {items, itemClass, title, filterBar} = this.state;
+		let {items, itemClass, title, filterBar, onLoading} = this.state;
 
 		let documents = _.map(items, (value, index) => {
 			return (
 				<div className={itemClass} key={index}>
 					<div className="document-item">
-						<Link to="/tai-lieu/123456" className="document-thumbnail">
+						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
 							<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
 						</Link>
-						<Link to="/tai-lieu/123456" className="document-title">
-							Bảng công thức tích phân - đạo hàm - Mũ - logarit
+						<Link to={'/tai-lieu/' + value.id} className="document-title">
+							{value.name}
 						</Link>
-						<Link to="/tai-lieu/123456" className="document-author">
-							Trần Quang
+						<Link to={'/tai-lieu/' + value.id} className="document-author">
+							{value.get_member.first_name} {value.get_member.last_name}
 						</Link>
 						<div className="document-info">
-							<div className="document-info-page"><i className="far fa-file-alt"></i> 2</div>
-							<div className="document-info-view"><i className="far fa-eye"></i> 2045</div>
-							<div className="document-info-download"><i className="fas fa-file-download"></i> 849</div>
+							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
+							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
+							<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
 						</div>
 					</div>
 				</div>
@@ -44,20 +84,25 @@ class List extends Component {
 
 		return (
 			<div className="document-list">
-				{title &&
-					<h4 className="document-list-title">{title}</h4>
-				}
+				{onLoading ? (
+					<Loading/>
+				) : (
+					<Fragment>
+						{title &&
+						<h4 className="document-list-title">{title}</h4>
+						}
 
-				{filterBar &&
-					<FilterList/>
-				}
+						{filterBar &&
+						<FilterList/>
+						}
 
-
-				<div className="document-list-wrapper">
-					<div className="row">
-						{documents}
-					</div>
-				</div>
+						<div className="document-list-wrapper">
+							<div className="row">
+								{documents}
+							</div>
+						</div>
+					</Fragment>
+				)}
 			</div>
 		);
 	}

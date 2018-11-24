@@ -189,6 +189,7 @@ class OnUpload extends Component {
 		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
 		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
 		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
+		errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
 
 		this.setState({errorMess});
 
@@ -200,7 +201,7 @@ class OnUpload extends Component {
 		formData.append('excerpt', description);
 		formData.append('price', price);
 		formData.append('thumbnail', thumbnail);
-		formData.append('tags', tags);
+		formData.append('tags', JSON.stringify(tags));
 		formData.append('email', email);
 
 		formData.append('custom_page_review', customPagePreview);
@@ -468,7 +469,6 @@ class OnUpload extends Component {
 														type="number"
 														className="form-control manual-price"
 														min={1}
-														max={totalPage}
 														value={pagePreview}
 														onChange={this.changePagePreview}
 													/>

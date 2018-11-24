@@ -7,6 +7,8 @@ import * as api from './../../const/Api';
 import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
 import axios from 'axios';
+import {Alert} from 'react-bootstrap';
+import Loading from "../support/Loading";
 
 class Register extends Component {
 
@@ -19,7 +21,9 @@ class Register extends Component {
 			errorMessage: '',
 			validEmail: false,
 			validPassword: false,
-			validRepassword: false
+			validRepassword: false,
+			onProcess: false,
+			registerDone: false
 		}
 	}
 
@@ -74,60 +78,59 @@ class Register extends Component {
 	};
 
 	handleSubmit = (event) => {
+		this.setState({onProcess: true});
+		
 		event.preventDefault();
-		let {fullName, email, password, repassword} = this.state;
+		let {fullName, email, password} = this.state;
 		let formData = new FormData();
 		formData.append('fullName', fullName);
 		formData.append('email', email);
 		formData.append('password', password);
-		formData.append('repassword', repassword);
+		formData.append('grant_type', 'password');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+		formData.append('scope', '');
+
 		axios.post(api.API_REGISTER, formData, {
 			headers: {'Content-Type': 'multipart/form-data' }
 		})
 			.then((response) => {
 				console.log(response);
-				this.loginAfterRegister(formData);
-			})
-
-			.catch((err) => {
-				console.log(err)
-			})
-	};
-
-	loginAfterRegister = (formData) => {
-		axios.post(api.API_LOGIN, formData, {
-			headers: {'Content-Type': 'multipart/form-data' }
-		})
-			.then((response) => {
-				this.setState({
-					onProcess: false,
-					error: ''
-				});
-				//handle success
-				let data = response.data;
-				let accessToken = 'Bearer ' + data.access_token;
-
-				localStorage.setItem('accessToken', accessToken);
-
-				this.props.getUserInfo(accessToken);
-
-				this.props.handleLogedIn();
-				this.props.history.push("/");
+				this.setState({registerDone: true});
+				//this.loginAfterRegister(formData);
 			})
 			.catch((err) => {
-				console.log(err);
+				if (err.response.status === 409) {
+					this.setState({
+						errorMessage: 'Địa chỉ email này đã được sử dụng',
+					})
+				}
+			})
+			.finally(() => {
+				this.setState({onProcess: false})
 			})
 	};
 
 	render() {
 
-		let {validEmail, validPassword, validRepassword} = this.state;
+		let {validEmail, validPassword, validRepassword, errorMessage, onProcess, registerDone} = this.state;
 
 		return (
 			<div className="page-wrapper">
 				<div className="container">
 					<div className="authen-wrapper">
+
+						{onProcess && <Loading/>}
+
 						<h1 className="text-center">ĐĂNG KÝ TÀI KHOẢN</h1>
+
+						{registerDone &&
+							<Alert bsStyle="success">
+								Chúc mừng ! Bạn đã đăng ký tài khoản thành công<br/>
+								Click <Link to={'/dang-nhap'}>vào đây</Link> để đăng nhập
+							</Alert>
+						}
+
 						<div className="social-login-wrapper">
 							<SocialLogin
 								provider='facebook'
@@ -149,6 +152,13 @@ class Register extends Component {
 						</div>
 						<small className="text-center">----- hoặc đăng ký bằng email -----</small>
 						<form onSubmit={this.handleSubmit}>
+
+							{errorMessage !== '' &&
+								<Alert bsStyle="danger">
+									{errorMessage}
+								</Alert>
+							}
+
 							<div className="form-group">
 								<input
 									type="text"

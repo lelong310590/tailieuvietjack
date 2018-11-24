@@ -1,30 +1,53 @@
 import React, {Component} from 'react';
 import _ from "lodash";
 import {Link} from "react-router-dom";
+import axios from 'axios';
+import * as api from './../../const/Api';
+import Loading from "../support/Loading";
 
 class TopWeekDoc extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			doc: [1,2,3,4,5,6,7]
+			doc: [],
+			onLoading: true
 		}
 	}
 
+	componentDidMount = () => {
+		axios.get(api.API_GET_LIST_DOC_BY_CAT, {
+			params: {
+				week: true
+			}
+		})
+			.then(response => {
+				this.setState({
+					doc: response.data
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({onLoading: false})
+			})
+	};
+
 	render() {
 
-		let {doc} = this.state;
+		let {doc,onLoading} = this.state;
 
 		let listWeekDocs = _.map(doc, (value, index) => {
 			return (
-				<Link to="/tai-lieu/23456" className="featured-document-item" key={index}>
-					<div className="no-document-item">{value}</div>
+				<Link to={'/tai-lieu/' + value.id} className="featured-document-item" key={index}>
+					<div className="no-document-item">{index + 1}</div>
 					<div className="featured-document-info">
-						<h4 className="featured-document-info-title">Chuyên đề đặc biệt về KHOẢNG CÁCH trong không gian</h4>
+						<h4 className="featured-document-info-title">{value.name}</h4>
 						<div className="document-info">
-							<div className="document-info-page"><i className="far fa-file-alt"></i> 2</div>
-							<div className="document-info-view"><i className="far fa-eye"></i> 2045</div>
-							<div className="document-info-download"><i className="fas fa-file-download"></i> 849</div>
+							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
+							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
+							<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
 						</div>
 					</div>
 				</Link>
@@ -37,9 +60,14 @@ class TopWeekDoc extends Component {
 					<h4 className="text-center">TOP TÀI LIỆU TUẦN</h4>
 				</div>
 				<div className="widget-content">
-					<div className="featured-document-wrapper">
-						{listWeekDocs}
-					</div>
+					{onLoading ? (
+						<Loading/>
+					) : (
+						<div className="featured-document-wrapper">
+							{listWeekDocs}
+						</div>
+					)}
+
 				</div>
 			</div>
 		);

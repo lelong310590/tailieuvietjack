@@ -43,11 +43,11 @@ class EditComplete extends Component {
 								<p><b>Từ khóa: </b>
 									{_.map(tags, (t, i) => {
 										return (
-											<Fragment>
+											<Fragment key={i}>
 												{i === (tags.length - 1) ? (
-													<Fragment>{t}</Fragment>
+													<Fragment>{t.name}</Fragment>
 												) : (
-													<Fragment>{t} - </Fragment>
+													<Fragment>{t.name} - </Fragment>
 												)}
 											</Fragment>
 										)

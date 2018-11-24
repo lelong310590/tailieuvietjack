@@ -11,7 +11,8 @@ class TagEditor extends Component {
 			tags: [],
 			tagSuggest: [],
 			input: '',
-			tagAutocompleteList: []
+			tagAutocompleteList: [],
+			messError: ''
 		}
 	}
 
@@ -109,11 +110,18 @@ class TagEditor extends Component {
 	};
 
 	handleKeyPress = (event) => {
-		let {input, tags} = this.state;
+		let {value} = event.target;
+		let {tags} = this.state;
 		if (event.key === ',') {
-			tags.push({name: input.slice(0, -1)});
-			this.props.onChangeTags(input.slice(0, -1));
-			this.setState({tags, input: ''});
+			if (tags.length === 6) {
+				this.setState({
+					messError: 'Chỉ được phép thêm tối đa là 6 từ khóa',
+					input: ''
+				});
+			} else {
+				this.props.onChangeTags({name: value.slice(0, -1)});
+				this.setState({input: '', messError: ''});
+			}
 		}
 	};
 
@@ -128,10 +136,16 @@ class TagEditor extends Component {
 
 	render() {
 
-		let {tagSuggest, tags, input, tagAutocompleteList} = this.state;
+		let {tagSuggest, tags, input, tagAutocompleteList, messError} = this.state;
 
 		return (
 			<Fragment>
+
+				{messError !== '' &&
+					<div className="alert alert-warning">
+						{messError}
+					</div>
+				}
 				<div className="tag-wrapper">
 					{tags.length > 0 &&
 						<ul className="tag-selected">

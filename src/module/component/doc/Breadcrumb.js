@@ -7,8 +7,8 @@ class Breadcrumb extends Component {
 			<div className="breadcrumb-wrapper">
 				<ul>
 					<li><Link to="/"><i className="fas fa-home"></i> Trang chủ</Link></li>
-					<li><Link to="/"><i className="fas fa-chevron-right"></i> Lớp 8</Link></li>
-					<li><Link to="/"><i className="fas fa-chevron-right"></i> Môn toán</Link></li>
+					<li><Link to={'/cat/' + this.props.classSlug}><i className="fas fa-chevron-right"></i> {this.props.classLevel}</Link></li>
+					<li><Link to={'/cat/' + this.props.classSlug + '/' + this.props.subjectSlug}><i className="fas fa-chevron-right"></i> {this.props.subject}</Link></li>
 				</ul>
 			</div>
 		);

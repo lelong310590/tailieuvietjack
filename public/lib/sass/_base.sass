@@ -748,10 +748,10 @@
 	background: #fff
 	padding: 20px 20px 10px 20px
 	border-radius: 5px
-.facebook-comment
+.facebook-comment, .document-detail-infomation
 	margin-bottom: 30px
 .document-detail-tags
-	margin: 30px 0
+	margin-bottom: 30px
 .document-detail-tags-list
 	ul
 		list-style: none
@@ -1234,4 +1234,80 @@
 	.upload-result
 		border: none!important
 
+.document-detail-content-loading
+	width: 100%
+	clear: both
+	padding: 5px
+	box-sizing: border-box
+	border: 1px solid #ccc
+	border-radius: 2px
+	margin-bottom: 15px
+	background-color: #fff
+	position: relative
+	vertical-align: baseline
+	height: 500px
+.document-detail-content-item
+	width: 100%
+	clear: both
+	padding: 5px
+	box-sizing: border-box
+	border: 1px solid #ccc
+	border-radius: 2px
+	margin-bottom: 15px
+	background-color: #fff
+	position: relative
+	vertical-align: baseline
+	div
+		max-width: 100%!important
+	img
+		display: block
+		max-width: 100%
+.widget-content
+	position: relative
+	min-height: 150px
+.box-download
+	background: #f8f8f8
+	.box-related-download
+		margin-top: 18px
+	.box-download-inner
+		background: #fff
+		box-shadow: 1px 0 4px 1px #ddd
+		padding: 20px
+		margin-top: 20px
+		.document-detail-title
+			margin-top: 0
+			font-size: 20px
+		.document-info
+			justify-content: normal
+			& > div
+				margin-right: 15px
+				color: #aaa
+		.document-info-author
+			color: #00a888
+			margin-top: 10px
+			font-size: 11px
+		.document-download-countdown
+			color: #999
+			font-size: 16px
+			margin-top: 10px
+			font-weight: 500
+			span
+				color: $primary
+				font-size: 18px
+		.document-download-button
+			margin-bottom: 15px
+			button
+				background: #ffbb00
+				border: none
+				color: #fff
+				border-radius: 2px
+				padding: 5px 15px
+				font-size: 15px
+				margin-top: 10px
+				margin-right: 15px
+			span
+				margin-right: 10px
+			.document-download-file-type
+				font-weight: 500
+				color: $primary
 

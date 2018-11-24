@@ -1,69 +1,196 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, {Component, Fragment} from 'react';
 import List from "../listDoc/List";
-import Introduction from "../home/Introduction";
 import Infomation from "./Infomation";
 import Tags from "./Tags";
 import FacebookComment from "./FacebookComment";
 import Breadcrumb from "./Breadcrumb";
 import Sidebar from "./Sidebar";
+import _ from 'lodash';
+import * as api from './../../const/Api';
+import axios from 'axios';
+import Meta from "../support/Meta";
+import ReactHtmlParser from 'react-html-parser';
+import Loading from "../support/Loading";
 
 class Document extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			slug: this.props.match.params,
+			name: '',
+			pages: 0,
+			views: 0,
+			download: 0,
+			ownerFirstName: '',
+			ownerLastName: '',
+			ownerAvatar: null,
+			ownerId: 0,
+			seo_title: '',
+			seo_description: '',
+			pageHtml: [],
+			classLevel: {
+				id: 0,
+				name: '',
+				slug: ''
+			},
+			subject: {
+				id: 0,
+				name: '',
+				slug: ''
+			},
+			tags: [],
+
+			pageLoadDone: false
+		}
+	}
+
+	componentDidMount = () => {
+		let {slug} = this.props.match.params;
+		this.fetchData(slug);
+	};
+
+	shouldComponentUpdate = (nextProps, nextState) => {
+		if (this.props.match.params.slug !== nextProps.match.params.slug) {
+			this.setState({pageLoadDone: false});
+			let {slug} = nextProps.match.params;
+			this.fetchData(slug);
+		}
+		return true;
+	};
+
+	fetchData = (slug) => {
+		axios.get(api.API_GET_DOC_DETAIL, {
+			params: {
+				docId: parseInt(slug)
+			}
+		})
+			.then(response => {
+				this.setState({
+					name: response.data.name,
+					pages: response.data.pages,
+					views: response.data.views,
+					download: response.data.downloaded,
+					ownerFirstName: response.data.get_member.first_name,
+					ownerLastName: response.data.get_member.last_name,
+					ownerAvatar: response.data.get_member.thumbnail,
+					ownerId: response.data.get_member.id,
+					seo_title: response.data.name,
+					seo_description: response.data.excerpt,
+					pageHtml: response.data.previewHtml,
+					classLevel: response.data.get_class,
+					subject: response.data.get_subject,
+					tags: response.data.get_tags
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({pageLoadDone: true})
+			})
+	};
+
+	clickToDownload = (slug) => {
+		this.props.history.push('/tai-lieu/download/' + slug);
+	};
+
 	render() {
+
+		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId,
+			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags} = this.state;
+
+		let {slug} = this.props.match.params;
+
 		return (
 			<section className="document-wrapper">
+
+				<Meta
+					title={seo_title}
+					description={seo_description}
+					keywords={seo_description}
+				/>
+
 				<div className="container">
-					<Breadcrumb/>
+					<Breadcrumb
+						classLevel={classLevel.name}
+						subject={subject.name}
+						classSlug={classLevel.slug}
+						subjectSlug={subject.slug}
+					/>
 
 					<div className="row">
 						<div className="col-xs-12 col-md-9 document-detail">
-							<h1 className="document-detail-title">Bảng công thức tích phân - đạo hàm - Mũ - logarit</h1>
+							<h1 className="document-detail-title">{name}</h1>
 							<div className="document-info">
-								<div className="document-info-page"><i className="far fa-file-alt"></i> 2</div>
-								<div className="document-info-view"><i className="far fa-eye"></i> 2045</div>
-								<div className="document-info-download"><i className="fas fa-file-download"></i> 849</div>
+								<div className="document-info-page"><i className="far fa-file-alt"></i> {pages}</div>
+								<div className="document-info-view"><i className="far fa-eye"></i> {views}</div>
+								<div className="document-info-download"><i className="fas fa-file-download"></i> {download}</div>
 							</div>
 
 							<div className="document-stats">
 								<div className="document-user">
 									<div className="header-user">
-										<img src="/lib/images/user_small.png" alt="" className="img-responsive user-avatar"/>
-										<p className="header-user-name">Long Le Ngoc</p>
+										<img src={ownerAvatar ? ownerAvatar : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
+										<p className="header-user-name">{ownerFirstName} {ownerLastName}</p>
 									</div>
 									<div className="document-report">
 										<button>Báo tài liệu vi phạm</button>
 									</div>
 								</div>
 
-								<div className="document-button">
+								<div className="document-button" onClick={() => this.clickToDownload(slug)}>
 									<div className="document-download-top-button">
 										<span className="document-download-text text-uppercase">Tải xuống</span>
-										<span className="document-download-count">1000</span>
+										<span className="document-download-count">{download}</span>
 									</div>
 								</div>
 							</div>
 
 							<div className="document-detail-content">
+								{pageLoadDone ? (
+									<Fragment>
+										{_.map(pageHtml, (page, i) => {
+											return (
+												<div className="document-detail-content-item" key={i}>
+													{ReactHtmlParser(page)}
+												</div>
+											)
+										})}
+									</Fragment>
+								) : (
+									<div className="document-detail-content-loading">
+										<Loading/>
+									</div>
+								)}
 
 							</div>
 
 							<div className="document-detail-download-button">
-								<button><i className="fas fa-file-download"></i> Tải xuống (2 trang)</button>
+								<button onClick={() => this.clickToDownload(slug)}><i className="fas fa-file-download"></i> Tải xuống ( {pages} trang )</button>
 							</div>
 
 							<List
 								title={'Tài liệu cùng tác giả'}
 								itemClass={'col-xs-6 col-md-3 col-lg-3'}
+								user={ownerId}
 							/>
 
-							<Infomation/>
+							<Infomation
+								excerpt={seo_description}
+							/>
 
-							<Tags/>
+							<Tags
+								tags={tags}
+							/>
 
 							<FacebookComment/>
 						</div>
 
-						<Sidebar/>
+						<Sidebar
+							tags={tags}
+							currentDocId={slug}
+						/>
 					</div>
 				</div>
 			</section>

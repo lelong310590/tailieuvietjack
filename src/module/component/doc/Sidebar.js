@@ -7,7 +7,10 @@ class Sidebar extends Component {
 		return (
 			<div className="col-xs-12 col-md-3">
 				<TopWeekDoc/>
-				<Related/>
+				<Related
+					tags={this.props.tags}
+					currentDocId={this.props.currentDocId}
+				/>
 			</div>
 		);
 	}
