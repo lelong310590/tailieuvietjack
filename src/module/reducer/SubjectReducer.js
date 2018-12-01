@@ -3,6 +3,7 @@ import * as types from './../const/ActionType';
 let initialState = {
 	subjects: [],
 	subjectInClass: [],
+	listSubjectinClass: []
 };
 
 let SubjectReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ let SubjectReducer = (state = initialState, action) => {
 			return {
 				...state,
 				subjectInClass: action.payload.data
+			};
+		case types.GET_LIST_SUBJECT_VIA_CLASSES_SUCCESS:
+			return {
+				...state,
+				listSubjectinClass: action.payload.data
 			};
 		default:
 			return state;

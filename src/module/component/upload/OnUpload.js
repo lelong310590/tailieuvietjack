@@ -25,6 +25,8 @@ class OnUpload extends Component {
 			thumbnail: null, // store file after crop,
 			classes: 0,
 			subject: 0,
+			chapter: 0,
+			thematic: 0,
 			description: null,
 			price: 0,
 			pagePreview: 1,
@@ -42,6 +44,8 @@ class OnUpload extends Component {
 
 			returnClass: {id: '', name: ''},
 			returnSubject: {id: '', name: ''},
+			returnChapter: {id: '', name: ''},
+			returnThematic: {id: '', name: ''},
 			returnPrice: ''
 		}
 	}
@@ -51,21 +55,47 @@ class OnUpload extends Component {
 		this.props.getPrice();
 	};
 
-	UNSAFE_componentWillReceiveProps = (nextProps) => {
+	shouldComponentUpdate = (nextProps, nextState) => {
 		let {
-			percent, upLoadError, id, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
+			upLoadError, id, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
 		} = nextProps;
-		//console.log(upLoadError === false);
 
-		this.setState({duplicate, duplicateFile});
+		if (this.props.duplicate !== duplicate || this.props.duplicateFile !== duplicateFile) {
+			this.setState({
+				duplicate,
+				duplicateFile
+			});
+		}
 
-		if (percent === 100) {
+		if (this.props.upLoadError !== nextProps.upLoadError) {
 			this.setState({
 				upLoadError: (upLoadError === undefined) ? true : upLoadError,
 				id, totalPage, onProgress, tagSuggest
 			})
 		}
+
+		if (this.props.ChapterReducer !== nextProps.ChapterReducer) {
+
+		}
+
+		return true;
 	};
+
+	// UNSAFE_componentWillReceiveProps = (nextProps) => {
+	// 	let {
+	// 		percent, upLoadError, id, totalPage, onProgress, duplicate, duplicateFile, tagSuggest
+	// 	} = nextProps;
+	// 	//console.log(upLoadError === false);
+	//
+	// 	this.setState({duplicate, duplicateFile});
+	//
+	// 	if (percent === 100) {
+	// 		this.setState({
+	// 			upLoadError: (upLoadError === undefined) ? true : upLoadError,
+	// 			id, totalPage, onProgress, tagSuggest
+	// 		})
+	// 	}
+	// };
 
 	cancelUpload = (index) => {
 		this.props.cancelUpload(index)
@@ -79,12 +109,27 @@ class OnUpload extends Component {
 	handleChangeClass = (event) => {
 		let classes = event.target.value;
 		this.props.getSubjectViaClass(classes);
-		this.setState({classes})
+		this.setState({classes});
+		let {subject} = this.state;
+		this.props.getChapter(classes, subject);
 	};
 
 	handleChangeSubject = (event) => {
 		let subject = event.target.value;
-		this.setState({subject})
+		this.setState({subject});
+		let {classes} = this.state;
+		this.props.getChapter(classes, subject);
+	};
+
+	handleChangeChapter = (event) => {
+		let chapter = event.target.value;
+		this.setState({chapter});
+		this.props.getThematic(chapter)
+	};
+
+	handleChangeThematic = (event) => {
+		let thematic = event.target.value;
+		this.setState({thematic})
 	};
 
 	handleChangeDescription = (event) => {
@@ -102,7 +147,7 @@ class OnUpload extends Component {
 		this.setState({customPagePreview})
 	};
 
-	actionChangeThumbnail = (event) => {
+	actionChangeThumbnail = () => {
 		this.refs.fileUploader.click();
 	};
 
@@ -182,13 +227,15 @@ class OnUpload extends Component {
 		let {email} = this.props.UserReducer;
 		let {
 			name, customPagePreview, thumbnail, classes,
-			subject, description, price, pagePreview, id, tags, totalPage
+			subject, description, price, pagePreview, id, tags, totalPage, thematic, chapter
 		} = this.state;
 
 		let errorMess = '';
 		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
 		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
 		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
+		errorMess += (thematic === 0) ? '• Chuyên đề không được bỏ trống <br/>' : '';
+		errorMess += (chapter === 0) ? '• Chương không được bỏ trống <br/>' : '';
 		errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
 
 		this.setState({errorMess});
@@ -199,6 +246,8 @@ class OnUpload extends Component {
 		formData.append('category', classes);
 		formData.append('subject', subject);
 		formData.append('excerpt', description);
+		formData.append('thematic', description);
+		formData.append('chapter', description);
 		formData.append('price', price);
 		formData.append('thumbnail', thumbnail);
 		formData.append('tags', JSON.stringify(tags));
@@ -244,10 +293,12 @@ class OnUpload extends Component {
 	render() {
 		let {classes} = this.props.ClassesReducer;
 		let priceList = this.props.PriceReducer.price;
-		let {subjectInClass} = this.props.SubjectReducer;
+		let {listSubjectinClass} = this.props.SubjectReducer;
+		let chapterList = this.props.ChapterReducer.listChapters;
+		let thematicList = this.props.ThematicReducer.thematic;
 		let {percent, name, index} = this.props;
 		let {
-			customPrice, tempThumbnail, modalCrop, thumbnail, subject, description, price,
+			customPrice, tempThumbnail, modalCrop, thumbnail, subject, chapter, thematic, description, price,
 			pagePreview, customPagePreview, upLoadError, totalPage, onProgress, duplicate, duplicateFile,
 			tagSuggest, isSubmit, errorMess, editComplete, returnClass ,returnPrice, returnSubject
 		} = this.state;
@@ -258,7 +309,7 @@ class OnUpload extends Component {
 			)
 		});
 
-		let subjectsElem = _.map(subjectInClass, (value, index) => {
+		let subjectsElem = _.map(listSubjectinClass, (value, index) => {
 			return (
 				<option value={value.id} key={index}>{value.name}</option>
 			)
@@ -400,6 +451,38 @@ class OnUpload extends Component {
 
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
+												Chương <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" required onChange={this.handleChangeChapter} value={chapter}>
+													<option value={0}>Chọn chương cho tài liệu</option>
+													{_.map(chapterList, (chap, idx) => {
+														return (
+															<option value={chap.id} key={idx}>{chap.name}</option>
+														)
+													})}
+												</select>
+											</div>
+										</div>
+
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Chuyên đề <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<select className="form-control" required onChange={this.handleChangeThematic} value={thematic}>
+													<option value={0}>Chọn chuyên đề cho tài liệu</option>
+													{_.map(thematicList, (thematic, idx) => {
+														return (
+															<option value={thematic.id} key={idx}>{thematic.name}</option>
+														)
+													})}
+												</select>
+											</div>
+										</div>
+
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
 												Từ khóa <span className="upload-result-content-required">(*)</span>
 											</div>
 											<div className="upload-result-content-input form-group">
@@ -514,6 +597,14 @@ const mapDispatchToProps = (dispatch) => {
 
 		getPrice: () => {
 			dispatch(actions.getPrice())
+		},
+
+		getChapter: (category_id, subject_id) => {
+			dispatch(actions.getListChapter(category_id, subject_id))
+		},
+
+		getThematic: (chapter_id) => {
+			dispatch(actions.getThematic(chapter_id))
 		}
 	}
 };

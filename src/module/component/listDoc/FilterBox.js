@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 import * as actions from "../../action/Index";
 import _ from 'lodash';
+import {Link} from 'react-router-dom';
 
 class FilterBox extends Component {
 
@@ -16,20 +17,16 @@ class FilterBox extends Component {
 
 		let classElem = _.map(classes, (value, index) => {
 			return(
-				<div className="checkbox" key={index}>
-					<label>
-						<input type="checkbox" value="" id=""/> {value.name}
-					</label>
+				<div className="widget-list" key={index}>
+					<Link to={'/cat/' + value.slug}><i className="fas fa-graduation-cap"></i>{value.name}</Link>
 				</div>
 			)
 		});
 
 		let subjectElem = _.map(subjects, (value, index) => {
 			return(
-				<div className="checkbox" key={index}>
-					<label>
-						<input type="checkbox" value="" id=""/> {value.name}
-					</label>
+				<div className="widget-list" key={index}>
+					<Link to={'/'}>{value.name}</Link>
 				</div>
 			)
 		});

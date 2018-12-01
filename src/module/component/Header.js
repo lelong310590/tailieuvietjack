@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 import Menu from "./support/Menu";
 import UserMenu from "./support/UserMenu";
+import MainSearch from "./home/MainSearch";
 
 class Header extends Component {
 
@@ -36,18 +37,9 @@ class Header extends Component {
 						</div>
 
 						<div className="header-sub">
-							<div className="main-search">
-								<form>
 
-									<div className="form-group">
-										<input type="text" className="form-control" name="" id=""
-										       placeholder="Tìm kiếm..."/>
-									</div>
+							<MainSearch/>
 
-									<button type="submit" className="btn btn-primary"><i className="fas fa-search"></i>
-									</button>
-								</form>
-							</div>
 							<div className="header-action">
 								<a href="" className="action-button button-green"><i
 									className="fas fa-piggy-bank"></i> Nạp tiền</a>

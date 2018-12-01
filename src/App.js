@@ -22,6 +22,9 @@ import Logout from "./module/component/login/Logout";
 import CatDoc from "./module/component/listDoc/CatDoc";
 import EditDocument from "./module/component/upload/EditDocument";
 import Download from "./module/component/doc/Download";
+import ListSubject from "./module/component/class/ListSubject";
+import ListChapter from "./module/component/subjects/ListChapter";
+import ThematicListDoc from "./module/component/thematic/ThematicListDoc";
 
 const locationHelper = LocationHelper({});
 
@@ -81,8 +84,13 @@ class App extends Component {
 							<Route exact={true} path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
 
-							<Route exact={true} path={'/cat/:class'} component={CatDoc} />
-							<Route exact={true} path={'/cat/:class/:subject'} component={CatDoc} />
+							<Route exact={true} path={'/cat/:class'} component={ListSubject} />
+							<Route exact={true} path={'/cat/:class/:subject'} component={ListChapter} />
+							<Route exact={true} path={'/chuyen-de/:thematic'} component={ThematicListDoc} />
+
+							<Route exact={true} path={'/tim-kiem'} component={CatDoc} />
+
+
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

@@ -142,12 +142,12 @@ export const getSubjectViaClassError = (err) => ({
 	payload: err
 });
 
-export const getSubjectViaClass = (classId) => {
+export const getSubjectViaClass = (classSlug) => {
 	return (dispatch) => {
 		dispatch(getSubjectViaClassRequest());
 		axios.get(api.API_GET_SUBJECT_VIA_CLASSES, {
 			params: {
-				classId
+				classSlug
 			}
 		})
 			.then(response => {
@@ -155,6 +155,38 @@ export const getSubjectViaClass = (classId) => {
 			})
 			.catch(err => {
 				dispatch(getSubjectViaClassError(err));
+			});
+	}
+};
+
+//get list subject via class id
+export const getListSubjectViaClassRequest = () => ({
+	type: types.GET_LIST_SUBJECT_VIA_CLASSES_REQUEST
+});
+
+export const getListSubjectViaClassSuccess = (data) => ({
+	type: types.GET_LIST_SUBJECT_VIA_CLASSES_SUCCESS,
+	payload: data
+});
+
+export const getListSubjectViaClassError = (err) => ({
+	type: types.GET_LIST_SUBJECT_VIA_CLASSES_ERROR,
+	payload: err
+});
+
+export const getListSubjectViaClass = (classId) => {
+	return (dispatch) => {
+		dispatch(getListSubjectViaClassRequest());
+		axios.get(api.API_GET_LIST_SUBJECT_VIA_CLASSES, {
+			params: {
+				classId
+			}
+		})
+			.then(response => {
+				dispatch(getListSubjectViaClassSuccess(response));
+			})
+			.catch(err => {
+				dispatch(getListSubjectViaClassError(err));
 			});
 	}
 };
@@ -259,5 +291,83 @@ export const getDocumentInfo = (docid, token) => {
 			.catch(err => {
 				dispatch(getDocumentInfoError(err));
 			})
+	}
+};
+
+//get chapter in cat
+export const getChapterRequest = () => ({
+	type: types.GET_CHAPTER_REQUEST
+});
+
+export const getChapterSuccess = (data) => ({
+	type: types.GET_CHAPTER_SUCCESS,
+	payload: data
+});
+
+export const getChapterError = (err) => ({
+	type: types.GET_CHAPTER_ERROR,
+	payload: err
+});
+
+export const getChapter = (categorySlug, subjectSlug) => {
+	return (dispatch) => {
+		dispatch(getChapterRequest());
+		axios.get(api.API_GET_CHAPTER, {
+			params: {categorySlug, subjectSlug}
+		})
+			.then(response => dispatch(getChapterSuccess(response)))
+			.catch(err => dispatch(getChapterError(err)))
+	}
+};
+
+// get list chapter
+export const getListChapterRequest = () => ({
+	type: types.GET_LIST_CHAPTER_REQUEST
+});
+
+export const getListChapterSuccess = (data) => ({
+	type: types.GET_LIST_CHAPTER_SUCCESS,
+	payload: data
+});
+
+export const getListChapterError = (err) => ({
+	type: types.GET_LIST_CHAPTER_ERROR,
+	payload: err
+});
+
+export const getListChapter = (categoryId, subjectId) => {
+	return (dispatch) => {
+		dispatch(getListChapterRequest());
+		axios.get(api.API_GET_LIST_CHAPTER, {
+			params: {categoryId, subjectId}
+		})
+			.then(response => dispatch(getListChapterSuccess(response)))
+			.catch(err => dispatch(getListChapterError(err)))
+	}
+};
+
+//get thematic in cat
+export const getThematicRequest = () => ({
+	type: types.GET_THEMATIC_REQUEST
+});
+
+export const getThematicSuccess = (data) => ({
+	type: types.GET_THEMATIC_SUCCESS,
+	payload: data
+});
+
+export const getThematicError = (err) => ({
+	type: types.GET_THEMATIC_ERROR,
+	payload: err
+});
+
+export const getThematic = (chapterId) => {
+	return (dispatch) => {
+		dispatch(getThematicRequest());
+		axios.get(api.API_GET_THEMATIC, {
+			params: {chapterId}
+		})
+			.then(response => dispatch(getThematicSuccess(response)))
+			.catch(err => dispatch(getThematicError(err)))
 	}
 };

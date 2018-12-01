@@ -18,6 +18,8 @@ class EditDocument extends Component {
 			name: '',
 			classes: 0,
 			subject: 0,
+			chapter: 0,
+			thematic: 0,
 			description: '',
 			tagSuggest: [],
 			tags: [],
@@ -79,12 +81,27 @@ class EditDocument extends Component {
 	handleChangeClass = (event) => {
 		let classes = event.target.value;
 		this.props.getSubjectViaClass(classes);
-		this.setState({classes})
+		this.setState({classes});
+		let {subject} = this.state;
+		this.props.getChapter(classes, subject);
 	};
 
 	handleChangeSubject = (event) => {
 		let subject = event.target.value;
-		this.setState({subject})
+		this.setState({subject});
+		let {classes} = this.state;
+		this.props.getChapter(classes, subject);
+	};
+
+	handleChangeChapter = (event) => {
+		let chapter = event.target.value;
+		this.setState({chapter});
+		this.props.getThematic(chapter)
+	};
+
+	handleChangeThematic = (event) => {
+		let thematic = event.target.value;
+		this.setState({thematic})
 	};
 
 	handleChangeDescription = (event) => {
@@ -145,13 +162,15 @@ class EditDocument extends Component {
 
 		let {
 			name, classes, description, price, tags,
-			subject, customPagePreview, pagePreview, totalPage
+			subject, customPagePreview, pagePreview, thematic, chapter
 		} = this.state;
 
 		let errorMess = '';
 		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
 		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
 		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
+		errorMess += (thematic === 0) ? '• Chuyên đề không được bỏ trống <br/>' : '';
+		errorMess += (chapter === 0) ? '• Chương không được bỏ trống <br/>' : '';
 		errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
 
 		this.setState({errorMess});
@@ -161,6 +180,8 @@ class EditDocument extends Component {
 		formData.append('name', name);
 		formData.append('category', classes);
 		formData.append('subject', subject);
+		formData.append('thematic', description);
+		formData.append('chapter', description);
 		formData.append('excerpt', description);
 		formData.append('price', price);
 		formData.append('tags', JSON.stringify(tags));
@@ -200,12 +221,14 @@ class EditDocument extends Component {
 	render() {
 
 		let {classes} = this.props.ClassesReducer;
-		let {subjectInClass} = this.props.SubjectReducer;
+		let {listSubjectinClass} = this.props.SubjectReducer;
 		let priceList = this.props.PriceReducer.price;
+		let chapterList = this.props.ChapterReducer.listChapters;
+		let thematicList = this.props.ThematicReducer.thematic;
 
 		let {
 			subject, description, tagSuggest, price, customPrice, customPagePreview,
-			totalPage, pagePreview, name, tags, isSubmit, errorMess, editComplete
+			totalPage, pagePreview, name, tags, isSubmit, errorMess, editComplete, thematic, chapter
 		} = this.state;
 
 
@@ -215,7 +238,7 @@ class EditDocument extends Component {
 			)
 		});
 
-		let subjectsElem = _.map(subjectInClass, (value, index) => {
+		let subjectsElem = _.map(listSubjectinClass, (value, index) => {
 			return (
 				<option value={value.id} key={index}>{value.name}</option>
 			)
@@ -299,6 +322,38 @@ class EditDocument extends Component {
 														<select className="form-control" required onChange={this.handleChangeSubject} value={subject}>
 															<option value={0}>Chọn môn học cho tài liệu</option>
 															{subjectsElem}
+														</select>
+													</div>
+												</div>
+
+												<div className="upload-result-content">
+													<div className="upload-result-content-title">
+														Chương <span className="upload-result-content-required">(*)</span>
+													</div>
+													<div className="upload-result-content-input form-group">
+														<select className="form-control" required onChange={this.handleChangeChapter} value={chapter}>
+															<option value={0}>Chọn chương cho tài liệu</option>
+															{_.map(chapterList, (chap, idx) => {
+																return (
+																	<option value={chap.id} key={idx}>{chap.name}</option>
+																)
+															})}
+														</select>
+													</div>
+												</div>
+
+												<div className="upload-result-content">
+													<div className="upload-result-content-title">
+														Chuyên đề <span className="upload-result-content-required">(*)</span>
+													</div>
+													<div className="upload-result-content-input form-group">
+														<select className="form-control" required onChange={this.handleChangeThematic} value={thematic}>
+															<option value={0}>Chọn chuyên đề cho tài liệu</option>
+															{_.map(thematicList, (thematic, idx) => {
+																return (
+																	<option value={thematic.id} key={idx}>{thematic.name}</option>
+																)
+															})}
 														</select>
 													</div>
 												</div>
@@ -416,7 +471,7 @@ const mapDispatchToProps = (dispatch) => {
 		},
 
 		getSubjectViaClass: (classId) => {
-			dispatch(actions.getSubjectViaClass(classId))
+			dispatch(actions.getListSubjectViaClass(classId))
 		},
 
 		getPrice: () => {
@@ -425,6 +480,14 @@ const mapDispatchToProps = (dispatch) => {
 
 		getDocumentInfo: (id, token) => {
 			dispatch(actions.getDocumentInfo(id, token))
+		},
+
+		getChapter: (category_id, subject_id) => {
+			dispatch(actions.getListChapter(category_id, subject_id))
+		},
+
+		getThematic: (chapter_id) => {
+			dispatch(actions.getThematic(chapter_id))
 		}
 	}
 };

@@ -19,12 +19,32 @@ class List extends Component {
 			filterBar: this.props.filterBar,
 			//option
 			classLevel: this.props.classLevel,
-			onLoading: true
+			onLoading: true,
+			getRelated: {
+				tags: [],
+				currentId: 0
+			}
 		}
 	}
 
+	shouldComponentUpdate = (nextProps, nextState) => {
+		// console.log('props: ', this.props.getRelated);
+		// console.log('nextProps: ', nextProps.getRelated);
+
+		if (this.props.getRelated !== nextProps.getRelated) {
+			let {classLevel, user, week, getRelated} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated);
+		}
+
+		return true;
+	};
+
 	componentDidMount() {
 		let {classLevel, user, week, getRelated} = this.props;
+		this.fetchData(classLevel, user, week, getRelated);
+	}
+
+	fetchData = (classLevel, user, week, getRelated) => {
 
 		let apiUrl = api.API_GET_LIST_DOC_BY_CAT;
 		let defaultParams = {
@@ -33,9 +53,11 @@ class List extends Component {
 			week
 		};
 
-		if (getRelated) {
-			apiUrl = api.API_GET_RELATED_DOC;
-			defaultParams = getRelated
+		if (_.has(getRelated, 'tags')) {
+			if (!_.isEmpty(getRelated.tags)) {
+				apiUrl = api.API_GET_RELATED_DOC;
+				defaultParams = getRelated
+			}
 		}
 
 		axios.get(apiUrl, {
@@ -54,7 +76,7 @@ class List extends Component {
 					onLoading: false
 				})
 			})
-	}
+	};
 
 	render() {
 		let {items, itemClass, title, filterBar, onLoading} = this.state;

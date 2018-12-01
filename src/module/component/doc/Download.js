@@ -34,15 +34,6 @@ class Download extends Component {
 		this.fetchData(slug);
 	};
 
-	shouldComponentUpdate = (nextProps, nextState) => {
-		if (this.props.match.params.slug !== nextProps.match.params.slug) {
-			this.setState({pageLoadDone: false});
-			let {slug} = nextProps.match.params;
-			this.fetchData(slug);
-		}
-		return true;
-	};
-
 	fetchData = (slug) => {
 		axios.get(api.API_GET_DOC_DETAIL, {
 			params: {

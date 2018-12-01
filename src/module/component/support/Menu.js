@@ -17,7 +17,13 @@ class Menu extends Component {
 			let hasChild = !_.isEmpty(value.subjects);
 			return (
 				<li className={hasChild ? 'has-child' : ''} key={index}>
-					<Link to={'/cat/' + value.slug}>
+					<Link to={{
+						pathname: '/cat/' + value.slug,
+						state: {
+							catId: value.id,
+							catName: value.name
+						}
+					}}>
 						<i className="fas fa-graduation-cap"></i> {value.name}
 					</Link>
 					{hasChild &&
@@ -25,7 +31,15 @@ class Menu extends Component {
 							<ul>
 								{_.map(value.subjects, (v, i) => {
 									return (
-										<li key={i}><Link to={'/cat/' + value.slug + '/' + v.slug}>{v.name}</Link></li>
+										<li key={i}><Link to={{
+											pathname: '/cat/' + value.slug + '/' + v.slug,
+											state: {
+												catId: value.id,
+												catName: value.name,
+												subId: v.id,
+												subName: v.name
+											}
+										}}>{v.name}</Link></li>
 									)
 								})}
 							</ul>

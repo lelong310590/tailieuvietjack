@@ -1032,6 +1032,16 @@
 	padding: 0
 	.filter-box-category-item
 		padding: 0 15px
+		.widget-list
+			a
+				color: #222
+				display: block
+				margin: 10px 0
+				&:hover
+					color: $primary
+					text-decoration: none
+				i
+					margin-right: 10px
 	.widget-title
 		h4
 			margin: 0
@@ -1310,4 +1320,61 @@
 			.document-download-file-type
 				font-weight: 500
 				color: $primary
-
+.subject-list
+	margin-top: 25px
+.subject-item
+	color: inherit
+	&:hover
+		text-decoration: none
+	.subject-item-inner
+		padding: 15px
+		background: #fff
+		border-radius: 15px
+		box-shadow: 0 1px 6px #ccc
+		.subject-item-avatar
+			margin: 15px 0
+		.subject-item-name
+			font-weight: 700
+		.subject-item-count-document
+			color: #fff
+			background: #e29000
+			padding: 5px 0
+			margin-top: 15px
+			border-radius: 10px
+			border-bottom: 2px solid #e56c00
+			font-weight: 700
+.chapter-list
+	margin-top: 25px
+.chapter-item
+	padding: 15px
+	background: #fff
+	border-radius: 4px
+	box-shadow: 0 1px 5px #ccc
+	display: block
+	color: $primary
+	&:hover
+		color: $primary
+		text-decoration: none!important
+	.chapter-title
+		display: flex
+		align-items: center
+	.chapter-count-doc
+		color: #fff
+		background: #44a500
+		border-bottom: 2px solid #3e880a
+		padding: 3px 12px
+		border-radius: 6px
+		margin-left: 15px
+		font-size: 10px
+.list-thematic
+	ul
+		padding: 0
+		margin: 0
+		li
+			list-style: none
+			margin-bottom: 10px
+			a
+				font-size: 15px
+				color: #222
+				i
+					margin-right: 10px

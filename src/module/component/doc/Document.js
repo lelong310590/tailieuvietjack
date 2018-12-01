@@ -48,6 +48,7 @@ class Document extends Component {
 	componentDidMount = () => {
 		let {slug} = this.props.match.params;
 		this.fetchData(slug);
+		this.updateStatics('views', slug);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -55,8 +56,24 @@ class Document extends Component {
 			this.setState({pageLoadDone: false});
 			let {slug} = nextProps.match.params;
 			this.fetchData(slug);
+			this.updateStatics('views', slug);
 		}
 		return true;
+	};
+
+	updateStatics = (type, docId) => {
+		let formData = new FormData();
+		formData.append('type', type);
+		formData.append('docId', docId);
+		axios.post(api.API_UPDATE_DOC_STATIC, formData, {
+			headers: {'Content-Type': 'multipart/form-data' }
+		})
+			.then(response => {
+				this.setState({
+					views: parseInt(response.data)
+				})
+			})
+			.catch((err => {}))
 	};
 
 	fetchData = (slug) => {
@@ -174,6 +191,7 @@ class Document extends Component {
 								title={'Tài liệu cùng tác giả'}
 								itemClass={'col-xs-6 col-md-3 col-lg-3'}
 								user={ownerId}
+								currentId={slug}
 							/>
 
 							<Infomation
