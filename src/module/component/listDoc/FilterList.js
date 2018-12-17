@@ -6,15 +6,8 @@ class FilterList extends Component {
 			<div className="doc-filter-bar">
 				<div className="filter-bar-group">
 					<select name="name" className="form-control">
-						<option value=""> -- Select One --</option>
-					</select>
-
-					<select name="name" className="form-control">
-						<option value=""> -- Select One --</option>
-					</select>
-
-					<select name="name" className="form-control">
-						<option value=""> -- Select One --</option>
+						<option value=""> -- Giá từ thấp đến cao --</option>
+						<option value=""> -- Giá từ cao đến thấp --</option>
 					</select>
 				</div>
 

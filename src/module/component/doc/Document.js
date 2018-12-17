@@ -11,6 +11,7 @@ import axios from 'axios';
 import Meta from "../support/Meta";
 import ReactHtmlParser from 'react-html-parser';
 import Loading from "../support/Loading";
+import {Alert} from 'react-bootstrap';
 
 class Document extends Component {
 
@@ -18,6 +19,7 @@ class Document extends Component {
 		super(props);
 		this.state = {
 			slug: this.props.match.params,
+			status: 'active',
 			name: '',
 			pages: 0,
 			views: 0,
@@ -88,6 +90,7 @@ class Document extends Component {
 					pages: response.data.pages,
 					views: response.data.views,
 					download: response.data.downloaded,
+					status: response.data.status,
 					ownerFirstName: response.data.get_member.first_name,
 					ownerLastName: response.data.get_member.last_name,
 					ownerAvatar: response.data.get_member.thumbnail,
@@ -97,7 +100,7 @@ class Document extends Component {
 					pageHtml: response.data.previewHtml,
 					classLevel: response.data.get_class,
 					subject: response.data.get_subject,
-					tags: response.data.get_tags
+					tags: response.data.get_tags,
 				})
 			})
 			.catch(err => {
@@ -109,12 +112,15 @@ class Document extends Component {
 	};
 
 	clickToDownload = (slug) => {
-		this.props.history.push('/tai-lieu/download/' + slug);
+		let {status} = this.state;
+		if (status === 'active') {
+			this.props.history.push('/tai-lieu/download/' + slug);
+		}
 	};
 
 	render() {
 
-		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId,
+		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status,
 			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags} = this.state;
 
 		let {slug} = this.props.match.params;
@@ -138,6 +144,13 @@ class Document extends Component {
 
 					<div className="row">
 						<div className="col-xs-12 col-md-9 document-detail">
+
+							{(status === 'disable') &&
+								<Alert bsStyle="danger text-center">
+									<strong>Tài liệu này đang chờ ban quản trị duyệt</strong>
+								</Alert>
+							}
+
 							<h1 className="document-detail-title">{name}</h1>
 							<div className="document-info">
 								<div className="document-info-page"><i className="far fa-file-alt"></i> {pages}</div>

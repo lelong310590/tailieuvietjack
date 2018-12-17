@@ -96,13 +96,13 @@ class EditDocument extends Component {
 	handleChangeChapter = (event) => {
 		let chapter = event.target.value;
 		this.setState({chapter});
-		this.props.getThematic(chapter)
+		//this.props.getThematic(chapter)
 	};
 
-	handleChangeThematic = (event) => {
-		let thematic = event.target.value;
-		this.setState({thematic})
-	};
+	// handleChangeThematic = (event) => {
+	// 	let thematic = event.target.value;
+	// 	this.setState({thematic})
+	// };
 
 	handleChangeDescription = (event) => {
 		let description = event.target.value;
@@ -169,7 +169,7 @@ class EditDocument extends Component {
 		errorMess += (name.length < 5) ? '• Tên tài liệu từ 5 ký tự trở lên <br/>' : '';
 		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
 		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
-		errorMess += (thematic === 0) ? '• Chuyên đề không được bỏ trống <br/>' : '';
+		//errorMess += (thematic === 0) ? '• Chuyên đề không được bỏ trống <br/>' : '';
 		errorMess += (chapter === 0) ? '• Chương không được bỏ trống <br/>' : '';
 		errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
 
@@ -342,21 +342,21 @@ class EditDocument extends Component {
 													</div>
 												</div>
 
-												<div className="upload-result-content">
-													<div className="upload-result-content-title">
-														Chuyên đề <span className="upload-result-content-required">(*)</span>
-													</div>
-													<div className="upload-result-content-input form-group">
-														<select className="form-control" required onChange={this.handleChangeThematic} value={thematic}>
-															<option value={0}>Chọn chuyên đề cho tài liệu</option>
-															{_.map(thematicList, (thematic, idx) => {
-																return (
-																	<option value={thematic.id} key={idx}>{thematic.name}</option>
-																)
-															})}
-														</select>
-													</div>
-												</div>
+												{/*<div className="upload-result-content">*/}
+													{/*<div className="upload-result-content-title">*/}
+														{/*Chuyên đề <span className="upload-result-content-required">(*)</span>*/}
+													{/*</div>*/}
+													{/*<div className="upload-result-content-input form-group">*/}
+														{/*<select className="form-control" required onChange={this.handleChangeThematic} value={thematic}>*/}
+															{/*<option value={0}>Chọn chuyên đề cho tài liệu</option>*/}
+															{/*{_.map(thematicList, (thematic, idx) => {*/}
+																{/*return (*/}
+																	{/*<option value={thematic.id} key={idx}>{thematic.name}</option>*/}
+																{/*)*/}
+															{/*})}*/}
+														{/*</select>*/}
+													{/*</div>*/}
+												{/*</div>*/}
 
 												<div className="upload-result-content">
 													<div className="upload-result-content-title">
@@ -486,9 +486,9 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actions.getListChapter(category_id, subject_id))
 		},
 
-		getThematic: (chapter_id) => {
-			dispatch(actions.getThematic(chapter_id))
-		}
+		// getThematic: (chapter_id) => {
+		// 	dispatch(actions.getThematic(chapter_id))
+		// }
 	}
 };
 

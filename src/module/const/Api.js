@@ -6,6 +6,9 @@ export const API_GET_USER_DOCUMENT = BASE_URL + 'user/document';
 export const API_POST_DELETE_DOCUMENT = BASE_URL + 'doc/delete';
 export const API_REGISTER = BASE_URL + 'auth/register';
 
+export const API_GET_TREE = BASE_URL + 'tree-data';
+export const API_GET_TAGCLOUD = BASE_URL + 'tag-cloud';
+
 export const API_GET_MENU = BASE_URL + 'class/get-all-class';
 export const API_GET_CLASSES = BASE_URL + 'class/get';
 export const API_GET_SUBJECTS = BASE_URL + 'subject/all-subject';
@@ -16,6 +19,7 @@ export const API_GET_CHAPTER = BASE_URL + 'chapter/get';
 export const API_GET_LIST_CHAPTER = BASE_URL + 'chapter/get-list-chapter';
 
 export const API_GET_THEMATIC = BASE_URL + 'thematic/get';
+export const API_GET_DOC_IN_THEMATIC = BASE_URL + 'thematic/get-document';
 
 export const API_UPLOAD_DOC = BASE_URL + 'doc/upload';
 export const API_GET_AUTOCOMPLETE_TAG = BASE_URL + 'tag/get-autocomplete-tag';

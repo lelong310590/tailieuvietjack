@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 import * as action from './../../action/Index';
 import {Link} from 'react-router-dom';
 import _ from "lodash";
-import TopWeekDoc from "../doc/TopWeekDoc";
+import TreeCategory from "../sidebar/TreeCategory";
+import TagCloud from "../home/TagCloud";
+import SubjectList from "../home/SubjectList";
 
 class ListSubject extends Component {
 
@@ -16,7 +18,8 @@ class ListSubject extends Component {
 				get_document: []
 			}],
 			catSlug: this.props.match.params.class,
-			catName: ''
+			catName: '',
+			catId: 0
 		}
 	}
 
@@ -37,7 +40,8 @@ class ListSubject extends Component {
 		if (this.props.SubjectReducer.subjectInClass !== nextProps.SubjectReducer.subjectInClass) {
 			this.setState({
 				subjects: nextProps.SubjectReducer.subjectInClass.subjects,
-				catName: nextProps.SubjectReducer.subjectInClass.name
+				catName: nextProps.SubjectReducer.subjectInClass.name,
+				catId: nextProps.SubjectReducer.subjectInClass.id,
 			})
 		}
 
@@ -46,7 +50,7 @@ class ListSubject extends Component {
 
 	render() {
 
-		let {subjects, catSlug, catName} = this.state;
+		let {subjects, catSlug, catName, catId} = this.state;
 
 		return (
 			<section className="document-wrapper">
@@ -58,6 +62,17 @@ class ListSubject extends Component {
 					/>
 
 					<div className="row">
+
+						<div className="col-xs-12 col-md-3 doc-list-filter-box">
+							<TreeCategory
+								currentCat={catId}
+							/>
+
+							<TagCloud/>
+
+							<SubjectList/>
+						</div>
+
 						<div className="col-xs-12 col-md-9 document-detail">
 							<div className="subject-list">
 								<div className="row">
@@ -80,10 +95,6 @@ class ListSubject extends Component {
 									})}
 								</div>
 							</div>
-						</div>
-
-						<div className="col-xs-12 col-md-3 doc-list-filter-box">
-							<TopWeekDoc/>
 						</div>
 					</div>
 				</div>

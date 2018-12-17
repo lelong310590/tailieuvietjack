@@ -5,6 +5,9 @@ import _ from "lodash";
 import {Link} from "react-router-dom";
 import TopWeekDoc from "../doc/TopWeekDoc";
 import {connect} from 'react-redux';
+import TreeCategory from "../sidebar/TreeCategory";
+import TagCloud from "../home/TagCloud";
+import SubjectList from "../home/SubjectList";
 
 class ListChapter extends Component {
 
@@ -19,7 +22,8 @@ class ListChapter extends Component {
 			catSlug: this.props.match.params.class,
 			subjectSlug: this.props.match.params.subject,
 			catName: '',
-			subjectName: ''
+			subjectName: '',
+			catId: 0
 		}
 	}
 
@@ -67,6 +71,14 @@ class ListChapter extends Component {
 					/>
 
 					<div className="row">
+						<div className="col-xs-12 col-md-3 doc-list-filter-box">
+							<TreeCategory/>
+
+							<TagCloud/>
+
+							<SubjectList/>
+						</div>
+
 						<div className="col-xs-12 col-md-9 document-detail">
 							<div className="chapter-list">
 								{_.map(chapters, (c, idx) => {
@@ -82,7 +94,7 @@ class ListChapter extends Component {
 														return (
 															<li key={idx}>
 																<Link to={'/chuyen-de/' + thematic.slug}>
-																	<i className="fas fa-long-arrow-alt-right"></i> {thematic.name}
+																	<i className="fas fa-book"></i> {thematic.name}
 																</Link>
 															</li>
 														)
@@ -94,10 +106,6 @@ class ListChapter extends Component {
 									)
 								})}
 							</div>
-						</div>
-
-						<div className="col-xs-12 col-md-3 doc-list-filter-box">
-							<TopWeekDoc/>
 						</div>
 					</div>
 				</div>

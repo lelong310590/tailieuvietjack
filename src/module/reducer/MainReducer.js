@@ -10,6 +10,8 @@ import UserDocument from './UserDocument';
 import DocReducer from './DocReducer';
 import ChapterReducer from './ChapterReducer';
 import ThematicReducer from './ThematicReducer';
+import TreeReducer from './TreeReducer';
+import TagCloudReducer from './TagCloudReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -22,7 +24,9 @@ const MainReducer = combineReducers({
 	UserDocument,
 	DocReducer,
 	ChapterReducer,
-	ThematicReducer
+	ThematicReducer,
+	TreeReducer,
+	TagCloudReducer
 });
 
 export default MainReducer;

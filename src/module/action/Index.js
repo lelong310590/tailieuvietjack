@@ -371,3 +371,94 @@ export const getThematic = (chapterId) => {
 			.catch(err => dispatch(getThematicError(err)))
 	}
 };
+
+// get doc in thematic
+export const getDocinThematicRequest = () => ({
+	type: types.GET_DOC_IN_THEMATIC_REQUEST
+});
+
+export const getDocInThematicSuccess = (payload) => ({
+	type: types.GET_DOC_IN_THEMATIC_SUCCESS,
+	payload
+});
+
+export const getDocInThematicError = (payload) => ({
+	type: types.GET_DOC_IN_THEMATIC_ERROR,
+	payload
+});
+
+export const getDocInThematic = (chapterSlug) => {
+	return (dispatch) => {
+		dispatch(getDocinThematicRequest());
+		axios.get(api.API_GET_DOC_IN_THEMATIC, {
+			params: {chapterSlug}
+		})
+			.then(response => {
+				dispatch(getDocInThematicSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getDocInThematicError(err))
+			})
+	}
+};
+
+//get tree
+export const getTreeRequets = () => ({
+	type: types.GET_TREE_REQUEST
+});
+
+export const getTreeSuccess = (payload) => ({
+	type: types.GET_TREE_SUCCESS,
+	payload
+});
+
+export const getTreeError = (payload) => ({
+	type: types.GET_TREE_ERROR,
+	payload
+});
+
+export const getTree = (currentCatID , currentSubjectId) => {
+	return (dispatch) => {
+		dispatch(getTreeRequets());
+		axios.get(api.API_GET_TREE, {
+			params: {
+				cat: currentCatID,
+				subject: currentSubjectId
+			}
+		})
+			.then(response => {
+				dispatch(getTreeSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getTreeError(err))
+			})
+	}
+};
+
+//get tag cloud
+export const getTagCloudRequest = () => ({
+	type: types.GET_TAG_CLOUD_REQUEST
+});
+
+export const getTagCloudSuccess = (payload) => ({
+	type: types.GET_TAG_CLOUD_SUCCESS,
+	payload
+});
+
+export const getTagCloudError = (err) => ({
+	type: types.GET_TAG_CLOUD_ERROR,
+	err
+});
+
+export const getTagCloud = () => {
+	return (dispatch) => {
+		dispatch(getTagCloudRequest());
+		axios.get(api.API_GET_TAGCLOUD)
+			.then(response => {
+				dispatch(getTagCloudSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getTagCloudError(err))
+			})
+	}
+};

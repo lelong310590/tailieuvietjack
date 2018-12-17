@@ -31,10 +31,12 @@ class DocItem extends Component {
 					<DocumentTag
 						format={this.props.format}
 					/>
-					<img src={this.props.thumbnail ? this.props.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
+					<Link to={'/tai-lieu/' + this.props.id}>
+						<img src={this.props.thumbnail ? this.props.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
+					</Link>
 				</div>
 				<div className="doc-item-horizontal-info">
-					<h4>{this.props.name}</h4>
+					<h4><Link to={'/tai-lieu/' + this.props.id}>{this.props.name}</Link></h4>
 					<div className="document-info">
 						<div className="document-info-page"><i className="far fa-file-alt"></i> {this.props.pages}</div>
 						<div className="document-info-view"><i className="far fa-eye"></i> {this.props.views}</div>

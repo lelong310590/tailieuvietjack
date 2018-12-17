@@ -11,34 +11,31 @@ class Breadcrumb extends Component {
 			subject: '',
 			subjectSlug: '',
 			chapter: '',
-			chapterSlug: ''
+			chapterSlug: '',
+			thematic: '',
+			thematicSlug: ''
 		}
 	}
 
 	componentDidMount = () => {
-		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug} = this.props;
+		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug} = this.props;
 		this.setState({
-			classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug
+			classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug
 		})
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
 
-		if (this.props.classLevel !== nextProps.classLevel) {
+		if (this.props !== nextProps) {
 			this.setState({
-				classLevel: nextProps.classLevel
-			})
-		}
-
-		if (this.props.subject !== nextProps.subject) {
-			this.setState({
-				subject: nextProps.subject
-			})
-		}
-
-		if (this.props.chapter !== nextProps.chapter) {
-			this.setState({
-				chapter: nextProps.chapter
+				classLevel: nextProps.classLevel,
+				subject: nextProps.subject,
+				chapter: nextProps.chapter,
+				classSlug: nextProps.classSlug,
+				subjectSlug: nextProps.subjectSlug,
+				chapterSlug: nextProps.chapterSlug,
+				thematic: nextProps.thematic,
+				thematicSlug: nextProps.thematicSlug
 			})
 		}
 
@@ -47,7 +44,7 @@ class Breadcrumb extends Component {
 
 	render() {
 
-		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug} = this.state;
+		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug} = this.state;
 
 		return (
 			<div className="breadcrumb-wrapper">
@@ -58,8 +55,16 @@ class Breadcrumb extends Component {
 						<li><Link to={'/cat/' + classSlug + '/' + subjectSlug}><i className="fas fa-chevron-right"></i> {subject}</Link></li>
 					}
 
-					{chapter &&
-						<li><Link to={'/chuyen-de/' + chapterSlug}><i className="fas fa-chevron-right"></i> {chapter}</Link></li>
+					{(chapter && thematic) &&
+						<li><i className="fas fa-chevron-right"></i> {chapter}</li>
+					}
+
+					{chapter && //Url den chapter la url cuoi cung
+						<li><i className="fas fa-chevron-right"></i> {chapter}</li>
+					}
+
+					{thematic &&
+						<li><i className="fas fa-chevron-right"></i> {thematic}</li>
 					}
 				</ul>
 			</div>

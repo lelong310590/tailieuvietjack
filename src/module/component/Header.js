@@ -37,9 +37,6 @@ class Header extends Component {
 						</div>
 
 						<div className="header-sub">
-
-							<MainSearch/>
-
 							<div className="header-action">
 								<a href="" className="action-button button-green"><i
 									className="fas fa-piggy-bank"></i> Nạp tiền</a>

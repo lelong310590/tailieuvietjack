@@ -13,6 +13,8 @@ let initialState = {
 	gender: 0,
 	profit: 0,
 	totalMoney: 0,
+	activeDoc: 0,
+	unActiveDoc: 0
 };
 
 let UserReducer = (state = initialState, action) => {
@@ -29,7 +31,9 @@ let UserReducer = (state = initialState, action) => {
 				email: user.email,
 				thumbnail: user.thumbnail,
 				profit: parseInt(user.get_wallet.balance_page),
-				totalMoney: parseInt(user.get_wallet.balance_page + user.get_wallet.balance_pay)
+				totalMoney: parseInt(user.get_wallet.balance_page + user.get_wallet.balance_pay),
+				activeDoc: parseInt(user.active_doc),
+				unActiveDoc: parseInt(user.unactive_doc)
 			};
 
 		case types.GET_USER_INFO_FAIL:

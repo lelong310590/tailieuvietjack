@@ -21,7 +21,10 @@ class DocManager extends Component {
 			page: 1,
 			url: this.props.location.pathname,
 			keyword: '',
-			onAction: false
+			onAction: false,
+
+			activeDoc: this.props.UserReducer.activeDoc,
+			unactiveDoc: this.props.UserReducer.unActiveDoc,
 		}
 	}
 
@@ -69,7 +72,7 @@ class DocManager extends Component {
 
 			this.setState({
 				filter: value.onsort,
-				keyword: value.keyword
+				keyword: value.keyword,
 			});
 
 			if (value.keyword !== oldValue.keyword) {
@@ -83,6 +86,18 @@ class DocManager extends Component {
 			if (value.onsort !== oldValue.onsort) {
 				this.props.getUserDocument(userId, value.onsort, token);
 			}
+		}
+
+		if (this.props.UserReducer.activeDoc !== nextProps.UserReducer.activeDoc) {
+			this.setState({
+				activeDoc: nextProps.UserReducer.activeDoc,
+			})
+		}
+
+		if (this.props.UserReducer.unActiveDoc !== nextProps.UserReducer.unActiveDoc) {
+			this.setState({
+				unActiveDoc: nextProps.UserReducer.unActiveDoc,
+			})
 		}
 
 		return this.props === nextProps;
@@ -122,7 +137,7 @@ class DocManager extends Component {
 			},
 		})
 			.then(response => {
-				console.log(response);
+				//console.log(response);
 				this.props.postDeleteDocument(id);
 			})
 			.catch(err => {
@@ -135,7 +150,7 @@ class DocManager extends Component {
 
 	render() {
 
-		let {filter, keyword, url, onAction} = this.state;
+		let {filter, keyword, url, onAction, activeDoc, unactiveDoc} = this.state;
 		let {docs} = this.props.UserDocument;
 
 		return (
@@ -166,7 +181,7 @@ class DocManager extends Component {
 														value="active"
 														onChange={this.handleChangeFilter}
 														checked={filter === 'active'}
-													/>Được duyệt (0)
+													/>Được duyệt ({activeDoc})
 												</label>
 											</div>
 											<div className="document-manager-filter-item">
@@ -177,7 +192,7 @@ class DocManager extends Component {
 														value="disable"
 														onChange={this.handleChangeFilter}
 														checked={filter === 'disable'}
-													/>Chờ duyệt (9)
+													/>Chờ duyệt ({unactiveDoc})
 												</label>
 											</div>
 										</div>
