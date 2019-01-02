@@ -462,3 +462,89 @@ export const getTagCloud = () => {
 			})
 	}
 };
+
+//get list class in grade
+export const getClassInGradeRequest = () => ({
+	type: types.GET_CLASS_IN_GRADE_REQUEST
+});
+
+export const getClassInGradeSuccess = (payload) => ({
+	type: types.GET_CLASS_IN_GRADE_SUCCESS,
+	payload
+});
+
+export const getClassInGradeError = (err) => ({
+	type: types.GET_CLASS_IN_GRADE_ERROR,
+	err
+});
+
+export const getClassInGrade = (grade) => {
+	return (dispatch) => {
+		dispatch(getClassInGradeRequest());
+		axios.get(api.API_GET_CLASS_IN_GRADE, {
+			params: {
+				grade
+			}
+		})
+			.then(response => {
+				dispatch(getClassInGradeSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getClassInGradeError(err))
+			})
+	}
+};
+
+//filter reducer handle
+export const changeGrade = (grade) => ({
+	type: types.CHANGE_GRADE,
+	grade
+});
+
+export const changeClass = (classId) => ({
+	type: types.CHANGE_CLASS,
+	classId
+});
+
+export const changeSubject = (subject) => ({
+	type: types.CHANGE_SUBJECT,
+	subject
+});
+
+export const changeChapter = (chapter) => ({
+	type: types.CHANGE_CHAPTER,
+	chapter
+});
+
+export const getHomeListRequest = () => ({
+	type: types.GET_HOME_LIST_REQUEST
+});
+
+export const getHomeListSuccess = (payload) => ({
+	type: types.GET_HOME_LIST_SUCCESS,
+	payload
+});
+
+export const getHomeListError = (err) => ({
+	type: types.GET_HOME_LIST_ERROR,
+	err
+});
+
+export const getHomeList = () => {
+	return (dispatch) => {
+		dispatch(getHomeListRequest());
+		axios.get(api.API_GET_HOME_LIST)
+			.then(resp => {
+				dispatch(getHomeListSuccess(resp))
+			})
+			.catch(err => {
+				dispatch(getHomeListError(err))
+			})
+	}
+};
+
+//reset list subjects
+export const resetListSubject = () => ({
+	type: types.RESET_LIST_SUBJECT,
+	payload: []
+});

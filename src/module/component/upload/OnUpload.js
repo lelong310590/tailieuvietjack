@@ -235,8 +235,8 @@ class OnUpload extends Component {
 		errorMess += (classes === 0) ? '• Trình độ không được bỏ trống <br/>' : '';
 		errorMess += (subject === 0) ? '• Môn học không được bỏ trống <br/>' : '';
 		// errorMess += (thematic === 0) ? '• Chuyên đề không được bỏ trống <br/>' : '';
-		errorMess += (chapter === 0) ? '• Chương không được bỏ trống <br/>' : '';
-		errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
+		//errorMess += (chapter === 0) ? '• Chương không được bỏ trống <br/>' : '';
+		//errorMess += (tags.length < 3) ? '• Tối thiểu phải có 3 từ khóa <br/>' : '';
 
 		this.setState({errorMess});
 
@@ -451,7 +451,7 @@ class OnUpload extends Component {
 
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
-												Chương <span className="upload-result-content-required">(*)</span>
+												Chương
 											</div>
 											<div className="upload-result-content-input form-group">
 												<select className="form-control" required onChange={this.handleChangeChapter} value={chapter}>
@@ -481,18 +481,18 @@ class OnUpload extends Component {
 											{/*</div>*/}
 										{/*</div>*/}
 
-										<div className="upload-result-content">
-											<div className="upload-result-content-title">
-												Từ khóa <span className="upload-result-content-required">(*)</span>
-											</div>
-											<div className="upload-result-content-input form-group">
-												<TagEditor
-													tags={this.state.tags}
-													tagSuggest={tagSuggest}
-													onChangeTags={this.onChangeTags}
-												/>
-											</div>
-										</div>
+										{/*<div className="upload-result-content">*/}
+											{/*<div className="upload-result-content-title">*/}
+												{/*Từ khóa <span className="upload-result-content-required">(*)</span>*/}
+											{/*</div>*/}
+											{/*<div className="upload-result-content-input form-group">*/}
+												{/*<TagEditor*/}
+													{/*tags={this.state.tags}*/}
+													{/*tagSuggest={tagSuggest}*/}
+													{/*onChangeTags={this.onChangeTags}*/}
+												{/*/>*/}
+											{/*</div>*/}
+										{/*</div>*/}
 
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">

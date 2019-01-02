@@ -91,6 +91,9 @@ class List extends Component {
 						<Link to={'/tai-lieu/' + value.id} className="document-title">
 							{value.name}
 						</Link>
+						<div className="document-price">
+							{value.formated_price}
+						</div>
 						<Link to={'/tai-lieu/' + value.id} className="document-author">
 							{value.get_member.first_name} {value.get_member.last_name}
 						</Link>

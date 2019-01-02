@@ -23,6 +23,11 @@ let SubjectReducer = (state = initialState, action) => {
 				...state,
 				listSubjectinClass: action.payload.data
 			};
+		case types.RESET_LIST_SUBJECT:
+			return {
+				...state,
+				listSubjectinClass: action.payload
+			};
 		default:
 			return state;
 	}

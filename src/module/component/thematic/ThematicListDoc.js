@@ -7,60 +7,50 @@ import * as action from './../../action/Index';
 import {Link} from "react-router-dom";
 import _ from 'lodash';
 import FilterList from "../listDoc/FilterList";
+import Filter from "../home/Filter";
 
 class ThematicListDoc extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
+			chapters: [{
+				name: '',
+				get_document: [],
+				get_thematic: []
+			}],
+			catSlug: this.props.match.params.class,
+			subjectSlug: this.props.match.params.subject,
 			catName: '',
-			catSlug: '',
 			subjectName: '',
-			subjectSlug: '',
-			chapterName: '',
-			chapterSlug: '',
-			thematicSlug: this.props.match.params.thematic,
-			thematicName: '',
-			documents: [],
-			thematicList: [{
-				get_document: []
-			}]
+			subjectThumbnail: '',
+			catId: 0
 		}
 	}
 
 	componentDidMount = () => {
-		let {thematicSlug} = this.state;
-		this.props.getDocInThematic(thematicSlug);
-		let {thematic} = this.props.ThematicReducer;
-		this.setState({thematicList: thematic})
+		let {catSlug, subjectSlug} = this.state;
+		this.props.getChapter(catSlug, subjectSlug);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
 		if (this.props.location !== nextProps.location) {
 			this.setState({
-				thematicSlug: nextProps.match.params.thematic
+				catSlug: nextProps.match.params.class,
+				subjectSlug: nextProps.match.params.subject
 			});
 
-			this.props.getDocInThematic(nextProps.match.params.class);
+			this.props.getChapter(nextProps.match.params.class, nextProps.match.params.subject);
 		}
 
-		if (this.props.ThematicReducer.docInThematic !== nextProps.ThematicReducer.docInThematic) {
+		if (this.props.ChapterReducer !== nextProps.ChapterReducer) {
 			this.setState({
-				documents: nextProps.ThematicReducer.docInThematic.document,
-				catName: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.get_category.name,
-				catSlug: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.get_category.slug,
-				subjectName: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.get_subject.name,
-				subjectSlug: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.get_subject.slug,
-				chapterName: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.name,
-				chapterSlug: nextProps.ThematicReducer.docInThematic.thematic.get_chapter.slug,
-			});
-
-			this.props.getThematicInChapter(nextProps.ThematicReducer.docInThematic.thematic.get_chapter.id)
-		}
-
-		if (this.props.ThematicReducer.thematic != nextProps.ThematicReducer.thematic) {
-			this.setState({
-				thematicList: nextProps.ThematicReducer.thematic
+				chapters: nextProps.ChapterReducer.chapter.chapters,
+				catName: nextProps.ChapterReducer.chapter.category.name,
+				catSlug: nextProps.ChapterReducer.chapter.category.slug,
+				subjectName: nextProps.ChapterReducer.chapter.subject.name,
+				subjectSlug: nextProps.ChapterReducer.chapter.subject.slug,
+				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail
 			})
 		}
 
@@ -69,87 +59,36 @@ class ThematicListDoc extends Component {
 
 	render() {
 
-		let {
-			catName,  catSlug,  subjectName,  subjectSlug,  chapterName,  chapterSlug,  thematicSlug,  thematicName,
-			documents, thematicList
-		} = this.state;
+		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail} = this.state;
 
 		return (
-			<section className="document-wrapper">
+			<div className="document-wrapper home-wrapper">
 				<div className="container">
-
 					<Breadcrumb
 						classSlug={catSlug}
 						classLevel={catName}
-						subjectSlug={subjectSlug}
 						subject={subjectName}
-						chapterSlug={chapterSlug}
-						chapter={chapterName}
+						subjectSlug={subjectSlug}
 					/>
 
-					<div className="row">
-						<div className="col-xs-12 col-md-9 document-detail col-md-push-3">
-							<div className="document-list">
+					<div className="col-xs-12 col-md-9">
 
-								<FilterList/>
+						<Filter
+							history={this.props.history}
+							chapters={chapters}
+							subjectName={subjectName}
+							subjectThumbnail={subjectThumbnail}
+						/>
 
-								<div className="document-list-wrapper">
-									<div className="row">
-										{_.map(documents.data, (value, index) => {
-											return (
-												<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
-													<div className="document-item">
-														<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-															<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
-														</Link>
-														<Link to={'/tai-lieu/' + value.id} className="document-title">
-															{value.name}
-														</Link>
-														<Link to={'/tai-lieu/' + value.id} className="document-author">
-															{value.get_member.first_name} {value.get_member.last_name}
-														</Link>
-														<div className="document-info">
-															<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
-															<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
-															<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
-														</div>
-													</div>
-												</div>
-											)
-										})}
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="col-xs-12 col-md-3 doc-list-filter-box col-md-pull-9">
-							<FilterBox
-								title={'Danh sách lớp'}
-								type={'classes'}
+						<div className="row">
+							<List
+								title={'Tài liệu nổi bật'}
+								itemClass={'col-xs-6 col-md-3 col-lg-3'}
 							/>
-
-							<div className="related">
-								<div className="related-title"><h4>CÁC CHUYÊN ĐỀ KHÁC TRONG CHƯƠNG</h4></div>
-								<div className="widget-content">
-									<div className="related-wrapper">
-										{_.map(thematicList, (thematic, idx) => {
-											return (
-												<div className="related-item" key={idx}>
-													<div className="related-item-title"><Link
-														to={"/chuyen-de/" + thematic.slug}><i className="fas fa-book"></i> {thematic.name}</Link>
-														<span className="related-thematic-count">{thematic.get_document.length} tài liệu</span>
-													</div>
-												</div>
-											)
-										})}
-
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 		);
 	}
 }
@@ -160,12 +99,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getDocInThematic: (chapterSlug) => {
-			dispatch(action.getDocInThematic(chapterSlug))
-		},
-
-		getThematicInChapter: (chapterId) => {
-			dispatch(action.getThematic(chapterId))
+		getChapter: (categorySlug, subjectSlug) => {
+			dispatch(action.getChapter(categorySlug, subjectSlug))
 		}
 	}
 };

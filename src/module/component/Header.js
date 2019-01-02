@@ -30,10 +30,10 @@ class Header extends Component {
 									     className="img-responsive logo"/>
 								</Link>
 							</div>
-							<div className="menu-button">
-								<a href="#"><i className="fas fa-bars"></i></a>
-								<Menu/>
-							</div>
+							{/*<div className="menu-button">*/}
+								{/*<a href="#"><i className="fas fa-bars"></i></a>*/}
+								{/*<Menu/>*/}
+							{/*</div>*/}
 						</div>
 
 						<div className="header-sub">

@@ -8,6 +8,10 @@ import {connect} from 'react-redux';
 import TreeCategory from "../sidebar/TreeCategory";
 import TagCloud from "../home/TagCloud";
 import SubjectList from "../home/SubjectList";
+import Filter from "../home/Filter";
+import List from "../listDoc/List";
+import ListDocuments from "../listDoc/ListDocuments";
+import Ads from "../home/Ads";
 
 class ListChapter extends Component {
 
@@ -23,6 +27,7 @@ class ListChapter extends Component {
 			subjectSlug: this.props.match.params.subject,
 			catName: '',
 			subjectName: '',
+			subjectThumbnail: '',
 			catId: 0
 		}
 	}
@@ -48,7 +53,8 @@ class ListChapter extends Component {
 				catName: nextProps.ChapterReducer.chapter.category.name,
 				catSlug: nextProps.ChapterReducer.chapter.category.slug,
 				subjectName: nextProps.ChapterReducer.chapter.subject.name,
-				subjectSlug: nextProps.ChapterReducer.chapter.subject.slug
+				subjectSlug: nextProps.ChapterReducer.chapter.subject.slug,
+				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail
 			})
 		}
 
@@ -57,12 +63,11 @@ class ListChapter extends Component {
 
 	render() {
 
-		let {chapters, catName, catSlug, subjectName, subjectSlug} = this.state;
+		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail} = this.state;
 
 		return (
-			<section className="document-wrapper">
+			<div className="document-wrapper home-wrapper">
 				<div className="container">
-
 					<Breadcrumb
 						classSlug={catSlug}
 						classLevel={catName}
@@ -70,53 +75,32 @@ class ListChapter extends Component {
 						subjectSlug={subjectSlug}
 					/>
 
-					<div className="row">
-						<div className="col-xs-12 col-md-3 doc-list-filter-box">
-							<TreeCategory/>
+					<div className="col-xs-12 col-md-9">
 
-							<TagCloud/>
+						<Filter
+							history={this.props.history}
+							chapters={chapters}
+							subjectName={subjectName}
+							subjectThumbnail={subjectThumbnail}
+						/>
 
-							<SubjectList/>
-						</div>
-
-						<div className="col-xs-12 col-md-9 document-detail">
-							<div className="chapter-list">
-								{_.map(chapters, (c, idx) => {
-									return (
-										<div className="chapter-item" key={idx}>
-											<h4 className="chapter-title">
-												{c.name}
-												<span className="chapter-count-doc">{c.get_document.length} tải liệu</span>
-											</h4>
-											<div className="list-thematic">
-												<ul>
-													{_.map(c.get_thematic, (thematic, idx) => {
-														return (
-															<li key={idx}>
-																<Link to={'/chuyen-de/' + thematic.slug}>
-																	<i className="fas fa-book"></i> {thematic.name}
-																</Link>
-															</li>
-														)
-													})}
-
-												</ul>
-											</div>
-										</div>
-									)
-								})}
-							</div>
+						<div className="row">
+							<ListDocuments/>
 						</div>
 					</div>
+
+					<div className="col-xs-12 col-md-3 sticky-sidebar">
+						<Ads/>
+					</div>
 				</div>
-			</section>
+			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
 	return state;
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {

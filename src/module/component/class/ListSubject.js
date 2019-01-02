@@ -7,6 +7,11 @@ import _ from "lodash";
 import TreeCategory from "../sidebar/TreeCategory";
 import TagCloud from "../home/TagCloud";
 import SubjectList from "../home/SubjectList";
+import Filter from "../home/Filter";
+import List from "../listDoc/List";
+import HomeListDocument from "../home/HomeListDocument";
+import Ads from "../home/Ads";
+import ListDocuments from "../listDoc/ListDocuments";
 
 class ListSubject extends Component {
 
@@ -24,6 +29,7 @@ class ListSubject extends Component {
 	}
 
 	componentDidMount = () => {
+		//console.log(this.props.FilterReducer.selectedGrade);
 		let {catSlug} = this.state;
 		this.props.getSubjectViaClass(catSlug);
 	};
@@ -53,52 +59,32 @@ class ListSubject extends Component {
 		let {subjects, catSlug, catName, catId} = this.state;
 
 		return (
-			<section className="document-wrapper">
-				<div className="container">
+				<div className="document-wrapper home-wrapper">
 
-					<Breadcrumb
-						classSlug={catSlug}
-						classLevel={catName}
-					/>
+					<div className="container">
 
-					<div className="row">
+						<Breadcrumb
+							classSlug={catSlug}
+							classLevel={catName}
+						/>
 
-						<div className="col-xs-12 col-md-3 doc-list-filter-box">
-							<TreeCategory
-								currentCat={catId}
+						<div className="col-xs-12 col-md-9">
+
+							<Filter
+								history={this.props.history}
+								catId={catId}
 							/>
 
-							<TagCloud/>
-
-							<SubjectList/>
+							<div className="row">
+								<ListDocuments/>
+							</div>
 						</div>
 
-						<div className="col-xs-12 col-md-9 document-detail">
-							<div className="subject-list">
-								<div className="row">
-									{_.map(subjects, (sub, idx) => {
-										return (
-											<Link className="subject-item col-xs-6 col-md-3" key={idx} to={'/cat/' + catSlug + '/' + sub.slug}>
-												<div className="subject-item-inner text-center">
-													<div className="subject-item-avatar">
-														<img src={sub.thumbnail} alt="" className="img-responsive center-block"/>
-													</div>
-													<div className="subject-item-name">
-														{sub.name}
-													</div>
-													<div className="subject-item-count-document">
-														{sub.get_document.length} Tài liệu
-													</div>
-												</div>
-											</Link>
-										)
-									})}
-								</div>
-							</div>
+						<div className="col-xs-12 col-md-3 sticky-sidebar">
+							<Ads/>
 						</div>
 					</div>
 				</div>
-			</section>
 		);
 	}
 }
@@ -111,6 +97,18 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getSubjectViaClass: (classSlug) => {
 			dispatch(action.getSubjectViaClass(classSlug))
+		},
+
+		changeGrade: (grade) => {
+			dispatch(action.changeGrade(grade))
+		},
+
+		changeClass: (classId) => {
+			dispatch(action.changeClass(classId))
+		},
+
+		changeSubject: (subject) => {
+			dispatch(action.changeSubject(subject))
 		}
 	}
 };
