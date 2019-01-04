@@ -12,6 +12,7 @@ import List from "../listDoc/List";
 import HomeListDocument from "../home/HomeListDocument";
 import Ads from "../home/Ads";
 import ListDocuments from "../listDoc/ListDocuments";
+import TagsFooter from "../tags/TagsFooter";
 
 class ListSubject extends Component {
 
@@ -24,7 +25,8 @@ class ListSubject extends Component {
 			}],
 			catSlug: this.props.match.params.class,
 			catName: '',
-			catId: 0
+			catId: 0,
+			tagFooter: []
 		}
 	}
 
@@ -32,6 +34,7 @@ class ListSubject extends Component {
 		//console.log(this.props.FilterReducer.selectedGrade);
 		let {catSlug} = this.state;
 		this.props.getSubjectViaClass(catSlug);
+		this.props.getTagFooter(catSlug);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -48,6 +51,12 @@ class ListSubject extends Component {
 				subjects: nextProps.SubjectReducer.subjectInClass.subjects,
 				catName: nextProps.SubjectReducer.subjectInClass.name,
 				catId: nextProps.SubjectReducer.subjectInClass.id,
+			});
+		}
+
+		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
+			this.setState({
+				tagFooter: nextProps.TagCloudReducer.tagsFooter
 			})
 		}
 
@@ -56,7 +65,7 @@ class ListSubject extends Component {
 
 	render() {
 
-		let {subjects, catSlug, catName, catId} = this.state;
+		let {subjects, catSlug, catName, catId, tagFooter} = this.state;
 
 		return (
 				<div className="document-wrapper home-wrapper">
@@ -84,6 +93,11 @@ class ListSubject extends Component {
 							<Ads/>
 						</div>
 					</div>
+
+					<TagsFooter
+						classLevel={catName}
+						tags={tagFooter}
+					/>
 				</div>
 		);
 	}
@@ -109,6 +123,10 @@ const mapDispatchToProps = (dispatch) => {
 
 		changeSubject: (subject) => {
 			dispatch(action.changeSubject(subject))
+		},
+
+		getTagFooter: (className) => {
+			dispatch(action.getTagFooter(className))
 		}
 	}
 };

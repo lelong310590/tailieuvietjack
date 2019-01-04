@@ -45,7 +45,7 @@ class Header extends Component {
 								</Link>
 							</div>
 							<div className="header-about">
-								<a href=""><i className="fas fa-award"></i></a>
+								<Link to={'/static-post/gioi-thieu'}><i className="fas fa-award"></i></Link>
 							</div>
 
 							{!AuthReducer.loggedIn ? (

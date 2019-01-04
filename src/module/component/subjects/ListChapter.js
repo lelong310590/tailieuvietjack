@@ -12,6 +12,7 @@ import Filter from "../home/Filter";
 import List from "../listDoc/List";
 import ListDocuments from "../listDoc/ListDocuments";
 import Ads from "../home/Ads";
+import TagsFooter from "../tags/TagsFooter";
 
 class ListChapter extends Component {
 
@@ -28,13 +29,15 @@ class ListChapter extends Component {
 			catName: '',
 			subjectName: '',
 			subjectThumbnail: '',
-			catId: 0
+			catId: 0,
+			tagFooter: []
 		}
 	}
 
 	componentDidMount = () => {
 		let {catSlug, subjectSlug} = this.state;
 		this.props.getChapter(catSlug, subjectSlug);
+		this.props.getTagFooter(catSlug, subjectSlug);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -58,12 +61,18 @@ class ListChapter extends Component {
 			})
 		}
 
+		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
+			this.setState({
+				tagFooter: nextProps.TagCloudReducer.tagsFooter
+			})
+		}
+
 		return true;
 	};
 
 	render() {
 
-		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail} = this.state;
+		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, tagFooter} = this.state;
 
 		return (
 			<div className="document-wrapper home-wrapper">
@@ -93,6 +102,11 @@ class ListChapter extends Component {
 						<Ads/>
 					</div>
 				</div>
+
+				<TagsFooter
+					classLevel={catName}
+					tags={tagFooter}
+				/>
 			</div>
 		);
 	}
@@ -106,6 +120,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getChapter: (categorySlug, subjectSlug) => {
 			dispatch(action.getChapter(categorySlug, subjectSlug))
+		},
+
+		getTagFooter: (className, subjectName) => {
+			dispatch(action.getTagFooter(className, subjectName))
 		}
 	}
 };

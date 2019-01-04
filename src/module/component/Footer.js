@@ -11,13 +11,13 @@ class Footer extends Component {
 						<div className="row">
 							<div className="footer-left col-xs-12 col-md-9">
 								<ul className="link">
-									<li><Link className="bold-link" to="">Dành cho người bán</Link></li>
-									<li><Link className="bold-link" to="">Dành cho người mua</Link></li>
-									<li><Link to="">Hướng dẫn thanh toán</Link></li>
-									<li><Link to="">Giới thiệu</Link></li>
-									<li><Link to="">Câu hỏi thường gặp</Link></li>
-									<li><Link to="">Quy định chính sách bán tài liệu</Link></li>
-									<li><Link to="">Hướng dẫn thanh toán</Link></li>
+									<li><Link className="bold-link" to={'/static-post/danh-cho-nguoi-ban'}>Dành cho người bán</Link></li>
+									<li><Link className="bold-link" to={'/static-post/danh-cho-nguoi-mua'}>Dành cho người mua</Link></li>
+									<li><Link to={'/static-post/huong-dan-thanh-toan'}>Hướng dẫn thanh toán</Link></li>
+									<li><Link to={'/static-post/gioi-thieu'}>Giới thiệu</Link></li>
+									<li><Link to={'/static-post/cau-hoi-thuong-gap'}>Câu hỏi thường gặp</Link></li>
+									<li><Link to={'/static-post/quy-dinh-chinh-sach-ban-tai-lieu'}>Quy định chính sách bán tài liệu</Link></li>
+									<li><Link to={'/static-post/huong-dan-thanh-toan'}>Hướng dẫn thanh toán</Link></li>
 								</ul>
 							</div>
 

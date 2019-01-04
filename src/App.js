@@ -25,6 +25,7 @@ import Download from "./module/component/doc/Download";
 import ListSubject from "./module/component/class/ListSubject";
 import ListChapter from "./module/component/subjects/ListChapter";
 import ThematicListDoc from "./module/component/thematic/ThematicListDoc";
+import StaticPost from "./module/component/post/StaticPost";
 
 const locationHelper = LocationHelper({});
 
@@ -90,7 +91,7 @@ class App extends Component {
 
 							<Route exact={true} path={'/tim-kiem'} component={CatDoc} />
 
-
+							<Route exact={true} path={'/static-post/:slug'} component={StaticPost} />
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

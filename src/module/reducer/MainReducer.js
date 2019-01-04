@@ -15,6 +15,7 @@ import TagCloudReducer from './TagCloudReducer';
 import GradeReducer from './GradeReducer';
 import FilterReducer from './FilterReducer';
 import HomeReducer from './HomeReducer';
+import PostReducer from './PostReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -32,7 +33,8 @@ const MainReducer = combineReducers({
 	TagCloudReducer,
 	GradeReducer,
 	FilterReducer,
-	HomeReducer
+	HomeReducer,
+	PostReducer
 });
 
 export default MainReducer;

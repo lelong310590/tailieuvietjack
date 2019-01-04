@@ -548,3 +548,68 @@ export const resetListSubject = () => ({
 	type: types.RESET_LIST_SUBJECT,
 	payload: []
 });
+
+//get post
+export const getPostRequest = () => ({
+	type: types.GET_POST_REQUEST
+});
+
+export const getPostSuccess = (payload) => ({
+	type: types.GET_POST_SUCCESS,
+	payload
+});
+
+export const getPostError = (err) => ({
+	type: types.GET_POST_ERROR,
+	err
+});
+
+export const getPost = (slug) => {
+	return (dispatch) => {
+		dispatch(getPostRequest());
+		axios.get(api.API_GET_POST, {
+			params: {
+				slug
+			}
+		})
+			.then(response => {
+				dispatch(getPostSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getPostError(err))
+			})
+	}
+}
+
+//get tag footer
+export const getTagFooterRequest = () => ({
+	type: types.GET_TAG_FOOTER_REQUEST
+});
+
+export const getTagFooterSuccess = (payload) => ({
+	type: types.GET_TAG_FOOTER_SUCCESS,
+	payload
+});
+
+export const getTagFooterError = (err) => ({
+	type: types.GET_TAG_FOOTER_ERROR,
+	err
+});
+
+export const getTagFooter = (className, subjectName = null) => {
+	return (dispatch) => {
+		dispatch(getTagCloudRequest());
+		axios.get(api.API_GET_TAG_FOOTER, {
+			params: {
+				className,
+				subjectName
+			}
+		})
+			.then(response => {
+				dispatch(getTagFooterSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getTagFooterError(err))
+			})
+	}
+};
