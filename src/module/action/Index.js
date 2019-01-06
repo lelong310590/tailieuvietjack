@@ -613,3 +613,47 @@ export const getTagFooter = (className, subjectName = null) => {
 			})
 	}
 };
+
+//update user
+export const postUpdateUserRequest = () => ({
+	type: types.POST_UPDATE_USER_REQUEST,
+	loading: true
+});
+
+export const postUpdateUserSuccess = (payload) => ({
+	type: types.POST_UPDATE_USER_SUCCESS,
+	payload
+});
+
+export const postUpdateUserError = (err) => ({
+	type: types.POST_UPDATE_USER_ERROR,
+	err
+});
+
+export const postUpdateUser = (obj, token) => {
+	return (dispatch) => {
+
+		let formData = new FormData();
+
+		formData.append('firstName', obj.firstName);
+		formData.append('lastName', obj.lastName);
+		formData.append('userId', obj.userId);
+		formData.append('sex', obj.sex);
+
+		let config = {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'multipart/form-data',
+				Authorization: token
+			},
+		};
+		dispatch(postUpdateUserRequest());
+		axios.post(api.API_UPDATE_USER, formData, config)
+			.then(response => {
+				dispatch(postUpdateUserSuccess(response))
+			})
+			.catch(err => {
+				dispatch(postUpdateUserError(err))
+			})
+	}
+};

@@ -14,7 +14,9 @@ let initialState = {
 	profit: 0,
 	totalMoney: 0,
 	activeDoc: 0,
-	unActiveDoc: 0
+	unActiveDoc: 0,
+	onLoading: false,
+	updateSuccess: false
 };
 
 let UserReducer = (state = initialState, action) => {
@@ -34,6 +36,33 @@ let UserReducer = (state = initialState, action) => {
 				totalMoney: parseInt(user.get_wallet.balance_page + user.get_wallet.balance_pay),
 				activeDoc: parseInt(user.active_doc),
 				unActiveDoc: parseInt(user.unactive_doc)
+			};
+
+		case types.POST_UPDATE_USER_REQUEST:
+			return {
+				...state,
+				onLoading: true
+			};
+
+		case types.POST_UPDATE_USER_SUCCESS:
+			console.log('sex: ', action.payload.data.sex);
+			let sex = 0;
+
+			if (action.payload.data.sex === 'male') {
+				sex = 1;
+			} else if (action.payload.data.sex === 'female') {
+				sex = 2;
+			} else {
+				sex = 0
+			}
+
+			return {
+				...state,
+				firstName: action.payload.data.first_name,
+				lastName: action.payload.data.last_name,
+				gender: sex,
+				onLoading: false,
+				updateSuccess: true
 			};
 
 		case types.GET_USER_INFO_FAIL:

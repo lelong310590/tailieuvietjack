@@ -5,6 +5,10 @@ import DatePicker from 'react-date-picker';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router";
 import Meta from "../support/Meta";
+import * as action from './../../action/Index';
+import Loading from "../support/Loading";
+import {Link} from "react-router-dom";
+import {Alert} from "react-bootstrap";
 
 class Information extends Component {
 
@@ -22,7 +26,9 @@ class Information extends Component {
 			address: '',
 			gender: 0,
 			profit: 0,
-			totalMoney: 0
+			totalMoney: 0,
+			onLoading: false,
+			updateSuccess: false
 		}
 	}
 
@@ -31,6 +37,17 @@ class Information extends Component {
 		this.setState({
 			id, firstName, lastName, email, thumbnail, address, gender
 		})
+	};
+
+	shouldComponentUpdate = (nextProps, nextState) => {
+		if (this.props.UserReducer !== nextProps.UserReducer) {
+			let {id, firstName, lastName, email, thumbnail, address, gender, onLoading, updateSuccess} = nextProps.UserReducer;
+			this.setState({
+				id, firstName, lastName, email, thumbnail, address, gender, onLoading, updateSuccess
+			})
+		}
+
+		return true;
 	};
 
 	onHandleChange = (event) => {
@@ -44,12 +61,23 @@ class Information extends Component {
 
 	onHandleSubmit = (event) => {
 		event.preventDefault();
+		let {id, firstName, lastName, gender} = this.state;
 
+		let obj = {
+			firstName: firstName,
+			lastName: lastName,
+			userId: id,
+			sex: gender
+		};
+
+		let token = localStorage.getItem('accessToken');
+
+		this.props.postUpdateUser(obj, token);
 	};
 
 	render() {
 
-		let {firstName, lastName, birth, gender, address, email} = this.state;
+		let {firstName, lastName, birth, gender, address, email, onLoading, updateSuccess} = this.state;
 
 		return (
 			<section className="user-wrapper">
@@ -77,7 +105,19 @@ class Information extends Component {
 								<div className="user-main-setting-wrapper">
 									<h1 className="user-main-setting-title">Thông tin cá nhân</h1>
 									<div className="user-main-setting-content">
+
+										{onLoading &&
+											<Loading/>
+										}
+
 										<form className="info-user-cnt" onSubmit={this.onHandleSubmit}>
+
+											{updateSuccess &&
+												<Alert bsStyle="success">
+													Chúc mừng ! Bạn đã cập nhật tài khoản thành công<br/>
+												</Alert>
+											}
+
 											<div className="form-group">
 												<label>Họ và tên đệm</label>
 												<input
@@ -101,15 +141,6 @@ class Information extends Component {
 											</div>
 
 											<div className="form-group">
-												<label>Ngày sinh</label>
-												<DatePicker
-													handleChangeBirth={this.onHandleChange}
-													value={birth}
-													name="birth"
-												/>
-											</div>
-
-											<div className="form-group">
 												<label>Giới tính</label>
 												<select
 													className="form-control"
@@ -123,16 +154,16 @@ class Information extends Component {
 												</select>
 											</div>
 
-											<div className="form-group">
-												<label>Địa chỉ</label>
-												<input
-													type="text"
-													name="address"
-													value={address}
-													className="form-control"
-													onChange={this.onHandleChange}
-												/>
-											</div>
+											{/*<div className="form-group">*/}
+												{/*<label>Địa chỉ</label>*/}
+												{/*<input*/}
+													{/*type="text"*/}
+													{/*name="address"*/}
+													{/*value={address}*/}
+													{/*className="form-control"*/}
+													{/*onChange={this.onHandleChange}*/}
+												{/*/>*/}
+											{/*</div>*/}
 
 											<div className="form-group">
 												<label>Email:</label>
@@ -164,4 +195,12 @@ const mapStateToProps = (state) => {
 	return state;
 };
 
-export default withRouter(connect(mapStateToProps, null) (Information));
+const mapDispatchToProps = (dispatch) => {
+	return {
+		postUpdateUser: (obj, token) => {
+			dispatch(action.postUpdateUser(obj, token))
+		}
+	}
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps) (Information));
