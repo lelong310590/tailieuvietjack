@@ -86,7 +86,11 @@ class List extends Component {
 				<div className={itemClass} key={index}>
 					<div className="document-item">
 						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-							<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+							{value.thumbnail !== null ? (
+								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+							) : (
+								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+							)}
 						</Link>
 						<Link to={'/tai-lieu/' + value.id} className="document-title">
 							{value.name}
