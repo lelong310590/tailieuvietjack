@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Loading from "../support/Loading";
 import {Link} from "react-router-dom";
 import _ from 'lodash';
+import DocumentTag from "../support/DocumentTag";
 
 class HomeListDocument extends Component {
 
@@ -52,6 +53,11 @@ class HomeListDocument extends Component {
 										<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
 											<div className="document-item">
 												<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
+
+													<DocumentTag
+														format={value.formats}
+													/>
+
 													{_.isEmpty(value.thumbnail) ? (
 														<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
 													) : (

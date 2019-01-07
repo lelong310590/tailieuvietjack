@@ -6,6 +6,7 @@ import FilterList from "./FilterList";
 import axios from 'axios';
 import * as api from './../../const/Api';
 import Loading from "../support/Loading";
+import DocumentTag from "../support/DocumentTag";
 
 class List extends Component {
 
@@ -86,7 +87,12 @@ class List extends Component {
 				<div className={itemClass} key={index}>
 					<div className="document-item">
 						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-							{value.thumbnail !== null ? (
+
+							<DocumentTag
+								format={value.formats}
+							/>
+
+							{_.isEmpty(value.thumbnail) ? (
 								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 							) : (
 								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
