@@ -64,6 +64,34 @@ class Download extends Component {
 			})
 	};
 
+	downloadTheDocument = () => {
+		let {slug} = this.props.match.params;
+		let formData = new FormData();
+		formData.append('docId', slug);
+		let token = localStorage.getItem('accessToken');
+		let config = {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'multipart/form-data',
+				Authorization: token
+			},
+		};
+
+		axios.post(api.API_DOWNLOAD_DOCUMENT, formData, config)
+			.then(response => {
+				if (response.data.status === 'fail') {
+					alert(response.data.message);
+				}
+
+				if (response.data.status === 'success') {
+					window.open(api.API_GET_FILE_DOWNLOAD + '?name=' +  response.data.document);
+				}
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	};
+
 	render() {
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, formats,
 			seo_title, seo_description, pageLoadDone, tags, fileSize} = this.state;
@@ -73,7 +101,7 @@ class Download extends Component {
 			if (completed) {
 				return (
 					<div className="document-download-button">
-						<button>Tải xuống</button>
+						<button onClick={this.downloadTheDocument}>Tải xuống</button>
 						<span className="document-download-file-type text-uppercase">{formats}</span>
 						<span>({fileSize} KB)</span>
 					</div>
@@ -103,7 +131,7 @@ class Download extends Component {
 					<div className="box-download-inner">
 						<div className="row">
 							<div className="box-for-ads col-xs-12 col-md-4">
-
+								<img src="/lib/images/adsdownload.png" alt="" className="img-responsive"/>
 							</div>
 
 							<div className="box-download-content col-xs-12 col-md-8 document-detail">

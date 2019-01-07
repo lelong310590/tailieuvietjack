@@ -92,7 +92,7 @@ class List extends Component {
 								format={value.formats}
 							/>
 
-							{_.isEmpty(value.thumbnail) ? (
+							{value.thumbnail !== null ? (
 								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 							) : (
 								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>

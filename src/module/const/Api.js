@@ -42,3 +42,6 @@ export const API_GET_PRICE = BASE_URL + 'get-price';
 export const API_GET_HOME_LIST = BASE_URL + 'get-document-by-subject';
 
 export const API_GET_POST = BASE_URL + 'post/get-post-detail';
+
+export const API_DOWNLOAD_DOCUMENT = BASE_URL + 'download';
+export const API_GET_FILE_DOWNLOAD = BASE_URL + 'get-downloaded-document';
