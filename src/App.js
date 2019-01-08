@@ -26,6 +26,7 @@ import ListSubject from "./module/component/class/ListSubject";
 import ListChapter from "./module/component/subjects/ListChapter";
 import ThematicListDoc from "./module/component/thematic/ThematicListDoc";
 import StaticPost from "./module/component/post/StaticPost";
+import FinanceManager from "./module/component/user/FinanceManager";
 
 const locationHelper = LocationHelper({});
 
@@ -84,6 +85,7 @@ class App extends Component {
 
 							<Route exact={true} path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
+							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-chinh'} component={isAuthenticatedUser(FinanceManager)} />
 
 							<Route exact={true} path={'/cat/:class'} component={ListSubject} />
 							<Route exact={true} path={'/cat/:class/:subject'} component={ListChapter} />

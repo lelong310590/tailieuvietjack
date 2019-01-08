@@ -15,7 +15,8 @@ class Filter extends Component {
 			grade: 0,
 			selectedClass: 0,
 			subjectThumbnail: '',
-			subjectName: ''
+			subjectName: '',
+			tagsTrend: [],
 		}
 	}
 
@@ -78,6 +79,12 @@ class Filter extends Component {
 			})
 		}
 
+		if (this.props.tagsTrend !== nextProps.tagsTrend) {
+			this.setState({
+				tagsTrend: nextProps.tagsTrend
+			})
+		}
+
 		return true;
 	};
 
@@ -105,7 +112,7 @@ class Filter extends Component {
 
 	render() {
 
-		let {grade, classes, subjects, chapters,  selectedClass, subjectThumbnail, subjectName} = this.state;
+		let {grade, classes, subjects, chapters,  selectedClass, subjectThumbnail, subjectName, tagsTrend} = this.state;
 
 		return (
 			<div className="row">
@@ -143,7 +150,7 @@ class Filter extends Component {
 						</div>
 
 						<div className="master-filter-box">
-							{_.isEmpty(chapters) &&
+							{_.isEmpty(this.props.path) &&
 								<Fragment>
 									{_.map(subjects, (s, idx) => {
 										return (
@@ -154,6 +161,21 @@ class Filter extends Component {
 										)
 									})}
 								</Fragment>
+							}
+
+							{(_.isEmpty(chapters) && !_.isEmpty(tagsTrend)) &&
+								<div className="trend-wrapper">
+									<span>Xu hướng :</span>
+									<ul className="trend-link-list">
+										{_.map(tagsTrend, (tag, key) => {
+											return (
+												<li key={key}>
+													<Link to={''}>{tag.name}</Link>
+												</li>
+											)
+										})}
+									</ul>
+								</div>
 							}
 
 							{!_.isEmpty(chapters) &&

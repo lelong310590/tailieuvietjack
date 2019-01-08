@@ -182,9 +182,18 @@ class Document extends Component {
 									<Fragment>
 										{_.map(pageHtml, (page, i) => {
 											return (
-												<div className="document-detail-content-item" key={i}>
-													{ReactHtmlParser(page)}
-												</div>
+												<Fragment key={i}>
+													<div className="document-detail-content-item" >
+														{ReactHtmlParser(page)}
+													</div>
+
+													{(i !== (pageHtml.length - 1)) &&
+														<div className="document-middle-ads">
+															<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
+														</div>
+													}
+												</Fragment>
+												
 											)
 										})}
 									</Fragment>

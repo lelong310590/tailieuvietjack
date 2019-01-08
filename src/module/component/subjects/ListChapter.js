@@ -30,6 +30,7 @@ class ListChapter extends Component {
 			subjectName: '',
 			subjectThumbnail: '',
 			catId: 0,
+			tagsTrend: [],
 			tagFooter: []
 		}
 	}
@@ -57,7 +58,8 @@ class ListChapter extends Component {
 				catSlug: nextProps.ChapterReducer.chapter.category.slug,
 				subjectName: nextProps.ChapterReducer.chapter.subject.name,
 				subjectSlug: nextProps.ChapterReducer.chapter.subject.slug,
-				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail
+				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail,
+				tagsTrend: nextProps.ChapterReducer.chapter.tagsTrend
 			})
 		}
 
@@ -72,7 +74,7 @@ class ListChapter extends Component {
 
 	render() {
 
-		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, tagFooter} = this.state;
+		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, tagFooter, tagsTrend} = this.state;
 
 		return (
 			<div className="document-wrapper home-wrapper">
@@ -88,9 +90,11 @@ class ListChapter extends Component {
 
 						<Filter
 							history={this.props.history}
+							path={this.props.match.path}
 							chapters={chapters}
 							subjectName={subjectName}
 							subjectThumbnail={subjectThumbnail}
+							tagsTrend={tagsTrend}
 						/>
 
 						<div className="row">
