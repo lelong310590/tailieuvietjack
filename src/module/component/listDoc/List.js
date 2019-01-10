@@ -87,7 +87,6 @@ class List extends Component {
 				<div className={itemClass} key={index}>
 					<div className="document-item">
 						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-
 							<DocumentTag
 								format={value.formats}
 							/>

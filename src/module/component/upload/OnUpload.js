@@ -246,8 +246,8 @@ class OnUpload extends Component {
 		formData.append('category', classes);
 		formData.append('subject', subject);
 		formData.append('excerpt', description);
-		formData.append('thematic', description);
-		formData.append('chapter', description);
+		//formData.append('thematic', description);
+		formData.append('chapter', chapter);
 		formData.append('price', price);
 		formData.append('thumbnail', thumbnail);
 		formData.append('tags', JSON.stringify(tags));

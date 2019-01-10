@@ -5,11 +5,11 @@ class DocumentTag extends Component {
 		return (
 			<div className="document-tags">
 				{this.props.format === 'pdf' &&
-					<i className="fas fa-file-pdf" style={{color: 'red'}}></i>
+					<img src="/lib/images/pdf.png" alt="" className="img-responsive"/>
 				}
 
 				{(this.props.format === 'doc' || this.props.format === 'docx') &&
-					<i className="fas fa-file-word" style={{color: 'blue'}}></i>
+					<img src="/lib/images/doc.png" alt="" className="img-responsive"/>
 				}
 			</div>
 		);

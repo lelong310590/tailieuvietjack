@@ -79,8 +79,23 @@ class Home extends Component {
 								/>
 
 								<HomeListDocument
-									title={'Tài liệu môn toán'}
+									title={'Tài liệu môn Toán'}
 									documents={math}
+								/>
+
+								<HomeListDocument
+									title={'Tài liệu môn Lý'}
+									documents={phy}
+								/>
+
+								<HomeListDocument
+									title={'Tài liệu môn Hóa'}
+									documents={bio}
+								/>
+
+								<HomeListDocument
+									title={'Tài liệu môn tiếng Anh'}
+									documents={eng}
 								/>
 							</div>
 						</div>

@@ -183,7 +183,7 @@ class Intro extends Component {
 								<Dropzone
 									className="dropzone"
 									ref="dropzoneRef"
-									accept="application/pdf, application/msword"
+									accept=".pdf, .doc, .docx"
 									onDrop={(accepted, rejected) => { this.onDrop(accepted, rejected); }}
 									disabled={this.state.disabled}
 								>
