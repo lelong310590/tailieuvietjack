@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import * as api from './../../const/Api';
 import Loading from "../support/Loading";
+import DocumentTag from "../support/DocumentTag";
 
 class Related extends Component {
 
@@ -57,6 +58,9 @@ class Related extends Component {
 		let docsElem = _.map(docs, (value, index) => (
 			<div className="related-item" key={index}>
 				<div className="related-item-title">
+					<DocumentTag
+						format={value.formats}
+					/>
 					<Link to={'/tai-lieu/' + value.id}>{value.name}</Link>
 				</div>
 				<div className="document-info">
