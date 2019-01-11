@@ -2,7 +2,11 @@ import * as types from './../const/ActionType';
 
 let initialState = {
 	tags: [],
-	tagsFooter: []
+	tagsFooter: [],
+	documents: [],
+	singleTag: {
+		name: ''
+	}
 };
 
 let TagCloudReducer = (state = initialState, action) => {
@@ -18,6 +22,14 @@ let TagCloudReducer = (state = initialState, action) => {
 				...state,
 				tagsFooter: tags
 			};
+
+		case types.GET_DOCUMENT_BY_TAG_SUCCESS:
+			return {
+				...state,
+				documents: action.payload.data.document.data,
+				singleTag: action.payload.data.tag
+			};
+
 		case types.GET_TAG_CLOUD_SUCCESS:
 			return {
 				...state,

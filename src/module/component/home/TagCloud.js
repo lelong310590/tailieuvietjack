@@ -38,7 +38,7 @@ class TagCloud extends Component {
 						<TagClouds minSize={12}
 						          maxSize={35}
 						          tags={tags}
-						          onClick={tag => alert(`'${tag.value}' was selected!`)} />
+						          onClick={tag => {this.props.history.push('/tag/' + tag.slug)}} />
 					</div>
 				</div>
 			</div>

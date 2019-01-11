@@ -18,6 +18,7 @@
 .home-wrapper
 	& > .container
 		padding: 20px 15px
+		background: #fff
 
 .header-wrapper
 	display: flex
@@ -682,12 +683,13 @@
 				i
 					font-size: 10px
 					margin-left: 5px
+
+.collapse-detail-document
+	max-height: 75px
+	overflow: hidden
+
 .document-wrapper
 	background: #f8f8f8
-	& > .container
-		background: #fff
-		border-left: 1px solid #e8e8e8
-		border-right: 1px solid #e8e8e8
 	.breadcrumb-wrapper
 		margin-top: 25px
 	.document-detail
@@ -696,6 +698,11 @@
 			color: #333
 			line-height: 1.5em
 			margin: 0
+		.document-detail-nfomation-content, .document-detail-tags-list
+			padding: 15px
+		.document-list
+			padding: 15px
+			margin: 30px 0
 		.document-info
 			justify-content: normal
 			& > div
@@ -772,9 +779,23 @@
 				border-radius: 5px
 				&:hover, &:focus, &:active
 					background: #fa0
+.document-detail-expand-button
+	margin-top: 10px
+	span
+		color: $primary
+		cursor: pointer
+.doc-item-horizontal-info-infomation
+	h4
+		margin-bottom: 5px
+
+.doc-item-horizontal-info-infomation-content
+	margin-bottom: 5px
+
 .document-detail-nfomation-content, .document-detail-tags-list, .facebook-comment
 	background: #fff
 	border-radius: 5px
+.facebook-comment
+	padding: 15px
 .facebook-comment, .document-detail-infomation
 	margin-bottom: 30px
 .document-detail-tags
@@ -1694,3 +1715,18 @@
 					text-decoration: none
 					background: $primary
 					color: #fff
+.tag-list-wrapper
+	background: #f8f8f8
+	.tag-list-wrapper-inner
+		background: #fff
+		padding: 20px 15px
+		box-shadow: 0 2px 0 -1px #e8e8e8
+		.tag-list-title
+			margin-top: 0
+			font-size: 25px
+	.doc-item-horizontal
+		box-shadow: none
+		border: 1px solid #e8e8e8
+	.tag-list-ads-wrapper
+		max-width: 50%
+		margin: 15px auto

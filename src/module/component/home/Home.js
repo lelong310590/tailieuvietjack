@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import * as action from './../../action/Index';
 import HomeListDocument from "./HomeListDocument";
 import Ads from "./Ads";
+import TagCloud from "./TagCloud";
 
 class Home extends Component {
 
@@ -102,6 +103,12 @@ class Home extends Component {
 
 						<div className="col-xs-12 col-md-3 sticky-sidebar">
 							<Ads/>
+
+							<div style={{marginTop: '20px'}}>
+								<TagCloud
+									history={this.props.history}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

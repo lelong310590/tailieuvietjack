@@ -42,7 +42,7 @@ class Tags extends Component {
 							<ul>
 								{_.map(tags, (tag, idx) => {
 									return (
-										<li key={idx}><Link to="">{tag.name}</Link></li>
+										<li key={idx}><Link to={'/tag/' + tag.slug}>{tag.name}</Link></li>
 									)
 								})}
 							</ul>

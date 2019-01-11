@@ -27,6 +27,7 @@ import ListChapter from "./module/component/subjects/ListChapter";
 import ThematicListDoc from "./module/component/thematic/ThematicListDoc";
 import StaticPost from "./module/component/post/StaticPost";
 import FinanceManager from "./module/component/user/FinanceManager";
+import TagCategory from "./module/component/tags/TagCategory";
 
 const locationHelper = LocationHelper({});
 
@@ -90,6 +91,8 @@ class App extends Component {
 							<Route exact={true} path={'/cat/:class'} component={ListSubject} />
 							<Route exact={true} path={'/cat/:class/:subject'} component={ListChapter} />
 							<Route exact={true} path={'/chuyen-de/:thematic'} component={ThematicListDoc} />
+
+							<Route exact={true} path={'/tag/:slug'} component={TagCategory} />
 
 							<Route exact={true} path={'/tim-kiem'} component={CatDoc} />
 

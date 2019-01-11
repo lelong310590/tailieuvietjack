@@ -30,6 +30,7 @@ class Document extends Component {
 			ownerId: 0,
 			seo_title: '',
 			seo_description: '',
+			content: '',
 			pageHtml: [],
 			classLevel: {
 				id: 0,
@@ -101,6 +102,7 @@ class Document extends Component {
 					classLevel: response.data.get_class,
 					subject: response.data.get_subject,
 					tags: response.data.get_tags,
+					content: response.data.content
 				})
 			})
 			.catch(err => {
@@ -120,7 +122,7 @@ class Document extends Component {
 
 	render() {
 
-		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status,
+		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content,
 			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags} = this.state;
 
 		let {slug} = this.props.match.params;
@@ -217,7 +219,7 @@ class Document extends Component {
 							/>
 
 							<Infomation
-								excerpt={seo_description}
+								content={content}
 							/>
 
 							<Tags

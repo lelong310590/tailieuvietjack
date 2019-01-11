@@ -657,3 +657,35 @@ export const postUpdateUser = (obj, token) => {
 			})
 	}
 };
+
+//get document by tags
+export const getDocumentByTagRequest = () => ({
+	type: types.GET_DOCUMENT_BY_TAG_REQUEST
+});
+
+export const getDocumentByTagSuccess = (payload) => ({
+	type: types.GET_DOCUMENT_BY_TAG_SUCCESS,
+	payload
+});
+
+export const getDocumentByTagError = (err) => ({
+	type: types.GET_DOCUMENT_BY_TAG_ERROR,
+	err
+});
+
+export const getDocumentByTag = (tagSlug) => {
+	return (dispatch) => {
+		dispatch(getDocumentByTagRequest());
+		axios.get(api.API_GET_DOCUMENT_BY_TAG, {
+			params: {
+				tagSlug
+			}
+		})
+			.then(response => {
+				dispatch(getDocumentByTagSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getDocumentByTagError(err))
+			})
+	}
+};

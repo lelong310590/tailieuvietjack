@@ -10,6 +10,7 @@ export const API_UPDATE_USER = BASE_URL + 'user/update';
 export const API_GET_TREE = BASE_URL + 'tree-data';
 export const API_GET_TAGCLOUD = BASE_URL + 'tag-cloud';
 export const API_GET_TAG_FOOTER = BASE_URL + 'tag/get-tag-by-cat';
+export const API_GET_DOCUMENT_BY_TAG = BASE_URL + 'tag/get-document-by-tag';
 
 export const API_GET_CLASS_IN_GRADE = BASE_URL + 'class-via-grade';
 
