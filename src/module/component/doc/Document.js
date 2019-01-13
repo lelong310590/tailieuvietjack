@@ -128,7 +128,7 @@ class Document extends Component {
 		let {slug} = this.props.match.params;
 
 		return (
-			<section className="document-wrapper">
+			<section className="document-wrapper single-document-wrapper">
 
 				<Meta
 					title={seo_title}

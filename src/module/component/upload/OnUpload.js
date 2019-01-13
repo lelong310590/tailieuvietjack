@@ -345,7 +345,7 @@ class OnUpload extends Component {
 									src={tempThumbnail}
 									style={{height: 400, maxWidth: 500}}
 									// Cropper.js options
-									aspectRatio={150 / 180}
+									aspectRatio={297 / 385}
 									guides={true}
 								/>
 								<div className="crop-modal-action">

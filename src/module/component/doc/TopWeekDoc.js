@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import * as api from './../../const/Api';
 import Loading from "../support/Loading";
+import DocumentTag from "../support/DocumentTag";
 
 class TopWeekDoc extends Component {
 
@@ -16,7 +17,7 @@ class TopWeekDoc extends Component {
 	}
 
 	componentDidMount = () => {
-		axios.get(api.API_GET_LIST_DOC_BY_CAT, {
+		axios.get(api.API_GET_MOST_VIEW_BY_WEEK, {
 			params: {
 				week: true
 			}
@@ -43,7 +44,12 @@ class TopWeekDoc extends Component {
 				<Link to={'/tai-lieu/' + value.id} className="featured-document-item" key={index}>
 					<div className="no-document-item">{index + 1}</div>
 					<div className="featured-document-info">
-						<h4 className="featured-document-info-title">{value.name}</h4>
+						<h4 className="featured-document-info-title">
+							<DocumentTag
+								format={value.formats}
+							/>
+							{value.name}
+						</h4>
 						<div className="document-info">
 							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
 							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
