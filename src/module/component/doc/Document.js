@@ -12,6 +12,7 @@ import Meta from "../support/Meta";
 import ReactHtmlParser from 'react-html-parser';
 import Loading from "../support/Loading";
 import {Alert} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class Document extends Component {
 
@@ -162,10 +163,10 @@ class Document extends Component {
 
 							<div className="document-stats">
 								<div className="document-user">
-									<div className="header-user">
+									<Link className="header-user" to={'/trang-ca-nhan/' + ownerId}>
 										<img src={ownerAvatar ? ownerAvatar : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
 										<p className="header-user-name">{ownerFirstName} {ownerLastName}</p>
-									</div>
+									</Link>
 									<div className="document-report">
 										<button>Báo tài liệu vi phạm</button>
 									</div>

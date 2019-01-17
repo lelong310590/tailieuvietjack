@@ -7,6 +7,8 @@ export const API_POST_DELETE_DOCUMENT = BASE_URL + 'doc/delete';
 export const API_REGISTER = BASE_URL + 'auth/register';
 export const API_UPDATE_USER = BASE_URL + 'user/update';
 
+export const API_GET_AUTHOR = BASE_URL + 'user/get-author-info';
+
 export const API_GET_TREE = BASE_URL + 'tree-data';
 export const API_GET_TAGCLOUD = BASE_URL + 'tag-cloud';
 export const API_GET_TAG_FOOTER = BASE_URL + 'tag/get-tag-by-cat';

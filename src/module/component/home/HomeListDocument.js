@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Loading from "../support/Loading";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import _ from 'lodash';
 import DocumentTag from "../support/DocumentTag";
 
@@ -55,7 +55,6 @@ class HomeListDocument extends Component {
 												<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
 													<div className="document-item">
 														<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-
 															<DocumentTag
 																format={value.formats}
 															/>
@@ -72,9 +71,9 @@ class HomeListDocument extends Component {
 														<div className="document-price">
 															{value.formated_price}
 														</div>
-														<Link to={'/tai-lieu/' + value.id} className="document-author">
+														<NavLink to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}} className="document-author">
 															{value.get_member.first_name} {value.get_member.last_name}
-														</Link>
+														</NavLink>
 														<div className="document-info">
 															<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
 															<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>

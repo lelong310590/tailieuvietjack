@@ -508,6 +508,7 @@
 .header-user
 	display: flex
 	align-items: center
+	color: $primary
 	.user-avatar
 		max-width: 33px
 		border-radius: 3px
@@ -903,6 +904,7 @@
 		justify-content: space-between
 	.header-user
 		max-height: 62px
+		color: $primary
 		.header-user-name
 			font-size: 25px
 			max-width: unset
@@ -1736,3 +1738,56 @@
 	.tag-list-ads-wrapper
 		max-width: 50%
 		margin: 15px auto
+
+.author-status-wrapper
+	background: #fff
+	.author-status-button
+		display: flex
+		align-items: center
+		justify-content: flex-start
+		span
+			cursor: pointer
+			padding: 20px 25px
+			display: block
+			font-weight: 500
+			font-size: 15px
+			&:first-child
+				padding-left: 0
+		span.active
+			color: $primary
+			border-bottom: 1px solid $primary
+.author-document-wrapper
+	background: #f8f8f8
+	.document-list-wrapper
+		padding: 20px 0
+	.author-document-user-avatar
+		border: 2px solid #fff
+		margin-top: -90px
+		img
+			border-radius: 4px
+			width: 100%
+	.author-document-name
+		h4
+			margin-top: 25px
+			font-size: 25px
+			overflow: hidden
+			text-overflow: ellipsis
+			white-space: nowrap
+.author-total-information
+	display: flex
+	align-items: center
+	justify-content: space-around
+	margin-top: 15px
+	margin-top: 40px
+	.author-total-stats
+		display: flex
+		flex-direction: column
+		border-right: 1px solid #ccc
+		flex: 1
+		&:last-child
+			border-right: 0
+		span
+			font-size: 12px
+			color: #999
+			margin-bottom: 5px
+			font-weight: 700

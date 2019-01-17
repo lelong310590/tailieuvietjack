@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import _ from 'lodash';
 import FilterList from "./FilterList";
 import axios from 'axios';
@@ -103,9 +103,9 @@ class List extends Component {
 						<div className="document-price">
 							{value.formated_price}
 						</div>
-						<Link to={'/tai-lieu/' + value.id} className="document-author">
+						<NavLink to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}} className="document-author">
 							{value.get_member.first_name} {value.get_member.last_name}
-						</Link>
+						</NavLink>
 						<div className="document-info">
 							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
 							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
