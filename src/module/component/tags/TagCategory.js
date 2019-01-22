@@ -76,13 +76,13 @@ class TagCategory extends Component {
 													<DocumentTag
 														format={d.formats}
 													/>
-													<Link to={'/tai-lieu/' + d.id}>
+													<Link to={'/tai-lieu/' + d.id + '-' + d.slug}>
 														<img src={d.thumbnail ? d.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
 													</Link>
 												</div>
 												<div className="doc-item-horizontal-info">
 													<div className="doc-item-horizontal-info-infomation">
-														<h4><Link to={'/tai-lieu/' + d.id}>{d.name}</Link></h4>
+														<h4><Link to={'/tai-lieu/' + d.id + '-' + d.slug}>{d.name}</Link></h4>
 														<div className="doc-item-horizontal-info-infomation-content">
 															{d.excerpt}
 														</div>

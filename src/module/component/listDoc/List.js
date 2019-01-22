@@ -86,7 +86,7 @@ class List extends Component {
 			return (
 				<div className={itemClass} key={index}>
 					<div className="document-item">
-						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail">
 							<DocumentTag
 								format={value.formats}
 							/>
@@ -97,7 +97,7 @@ class List extends Component {
 								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
 							)}
 						</Link>
-						<Link to={'/tai-lieu/' + value.id} className="document-title">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title">
 							{value.name}
 						</Link>
 						<div className="document-price">

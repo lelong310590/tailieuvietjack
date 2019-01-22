@@ -54,7 +54,7 @@ class HomeListDocument extends Component {
 											return (
 												<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
 													<div className="document-item">
-														<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail">
 															<DocumentTag
 																format={value.formats}
 															/>
@@ -65,7 +65,7 @@ class HomeListDocument extends Component {
 																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 															)}
 														</Link>
-														<Link to={'/tai-lieu/' + value.id} className="document-title">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title">
 															{value.name}
 														</Link>
 														<div className="document-price">

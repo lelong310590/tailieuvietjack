@@ -692,6 +692,48 @@
 	max-height: 75px
 	overflow: hidden
 
+.document-download-top-button
+	cursor: pointer
+	&:hover, &:focus, &:active
+		.document-download-text
+			background: #fb0
+		.document-download-count
+			background-color: #fa0
+			&:before
+				border-right-color: #fa0
+	.document-download-text
+		height: 35px
+		width: 114px
+		float: left
+		text-align: center
+		line-height: 35px
+		color: #fff
+		text-transform: uppercase
+		background-color: #fa0
+		margin-right: 0
+		display: inline-block
+		font-size: 15px
+		padding: 0 15px
+	.document-download-count
+		display: inline-block
+		height: 35px
+		padding: 0 7px
+		line-height: 35px
+		text-align: center
+		background-color: #fb0
+		float: left
+		position: relative
+		color: #fff
+		font-size: 14px
+		font-weight: 600
+		&:before
+			content: ''
+			border: 7px solid transparent
+			border-right-color: #fb0
+			position: absolute
+			top: 10.5px
+			left: -13px
+
 .document-wrapper
 	background: #f8f8f8
 	//.breadcrumb-wrapper
@@ -710,7 +752,7 @@
 		.document-info
 			justify-content: normal
 			& > div
-				margin-right: 25px
+				margin-right: 20px
 		.document-stats
 			margin-bottom: 15px
 			margin-top: 15px
@@ -727,47 +769,6 @@
 					border: none
 					box-shadow: none
 					color: #fff
-		.document-download-top-button
-			cursor: pointer
-			&:hover, &:focus, &:active
-				.document-download-text
-					background: #fb0
-				.document-download-count
-					background-color: #fa0
-					&:before
-						border-right-color: #fa0
-			.document-download-text
-				height: 35px
-				width: 114px
-				float: left
-				text-align: center
-				line-height: 35px
-				color: #fff
-				text-transform: uppercase
-				background-color: #fa0
-				margin-right: 0
-				display: inline-block
-				font-size: 15px
-				padding: 0 15px
-			.document-download-count
-				display: inline-block
-				height: 35px
-				padding: 0 7px
-				line-height: 35px
-				text-align: center
-				background-color: #fb0
-				float: left
-				position: relative
-				color: #fff
-				font-size: 14px
-				font-weight: 600
-				&:before
-					content: ''
-					border: 7px solid transparent
-					border-right-color: #fb0
-					position: absolute
-					top: 10.5px
-					left: -13px
 		.document-detail-download-button
 			text-align: center
 			button
@@ -955,6 +956,7 @@
 				padding: 12px 0 10px 25px
 				color: #999
 				display: block
+				cursor: pointer
 				i
 					margin-right: 10px
 				&:hover 
@@ -1336,6 +1338,10 @@
 	background-color: #fff
 	position: relative
 	vertical-align: baseline
+	& > div
+		& > div
+			transform-origin: 0px 0px 0px
+			transform: scale(0.85)
 	img
 		display: block
 		max-width: 100%
@@ -1791,3 +1797,50 @@
 			color: #999
 			margin-bottom: 5px
 			font-weight: 700
+.document-report-wrapper
+	background: rgba(0,0,0,.5)
+	position: fixed
+	display: flex
+	justify-content: center
+	align-items: center
+	z-index: 9999
+	top: 0
+	right: 0
+	left: 0
+	bottom: 0
+	.document-report-content
+		width: 600px
+		background: #fff
+		padding: 35px
+		border-top: 5px solid $primary
+		position: relative
+		form
+			margin-top: 25px
+			button
+				color: #fff
+				background: $primary
+				border-radius: 0
+				border: none
+				margin-top: 15px
+	.document-report-close
+		position: absolute
+		top: 0
+		right: 20px
+		font-size: 35px
+		cursor: pointer
+.document-footer
+	background: #f8f8f8
+	position: fixed
+	bottom: 0
+	left: 0
+	width: 100%
+	z-index: 999
+	padding: 5px 0
+	border-top: 1px solid #ddd
+	.document-footer-wrapper
+		display: flex
+		align-items: center
+		justify-content: space-between
+		.document-footer-button
+			span
+				cursor: pointer

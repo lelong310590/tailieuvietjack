@@ -44,3 +44,15 @@ export const renderNavLink = (url, onsort, page, keyword = '') => {
 
 	return path;
 };
+
+// Get an element's distance from the top of the page
+export const getElemDistance = ( elem ) => {
+	var location = 0;
+	if (elem.offsetParent) {
+		do {
+			location += elem.offsetTop;
+			elem = elem.offsetParent;
+		} while (elem);
+	}
+	return location >= 0 ? location : 0;
+};

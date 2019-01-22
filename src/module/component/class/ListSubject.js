@@ -13,6 +13,7 @@ import HomeListDocument from "../home/HomeListDocument";
 import Ads from "../home/Ads";
 import ListDocuments from "../listDoc/ListDocuments";
 import TagsFooter from "../tags/TagsFooter";
+import Meta from "../support/Meta";
 
 class ListSubject extends Component {
 
@@ -69,6 +70,12 @@ class ListSubject extends Component {
 
 		return (
 				<div className="document-wrapper home-wrapper">
+
+					<Meta
+						title={catName}
+						description={catName}
+						keywords={catName}
+					/>
 
 					<div className="container">
 
