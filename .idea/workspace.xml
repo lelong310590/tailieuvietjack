@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -81,7 +84,7 @@
           <entry key="html" value="32" />
           <entry key="js" value="107616" />
           <entry key="json" value="2" />
-          <entry key="sass" value="18859" />
+          <entry key="sass" value="18905" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -91,7 +94,7 @@
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="107616" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Sass" value="18859" />
+          <entry key="Sass" value="18905" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -144,8 +147,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="1343" column="34" lean-forward="true" selection-start-line="1343" selection-start-column="34" selection-end-line="1343" selection-end-column="34" />
+            <state relative-caret-position="254">
+              <caret line="556" column="25" selection-start-line="556" selection-start-column="25" selection-end-line="556" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -617,12 +620,12 @@
       <workItem from="1548039771919" duration="181000" />
       <workItem from="1548059794866" duration="2101000" />
       <workItem from="1548178028753" duration="2058000" />
-      <workItem from="1548212233316" duration="5857000" />
+      <workItem from="1548212233316" duration="6473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="593754000" />
+    <option name="totallyTimeSpent" value="594370000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1080,8 +1083,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="1343" column="34" lean-forward="true" selection-start-line="1343" selection-start-column="34" selection-end-line="1343" selection-end-column="34" />
+        <state relative-caret-position="254">
+          <caret line="556" column="25" selection-start-line="556" selection-start-column="25" selection-end-line="556" selection-end-column="25" />
         </state>
       </provider>
     </entry>
