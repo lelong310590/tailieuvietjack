@@ -109,7 +109,7 @@ class Home extends Component {
 								/>
 
 								<HomeListDocument
-									title={'Tài liệu môn tiếng Anh'}
+									title={'Tài liệu môn Văn'}
 									documents={lite}
 								/>
 
@@ -119,7 +119,7 @@ class Home extends Component {
 								/>
 
 								<HomeListDocument
-									title={'Tài liệu môn lịch sử'}
+									title={'Tài liệu môn Sinh học'}
 									documents={bio}
 								/>
 							</div>
