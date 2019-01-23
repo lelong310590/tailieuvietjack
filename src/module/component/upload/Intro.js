@@ -72,6 +72,7 @@ class Intro extends Component {
 							accepted[index].percent = percent;
 						}
 
+
 						this.setState({accepted})
 					},
 					cancelToken: accepted[index].cancelUploadToken.token
