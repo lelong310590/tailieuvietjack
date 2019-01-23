@@ -3,8 +3,10 @@ import * as types from './../const/ActionType';
 let initialState = {
 	math: [],
 	phy: [],
-	bio: [],
-	eng: []
+	che: [],
+	eng: [],
+	lite: [],
+	bio: []
 };
 
 let HomeReducer = (state = initialState, action) => {
@@ -14,8 +16,10 @@ let HomeReducer = (state = initialState, action) => {
 				...state,
 				math: action.payload.data.math,
 				phy: action.payload.data.phy,
-				bio: action.payload.data.bio,
+				che: action.payload.data.che,
 				eng: action.payload.data.eng,
+				lite: action.payload.data.lite,
+				bio: action.payload.data.bio,
 			};
 		default:
 			return state;
