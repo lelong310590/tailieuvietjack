@@ -16,7 +16,9 @@ class Home extends Component {
 			math: [],
 			phy: [],
 			che: [],
-			eng: []
+			eng: [],
+			bio: [],
+			lite: []
 		}
 	}
 
@@ -50,6 +52,18 @@ class Home extends Component {
 		if (this.props.HomeReducer.eng !== nextProps.HomeReducer.eng) {
 			this.setState({
 				eng: nextProps.HomeReducer.eng
+			})
+		}
+
+		if (this.props.HomeReducer.bio !== nextProps.HomeReducer.bio) {
+			this.setState({
+				bio: nextProps.HomeReducer.bio
+			})
+		}
+
+		if (this.props.HomeReducer.lite !== nextProps.HomeReducer.lite) {
+			this.setState({
+				lite: nextProps.HomeReducer.lite
 			})
 		}
 
