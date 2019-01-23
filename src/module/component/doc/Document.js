@@ -136,6 +136,8 @@ class Document extends Component {
 		let {status} = this.state;
 		if (status === 'active') {
 			this.props.history.push('/tai-lieu/download/' + slug);
+		} else {
+			alert('Tài liệu này đang chờ duyệt')
 		}
 	};
 
@@ -195,8 +197,8 @@ class Document extends Component {
 						<div className="col-xs-12 col-md-9 document-detail">
 
 							{(status === 'disable') &&
-								<Alert bsStyle="danger text-center">
-									<strong>Tài liệu này đang chờ ban quản trị duyệt</strong>
+								<Alert bsStyle="danger">
+									<div className="text-center">Tài liệu này đang chờ ban quản trị duyệt</div>
 								</Alert>
 							}
 

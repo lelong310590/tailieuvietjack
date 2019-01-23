@@ -673,12 +673,13 @@ export const getDocumentByTagError = (err) => ({
 	err
 });
 
-export const getDocumentByTag = (tagSlug) => {
+export const getDocumentByTag = (tagSlug, page) => {
 	return (dispatch) => {
 		dispatch(getDocumentByTagRequest());
 		axios.get(api.API_GET_DOCUMENT_BY_TAG, {
 			params: {
-				tagSlug
+				tagSlug,
+				page
 			}
 		})
 			.then(response => {
