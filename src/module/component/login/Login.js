@@ -55,10 +55,7 @@ class Login extends Component {
 	 * */
 	socialLogin = (provider, formData) => {
 		let config = {
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'multipart/form-data'
-			},
+			headers: {'Content-Type': 'multipart/form-data' }
 		};
 
 		let url = '';
