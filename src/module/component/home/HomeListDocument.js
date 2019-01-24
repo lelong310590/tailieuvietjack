@@ -54,7 +54,7 @@ class HomeListDocument extends Component {
 											return (
 												<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
 													<div className="document-item">
-														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
 															<DocumentTag
 																format={value.formats}
 															/>
@@ -65,13 +65,17 @@ class HomeListDocument extends Component {
 																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 															)}
 														</Link>
-														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
 															{value.name}
 														</Link>
 														<div className="document-price">
 															{value.formated_price}
 														</div>
-														<NavLink to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}} className="document-author">
+														<NavLink
+															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+															className="document-author"
+															title={value.get_member.first_name + ' ' + value.get_member.last_name}
+														>
 															{value.get_member.first_name} {value.get_member.last_name}
 														</NavLink>
 														<div className="document-info">

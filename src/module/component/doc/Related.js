@@ -61,7 +61,7 @@ class Related extends Component {
 					<DocumentTag
 						format={value.formats}
 					/>
-					<Link to={'/tai-lieu/' + value.id}>{value.name}</Link>
+					<Link to={'/tai-lieu/' + value.id} title={value.name}>{value.name}</Link>
 				</div>
 				<div className="document-info">
 					<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>

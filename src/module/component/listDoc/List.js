@@ -86,24 +86,28 @@ class List extends Component {
 			return (
 				<div className={itemClass} key={index}>
 					<div className="document-item">
-						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
 							<DocumentTag
 								format={value.formats}
 							/>
 
 							{value.thumbnail !== null ? (
-								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+								<img src={value.thumbnail} alt={value.name} className="img-responsive center-block"/>
 							) : (
-								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+								<img src="/lib/images/thumbnail.jpg" alt={value.name} className="img-responsive center-block"/>
 							)}
 						</Link>
-						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
 							{value.name}
 						</Link>
 						<div className="document-price">
 							{value.formated_price}
 						</div>
-						<NavLink to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}} className="document-author">
+						<NavLink
+							to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+							className="document-author"
+							title={value.get_member.first_name + ' ' + value.get_member.last_name}
+						>
 							{value.get_member.first_name} {value.get_member.last_name}
 						</NavLink>
 						<div className="document-info">
