@@ -41,6 +41,10 @@ class Login extends Component {
 			formData.append('name', data._profile.name);
 			formData.append('email', data._profile.email);
 			formData.append('id', data._profile.id);
+			formData.append('grant_type', 'password');
+			formData.append('client_id', '8');
+			formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+			formData.append('scope', '');
 
 			this.socialLogin(data._provider, formData);
 		}
