@@ -1,5 +1,8 @@
 export const BASE_URL = process.env.REACT_APP_API_URL;
 
+export const API_POST_FACEBOOK_LOGIN = BASE_URL + 'auth/login/facebook';
+export const API_POST_GOOGLE_LOGIN = BASE_URL + 'auth/login/google';
+
 export const API_LOGIN = BASE_URL + 'auth/login';
 export const API_GET_USER = BASE_URL + 'user/profile';
 export const API_GET_USER_DOCUMENT = BASE_URL + 'user/document';
