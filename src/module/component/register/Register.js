@@ -188,7 +188,7 @@ class Register extends Component {
 
 							<SocialLogin
 								provider='google'
-								appId='844845104372-h8htjngp1os1tb79nksc54dq7tko4r8n.apps.googleusercontent.com'
+								appId='265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com'
 								onLoginSuccess={this.handleSocialLogin}
 								onLoginFailure={this.handleSocialLoginFailure}
 							>
