@@ -160,18 +160,18 @@ class Download extends Component {
 						</div>
 					</div>
 
-					<div className="box-related-download">
-						<List
-							title={'Tài liệu thường được tải thêm'}
-							itemClass={'col-xs-6 col-md-2 col-lg-2'}
-							getRelated={
-								{
-									tags: tags,
-									currentDocId: slug
-								}
-							}
-						/>
-					</div>
+					{/*<div className="box-related-download">*/}
+						{/*<List*/}
+							{/*title={'Tài liệu thường được tải thêm'}*/}
+							{/*itemClass={'col-xs-6 col-md-2 col-lg-2'}*/}
+							{/*getRelated={*/}
+								{/*{*/}
+									{/*tags: tags,*/}
+									{/*currentDocId: slug*/}
+								{/*}*/}
+							{/*}*/}
+						{/*/>*/}
+					{/*</div>*/}
 				</div>
 			</div>
 		);

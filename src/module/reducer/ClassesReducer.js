@@ -1,7 +1,8 @@
 import * as types from './../const/ActionType';
 
 let initialState = {
-	classes: []
+	classes: [],
+	featuredDoc: []
 };
 
 let ClassesReducer = (state = initialState, action) => {
@@ -12,6 +13,13 @@ let ClassesReducer = (state = initialState, action) => {
 				...state,
 				classes
 			};
+
+		case types.GET_MOST_VIEW_SUCCESS:
+			return {
+				...state,
+				featuredDoc: action.payload.data
+			};
+
 		default:
 			return state;
 	}

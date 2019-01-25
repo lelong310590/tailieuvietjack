@@ -723,3 +723,31 @@ export const getAuthor = (id, onsort, page) => {
 			})
 	}
 };
+
+//most view
+export const getMostViewRequest = () => ({
+	type: types.GET_MOST_VIEW_REQUEST
+});
+
+export const getMostViewSuccess = (payload) => ({
+	type: types.GET_MOST_VIEW_SUCCESS,
+	payload
+});
+
+export const getMostViewError = (err) => ({
+	type: types.GET_MOST_VIEW_ERROR,
+	payload: err
+});
+
+export const getMostView = () => {
+	return (dispatch) => {
+		dispatch(getMostViewRequest());
+		axios.get(api.API_GET_MOST_VIEW_BY_WEEK)
+			.then(response => {
+				dispatch(getMostViewSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getMostViewError(err))
+			})
+	}
+};

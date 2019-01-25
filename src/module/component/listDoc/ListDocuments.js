@@ -3,6 +3,7 @@ import _ from "lodash";
 import {Link, NavLink} from "react-router-dom";
 import DocumentTag from "../support/DocumentTag";
 import * as helper from "../../Support";
+import SpecialDocument from "./SpecialDocument";
 
 class ListDocuments extends Component {
 
@@ -22,6 +23,9 @@ class ListDocuments extends Component {
 		const { viewStyle } = this.state;
 		return (
 			<div className="category-document-wrapper">
+
+				<SpecialDocument/>
+
 				<div className="category-document-filter" style={{ marginBottom: "20px" }}>
 					<div className="category-document-filter-order">
 						<div className="category-document-filter-order-item">
