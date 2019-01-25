@@ -209,6 +209,10 @@ class Document extends Component {
 								<div className="document-info-download"><i className="fas fa-file-download"></i> {download}</div>
 							</div>
 
+							<div className="document-middle-ads">
+								<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+							</div>
+
 							<div className="document-stats">
 								<div className="document-user">
 									<Link className="header-user" to={'/trang-ca-nhan/' + ownerId + '?onsort=all'}>

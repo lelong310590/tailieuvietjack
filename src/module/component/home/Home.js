@@ -87,6 +87,11 @@ class Home extends Component {
 							/>
 
 							<div className="row">
+
+								<div className="document-middle-ads">
+									<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+								</div>
+
 								<List
 									title={'Tài liệu nổi bật'}
 									itemClass={'col-xs-6 col-md-3 col-lg-3'}
@@ -101,6 +106,10 @@ class Home extends Component {
 									title={'Tài liệu môn Lý'}
 									documents={phy}
 								/>
+
+								<div className="document-middle-ads">
+									<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+								</div>
 
 								<HomeListDocument
 									title={'Tài liệu môn Hóa'}
