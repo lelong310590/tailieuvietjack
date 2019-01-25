@@ -78,8 +78,8 @@ class App extends Component {
 							<Route exact={true} path={'/doi-lai-mat-khau/:token'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
 
 							<Route exact={true} path={'/upload-tai-lieu'} component={Intro}/>
-							<Route exact={true} path={'cat/:class/:subject'} component={List}/>
-							<Route exact={true} path={'cat/:class'} component={List}/>
+							{/*<Route exact={true} path={'cat/:class/:subject'} component={List}/>*/}
+							{/*<Route exact={true} path={'cat/:class'} component={List}/>*/}
 
 							<Route exact={true} path={'/tai-lieu/:slug'} component={Document}/>
 							<Route exact={true} path={'/tai-lieu/sua-tai-lieu/:slug'} component={isAuthenticatedUser(EditDocument)}/>

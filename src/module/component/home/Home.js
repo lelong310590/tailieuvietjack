@@ -82,7 +82,6 @@ class Home extends Component {
 				<div className="document-wrapper home-wrapper">
 					<div className="container">
 						<div className="col-xs-12 col-md-9">
-
 							<Filter
 								history={this.props.history}
 							/>

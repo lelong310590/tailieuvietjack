@@ -71,6 +71,9 @@ class HomeListDocument extends Component {
 														<div className="document-price">
 															{value.formated_price}
 														</div>
+														<Link to={'/tai-lieu/' + value.id} className="document-author">
+															{/*{value.get_member.first_name} {value.get_member.last_name}*/}
+														</Link>
 														<NavLink
 															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
 															className="document-author"

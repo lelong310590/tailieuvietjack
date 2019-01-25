@@ -13,6 +13,8 @@ import List from "../listDoc/List";
 import ListDocuments from "../listDoc/ListDocuments";
 import Ads from "../home/Ads";
 import TagsFooter from "../tags/TagsFooter";
+import * as api from "../../const/Api";
+import axios from "axios";
 
 class ListChapter extends Component {
 
@@ -39,6 +41,8 @@ class ListChapter extends Component {
 		let {catSlug, subjectSlug} = this.state;
 		this.props.getChapter(catSlug, subjectSlug);
 		this.props.getTagFooter(catSlug, subjectSlug);
+
+		this.fetchData({ catSlug, subjectSlug });
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -61,6 +65,9 @@ class ListChapter extends Component {
 				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail,
 				tagsTrend: nextProps.ChapterReducer.chapter.tagsTrend
 			})
+
+			let {catSlug, subjectSlug} = this.state;
+			this.fetchData({ catSlug, subjectSlug });
 		}
 
 		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
@@ -72,9 +79,35 @@ class ListChapter extends Component {
 		return true;
 	};
 
+	fetchData = ({ catSlug, subjectSlug }) => {
+
+		let apiUrl = api.API_LIST_DOC;
+
+		this.setState({
+			onLoading: true,
+		});
+
+		axios.get(apiUrl, {
+			params: { catSlug, subjectSlug }
+		})
+			.then(response => {
+				this.setState({
+					items: response.data
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({
+					onLoading: false
+				})
+			})
+	};
+
 	render() {
 
-		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, tagFooter, tagsTrend} = this.state;
+		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, tagFooter, tagsTrend, items} = this.state;
 
 		return (
 			<div className="document-wrapper home-wrapper">
@@ -98,7 +131,7 @@ class ListChapter extends Component {
 						/>
 
 						<div className="row">
-							<ListDocuments/>
+							<ListDocuments items={items}/>
 						</div>
 					</div>
 
