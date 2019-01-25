@@ -73,7 +73,7 @@ class HomeListDocument extends Component {
 															{value.formated_price}
 														</div>
 														<Link to={'/tai-lieu/' + value.id} className="document-author">
-															{value.get_member.first_name} {value.get_member.last_name}
+															{/*{value.get_member.first_name} {value.get_member.last_name}*/}
 														</Link>
 														<div className="document-info">
 															<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>

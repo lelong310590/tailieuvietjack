@@ -26,6 +26,7 @@ export const API_GET_LIST_CHAPTER = BASE_URL + 'chapter/get-list-chapter';
 export const API_GET_THEMATIC = BASE_URL + 'thematic/get';
 export const API_GET_DOC_IN_THEMATIC = BASE_URL + 'thematic/get-document';
 
+export const API_LIST_DOC = BASE_URL + 'doc';
 export const API_UPLOAD_DOC = BASE_URL + 'doc/upload';
 export const API_GET_AUTOCOMPLETE_TAG = BASE_URL + 'tag/get-autocomplete-tag';
 export const API_UPDATE_DOC_AFTER_UPLOAD = BASE_URL + 'doc/update-doc';

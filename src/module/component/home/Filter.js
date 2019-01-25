@@ -117,13 +117,13 @@ class Filter extends Component {
 		return (
 			<div className="row">
 				<div className="master-filter-wrapper">
-					<form action="" method="post" role="form">
+					<form class="form">
 						<div className="master-filter-search">
 							<div className="form-group">
 								<input type="text" className="form-control" name="" placeholder="Tìm kiếm tài liệu mong muốn ..."/>
 							</div>
 							<button type="submit" className="btn btn-primary master-filter-search-submit">
-								<i className="fas fa-search"></i>
+								<i className="fa fa-search"></i>
 							</button>
 						</div>
 
@@ -138,7 +138,7 @@ class Filter extends Component {
 							</div>
 
 							<div className="master-filter-select">
-								<select name="class" className="form-control" onChange={this.handleChangeClass} value={selectedClass}>
+								<select name="class" className="form-control" onChange={this.handleChangeClass} value={selectedClass} disabled={!grade}>
 									<option value="0"> -- Chọn lớp học --</option>
 									{_.map(classes, (c, idx) => {
 										return (

@@ -13,6 +13,8 @@ import HomeListDocument from "../home/HomeListDocument";
 import Ads from "../home/Ads";
 import ListDocuments from "../listDoc/ListDocuments";
 import TagsFooter from "../tags/TagsFooter";
+import * as api from "../../const/Api";
+import axios from "axios";
 
 class ListSubject extends Component {
 
@@ -26,7 +28,8 @@ class ListSubject extends Component {
 			catSlug: this.props.match.params.class,
 			catName: '',
 			catId: 0,
-			tagFooter: []
+			tagFooter: [],
+			items: [],
 		}
 	}
 
@@ -52,6 +55,9 @@ class ListSubject extends Component {
 				catName: nextProps.SubjectReducer.subjectInClass.name,
 				catId: nextProps.SubjectReducer.subjectInClass.id,
 			});
+
+			let {catSlug} = this.state;
+			this.fetchData({ catSlug });
 		}
 
 		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
@@ -63,9 +69,35 @@ class ListSubject extends Component {
 		return true;
 	};
 
+	fetchData = ({ catSlug }) => {
+
+		let apiUrl = api.API_LIST_DOC;
+
+		this.setState({
+			onLoading: true,
+		});
+
+		axios.get(apiUrl, {
+			params: { catSlug }
+		})
+			.then(response => {
+				this.setState({
+					items: response.data
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+			.finally(() => {
+				this.setState({
+					onLoading: false
+				})
+			})
+	};
+
 	render() {
 
-		let {subjects, catSlug, catName, catId, tagFooter} = this.state;
+		let {subjects, catSlug, catName, catId, tagFooter, items} = this.state;
 
 		return (
 				<div className="document-wrapper home-wrapper">
@@ -73,7 +105,7 @@ class ListSubject extends Component {
 					<div className="container">
 
 						<Breadcrumb
-							classSlug={catSlug}
+							catSlug={catSlug}
 							classLevel={catName}
 						/>
 
@@ -85,7 +117,7 @@ class ListSubject extends Component {
 							/>
 
 							<div className="row">
-								<ListDocuments/>
+								<ListDocuments items={items}/>
 							</div>
 						</div>
 
@@ -109,8 +141,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getSubjectViaClass: (classSlug) => {
-			dispatch(action.getSubjectViaClass(classSlug))
+		getSubjectViaClass: (catSlug) => {
+			dispatch(action.getSubjectViaClass(catSlug))
 		},
 
 		changeGrade: (grade) => {
