@@ -121,6 +121,7 @@ class Author extends Component {
 								<div className="author-document-user-avatar">
 									<img src={user.thumbnail} alt={user.first_name + ' ' + user.last_name} className="img-responsive"/>
 								</div>
+
 								<div className="author-document-name">
 									<h4>{user.first_name} {user.last_name}</h4>
 								</div>
@@ -161,6 +162,14 @@ class Author extends Component {
 														<Link to={'/tai-lieu/' + value.id} className="document-title">
 															{value.name}
 														</Link>
+														<div className="document-category-info">
+															<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+																{value.get_class.name}
+															</Link>
+															<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+																{value.get_subject.name}
+															</Link>
+														</div>
 														<div className="document-price">
 															{value.formated_price}
 														</div>

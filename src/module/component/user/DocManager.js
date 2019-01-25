@@ -227,6 +227,8 @@ class DocManager extends Component {
 														onAction={d.onactive}
 														format={d.formats}
 														deleteDoc={this.deleteDoc}
+														get_class={d.get_class}
+														get_subject={d.get_subject}
 													/>
 												)
 											})}

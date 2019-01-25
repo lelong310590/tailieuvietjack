@@ -3,8 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/register/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/author/Author.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/author/Author.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/home/HomeListDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/home/HomeListDocument.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/listDoc/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/listDoc/List.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/tags/TagCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/tags/TagCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/user/DocItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/user/DocItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/module/component/user/DocManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/user/DocManager.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,7 +26,7 @@
     <session id="-974998285">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="140" />
+          <entry key="project.closed" value="141" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.10" value="7" />
@@ -29,7 +36,7 @@
           <entry key="project.open.time.14" value="10" />
           <entry key="project.open.time.15" value="10" />
           <entry key="project.open.time.16" value="11" />
-          <entry key="project.open.time.17" value="4" />
+          <entry key="project.open.time.17" value="5" />
           <entry key="project.open.time.18" value="7" />
           <entry key="project.open.time.19" value="2" />
           <entry key="project.open.time.2" value="5" />
@@ -44,8 +51,8 @@
           <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="146" />
+          <entry key="project.open.time.9" value="6" />
+          <entry key="project.opened" value="148" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -55,11 +62,11 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="3" />
           <entry key="jpg" value="4" />
-          <entry key="js" value="801" />
+          <entry key="js" value="814" />
           <entry key="json" value="6" />
           <entry key="jsx" value="4" />
           <entry key="png" value="2" />
-          <entry key="sass" value="66" />
+          <entry key="sass" value="67" />
           <entry key="ts" value="3" />
         </counts>
       </usages-collector>
@@ -71,9 +78,9 @@
           <entry key="Image" value="6" />
           <entry key="JSON" value="6" />
           <entry key="JSX Harmony" value="4" />
-          <entry key="JavaScript" value="801" />
+          <entry key="JavaScript" value="814" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Sass" value="66" />
+          <entry key="Sass" value="67" />
           <entry key="TypeScript" value="3" />
         </counts>
       </usages-collector>
@@ -82,9 +89,9 @@
           <entry key="env" value="10" />
           <entry key="gitignore" value="5" />
           <entry key="html" value="32" />
-          <entry key="js" value="108391" />
+          <entry key="js" value="108665" />
           <entry key="json" value="2" />
-          <entry key="sass" value="18926" />
+          <entry key="sass" value="19051" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -92,59 +99,53 @@
           <entry key=".env file" value="10" />
           <entry key="HTML" value="32" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="108391" />
+          <entry key="JavaScript" value="108665" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Sass" value="18926" />
+          <entry key="Sass" value="19051" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="ESLintLanguageService" value="132" />
+          <entry key="ESLintLanguageService" value="134" />
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/module/component/register/Register.js">
+        <entry file="file://$PROJECT_DIR$/src/module/component/tags/TagCategory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="190" column="111" selection-start-line="190" selection-start-column="111" selection-end-line="190" selection-end-column="111" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="279">
+              <caret line="104" column="54" lean-forward="true" selection-start-line="104" selection-start-column="54" selection-end-line="104" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+        <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="634" selection-start-line="634" selection-end-line="634" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="22" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="387">
+              <caret line="44" column="51" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/module/component/login/Login.js">
+        <entry file="file://$PROJECT_DIR$/src/module/component/user/DocManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3393">
-              <caret line="169" column="111" selection-start-line="169" selection-start-column="111" selection-end-line="169" selection-end-column="111" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="517">
+              <caret line="230" column="83" lean-forward="true" selection-start-line="230" selection-start-column="83" selection-end-line="230" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/List.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="112" column="30" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="112" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -223,13 +224,10 @@
         <option value="$PROJECT_DIR$/src/module/const/ActionType.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/MainReducer.js" />
         <option value="$PROJECT_DIR$/src/module/reducer/AuthorReducer.js" />
-        <option value="$PROJECT_DIR$/src/module/component/author/Author.js" />
         <option value="$PROJECT_DIR$/src/module/component/Header.js" />
         <option value="$PROJECT_DIR$/public/lib/sass/_global.sass" />
         <option value="$PROJECT_DIR$/src/module/component/user/Menu.js" />
         <option value="$PROJECT_DIR$/src/module/component/doc/ReportDocument.js" />
-        <option value="$PROJECT_DIR$/src/module/component/user/DocManager.js" />
-        <option value="$PROJECT_DIR$/src/module/component/user/DocItem.js" />
         <option value="$PROJECT_DIR$/src/module/component/class/ListSubject.js" />
         <option value="$PROJECT_DIR$/src/module/component/support/Meta.js" />
         <option value="$PROJECT_DIR$/.env" />
@@ -243,17 +241,20 @@
         <option value="$PROJECT_DIR$/src/module/reducer/HomeReducer.js" />
         <option value="$PROJECT_DIR$/src/module/component/home/TagCloud.js" />
         <option value="$PROJECT_DIR$/src/module/component/home/Home.js" />
-        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
         <option value="$PROJECT_DIR$/src/module/component/doc/Infomation.js" />
-        <option value="$PROJECT_DIR$/src/module/component/listDoc/List.js" />
-        <option value="$PROJECT_DIR$/src/module/component/home/HomeListDocument.js" />
-        <option value="$PROJECT_DIR$/src/module/component/tags/TagCategory.js" />
         <option value="$PROJECT_DIR$/src/module/component/tags/TagsFooter.js" />
         <option value="$PROJECT_DIR$/src/module/component/doc/TopWeekDoc.js" />
         <option value="$PROJECT_DIR$/src/module/component/doc/Related.js" />
         <option value="$PROJECT_DIR$/src/module/const/Api.js" />
         <option value="$PROJECT_DIR$/src/module/component/register/Register.js" />
         <option value="$PROJECT_DIR$/src/module/component/login/Login.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
+        <option value="$PROJECT_DIR$/src/module/component/listDoc/List.js" />
+        <option value="$PROJECT_DIR$/src/module/component/home/HomeListDocument.js" />
+        <option value="$PROJECT_DIR$/src/module/component/author/Author.js" />
+        <option value="$PROJECT_DIR$/src/module/component/tags/TagCategory.js" />
+        <option value="$PROJECT_DIR$/src/module/component/user/DocItem.js" />
+        <option value="$PROJECT_DIR$/src/module/component/user/DocManager.js" />
       </list>
     </option>
   </component>
@@ -326,7 +327,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -356,6 +356,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -550,14 +551,17 @@
       <workItem from="1548310928269" duration="6829000" />
       <workItem from="1548320797518" duration="381000" />
       <workItem from="1548342669919" duration="179000" />
+      <workItem from="1548343799780" duration="1687000" />
+      <workItem from="1548384543301" duration="2201000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="606099000" />
+    <option name="totallyTimeSpent" value="609987000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12974684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -606,7 +610,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/module/component/login/Login.js</url>
-          <line>112</line>
+          <line>114</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -637,18 +641,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="347" column="59" lean-forward="true" selection-start-line="347" selection-start-column="59" selection-end-line="347" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-            <element signature="e#268#304#0" expanded="true" />
-            <element signature="e#363#404#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/doc/Breadcrumb.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
@@ -743,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/Footer.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -764,20 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
           <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="214" column="56" selection-start-line="214" selection-start-column="56" selection-end-line="214" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1219">
-          <caret line="83" column="70" selection-start-line="83" selection-start-column="70" selection-end-line="83" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -816,13 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="33" column="41" lean-forward="true" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/author/Author.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -868,31 +832,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18469">
-          <caret line="803" column="17" selection-start-line="803" selection-start-column="17" selection-end-line="803" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/doc/Infomation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="30" column="67" selection-start-line="30" selection-start-column="67" selection-end-line="30" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Document.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="269" column="35" selection-start-line="269" selection-start-column="35" selection-end-line="269" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/tags/TagCategory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="107" column="119" selection-start-line="107" selection-start-column="119" selection-end-line="107" selection-end-column="119" />
         </state>
       </provider>
     </entry>
@@ -924,20 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/home/HomeListDocument.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="76" column="130" selection-start-line="76" selection-start-column="130" selection-end-line="76" selection-end-column="130" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/home/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="95" column="40" lean-forward="true" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/doc/Related.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -952,10 +881,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/List.js">
+    <entry file="file://$PROJECT_DIR$/src/module/component/register/Register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="108" column="98" lean-forward="true" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="98" />
+        <state relative-caret-position="4140">
+          <caret line="190" column="111" selection-start-line="190" selection-start-column="111" selection-end-line="190" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14536">
+          <caret line="634" selection-start-line="634" selection-end-line="634" />
         </state>
       </provider>
     </entry>
@@ -966,30 +902,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="634" selection-start-line="634" selection-end-line="634" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/module/component/register/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="190" column="111" selection-start-line="190" selection-start-column="111" selection-end-line="190" selection-end-column="111" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/login/Login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3393">
-          <caret line="169" column="111" selection-start-line="169" selection-start-column="111" selection-end-line="169" selection-end-column="111" />
+        <state relative-caret-position="385">
+          <caret line="48" column="55" lean-forward="true" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Download.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3182">
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Document.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="95" column="44" selection-start-line="95" selection-start-column="44" selection-end-line="95" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/HomeListDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="71" column="82" lean-forward="true" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/author/Author.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="166" column="86" lean-forward="true" selection-start-line="166" selection-start-column="86" selection-end-line="166" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="91" column="66" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="1863" column="23" lean-forward="true" selection-start-line="1863" selection-start-column="23" selection-end-line="1863" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/List.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="112" column="30" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="112" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/tags/TagCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="104" column="54" lean-forward="true" selection-start-line="104" selection-start-column="54" selection-end-line="104" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="44" column="51" selection-start-line="44" selection-start-column="40" selection-end-line="44" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="230" column="83" lean-forward="true" selection-start-line="230" selection-start-column="83" selection-end-line="230" selection-end-column="83" />
         </state>
       </provider>
     </entry>
