@@ -5,6 +5,7 @@ import Meta from "../support/Meta";
 import Countdown from 'react-countdown-now';
 import { FacebookProvider, Like } from 'react-facebook';
 import List from "../listDoc/List";
+import _ from 'lodash';
 
 class Download extends Component {
 
@@ -69,6 +70,12 @@ class Download extends Component {
 		let formData = new FormData();
 		formData.append('docId', slug);
 		let token = localStorage.getItem('accessToken');
+
+		if (_.isEmpty(token)) {
+			alert('Bạn phải đăng nhập để tải tài liệu');
+			return false;
+		}
+
 		let config = {
 			headers: {
 				Accept: 'application/json',

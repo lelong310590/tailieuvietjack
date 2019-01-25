@@ -111,38 +111,46 @@ class ListDocuments extends Component {
 						{
 							_.map(items, (value, index) => {
 								return (
-									<div className="doc-item-horizontal" key={index}>
-										<div className="doc-item-horizontal-image">
-											<DocumentTag
-												format={value.formats}
-											/>
-											<Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>
-												<img src={value.thumbnail ? value.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
-											</Link>
-										</div>
-										<div className="doc-item-horizontal-info">
-											<div className="doc-item-horizontal-info-infomation">
-												<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
-												<div className="document-category-info">
-													<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
-														{value.get_class.name}
-													</Link>
-													<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
-														{value.get_subject.name}
-													</Link>
+									<Fragment key={index}>
+										<div className="doc-item-horizontal">
+											<div className="doc-item-horizontal-image">
+												<DocumentTag
+													format={value.formats}
+												/>
+												<Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>
+													<img src={value.thumbnail ? value.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
+												</Link>
+											</div>
+											<div className="doc-item-horizontal-info">
+												<div className="doc-item-horizontal-info-infomation">
+													<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
+													<div className="document-category-info">
+														<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+															{value.get_class.name}
+														</Link>
+														<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+															{value.get_subject.name}
+														</Link>
+													</div>
+													<div className="doc-item-horizontal-info-infomation-content">
+														{value.excerpt}
+													</div>
 												</div>
-												<div className="doc-item-horizontal-info-infomation-content">
-													{value.excerpt}
+												<div className="document-info">
+													<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
+													<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
+													<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
+													<div className="document-info-price">{helper.convertPrice(value.price)}</div>
 												</div>
 											</div>
-											<div className="document-info">
-												<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
-												<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
-												<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
-												<div className="document-info-price">{helper.convertPrice(value.price)}</div>
-											</div>
 										</div>
-									</div>
+
+										{((index + 1) % 5 === 0) &&
+											<div className="document-middle-ads">
+												<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+											</div>
+										}
+									</Fragment>
 								)
 							})
 						}

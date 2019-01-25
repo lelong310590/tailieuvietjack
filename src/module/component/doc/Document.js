@@ -133,6 +133,14 @@ class Document extends Component {
 	};
 
 	clickToDownload = (slug) => {
+
+		let token = localStorage.getItem('accessToken');
+
+		if (_.isEmpty(token)) {
+			alert('Bạn phải đăng nhập để tải tài liệu');
+			return false;
+		}
+
 		let {status} = this.state;
 		if (status === 'active') {
 			this.props.history.push('/tai-lieu/download/' + slug);

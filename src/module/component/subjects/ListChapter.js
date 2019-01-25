@@ -15,6 +15,7 @@ import Ads from "../home/Ads";
 import TagsFooter from "../tags/TagsFooter";
 import * as api from "../../const/Api";
 import axios from "axios";
+import Meta from "../support/Meta";
 
 class ListChapter extends Component {
 
@@ -111,6 +112,13 @@ class ListChapter extends Component {
 
 		return (
 			<div className="document-wrapper home-wrapper">
+
+				<Meta
+					title={subjectName + ' - ' + catName}
+					description={subjectName + ' - ' + catName}
+					keywords={subjectName + ' - ' + catName}
+				/>
+
 				<div className="container">
 					<Breadcrumb
 						classSlug={catSlug}
