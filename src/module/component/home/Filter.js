@@ -117,7 +117,7 @@ class Filter extends Component {
 		return (
 			<div className="row">
 				<div className="master-filter-wrapper">
-					<form class="form">
+					<form className="form">
 						<div className="master-filter-search">
 							<div className="form-group">
 								<input type="text" className="form-control" name="" placeholder="Tìm kiếm tài liệu mong muốn ..."/>

@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import _ from "lodash";
-import { Link } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import DocumentTag from "../support/DocumentTag";
+import * as helper from "../../Support";
 
 class ListDocuments extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			viewStyle: 'grid'
+			viewStyle: 'list'
 		}
 	}
 
@@ -21,7 +22,7 @@ class ListDocuments extends Component {
 		const { viewStyle } = this.state;
 		return (
 			<div className="category-document-wrapper">
-				<div className="category-document-filter" style={{ marginBottom: "10px" }}>
+				<div className="category-document-filter" style={{ marginBottom: "20px" }}>
 					<div className="category-document-filter-order">
 						<div className="category-document-filter-order-item">
 							<span>Mới nhất</span>
@@ -42,52 +43,109 @@ class ListDocuments extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="row">
-					{
-						_.map(items, (value, index) => {
-							const className = `document-item`;
-							return (
-								<div key={index} className={viewStyle === 'list' ? 'col-xs-12' : 'col-xs-6 col-md-3 col-lg-3'}>
-									<div className={className}>
-										<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-											<DocumentTag
-												format={value.formats}
-											/>
 
-											{value.thumbnail !== null ? (
-												<img src={value.thumbnail} alt=""
-													 className="img-responsive center-block"/>
-											) : (
-												<img src="/lib/images/thumbnail.jpg" alt=""
-													 className="img-responsive center-block"/>
-											)}
-										</Link>
-										<Link to={'/tai-lieu/' + value.id} className="document-title">
-											{value.name}
-										</Link>
-										<div className="document-price">
-											{value.formated_price}
-										</div>
-										<Link to={'/tai-lieu/' + value.id} className="document-author">
-											{/*{value.get_member.first_name} {value.get_member.last_name}*/}
-										</Link>
-										<div className="document-info">
-											<div className="document-info-page">
-												<i className="far fa-file-alt"></i> {value.pages}
+				{(viewStyle === 'grid') ? (
+					<div className="row">
+						{
+							_.map(items, (value, index) => {
+								return (
+									<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
+										<div className="document-item">
+											<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
+												<DocumentTag
+													format={value.formats}
+												/>
+
+												{value.thumbnail !== null ? (
+													<img src={value.thumbnail} alt=""
+													     className="img-responsive center-block"/>
+												) : (
+													<img src="/lib/images/thumbnail.jpg" alt=""
+													     className="img-responsive center-block"/>
+												)}
+											</Link>
+											<Link to={'/tai-lieu/' + value.id} className="document-title">
+												{value.name}
+											</Link>
+											<div className="document-price">
+												{value.formated_price}
 											</div>
-											<div className="document-info-view">
-												<i className="far fa-eye"></i> {value.views}
+											<div className="document-category-info">
+												<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+													{value.get_class.name}
+												</Link>
+												<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+													{value.get_subject.name}
+												</Link>
 											</div>
-											<div className="document-info-download">
-												<i className="fas fa-file-download"></i> {value.downloaded}
+											<NavLink
+												to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+												className="document-author"
+												title={value.get_member.first_name + ' ' + value.get_member.last_name}
+											>
+												{value.get_member.first_name} {value.get_member.last_name}
+											</NavLink>
+											<div className="document-info">
+												<div className="document-info-page">
+													<i className="far fa-file-alt"></i> {value.pages}
+												</div>
+												<div className="document-info-view">
+													<i className="far fa-eye"></i> {value.views}
+												</div>
+												<div className="document-info-download">
+													<i className="fas fa-file-download"></i> {value.downloaded}
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							)
-						})
-					}
-				</div>
+								)
+							})
+						}
+					</div>
+				) : (
+					<div className="tag-list-wrapper">
+						{
+							_.map(items, (value, index) => {
+								return (
+									<div className="doc-item-horizontal" key={index}>
+										<div className="doc-item-horizontal-image">
+											<DocumentTag
+												format={value.formats}
+											/>
+											<Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>
+												<img src={value.thumbnail ? value.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
+											</Link>
+										</div>
+										<div className="doc-item-horizontal-info">
+											<div className="doc-item-horizontal-info-infomation">
+												<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
+												<div className="document-category-info">
+													<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+														{value.get_class.name}
+													</Link>
+													<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+														{value.get_subject.name}
+													</Link>
+												</div>
+												<div className="doc-item-horizontal-info-infomation-content">
+													{value.excerpt}
+												</div>
+											</div>
+											<div className="document-info">
+												<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
+												<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
+												<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
+												<div className="document-info-price">{helper.convertPrice(value.price)}</div>
+											</div>
+										</div>
+									</div>
+								)
+							})
+						}
+					</div>
+				)}
+
+
 			</div>
 		);
 	}
