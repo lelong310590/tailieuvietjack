@@ -7,6 +7,8 @@ import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
 import _ from 'lodash';
 import Meta from "../support/Meta";
+import Pagination from "../user/Pagination";
+import queryString from 'query-string';
 
 class TagCategory extends Component {
 
@@ -19,7 +21,8 @@ class TagCategory extends Component {
 				seo_title: '',
 				seo_keywords: '',
 				seo_description: ''
-			}
+			},
+			url: this.props.location.pathname
 		}
 	}
 
@@ -29,6 +32,21 @@ class TagCategory extends Component {
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
+
+		if (this.props !== nextProps) {
+			let oldSearch = this.props.location.search;
+			let oldValue = queryString.parse(oldSearch);
+
+			let search = nextProps.location.search;
+			let value = queryString.parse(search);
+
+			let {slug} = this.props.match.params;
+
+
+			if (value.page !== oldValue.page) {
+				this.props.getDocumentByTag(slug, value.page);
+			}
+		}
 
 		if (this.props.TagCloudReducer.documents !== nextProps.TagCloudReducer.documents) {
 			this.setState({
@@ -45,9 +63,14 @@ class TagCategory extends Component {
 		return true;
 	};
 
+	clickPage = (onsort, page) => {
+		let url = this.props.match.url;
+		this.props.history.push(url + '?&page=' + page);
+	};
+
 	render() {
 
-		let {documents, singleTag} = this.state;
+		let {documents, singleTag, url} = this.state;
 
 		return (
 			<div className="tag-list-wrapper">
@@ -69,20 +92,20 @@ class TagCategory extends Component {
 										<img src="/lib/images/adsdownload.png" alt="" className="img-responsive center-block"/>
 									</div>
 
-									{_.map(documents, (d, idx) => {
+									{_.map(documents.data, (d, idx) => {
 										return (
 											<div className="doc-item-horizontal" key={idx}>
 												<div className="doc-item-horizontal-image">
 													<DocumentTag
 														format={d.formats}
 													/>
-													<Link to={'/tai-lieu/' + d.id}>
+													<Link to={'/tai-lieu/' + d.id + '-' + d.slug} title={d.name}>
 														<img src={d.thumbnail ? d.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
 													</Link>
 												</div>
 												<div className="doc-item-horizontal-info">
 													<div className="doc-item-horizontal-info-infomation">
-														<h4><Link to={'/tai-lieu/' + d.id}>{d.name}</Link></h4>
+														<h4><Link to={'/tai-lieu/' + d.id + '-' + d.slug} title={d.name}>{d.name}</Link></h4>
 														<div className="doc-item-horizontal-info-infomation-content">
 															{d.excerpt}
 														</div>
@@ -97,6 +120,19 @@ class TagCategory extends Component {
 											</div>
 										)
 									})}
+
+									{documents.last_page > 1 &&
+										<Pagination
+											url={url}
+											current_page={documents.current_page}
+											first_page_url={documents.first_page_url}
+											last_page={documents.last_page}
+											last_page_url={documents.last_page_url}
+											next_page_url={documents.next_page_url}
+											prev_page_url={documents.prev_page_url}
+											clickPage={this.clickPage}
+										/>
+									}
 
 								</div>
 
@@ -118,8 +154,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getDocumentByTag: (tagSlug) => {
-			dispatch(actions.getDocumentByTag(tagSlug))
+		getDocumentByTag: (tagSlug, page = null) => {
+			dispatch(actions.getDocumentByTag(tagSlug, page))
 		}
 	}
 };

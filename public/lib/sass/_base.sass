@@ -508,6 +508,7 @@
 .header-user
 	display: flex
 	align-items: center
+	color: $primary
 	.user-avatar
 		max-width: 33px
 		border-radius: 3px
@@ -553,6 +554,7 @@
 		img
 			box-shadow: 0 0 1px #f0f0f0
 			max-height: 186px
+			height: 186px
 	.document-title
 		display: block
 		line-height: 1.5
@@ -691,6 +693,48 @@
 	max-height: 75px
 	overflow: hidden
 
+.document-download-top-button
+	cursor: pointer
+	&:hover, &:focus, &:active
+		.document-download-text
+			background: #fb0
+		.document-download-count
+			background-color: #fa0
+			&:before
+				border-right-color: #fa0
+	.document-download-text
+		height: 35px
+		width: 114px
+		float: left
+		text-align: center
+		line-height: 35px
+		color: #fff
+		text-transform: uppercase
+		background-color: #fa0
+		margin-right: 0
+		display: inline-block
+		font-size: 15px
+		padding: 0 15px
+	.document-download-count
+		display: inline-block
+		height: 35px
+		padding: 0 7px
+		line-height: 35px
+		text-align: center
+		background-color: #fb0
+		float: left
+		position: relative
+		color: #fff
+		font-size: 14px
+		font-weight: 600
+		&:before
+			content: ''
+			border: 7px solid transparent
+			border-right-color: #fb0
+			position: absolute
+			top: 10.5px
+			left: -13px
+
 .document-wrapper
 	background: #f8f8f8
 	//.breadcrumb-wrapper
@@ -709,7 +753,7 @@
 		.document-info
 			justify-content: normal
 			& > div
-				margin-right: 25px
+				margin-right: 20px
 		.document-stats
 			margin-bottom: 15px
 			margin-top: 15px
@@ -726,47 +770,6 @@
 					border: none
 					box-shadow: none
 					color: #fff
-		.document-download-top-button
-			cursor: pointer
-			&:hover, &:focus, &:active
-				.document-download-text
-					background: #fb0
-				.document-download-count
-					background-color: #fa0
-					&:before
-						border-right-color: #fa0
-			.document-download-text
-				height: 35px
-				width: 114px
-				float: left
-				text-align: center
-				line-height: 35px
-				color: #fff
-				text-transform: uppercase
-				background-color: #fa0
-				margin-right: 0
-				display: inline-block
-				font-size: 15px
-				padding: 0 15px
-			.document-download-count
-				display: inline-block
-				height: 35px
-				padding: 0 7px
-				line-height: 35px
-				text-align: center
-				background-color: #fb0
-				float: left
-				position: relative
-				color: #fff
-				font-size: 14px
-				font-weight: 600
-				&:before
-					content: ''
-					border: 7px solid transparent
-					border-right-color: #fb0
-					position: absolute
-					top: 10.5px
-					left: -13px
 		.document-detail-download-button
 			text-align: center
 			button
@@ -793,6 +796,7 @@
 
 .doc-item-horizontal-info-infomation-content
 	margin-bottom: 5px
+	word-break: break-all
 
 .document-detail-nfomation-content, .document-detail-tags-list, .facebook-comment
 	background: #fff
@@ -875,6 +879,7 @@
 .related
 	.related-item
 		margin-bottom: 20px
+		position: relative
 	.related-title
 		h4
 			font-size: 15px
@@ -903,6 +908,7 @@
 		justify-content: space-between
 	.header-user
 		max-height: 62px
+		color: $primary
 		.header-user-name
 			font-size: 25px
 			max-width: unset
@@ -953,6 +959,7 @@
 				padding: 12px 0 10px 25px
 				color: #999
 				display: block
+				cursor: pointer
 				i
 					margin-right: 10px
 				&:hover 
@@ -1334,6 +1341,10 @@
 	background-color: #fff
 	position: relative
 	vertical-align: baseline
+	& > div
+		& > div
+			transform-origin: 0px 0px 0px
+			transform: scale(0.64)
 	img
 		display: block
 		max-width: 100%
@@ -1736,3 +1747,106 @@
 	.tag-list-ads-wrapper
 		max-width: 50%
 		margin: 15px auto
+
+.author-status-wrapper
+	background: #fff
+	.author-status-button
+		display: flex
+		align-items: center
+		justify-content: flex-start
+		span
+			cursor: pointer
+			padding: 20px 25px
+			display: block
+			font-weight: 500
+			font-size: 15px
+			&:first-child
+				padding-left: 0
+		span.active
+			color: $primary
+			border-bottom: 1px solid $primary
+.author-document-wrapper
+	background: #f8f8f8
+	.document-list-wrapper
+		padding: 20px 0
+	.author-document-user-avatar
+		border: 2px solid #fff
+		margin-top: -90px
+		img
+			border-radius: 4px
+			width: 100%
+	.author-document-name
+		h4
+			margin-top: 25px
+			font-size: 25px
+			overflow: hidden
+			text-overflow: ellipsis
+			white-space: nowrap
+.author-total-information
+	display: flex
+	align-items: center
+	justify-content: space-around
+	margin-top: 15px
+	margin-top: 40px
+	.author-total-stats
+		display: flex
+		flex-direction: column
+		border-right: 1px solid #ccc
+		flex: 1
+		&:last-child
+			border-right: 0
+		span
+			font-size: 12px
+			color: #999
+			margin-bottom: 5px
+			font-weight: 700
+.document-report-wrapper
+	background: rgba(0,0,0,.5)
+	position: fixed
+	display: flex
+	justify-content: center
+	align-items: center
+	z-index: 9999
+	top: 0
+	right: 0
+	left: 0
+	bottom: 0
+	.document-report-content
+		width: 600px
+		background: #fff
+		padding: 35px
+		border-top: 5px solid $primary
+		position: relative
+		form
+			margin-top: 25px
+			button
+				color: #fff
+				background: $primary
+				border-radius: 0
+				border: none
+				margin-top: 15px
+	.document-report-close
+		position: absolute
+		top: 0
+		right: 20px
+		font-size: 35px
+		cursor: pointer
+.document-footer
+	background: #f8f8f8
+	position: fixed
+	bottom: 0
+	left: 0
+	width: 100%
+	z-index: 999
+	padding: 5px 0
+	border-top: 1px solid #ddd
+	.document-footer-wrapper
+		display: flex
+		align-items: center
+		justify-content: space-between
+		.document-footer-button
+			span
+				cursor: pointer
+.document-tags
+	img
+		max-height: 16px!important

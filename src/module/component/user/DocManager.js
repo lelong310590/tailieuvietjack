@@ -216,6 +216,7 @@ class DocManager extends Component {
 														key={i}
 														name={d.name}
 														id={d.id}
+														slug={d.slug}
 														price={d.price}
 														thumbnail={d.thumbnail}
 														createdAt={d.created_at}

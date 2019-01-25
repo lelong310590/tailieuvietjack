@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
-import Menu from "./support/Menu";
+//import Menu from "./support/Menu";
 import UserMenu from "./support/UserMenu";
-import MainSearch from "./home/MainSearch";
+//import MainSearch from "./home/MainSearch";
 
 class Header extends Component {
 
@@ -38,8 +38,8 @@ class Header extends Component {
 
 						<div className="header-sub">
 							<div className="header-action">
-								<a href="" className="action-button button-green"><i
-									className="fas fa-piggy-bank"></i> Nạp tiền</a>
+								<span onClick={() => alert('Tính năng này đang được phát triển')} className="action-button button-green"><i
+									className="fas fa-piggy-bank"></i> Nạp tiền</span>
 								<Link to="/upload-tai-lieu" className="action-button button-yellow">
 									<i className="fas fa-file-upload"></i> Tải lên
 								</Link>

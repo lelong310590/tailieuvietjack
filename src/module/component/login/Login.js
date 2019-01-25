@@ -34,6 +34,61 @@ class Login extends Component {
 		});
 	};
 
+	handleSocialLogin = (data) => {
+		if (data._provider === 'facebook') {
+			let formData = new FormData();
+			formData.append('avatar', data._profile.profilePicURL);
+			formData.append('name', data._profile.name);
+			formData.append('email', data._profile.email);
+			formData.append('id', data._profile.id);
+			formData.append('grant_type', 'password');
+			formData.append('client_id', '8');
+			formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+			formData.append('scope', '');
+
+			this.socialLogin(data._provider, formData);
+		}
+
+		console.log(data);
+	};
+
+	handleSocialLoginFailure = (err) => {
+		console.error(err)
+	};
+
+	/**
+	 *  Social login
+	 * */
+	socialLogin = (provider, formData) => {
+		let config = {
+			headers: {'Content-Type': 'multipart/form-data' }
+		};
+
+		let url = '';
+
+		if (provider === 'facebook') {
+			url = api.API_POST_FACEBOOK_LOGIN;
+		} else if (provider === 'google') {
+			url = api.API_POST_GOOGLE_LOGIN;
+		}
+
+		axios.post(url, formData, config)
+			.then(response => {
+				let data = response.data;
+				let accessToken = 'Bearer ' + data.access_token;
+
+				localStorage.setItem('accessToken', accessToken);
+
+				this.props.getUserInfo(accessToken);
+
+				this.props.handleLogedIn();
+				this.props.history.push("/");
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	};
+
 	handlePassword = (event) => {
 		let target = event.target;
 		let password = target.value;

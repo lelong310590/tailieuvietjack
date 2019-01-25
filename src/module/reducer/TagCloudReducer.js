@@ -26,7 +26,7 @@ let TagCloudReducer = (state = initialState, action) => {
 		case types.GET_DOCUMENT_BY_TAG_SUCCESS:
 			return {
 				...state,
-				documents: action.payload.data.document.data,
+				documents: action.payload.data.document,
 				singleTag: action.payload.data.tag
 			};
 

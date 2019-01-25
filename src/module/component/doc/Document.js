@@ -12,6 +12,9 @@ import Meta from "../support/Meta";
 import ReactHtmlParser from 'react-html-parser';
 import Loading from "../support/Loading";
 import {Alert} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import ReportDocument from "./ReportDocument";
+import * as helper from './../../Support';
 
 class Document extends Component {
 
@@ -44,23 +47,39 @@ class Document extends Component {
 			},
 			tags: [],
 
-			pageLoadDone: false
-		}
+			pageLoadDone: false,
+			showReport: false,
+			footerDocument: true
+		};
 	}
 
 	componentDidMount = () => {
+
+		let elem = document.querySelector('#footer');
+		let location = helper.getElemDistance(elem);
+
+		document.addEventListener('scroll', () => {
+			if (window.scrollY > location) {
+				this.setState({ footerDocument: false })
+			} else {
+				this.setState({ footerDocument: true })
+			}
+		});
+
 		let {slug} = this.props.match.params;
 		this.fetchData(slug);
 		this.updateStatics('views', slug);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
+
 		if (this.props.match.params.slug !== nextProps.match.params.slug) {
 			this.setState({pageLoadDone: false});
 			let {slug} = nextProps.match.params;
 			this.fetchData(slug);
 			this.updateStatics('views', slug);
 		}
+
 		return true;
 	};
 
@@ -117,18 +136,48 @@ class Document extends Component {
 		let {status} = this.state;
 		if (status === 'active') {
 			this.props.history.push('/tai-lieu/download/' + slug);
+		} else {
+			alert('Tài liệu này đang chờ duyệt')
+		}
+	};
+
+	reportDocument = () => {
+		this.setState({showReport: true})
+	};
+
+	closeReport = () => {
+		this.setState({showReport: false})
+	};
+
+	fullScreen = () => {
+		var elem = document.getElementById("document-content");
+		if (elem.requestFullscreen) {
+			elem.requestFullscreen();
+		} else if (elem.msRequestFullscreen) {
+			elem.msRequestFullscreen();
+		} else if (elem.mozRequestFullScreen) {
+			elem.mozRequestFullScreen();
+		} else if (elem.webkitRequestFullscreen) {
+			elem.webkitRequestFullscreen();
 		}
 	};
 
 	render() {
 
-		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content,
+		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
 			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags} = this.state;
 
 		let {slug} = this.props.match.params;
 
 		return (
 			<section className="document-wrapper single-document-wrapper">
+
+				{showReport &&
+					<ReportDocument
+						docId={slug}
+						closeReport={this.closeReport}
+					/>
+				}
 
 				<Meta
 					title={seo_title}
@@ -148,8 +197,8 @@ class Document extends Component {
 						<div className="col-xs-12 col-md-9 document-detail">
 
 							{(status === 'disable') &&
-								<Alert bsStyle="danger text-center">
-									<strong>Tài liệu này đang chờ ban quản trị duyệt</strong>
+								<Alert bsStyle="danger">
+									<div className="text-center">Tài liệu này đang chờ ban quản trị duyệt</div>
 								</Alert>
 							}
 
@@ -162,12 +211,12 @@ class Document extends Component {
 
 							<div className="document-stats">
 								<div className="document-user">
-									<div className="header-user">
+									<Link className="header-user" to={'/trang-ca-nhan/' + ownerId + '?onsort=all'}>
 										<img src={ownerAvatar ? ownerAvatar : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
 										<p className="header-user-name">{ownerFirstName} {ownerLastName}</p>
-									</div>
+									</Link>
 									<div className="document-report">
-										<button>Báo tài liệu vi phạm</button>
+										<button onClick={this.reportDocument}>Báo tài liệu vi phạm</button>
 									</div>
 								</div>
 
@@ -179,7 +228,7 @@ class Document extends Component {
 								</div>
 							</div>
 
-							<div className="document-detail-content">
+							<div className="document-detail-content" id="document-content">
 								{pageLoadDone ? (
 									<Fragment>
 										{_.map(pageHtml, (page, i) => {
@@ -235,6 +284,28 @@ class Document extends Component {
 						/>
 					</div>
 				</div>
+
+				{footerDocument &&
+					<div className="document-footer">
+						<div className="container">
+							<div className="row">
+								<div className="col-xs-12 col-md-9 document-footer-wrapper">
+
+									<div className="document-footer-button">
+										<span onClick={this.fullScreen}><i className="fas fa-search-plus"></i></span>
+									</div>
+
+									<div className="document-button" onClick={() => this.clickToDownload(slug)}>
+										<div className="document-download-top-button">
+											<span className="document-download-text text-uppercase">Tải xuống</span>
+											<span className="document-download-count">{download}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
 			</section>
 		);
 	}

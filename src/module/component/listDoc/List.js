@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import _ from 'lodash';
 import FilterList from "./FilterList";
 import axios from 'axios';
@@ -86,18 +86,18 @@ class List extends Component {
 			return (
 				<div className={itemClass} key={index}>
 					<div className="document-item">
-						<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
 							<DocumentTag
 								format={value.formats}
 							/>
 
 							{value.thumbnail !== null ? (
-								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+								<img src={value.thumbnail} alt={value.name} className="img-responsive center-block"/>
 							) : (
-								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+								<img src="/lib/images/thumbnail.jpg" alt={value.name} className="img-responsive center-block"/>
 							)}
 						</Link>
-						<Link to={'/tai-lieu/' + value.id} className="document-title">
+						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
 							{value.name}
 						</Link>
 						<div className="document-price">
@@ -106,6 +106,13 @@ class List extends Component {
 						<Link to={'/tai-lieu/' + value.id} className="document-author">
 							{/*{value.get_member.first_name} {value.get_member.last_name}*/}
 						</Link>
+						<NavLink
+							to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+							className="document-author"
+							title={value.get_member.first_name + ' ' + value.get_member.last_name}
+						>
+							{value.get_member.first_name} {value.get_member.last_name}
+						</NavLink>
 						<div className="document-info">
 							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
 							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>

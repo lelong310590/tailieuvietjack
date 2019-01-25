@@ -24,7 +24,7 @@ class Infomation extends Component {
 			<div className="document-detail-infomation">
 				<h4>THÔNG TIN TÀI LIỆU</h4>
 				<div className="document-detail-nfomation-content">
-					<div className={expand ? ' text-justify' : 'text-justify collapse-detail-document'}>
+					<div className={expand ? ' text-justify' : 'text-justify collapse-detail-document'} style={{wordBreak: 'break-all'}}>
 						{this.props.content}
 					</div>
 

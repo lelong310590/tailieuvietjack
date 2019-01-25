@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as api from "./const/Api";
 import numeral from 'numeral';
+import _ from 'lodash';
 
 export const validateEmail = (email) => {
 	let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -35,7 +36,7 @@ export const convertPrice = (price) => {
 export const renderNavLink = (url, onsort, page, keyword = '') => {
 	const path = {
 		pathname: url,
-		search: 'onsort=' + onsort + '&page=' + page
+		search: _.isEmpty(onsort) ? 'page=' + page : 'onsort=' + onsort + '&page=' + page
 	};
 
 	if (keyword !== '') {
@@ -43,4 +44,16 @@ export const renderNavLink = (url, onsort, page, keyword = '') => {
 	}
 
 	return path;
+};
+
+// Get an element's distance from the top of the page
+export const getElemDistance = ( elem ) => {
+	var location = 0;
+	if (elem.offsetParent) {
+		do {
+			location += elem.offsetTop;
+			elem = elem.offsetParent;
+		} while (elem);
+	}
+	return location >= 0 ? location : 0;
 };

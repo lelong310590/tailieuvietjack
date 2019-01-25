@@ -15,8 +15,10 @@ class Home extends Component {
 		this.state = {
 			math: [],
 			phy: [],
+			che: [],
+			eng: [],
 			bio: [],
-			eng: []
+			lite: []
 		}
 	}
 
@@ -41,9 +43,9 @@ class Home extends Component {
 			})
 		}
 
-		if (this.props.HomeReducer.bio !== nextProps.HomeReducer.bio) {
+		if (this.props.HomeReducer.che !== nextProps.HomeReducer.che) {
 			this.setState({
-				bio: nextProps.HomeReducer.bio
+				che: nextProps.HomeReducer.che
 			})
 		}
 
@@ -53,12 +55,24 @@ class Home extends Component {
 			})
 		}
 
+		if (this.props.HomeReducer.bio !== nextProps.HomeReducer.bio) {
+			this.setState({
+				bio: nextProps.HomeReducer.bio
+			})
+		}
+
+		if (this.props.HomeReducer.lite !== nextProps.HomeReducer.lite) {
+			this.setState({
+				lite: nextProps.HomeReducer.lite
+			})
+		}
+
 		return true;
 	};
 
 	render() {
 
-		let {math, phy, bio, eng} = this.state;
+		let {math, phy, che, eng, lite, bio} = this.state;
 
 		return (
 			<Fragment>
@@ -90,12 +104,22 @@ class Home extends Component {
 
 								<HomeListDocument
 									title={'Tài liệu môn Hóa'}
-									documents={bio}
+									documents={che}
+								/>
+
+								<HomeListDocument
+									title={'Tài liệu môn Văn'}
+									documents={lite}
 								/>
 
 								<HomeListDocument
 									title={'Tài liệu môn tiếng Anh'}
 									documents={eng}
+								/>
+
+								<HomeListDocument
+									title={'Tài liệu môn Sinh học'}
+									documents={bio}
 								/>
 							</div>
 						</div>

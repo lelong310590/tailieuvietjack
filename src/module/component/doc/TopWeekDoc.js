@@ -41,7 +41,7 @@ class TopWeekDoc extends Component {
 
 		let listWeekDocs = _.map(doc, (value, index) => {
 			return (
-				<Link to={'/tai-lieu/' + value.id} className="featured-document-item" key={index}>
+				<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="featured-document-item" key={index} title={value.name}>
 					<div className="no-document-item">{index + 1}</div>
 					<div className="featured-document-info">
 						<h4 className="featured-document-info-title">
@@ -73,7 +73,6 @@ class TopWeekDoc extends Component {
 							{listWeekDocs}
 						</div>
 					)}
-
 				</div>
 			</div>
 		);

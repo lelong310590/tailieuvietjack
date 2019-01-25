@@ -50,7 +50,7 @@ class TagsFooter extends Component {
 								<ul>
 									{_.map(tags, (t, idx) => {
 										return (
-											<li key={idx}><Link to={'/tag/' + t.slug}>{t.name}</Link></li>
+											<li key={idx}><Link to={'/tag/' + t.slug} title={t.name}>{t.name}</Link></li>
 										)
 									})}
 								</ul>

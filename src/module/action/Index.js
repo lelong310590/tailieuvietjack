@@ -673,12 +673,13 @@ export const getDocumentByTagError = (err) => ({
 	err
 });
 
-export const getDocumentByTag = (tagSlug) => {
+export const getDocumentByTag = (tagSlug, page) => {
 	return (dispatch) => {
 		dispatch(getDocumentByTagRequest());
 		axios.get(api.API_GET_DOCUMENT_BY_TAG, {
 			params: {
-				tagSlug
+				tagSlug,
+				page
 			}
 		})
 			.then(response => {
@@ -686,6 +687,39 @@ export const getDocumentByTag = (tagSlug) => {
 			})
 			.catch(err => {
 				dispatch(getDocumentByTagError(err))
+			})
+	}
+};
+
+//get author
+export const getAuthorRequest = () => ({
+	type: types.GET_AUTHOR_REQUEST
+});
+
+export const getAuthorSuccess = (payload) => ({
+	type: types.GET_AUTHOR_SUCCESS,
+	payload
+});
+
+export const getAuthorError = (payload) => ({
+	type: types.GET_AUTHOR_ERROR,
+	payload
+});
+
+export const getAuthor = (id, onsort, page) => {
+	return (dispatch) => {
+		dispatch(getAuthorRequest());
+		axios.get(api.API_GET_AUTHOR, {
+			params: {
+				userId: id,
+				onsort, page
+			}
+		})
+			.then(response => {
+				dispatch(getAuthorSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getAuthorError(err))
 			})
 	}
 };

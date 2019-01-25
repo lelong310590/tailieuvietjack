@@ -1,4 +1,7 @@
-export const BASE_URL = 'http://apitailieu.test/v1/';
+export const BASE_URL = process.env.REACT_APP_API_URL;
+
+export const API_POST_FACEBOOK_LOGIN = BASE_URL + 'auth/login/facebook';
+export const API_POST_GOOGLE_LOGIN = BASE_URL + 'auth/login/google';
 
 export const API_LOGIN = BASE_URL + 'auth/login';
 export const API_GET_USER = BASE_URL + 'user/profile';
@@ -6,6 +9,8 @@ export const API_GET_USER_DOCUMENT = BASE_URL + 'user/document';
 export const API_POST_DELETE_DOCUMENT = BASE_URL + 'doc/delete';
 export const API_REGISTER = BASE_URL + 'auth/register';
 export const API_UPDATE_USER = BASE_URL + 'user/update';
+
+export const API_GET_AUTHOR = BASE_URL + 'user/get-author-info';
 
 export const API_GET_TREE = BASE_URL + 'tree-data';
 export const API_GET_TAGCLOUD = BASE_URL + 'tag-cloud';
@@ -48,3 +53,5 @@ export const API_GET_POST = BASE_URL + 'post/get-post-detail';
 
 export const API_DOWNLOAD_DOCUMENT = BASE_URL + 'download';
 export const API_GET_FILE_DOWNLOAD = BASE_URL + 'get-downloaded-document';
+
+export const API_POST_REPORT_DOCUMENT = BASE_URL + 'contact/report-document';

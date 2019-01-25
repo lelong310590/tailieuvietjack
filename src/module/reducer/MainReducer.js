@@ -16,6 +16,7 @@ import GradeReducer from './GradeReducer';
 import FilterReducer from './FilterReducer';
 import HomeReducer from './HomeReducer';
 import PostReducer from './PostReducer';
+import AuthorReducer from './AuthorReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -34,7 +35,8 @@ const MainReducer = combineReducers({
 	GradeReducer,
 	FilterReducer,
 	HomeReducer,
-	PostReducer
+	PostReducer,
+	AuthorReducer
 });
 
 export default MainReducer;

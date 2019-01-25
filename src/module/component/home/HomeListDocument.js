@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Loading from "../support/Loading";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import _ from 'lodash';
 import DocumentTag from "../support/DocumentTag";
 
@@ -54,8 +54,7 @@ class HomeListDocument extends Component {
 											return (
 												<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
 													<div className="document-item">
-														<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
 															<DocumentTag
 																format={value.formats}
 															/>
@@ -66,7 +65,7 @@ class HomeListDocument extends Component {
 																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 															)}
 														</Link>
-														<Link to={'/tai-lieu/' + value.id} className="document-title">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
 															{value.name}
 														</Link>
 														<div className="document-price">
@@ -75,6 +74,13 @@ class HomeListDocument extends Component {
 														<Link to={'/tai-lieu/' + value.id} className="document-author">
 															{/*{value.get_member.first_name} {value.get_member.last_name}*/}
 														</Link>
+														<NavLink
+															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+															className="document-author"
+															title={value.get_member.first_name + ' ' + value.get_member.last_name}
+														>
+															{value.get_member.first_name} {value.get_member.last_name}
+														</NavLink>
 														<div className="document-info">
 															<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
 															<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
