@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/css/style.min.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/css/style.min.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/lib/sass/_base.sass" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/sass/_base.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/doc/Document.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/doc/Document.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/listDoc/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/listDoc/List.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/listDoc/SpecialDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/listDoc/SpecialDocument.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/reducer/HomeReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/reducer/HomeReducer.js" afterDir="false" />
-    </list>
+    <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
