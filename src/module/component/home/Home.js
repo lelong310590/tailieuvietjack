@@ -7,18 +7,17 @@ import * as action from './../../action/Index';
 import HomeListDocument from "./HomeListDocument";
 import Ads from "./Ads";
 import TagCloud from "./TagCloud";
+import FilterBar from "../sidebar/FilterBar";
+import SpecialDocument from "../listDoc/SpecialDocument";
 
 class Home extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			math: [],
-			phy: [],
-			che: [],
-			eng: [],
-			bio: [],
-			lite: []
+			highSchool: [],
+			middleSchool: [],
+			elementarySchool: []
 		}
 	}
 
@@ -31,39 +30,21 @@ class Home extends Component {
 
 	shouldComponentUpdate = (nextProps, nextState) => {
 
-		if (this.props.HomeReducer.math !== nextProps.HomeReducer.math) {
+		if (this.props.HomeReducer.highSchool !== nextProps.HomeReducer.highSchool) {
 			this.setState({
-				math: nextProps.HomeReducer.math
+				highSchool: nextProps.HomeReducer.highSchool
 			})
 		}
 
-		if (this.props.HomeReducer.phy !== nextProps.HomeReducer.phy) {
+		if (this.props.HomeReducer.middleSchool !== nextProps.HomeReducer.middleSchool) {
 			this.setState({
-				phy: nextProps.HomeReducer.phy
+				middleSchool: nextProps.HomeReducer.middleSchool
 			})
 		}
 
-		if (this.props.HomeReducer.che !== nextProps.HomeReducer.che) {
+		if (this.props.HomeReducer.elementarySchool !== nextProps.HomeReducer.elementarySchool) {
 			this.setState({
-				che: nextProps.HomeReducer.che
-			})
-		}
-
-		if (this.props.HomeReducer.eng !== nextProps.HomeReducer.eng) {
-			this.setState({
-				eng: nextProps.HomeReducer.eng
-			})
-		}
-
-		if (this.props.HomeReducer.bio !== nextProps.HomeReducer.bio) {
-			this.setState({
-				bio: nextProps.HomeReducer.bio
-			})
-		}
-
-		if (this.props.HomeReducer.lite !== nextProps.HomeReducer.lite) {
-			this.setState({
-				lite: nextProps.HomeReducer.lite
+				elementarySchool: nextProps.HomeReducer.elementarySchool
 			})
 		}
 
@@ -72,7 +53,7 @@ class Home extends Component {
 
 	render() {
 
-		let {math, phy, che, eng, lite, bio} = this.state;
+		let {highSchool, middleSchool, elementarySchool} = this.state;
 
 		return (
 			<Fragment>
@@ -81,65 +62,38 @@ class Home extends Component {
 
 				<div className="document-wrapper home-wrapper">
 					<div className="container">
-						<div className="col-xs-12 col-md-9">
-							<Filter
-								history={this.props.history}
-							/>
+						<div className="row">
+							<div className="col-xs-12 col-md-3">
 
-							<div className="row">
+								<FilterBar/>
 
-								<div className="document-middle-ads">
-									<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+								<div style={{marginTop: '20px'}}>
+									<TagCloud
+										history={this.props.history}
+									/>
 								</div>
-
-								<List
-									title={'Tài liệu nổi bật'}
-									itemClass={'col-xs-6 col-md-3 col-lg-3'}
-								/>
-
-								<HomeListDocument
-									title={'Tài liệu môn Toán'}
-									documents={math}
-								/>
-
-								<HomeListDocument
-									title={'Tài liệu môn Lý'}
-									documents={phy}
-								/>
-
-								<div className="document-middle-ads">
-									<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
-								</div>
-
-								<HomeListDocument
-									title={'Tài liệu môn Hóa'}
-									documents={che}
-								/>
-
-								<HomeListDocument
-									title={'Tài liệu môn Văn'}
-									documents={lite}
-								/>
-
-								<HomeListDocument
-									title={'Tài liệu môn tiếng Anh'}
-									documents={eng}
-								/>
-
-								<HomeListDocument
-									title={'Tài liệu môn Sinh học'}
-									documents={bio}
-								/>
 							</div>
-						</div>
 
-						<div className="col-xs-12 col-md-3 sticky-sidebar">
-							<Ads/>
+							<div className="col-xs-12 col-md-9">
+								<div className="row">
 
-							<div style={{marginTop: '20px'}}>
-								<TagCloud
-									history={this.props.history}
-								/>
+									<SpecialDocument/>
+
+									<HomeListDocument
+										title={'Tài liệu THPT'}
+										documents={highSchool}
+									/>
+
+									<HomeListDocument
+										title={'Tài liệu THCS'}
+										documents={middleSchool}
+									/>
+
+									<HomeListDocument
+										title={'Tài liệu tiểu học'}
+										documents={elementarySchool}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

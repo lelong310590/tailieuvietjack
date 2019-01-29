@@ -547,23 +547,24 @@
 	&:hover, &:focus, &:active
 		box-shadow: 1px 3px 4px 1px #ddd
 	.document-thumbnail
-		margin-bottom: 15px
+		margin-bottom: 10px
 		display: block
 		position: relative
 		border: 1px solid #ccc
+		background: #e8e8e8
 		img
 			box-shadow: 0 0 1px #f0f0f0
-			max-height: 186px
-			height: 186px
+			max-height: 141px
+			height: 141px
+			width: 65%
 	.document-title
 		display: block
 		line-height: 1.5
 		overflow: hidden
 		color: #222
 		margin-bottom: 5px
-		white-space: nowrap
-		text-overflow: ellipsis
 		overflow: hidden
+		height: 42px
 		&:hover, &:focus, &:active
 			color: $primary
 			text-decoration: none
@@ -1851,6 +1852,7 @@
 .document-tags
 	img
 		max-height: 16px!important
+		width: 100%!important
 .document-category-info
 	margin-bottom: 15px
 	a
@@ -1878,3 +1880,24 @@
 	.special-document-wrapper
 		.owl-dots
 			position: relative
+.filter-bar-wrapper
+	.widget-title
+		h4
+			background-color: $primary
+	.filter-bar-wrapper-inner
+		padding: 15px 8px
+		form
+			.form-control
+				border-radius: 0
+				&:focus
+					outline: none!important
+					box-shadow: none
+			button[type="submit"]
+				background: $primary
+				border-radius: 0
+				border: none
+				font-size: 13px
+				&:focus
+					outline: none!important
+				&:hover
+					background: #e48a07

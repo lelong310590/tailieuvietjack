@@ -272,13 +272,6 @@ class Document extends Component {
 								<button onClick={() => this.clickToDownload(slug)}><i className="fas fa-file-download"></i> Tải xuống ( {pages} trang )</button>
 							</div>
 
-							<List
-								title={'Tài liệu cùng tác giả'}
-								itemClass={'col-xs-6 col-md-3 col-lg-3'}
-								user={ownerId}
-								currentId={slug}
-							/>
-
 							<Infomation
 								content={content}
 							/>
@@ -288,6 +281,14 @@ class Document extends Component {
 							/>
 
 							<FacebookComment/>
+
+							<List
+								title={'Tài liệu cùng tác giả'}
+								itemClass={'col-xs-6 col-md-3 col-lg-3'}
+								user={ownerId}
+								currentId={slug}
+								match={this.props.match}
+							/>
 						</div>
 
 						<Sidebar

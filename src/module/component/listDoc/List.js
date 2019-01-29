@@ -147,6 +147,18 @@ class List extends Component {
 								{documents}
 							</div>
 						</div>
+
+						{(!_.isEmpty(this.props.match) && !_.isEmpty(items)) &&
+							<Fragment>
+								{(this.props.match.path === '/tai-lieu/:slug') &&
+									<div className="document-list-view-more text-center">
+										<Link
+											to={{ pathname: '/trang-ca-nhan/'+ items[0].get_member.id, search: 'onsort=all'}}
+										>Xem thêm</Link>
+									</div>
+								}
+							</Fragment>
+						}
 					</Fragment>
 				)}
 			</div>

@@ -1,12 +1,9 @@
 import * as types from './../const/ActionType';
 
 let initialState = {
-	math: [],
-	phy: [],
-	che: [],
-	eng: [],
-	lite: [],
-	bio: []
+	highSchool: [],
+	middleSchool: [],
+	elementarySchool: []
 };
 
 let HomeReducer = (state = initialState, action) => {
@@ -14,12 +11,9 @@ let HomeReducer = (state = initialState, action) => {
 		case types.GET_HOME_LIST_SUCCESS:
 			return {
 				...state,
-				math: action.payload.data.math,
-				phy: action.payload.data.phy,
-				che: action.payload.data.che,
-				eng: action.payload.data.eng,
-				lite: action.payload.data.lite,
-				bio: action.payload.data.bio,
+				highSchool: action.payload.data.highSchool,
+				middleSchool: action.payload.data.middleSchool,
+				elementarySchool: action.payload.data.elementarySchool,
 			};
 		default:
 			return state;
