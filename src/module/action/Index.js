@@ -751,3 +751,178 @@ export const getMostView = () => {
 			})
 	}
 };
+
+/*
+	Filter bar
+ */
+export const getFilterBarClassRequest = () => ({
+	type: types.GET_FILTER_BAR_CLASS_REQUEST
+});
+
+export const getFilterBarClassSuccess = (payload) => ({
+	type: types.GET_FILTER_BAR_CLASS_SUCCESS,
+	payload
+});
+
+export const getFilterBarClassError = (err) => ({
+	type: types.GET_FILTER_BAR_CLASS_ERROR,
+	payload: err
+});
+
+export const getFilterBarClass = () => {
+	return (dispatch) => {
+		dispatch(getFilterBarClassRequest());
+		axios.get(api.API_FILTER_BAR_CLASS)
+			.then(response => {
+				dispatch(getFilterBarClassSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getFilterBarClassError(err))
+			})
+	}
+};
+
+export const getDocTypeRequest = () => ({
+	type: types.GET_FILTER_BAR_DOC_TYPE_REQUEST
+});
+
+export const getDocTypeSuccess = (payload) => ({
+	type: types.GET_FILTER_BAR_DOC_TYPE_SUCCESS,
+	payload
+});
+
+export const getDocTypeError = (err) => ({
+	type: types.GET_FILTER_BAR_DOC_TYPE_ERROR,
+	payload: err
+});
+
+export const getDocType = () => {
+	return (dispatch) => {
+		dispatch(getDocTypeRequest());
+		axios.get(api.API_FILTER_BAR_DOC_TYPE)
+			.then(response => {
+				dispatch(getDocTypeSuccess(response));
+			})
+			.catch(err => {
+				dispatch(getDocTypeError(err));
+			})
+	}
+};
+
+export const getFilterBarChapterRequest = () => ({
+	type: types.GET_FILTER_BAR_CHAPTER_REQUEST
+});
+
+export const getFilterBarChapterSuccess = (payload) => ({
+	type: types.GET_FILTER_BAR_CHAPTER_SUCCESS,
+	payload
+});
+
+export const getFilterBarChapterError = (err) => ({
+	type: types.GET_FILTER_BAR_CHAPTER_ERROR,
+	err
+});
+
+export const getFilterBarChapter = (classId, subjectId) => {
+	return (dispatch) => {
+		dispatch(getFilterBarChapterRequest());
+		axios.get(api.API_FILTER_BAR_CHAPTER, {
+			params: {
+				classId, subjectId
+			}
+		})
+			.then(response => {
+				dispatch(getFilterBarChapterSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getFilterBarChapterError(err))
+			})
+	}
+}
+
+export const handleChangeClasses = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_CLASS,
+		data: parseInt(data)
+	}
+};
+
+export const handleChangeDocType = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_DOCTYPE,
+		data: parseInt(data)
+	}
+};
+
+export const handleChangeSubject = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_SUBJECT,
+		data: parseInt(data)
+	}
+};
+
+export const handleChangeFormat = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_FORMAT,
+		data: parseInt(data)
+	}
+};
+
+export const handleChangePrice = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_PRICE,
+		data: parseInt(data)
+	}
+};
+
+export const handleChangeKeyword = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_KEYWORD,
+		data
+	}
+};
+
+export const handleChangeChapter = (data) => {
+	return {
+		type: types.FILTER_BAR_CHANGE_CHAPTER,
+		data
+	}
+};
+
+//handle change view
+export const handleChangeView = (data) => ({
+	type: types.HANDLE_CHANGE_VIEW,
+	data
+})
+
+// result data
+export const getResultRequest = () => ({
+	type: types.RESULT_FILTER_REQUEST
+});
+
+export const getResultSuccess = (payload) => ({
+	type: types.RESULT_FILTER_SUCCESS,
+	payload
+});
+
+export const getResultError = (err) => ({
+	type: types.RESULT_FILTER_ERROR,
+	payload: err
+});
+
+export const getResult = (keyword, docTypeId, classesId, subjectId, chapterId, formatId, price) => {
+	return (dispatch) => {
+		dispatch(getResultRequest());
+		axios.get(api.API_LIST_DOC, {
+			params: {
+				keyword, docTypeId, classesId, subjectId, chapterId, formatId, price
+			}
+		})
+			.then(response => {
+				dispatch(getResultSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getResultError(err))
+			})
+	}
+};

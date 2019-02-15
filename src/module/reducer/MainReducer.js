@@ -17,6 +17,7 @@ import FilterReducer from './FilterReducer';
 import HomeReducer from './HomeReducer';
 import PostReducer from './PostReducer';
 import AuthorReducer from './AuthorReducer';
+import FilterBarReducer from './FilterBarReducer';
 
 const MainReducer = combineReducers({
 	AuthReducer,
@@ -36,7 +37,8 @@ const MainReducer = combineReducers({
 	FilterReducer,
 	HomeReducer,
 	PostReducer,
-	AuthorReducer
+	AuthorReducer,
+	FilterBarReducer,
 });
 
 export default MainReducer;

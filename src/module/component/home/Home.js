@@ -65,7 +65,9 @@ class Home extends Component {
 						<div className="row">
 							<div className="col-xs-12 col-md-3">
 
-								<FilterBar/>
+								<FilterBar
+									history={this.props.history}
+								/>
 
 								<div style={{marginTop: '20px'}}>
 									<TagCloud
@@ -75,32 +77,28 @@ class Home extends Component {
 							</div>
 
 							<div className="col-xs-12 col-md-9">
-								<div className="row">
+								<SpecialDocument/>
 
-									<SpecialDocument/>
+								<HomeListDocument
+									title={'Tài liệu THPT'}
+									documents={highSchool}
+								/>
 
-									<HomeListDocument
-										title={'Tài liệu THPT'}
-										documents={highSchool}
-									/>
+								<HomeListDocument
+									title={'Tài liệu THCS'}
+									documents={middleSchool}
+								/>
 
-									<HomeListDocument
-										title={'Tài liệu THCS'}
-										documents={middleSchool}
-									/>
-
-									<HomeListDocument
-										title={'Tài liệu tiểu học'}
-										documents={elementarySchool}
-									/>
-								</div>
+								<HomeListDocument
+									title={'Tài liệu tiểu học'}
+									documents={elementarySchool}
+								/>
 							</div>
 						</div>
 					</div>
 				</div>
 
 			</Fragment>
-
 		);
 	}
 }

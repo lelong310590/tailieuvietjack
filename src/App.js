@@ -29,6 +29,7 @@ import StaticPost from "./module/component/post/StaticPost";
 import FinanceManager from "./module/component/user/FinanceManager";
 import TagCategory from "./module/component/tags/TagCategory";
 import Author from "./module/component/author/Author";
+import ResultDocType from "./module/component/search/ResultDocType";
 
 const locationHelper = LocationHelper({});
 
@@ -100,6 +101,8 @@ class App extends Component {
 							<Route exact={true} path={'/static-post/:slug'} component={StaticPost} />
 
 							<Route exact={true} path={'/trang-ca-nhan/:userid'} component={Author} />
+
+							<Route exact={true} path={'/danh-sach-:slug'} component={ResultDocType}/>
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

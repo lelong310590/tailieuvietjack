@@ -55,3 +55,10 @@ export const API_DOWNLOAD_DOCUMENT = BASE_URL + 'download';
 export const API_GET_FILE_DOWNLOAD = BASE_URL + 'get-downloaded-document';
 
 export const API_POST_REPORT_DOCUMENT = BASE_URL + 'contact/report-document';
+
+// Filterbar
+export const API_FILTER_BAR_CLASS = BASE_URL + 'class/get-class-filter-bar';
+export const API_FILTER_BAR_DOC_TYPE = BASE_URL + 'doc/type';
+export const API_FILTER_BAR_CHAPTER = BASE_URL + 'chapter/get-chapter';
+
+export const GET_DOCUMENT_TYPE_BY_SLUG = BASE_URL + 'get-document-type-by-slug';
