@@ -4,6 +4,7 @@ import {Link, NavLink} from "react-router-dom";
 import DocumentTag from "../support/DocumentTag";
 import * as helper from "../../Support";
 import SpecialDocument from "./SpecialDocument";
+import Pagination from "../user/Pagination";
 
 class ListDocuments extends Component {
 
@@ -156,8 +157,6 @@ class ListDocuments extends Component {
 						}
 					</div>
 				)}
-
-
 			</div>
 		);
 	}

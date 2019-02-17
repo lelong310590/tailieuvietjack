@@ -11,6 +11,8 @@ import _ from "lodash";
 import {Link, NavLink} from "react-router-dom";
 import DocumentTag from "../support/DocumentTag";
 import * as helper from "../../Support";
+import Pagination from "../user/Pagination";
+import queryString from 'query-string';
 
 class ResultDocType extends Component {
 
@@ -31,14 +33,26 @@ class ResultDocType extends Component {
 	}
 
 	componentDidMount = () => {
-		let {slug} = this.state;
-		this.fetMetaData(slug)
+		this.fetchData(this.props);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-		if (this.props.match.params.slug !== nextProps.match.params.slug) {
-			let {slug} = nextProps.match.params;
-			this.fetMetaData(slug)
+
+		if (this.props !== nextProps) {
+			let oldSearch = this.props.location.search;
+			let oldValue = queryString.parse(oldSearch);
+
+			let search = nextProps.location.search;
+			let value = queryString.parse(search);
+
+			if (value.page !== oldValue.page) {
+				this.fetchData(nextProps, value.page);
+			}
+		}
+
+		if (this.props.match.url !== nextProps.match.url) {
+			let {slug} = nextProps.match.url;
+			this.fetchData(nextProps);
 		}
 
 		if (this.props.FilterBarReducer.viewStyle !== nextProps.FilterBarReducer.viewStyle) {
@@ -48,22 +62,35 @@ class ResultDocType extends Component {
 		}
 
 		if (this.props.FilterBarReducer.documents !== nextProps.FilterBarReducer.documents) {
-			console.log(nextProps.FilterBarReducer.documents);
 			this.setState({
 				documents: nextProps.FilterBarReducer.documents
-			})
+			});
 		}
 
 		return true;
 	};
 
-	fetMetaData = (slug) => {
-		axios.get(api.GET_DOCUMENT_TYPE_BY_SLUG, {
-			params: {slug}
+	//Fetch data
+	fetchData = (props, page = 1) => {
+		let {
+			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
+			keywords
+		} = props.FilterBarReducer;
+
+		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page);
+
+		axios.get(api.GET_META_DATA, {
+			params: {
+				docType: selectedDocTypes,
+				classes: selectedClasses,
+				subject: selectedSubject,
+				price: selectedPrice
+			}
 		})
 			.then(response => {
 				this.setState({
-					title: response.data.name
+					title: response.data.title,
+					description: response.data.description,
 				})
 			})
 			.catch(err => {
@@ -75,9 +102,14 @@ class ResultDocType extends Component {
 		this.props.handleChangeView(viewStyle)
 	};
 
+	clickPage = (page) => {
+		let url = this.props.match.url;
+		this.props.history.push(url + '&page=' + page);
+	};
+
 	render() {
 
-		let {title, viewStyle, documents} = this.state;
+		let {title, viewStyle, documents, url} = this.state;
 
 		return (
 			<Fragment>
@@ -238,6 +270,19 @@ class ResultDocType extends Component {
 										</div>
 									)}
 
+									{documents.last_page > 1 &&
+										<Pagination
+											url={url}
+											current_page={documents.current_page}
+											first_page_url={documents.first_page_url}
+											last_page={documents.last_page}
+											last_page_url={documents.last_page_url}
+											next_page_url={documents.next_page_url}
+											prev_page_url={documents.prev_page_url}
+											clickPage={this.clickPage}
+										/>
+									}
+
 								</div>
 							</div>
 						</div>
@@ -257,6 +302,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		handleChangeView: (data) => {
 			dispatch(action.handleChangeView(data));
+		},
+
+		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1) => {
+			dispatch(action.getResult(keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page));
 		}
 	};
 };

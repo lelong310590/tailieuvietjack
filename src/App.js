@@ -102,7 +102,7 @@ class App extends Component {
 
 							<Route exact={true} path={'/trang-ca-nhan/:userid'} component={Author} />
 
-							<Route exact={true} path={'/danh-sach-:slug'} component={ResultDocType}/>
+							<Route exact={true} path={'/:doctype-:subject-:classes-:price'} component={ResultDocType}/>
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

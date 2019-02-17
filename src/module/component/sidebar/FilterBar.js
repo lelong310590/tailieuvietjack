@@ -113,18 +113,42 @@ class FilterBar extends Component {
 			keywords
 		} = this.state;
 
+
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
-		if (selectedClasses === 0 && selectedSubject === 0 && selectedChapter === 0) {
-			if (selectedDocTypes !== 0) {
-				let docType = _.find(docTypes, {id: selectedDocTypes});
-				this.props.history.push({
-					pathname: '/danh-sach-' + docType.slug,
-				})
+		let docTypeSlug = '';
+		let priceSlug = selectedPrice === 0 ? '-mien-phi' : '-co-phi';
+		let classesSlug = '';
+		let subjectSlug = '';
+
+		if (selectedDocTypes !== 0) {
+			let findDocType = _.find(docTypes, {id: selectedDocTypes});
+			docTypeSlug = findDocType.slug
+		}
+
+		if (selectedClasses !== 0) {
+			let findClasses = _.find(classes, {id: selectedClasses});
+			if (selectedDocTypes === 0 && selectedSubject === 0) {
+				classesSlug = findClasses.slug;
 			} else {
-				this.props.history.push('/')
+				classesSlug = '-' + findClasses.slug
 			}
 		}
+
+		if (selectedSubject !== 0) {
+			let findSubject = _.find(subjects, {id: selectedSubject});
+			if (selectedDocTypes === 0) {
+				subjectSlug = findSubject.slug
+			} else {
+				subjectSlug = '-' + findSubject.slug
+			}
+
+		}
+
+		this.props.history.push({
+			pathname: docTypeSlug + subjectSlug + classesSlug + priceSlug
+		})
+
 	};
 
 	handleChangeDocTypes = (event) => {
@@ -236,15 +260,15 @@ class FilterBar extends Component {
 							<div className="form-group">
 								<select name="name" className="form-control" onChange={this.handleChangeFormat} value={selectedFormat}>
 									<option value={0}> -- Chọn định dạng --</option>
-									<option value="1">DOCX</option>
-									<option value="2">PDF</option>
+									<option value={1}>DOCX</option>
+									<option value={2}>PDF</option>
 								</select>
 							</div>
 
 							<div className="form-group">
 								<select name="name" className="form-control" onChange={this.handleChangePrice} value={selectedPrice}>
-									<option value="0">Tài liệu miễn phí</option>
-									<option value="1">Tài liệu có phí</option>
+									<option value={0}>Tài liệu miễn phí</option>
+									<option value={1}>Tài liệu có phí</option>
 								</select>
 							</div>
 
@@ -309,8 +333,8 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(action.getFilterBarChapter(classId, subjectId))
 		},
 
-		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null) => {
-			dispatch(action.getResult(keyword, docTypeId, classesId, subjectId, chapterId, formatId, price));
+		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1) => {
+			dispatch(action.getResult(keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page));
 		}
 	}
 };

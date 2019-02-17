@@ -61,4 +61,4 @@ export const API_FILTER_BAR_CLASS = BASE_URL + 'class/get-class-filter-bar';
 export const API_FILTER_BAR_DOC_TYPE = BASE_URL + 'doc/type';
 export const API_FILTER_BAR_CHAPTER = BASE_URL + 'chapter/get-chapter';
 
-export const GET_DOCUMENT_TYPE_BY_SLUG = BASE_URL + 'get-document-type-by-slug';
+export const GET_META_DATA = BASE_URL + 'get-meta-data';
