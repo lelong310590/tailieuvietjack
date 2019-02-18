@@ -24,7 +24,7 @@ class ResultDocType extends Component {
 			seokeywords: '',
 			slug: this.props.match.params.slug,
 			page: 1,
-			url: this.props.location.pathname,
+			url: this.props.match.url,
 			documents: {
 				data: []
 			},
@@ -72,6 +72,7 @@ class ResultDocType extends Component {
 
 	//Fetch data
 	fetchData = (props, page = 1) => {
+
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords

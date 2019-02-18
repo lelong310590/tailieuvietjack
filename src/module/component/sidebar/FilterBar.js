@@ -154,13 +154,15 @@ class FilterBar extends Component {
 	handleChangeDocTypes = (event) => {
 		let selectedDocTypes = parseInt(event.target.value);
 		this.props.handleChangeDocType(selectedDocTypes);
+		this.setState({selectedDocTypes})
 	};
 
 	handleChangeClasses = (event) => {
 		let {selectedSubject} = this.state;
 		let selectedClasses = parseInt(event.target.value);
 		this.props.handleChangeClasses(selectedClasses);
-		this.props.getFilterBarChapter(selectedClasses, selectedSubject)
+		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
+		this.setState({selectedClasses})
 	};
 
 	handleChangeSubject = (event) => {
@@ -168,26 +170,31 @@ class FilterBar extends Component {
 		let selectedSubject = parseInt(event.target.value);
 		this.props.handleChangeSubject(selectedSubject);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
+		this.setState({selectedClasses})
 	};
 
 	handleChangeFormat = (event) => {
 		let selectedFormat = parseInt(event.target.value);
 		this.props.handleChangeFormat(selectedFormat);
+		this.setState({selectedFormat})
 	};
 
 	handleChangePrice = (event) => {
 		let selectedPrice = parseInt(event.target.value);
 		this.props.handleChangePrice(selectedPrice);
+		this.setState({selectedPrice})
 	};
 
 	handleChangeKeyword = (event) => {
 		let keyword = event.target.value;
 		this.props.handleChangeKeyword(keyword);
+		this.setState({keyword})
 	};
 
 	handleChangeChapter = (event) => {
 		let chapter = parseInt(event.target.value);
 		this.props.handleChangeChapter(chapter);
+		this.setState({chapter})
 	};
 
 	render() {
