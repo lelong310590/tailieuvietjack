@@ -78,6 +78,13 @@ class EditDocument extends Component {
 		this.setState({name})
 	};
 
+	handleChangeDocTypes = (event) => {
+		let selectedDocTypes = event.target.value;
+		this.setState({selectedDocTypes});
+		let {classes} = this.state;
+		this.props.getChapter(classes, selectedDocTypes);
+	};
+
 	handleChangeClass = (event) => {
 		let classes = event.target.value;
 		this.props.getSubjectViaClass(classes);
@@ -161,7 +168,7 @@ class EditDocument extends Component {
 		let id = this.props.match.params.slug;
 
 		let {
-			name, classes, description, price, tags,
+			name, classes, description, price, tags,selectedDocTypes,
 			subject, customPagePreview, pagePreview, thematic, chapter
 		} = this.state;
 
@@ -180,6 +187,7 @@ class EditDocument extends Component {
 		formData.append('name', name);
 		formData.append('category', classes);
 		formData.append('subject', subject);
+		formData.append('doctype', selectedDocTypes);
 		formData.append('thematic', description);
 		formData.append('chapter', description);
 		formData.append('excerpt', description);
@@ -221,16 +229,22 @@ class EditDocument extends Component {
 	render() {
 
 		let {classes} = this.props.ClassesReducer;
+		let {docTypes} = this.props.FilterBarReducer;
 		let {listSubjectinClass} = this.props.SubjectReducer;
 		let priceList = this.props.PriceReducer.price;
 		let chapterList = this.props.ChapterReducer.listChapters;
 		let thematicList = this.props.ThematicReducer.thematic;
 
 		let {
-			subject, description, tagSuggest, price, customPrice, customPagePreview,
+			subject, description, tagSuggest, price, customPrice, customPagePreview,selectedDocTypes,
 			totalPage, pagePreview, name, tags, isSubmit, errorMess, editComplete, thematic, chapter
 		} = this.state;
 
+		let docTypesElem = _.map(docTypes, (value, index) => {
+			return (
+				<option value={value.id} key={index}>{value.name}</option>
+			)
+		});
 
 		let classesElem = _.map(classes, (value, index) => {
 			return (
@@ -301,7 +315,17 @@ class EditDocument extends Component {
 														/>
 													</div>
 												</div>
-
+												<div className="upload-result-content">
+													<div className="upload-result-content-title">
+														Tài liệu <span className="upload-result-content-required">(*)</span>
+													</div>
+													<div className="upload-result-content-input form-group">
+														<select className="form-control" onChange={this.handleChangeDocTypes} required value={selectedDocTypes}>
+															<option value={0}>Chọn loại tài liệu</option>
+															{docTypesElem}
+														</select>
+													</div>
+												</div>
 												<div className="upload-result-content">
 													<div className="upload-result-content-title">
 														Trình độ <span className="upload-result-content-required">(*)</span>
