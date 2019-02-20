@@ -18,6 +18,7 @@ class EditDocument extends Component {
 			name: '',
 			classes: 0,
 			subject: 0,
+			selectedDocTypes: 0,
 			chapter: 0,
 			thematic: 0,
 			description: '',
@@ -45,7 +46,7 @@ class EditDocument extends Component {
 		if (this.props.DocReducer.doc !== nextProps.DocReducer.doc) {
 
 			let {
-				subject_id, category_id, name, price, pages, excerpt
+				subject_id, category_id, name, price, pages, excerpt, type
 			} = nextProps.DocReducer.doc.docInfo;
 
 			let priceList = this.props.PriceReducer.price;
@@ -66,7 +67,8 @@ class EditDocument extends Component {
 				price,
 				description: excerpt,
 				pagePreview: pages,
-				tags, customPrice, tagSuggest
+				tags, customPrice, tagSuggest,
+				selectedDocTypes: type
 			})
 		}
 
