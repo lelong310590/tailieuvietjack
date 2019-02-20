@@ -17,6 +17,7 @@ import TagsFooter from "../tags/TagsFooter";
 import * as api from "../../const/Api";
 import axios from "axios";
 import Meta from "../support/Meta";
+import FilterBar from "../sidebar/FilterBar";
 
 class ListSubject extends Component {
 
@@ -31,7 +32,9 @@ class ListSubject extends Component {
 			catName: '',
 			catId: 0,
 			tagFooter: [],
-			items: [],
+			items: {
+				data: []
+			},
 		}
 	}
 
@@ -58,8 +61,8 @@ class ListSubject extends Component {
 				catId: nextProps.SubjectReducer.subjectInClass.id,
 			});
 
-			let {catSlug} = this.state;
-			this.fetchData({ catSlug });
+			let {catId} = nextProps.SubjectReducer.subjectInClass.id;
+
 		}
 
 		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
@@ -68,11 +71,14 @@ class ListSubject extends Component {
 			})
 		}
 
+		if (this.state.catId !== nextState.catId) {
+			this.fetchData(nextState.catId);
+		}
+
 		return true;
 	};
 
-	fetchData = ({ catSlug }) => {
-
+	fetchData = (classesID) => {
 		let apiUrl = api.API_LIST_DOC;
 
 		this.setState({
@@ -80,7 +86,9 @@ class ListSubject extends Component {
 		});
 
 		axios.get(apiUrl, {
-			params: { catSlug }
+			params: {
+				classesId: classesID
+			}
 		})
 			.then(response => {
 				this.setState({
@@ -111,26 +119,21 @@ class ListSubject extends Component {
 					/>
 
 					<div className="container">
-
-						<Breadcrumb
-							catSlug={catSlug}
-							classLevel={catName}
-						/>
-
-						<div className="col-xs-12 col-md-9">
-
-							<Filter
-								history={this.props.history}
-								catId={catId}
-							/>
-
-							<div className="row">
-								<ListDocuments items={items}/>
+						<div className="row">
+							<div className="col-xs-12 col-md-3">
+								<FilterBar
+									history={this.props.history}
+								/>
 							</div>
-						</div>
 
-						<div className="col-xs-12 col-md-3 sticky-sidebar">
-							<Ads/>
+							<div className="col-xs-12 col-md-9">
+								<Breadcrumb
+									catSlug={catSlug}
+									classLevel={catName}
+								/>
+
+								<ListDocuments items={items.data}/>
+							</div>
 						</div>
 					</div>
 

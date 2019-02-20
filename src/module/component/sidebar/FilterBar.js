@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import * as action from './../../action/Index';
+import Loading from "../support/Loading";
 
 class FilterBar extends Component {
 
@@ -19,6 +20,7 @@ class FilterBar extends Component {
 			selectedFormat: 0,
 			selectedPrice: 0,
 			selectedChapter: 0,
+			loading: false
 		}
 	};
 
@@ -142,7 +144,6 @@ class FilterBar extends Component {
 			} else {
 				subjectSlug = '-' + findSubject.slug
 			}
-
 		}
 
 		this.props.history.push({
@@ -162,7 +163,14 @@ class FilterBar extends Component {
 		let selectedClasses = parseInt(event.target.value);
 		this.props.handleChangeClasses(selectedClasses);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
-		this.setState({selectedClasses})
+		this.setState({
+			selectedClasses,
+			loading: true
+		});
+
+		setTimeout(() => {
+			this.setState({loading: false})
+		}, 1500)
 	};
 
 	handleChangeSubject = (event) => {
@@ -170,7 +178,14 @@ class FilterBar extends Component {
 		let selectedSubject = parseInt(event.target.value);
 		this.props.handleChangeSubject(selectedSubject);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
-		this.setState({selectedClasses})
+		this.setState({
+			selectedClasses,
+			loading: true
+		});
+
+		setTimeout(() => {
+			this.setState({loading: false})
+		}, 1500)
 	};
 
 	handleChangeFormat = (event) => {
@@ -201,7 +216,7 @@ class FilterBar extends Component {
 
 		let {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
-			keywords, chapters
+			keywords, chapters, loading
 		} = this.state;
 
 		return (
@@ -209,6 +224,9 @@ class FilterBar extends Component {
 				<div className="widget-title"><h4 className="text-center">Tìm kiếm tài liệu</h4></div>
 				<div className="widget-content">
 					<div className="filter-bar-wrapper-inner">
+
+						{loading && <Loading/> }
+
 						<form onSubmit={this.submitSearch}>
 
 							<div className="form-group">
@@ -255,7 +273,7 @@ class FilterBar extends Component {
 
 							<div className="form-group">
 								<select name="name" className="form-control" value={selectedChapter} onChange={this.handleChangeChapter}>
-									<option value=""> -- Chọn chuyên đề --</option>
+									<option value={0}> -- Chọn chuyên đề --</option>
 									{_.map(chapters, (value, idx) => {
 										return (
 											<option value={value.id} key={idx}>{value.name}</option>

@@ -16,6 +16,7 @@ import TagsFooter from "../tags/TagsFooter";
 import * as api from "../../const/Api";
 import axios from "axios";
 import Meta from "../support/Meta";
+import FilterBar from "../sidebar/FilterBar";
 
 class ListChapter extends Component {
 
@@ -34,7 +35,10 @@ class ListChapter extends Component {
 			subjectThumbnail: '',
 			catId: 0,
 			tagsTrend: [],
-			tagFooter: []
+			tagFooter: [],
+			items: {
+				data: []
+			},
 		}
 	}
 
@@ -120,32 +124,25 @@ class ListChapter extends Component {
 				/>
 
 				<div className="container">
-					<Breadcrumb
-						classSlug={catSlug}
-						classLevel={catName}
-						subject={subjectName}
-						subjectSlug={subjectSlug}
-					/>
+					<div className="row">
+						<div className="col-xs-12 col-md-3">
+							<FilterBar
+								history={this.props.history}
+							/>
+						</div>
 
-					<div className="col-xs-12 col-md-9">
+						<div className="col-xs-12 col-md-9">
+							<Breadcrumb
+								classSlug={catSlug}
+								classLevel={catName}
+								subject={subjectName}
+								subjectSlug={subjectSlug}
+							/>
 
-						<Filter
-							history={this.props.history}
-							path={this.props.match.path}
-							chapters={chapters}
-							subjectName={subjectName}
-							subjectThumbnail={subjectThumbnail}
-							tagsTrend={tagsTrend}
-						/>
-
-						<div className="row">
-							<ListDocuments items={items}/>
+							<ListDocuments items={items.data}/>
 						</div>
 					</div>
 
-					<div className="col-xs-12 col-md-3 sticky-sidebar">
-						<Ads/>
-					</div>
 				</div>
 
 				<TagsFooter
