@@ -4,6 +4,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import DocumentTag from "../support/DocumentTag"; // Import css
 import {Link} from 'react-router-dom';
+import _ from 'lodash';
 
 class DocItem extends Component {
 
@@ -38,12 +39,18 @@ class DocItem extends Component {
 				<div className="doc-item-horizontal-info">
 					<h4><Link to={'/tai-lieu/' + this.props.id + '-' + this.props.slug}>{this.props.name}</Link></h4>
 					<div className="document-category-info">
-						<Link to={'/cat/' + this.props.get_class.slug} className="document-category-class">
-							{this.props.get_class.name}
-						</Link>
-						<Link to={'/cat/' + this.props.get_class.slug + '/' + this.props.get_subject.slug} className="document-category-subject">
-							{this.props.get_subject.name}
-						</Link>
+						{!_.isEmpty(this.props.get_class) &&
+							<Link to={'/cat/' + this.props.get_class.slug} className="document-category-class">
+								{this.props.get_class.name}
+							</Link>
+						}
+
+						{!_.isEmpty(this.props.get_class) &&
+							<Link to={'/cat/' + this.props.get_class.slug + '/' + this.props.get_subject.slug} className="document-category-subject">
+								{this.props.get_subject.name}
+							</Link>
+						}
+
 					</div>
 					<div className="document-info">
 						<div className="document-info-page"><i className="far fa-file-alt"></i> {this.props.pages}</div>
