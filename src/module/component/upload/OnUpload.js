@@ -114,6 +114,13 @@ class OnUpload extends Component {
 		this.props.getChapter(classes, subject);
 	};
 
+	handleChangeDocTypes = (event) => {
+		let selectedDocTypes = event.target.value;
+		this.setState({selectedDocTypes});
+		let {classes} = this.state;
+		this.props.getChapter(classes, selectedDocTypes);
+	};
+
 	handleChangeSubject = (event) => {
 		let subject = event.target.value;
 		this.setState({subject});
@@ -226,7 +233,7 @@ class OnUpload extends Component {
 		event.preventDefault();
 		let {email} = this.props.UserReducer;
 		let {
-			name, customPagePreview, thumbnail, classes,
+			name, customPagePreview, thumbnail, classes, selectedDocTypes,
 			subject, description, price, pagePreview, id, tags, totalPage, thematic, chapter
 		} = this.state;
 
@@ -245,6 +252,7 @@ class OnUpload extends Component {
 		formData.append('name', name);
 		formData.append('category', classes);
 		formData.append('subject', subject);
+		formData.append('doctype', selectedDocTypes);
 		formData.append('excerpt', description);
 		//formData.append('thematic', description);
 		formData.append('chapter', chapter);
@@ -292,18 +300,25 @@ class OnUpload extends Component {
 
 	render() {
 		let {classes} = this.props.ClassesReducer;
+		let {docTypes} = this.props.FilterBarReducer;
 		let priceList = this.props.PriceReducer.price;
 		let {listSubjectinClass} = this.props.SubjectReducer;
 		let chapterList = this.props.ChapterReducer.listChapters;
 		// let thematicList = this.props.ThematicReducer.thematic;
 		let {percent, name, index} = this.props;
 		let {
-			customPrice, tempThumbnail, modalCrop, thumbnail, subject, chapter, thematic, description, price,
+			customPrice, tempThumbnail, modalCrop, thumbnail, subject, selectedDocTypes, chapter, thematic, description, price,
 			pagePreview, customPagePreview, upLoadError, totalPage, onProgress, duplicate, duplicateFile,
 			tagSuggest, isSubmit, errorMess, editComplete, returnClass ,returnPrice, returnSubject
 		} = this.state;
 
 		let classesElem = _.map(classes, (value, index) => {
+			return (
+				<option value={value.id} key={index}>{value.name}</option>
+			)
+		});
+
+		let docTypesElem = _.map(docTypes, (value, index) => {
 			return (
 				<option value={value.id} key={index}>{value.name}</option>
 			)
@@ -424,7 +439,17 @@ class OnUpload extends Component {
 												/>
 											</div>
 										</div>
-
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Tài liệu <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+													<select className="form-control" onChange={this.handleChangeDocTypes} required value={selectedDocTypes}>
+													<option value={0}>Chọn loại tài liệu</option>
+													{docTypesElem}
+												</select>
+											</div>
+										</div>
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
 												Trình độ <span className="upload-result-content-required">(*)</span>
@@ -436,6 +461,8 @@ class OnUpload extends Component {
 												</select>
 											</div>
 										</div>
+
+										
 
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">

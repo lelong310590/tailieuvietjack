@@ -147,7 +147,7 @@ class FilterBar extends Component {
 		}
 
 		this.props.history.push({
-			pathname: docTypeSlug + subjectSlug + classesSlug + priceSlug
+			pathname: '/' + docTypeSlug + subjectSlug + classesSlug + priceSlug
 		})
 
 	};
