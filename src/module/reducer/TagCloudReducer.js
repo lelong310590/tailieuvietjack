@@ -36,7 +36,7 @@ let TagCloudReducer = (state = initialState, action) => {
 				tags: action.payload.data
 			};
 		default:
-			return {...state}
+			return state;
 	}
 };
 
