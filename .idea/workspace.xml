@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/class/ListSubject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/class/ListSubject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/module/component/subjects/ListChapter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/module/component/subjects/ListChapter.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -83,7 +80,7 @@
           <entry key="env" value="10" />
           <entry key="gitignore" value="5" />
           <entry key="html" value="33" />
-          <entry key="js" value="120584" />
+          <entry key="js" value="120641" />
           <entry key="json" value="2" />
           <entry key="sass" value="19563" />
         </counts>
@@ -93,7 +90,7 @@
           <entry key=".env file" value="10" />
           <entry key="HTML" value="33" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="120584" />
+          <entry key="JavaScript" value="120641" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Sass" value="19563" />
         </counts>
@@ -145,8 +142,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/module/component/subjects/ListChapter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+            <state relative-caret-position="488">
+              <caret line="76" column="41" lean-forward="true" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -636,12 +633,12 @@
       <workItem from="1550463932423" duration="2226000" />
       <workItem from="1550475109408" duration="714000" />
       <workItem from="1550544086853" duration="6613000" />
-      <workItem from="1550630802850" duration="1724000" />
+      <workItem from="1550630802850" duration="2666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="690223000" />
+    <option name="totallyTimeSpent" value="691165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
@@ -1107,8 +1104,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/module/component/subjects/ListChapter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="146" lean-forward="true" selection-start-line="146" selection-end-line="146" />
+        <state relative-caret-position="488">
+          <caret line="76" column="41" lean-forward="true" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
         </state>
       </provider>
     </entry>

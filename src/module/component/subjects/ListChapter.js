@@ -69,10 +69,12 @@ class ListChapter extends Component {
 				subjectSlug: nextProps.ChapterReducer.chapter.subject.slug,
 				subjectThumbnail: nextProps.ChapterReducer.chapter.subject.thumbnail,
 				tagsTrend: nextProps.ChapterReducer.chapter.tagsTrend
-			})
+			});
 
-			let {catSlug, subjectSlug} = this.state;
-			this.fetchData({ catSlug, subjectSlug });
+			let catId = nextProps.ChapterReducer.chapter.category.id;
+			let subId = nextProps.ChapterReducer.chapter.subject.id;
+
+			this.fetchData(catId, subId);
 		}
 
 		if (this.props.TagCloudReducer.tagsFooter !== nextProps.TagCloudReducer.tagsFooter) {
@@ -84,7 +86,7 @@ class ListChapter extends Component {
 		return true;
 	};
 
-	fetchData = ({ catSlug, subjectSlug }) => {
+	fetchData = (classesId, subjectId) => {
 
 		let apiUrl = api.API_LIST_DOC;
 
@@ -93,7 +95,7 @@ class ListChapter extends Component {
 		});
 
 		axios.get(apiUrl, {
-			params: { catSlug, subjectSlug }
+			params: { classesId, subjectId }
 		})
 			.then(response => {
 				this.setState({
