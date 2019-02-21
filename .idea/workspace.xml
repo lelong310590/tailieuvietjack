@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1062">
+              <caret line="70" column="32" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="629">
+              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="226" column="13" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-742">
+              <caret line="302" column="8" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>API_GET_POST</find>
+      <find>header</find>
+      <find>Alert</find>
+      <find>document-tags</find>
+      <find>related-item</find>
+      <find>doc-item-horizontal-info-infomation-content</find>
+      <find>API_LOGIN</find>
+      <find>client_secret</find>
+      <find>class=</find>
+      <find>category-document-wrapper</find>
+      <find>class=&quot;</find>
+      <find>document-detail-title</find>
+      <find>most-view-by-week</find>
+      <find>API_GET_MOST_VIEW_BY_WEEK</find>
+      <find>filter-bar-wrapper</find>
+      <find>getClasses</find>
+      <find>class/get</find>
+      <find>API_GET_CLASSES</find>
+      <find>GET_FILTER_BAR_CLASS_SUCCESS</find>
+      <find>all-subject</find>
+      <find>API_GET_SUBJECTS</find>
+      <find>val</find>
+      <find>config</find>
+      <find>axios.get</find>
+      <find>&lt;Pagina</find>
+      <find>getResult</find>
+      <find>GET_DOCUMENT_TYPE_BY_SLUG</find>
+      <find>handleChangeClasses</find>
+      <find>value</find>
+      <find>get_class</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/module/reducer</dir>
+      <dir>$PROJECT_DIR$/src/module/component</dir>
+      <dir>$PROJECT_DIR$/src/module</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/module/component/support/DocumentTag.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/Tags.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/OnUpload.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/module/reducer/AuthorReducer.js" />
+        <option value="$PROJECT_DIR$/src/module/component/Header.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_global.sass" />
+        <option value="$PROJECT_DIR$/src/module/component/user/Menu.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/ReportDocument.js" />
+        <option value="$PROJECT_DIR$/src/module/component/support/Meta.js" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/Intro.js" />
+        <option value="$PROJECT_DIR$/src/module/component/upload/Policy.js" />
+        <option value="$PROJECT_DIR$/src/module/reducer/TagCloudReducer.js" />
+        <option value="$PROJECT_DIR$/src/module/Support.js" />
+        <option value="$PROJECT_DIR$/src/module/component/home/TagCloud.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/Infomation.js" />
+        <option value="$PROJECT_DIR$/src/module/component/tags/TagsFooter.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/TopWeekDoc.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/Related.js" />
+        <option value="$PROJECT_DIR$/src/module/component/register/Register.js" />
+        <option value="$PROJECT_DIR$/src/module/component/login/Login.js" />
+        <option value="$PROJECT_DIR$/src/module/component/home/HomeListDocument.js" />
+        <option value="$PROJECT_DIR$/src/module/component/author/Author.js" />
+        <option value="$PROJECT_DIR$/src/module/component/tags/TagCategory.js" />
+        <option value="$PROJECT_DIR$/src/module/component/user/DocItem.js" />
+        <option value="$PROJECT_DIR$/src/module/component/user/DocManager.js" />
+        <option value="$PROJECT_DIR$/src/module/component/home/Filter.js" />
+        <option value="$PROJECT_DIR$/src/module/reducer/ClassesReducer.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/Download.js" />
+        <option value="$PROJECT_DIR$/src/module/component/doc/Document.js" />
+        <option value="$PROJECT_DIR$/src/module/component/listDoc/List.js" />
+        <option value="$PROJECT_DIR$/src/module/component/listDoc/SpecialDocument.js" />
+        <option value="$PROJECT_DIR$/src/module/reducer/HomeReducer.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/module/reducer/MainReducer.js" />
+        <option value="$PROJECT_DIR$/src/module/component/home/Home.js" />
+        <option value="$PROJECT_DIR$/src/module/component/search/SearchResult.js" />
+        <option value="$PROJECT_DIR$/src/module/const/ActionType.js" />
+        <option value="$PROJECT_DIR$/src/module/component/listDoc/ListDocuments.js" />
+        <option value="$PROJECT_DIR$/src/module/action/Index.js" />
+        <option value="$PROJECT_DIR$/src/module/component/search/ResultClasses.js" />
+        <option value="$PROJECT_DIR$/src/module/reducer/FilterBarReducer.js" />
+        <option value="$PROJECT_DIR$/src/module/const/Api.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/module/component/search/ResultDocType.js" />
+        <option value="$PROJECT_DIR$/public/lib/sass/_base.sass" />
+        <option value="$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js" />
+        <option value="$PROJECT_DIR$/src/module/component/class/ListSubject.js" />
+        <option value="$PROJECT_DIR$/src/module/component/subjects/ListChapter.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="738" />
+    <option name="y" value="312" />
+    <option name="width" value="1902" />
+    <option name="height" value="798" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code style issuesCSS</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>DOM issuesJavaScript</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>Invalid elementsCSS</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsCSS</id>
+          </State>
+          <State>
+            <id>Pug/Jade</id>
+          </State>
+          <State>
+            <id>YAML</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="tailieuvietjack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieuvietjack" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieuvietjack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieuvietjack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieuvietjack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieuvietjack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieuvietjack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieuvietjack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="component" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tailieuvietjack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tailieuvietjack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="reducer" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="mapPr&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/module/component/support" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/module/component/home" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a162f02b-ea7f-4ff5-9285-8dc110e81cd1" name="Default Changelist" comment="" />
+      <created>1539880620449</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539880620449</updated>
+      <workItem from="1539880622079" duration="2452000" />
+      <workItem from="1539885403690" duration="3665000" />
+      <workItem from="1539915228547" duration="18383000" />
+      <workItem from="1540005948550" duration="5343000" />
+      <workItem from="1540053371912" duration="599000" />
+      <workItem from="1540138661971" duration="389000" />
+      <workItem from="1540178267514" duration="14466000" />
+      <workItem from="1540264408501" duration="15315000" />
+      <workItem from="1540347664235" duration="577000" />
+      <workItem from="1540349741128" duration="72000" />
+      <workItem from="1540396691577" duration="3234000" />
+      <workItem from="1540435743545" duration="17507000" />
+      <workItem from="1540520351171" duration="21147000" />
+      <workItem from="1540608267134" duration="5000" />
+      <workItem from="1540610451117" duration="6091000" />
+      <workItem from="1540623133684" duration="4414000" />
+      <workItem from="1540633203393" duration="3364000" />
+      <workItem from="1540728999477" duration="639000" />
+      <workItem from="1540731659573" duration="73000" />
+      <workItem from="1540744599075" duration="14000" />
+      <workItem from="1540796124017" duration="7548000" />
+      <workItem from="1540870115519" duration="13749000" />
+      <workItem from="1541048497769" duration="21000" />
+      <workItem from="1541059857183" duration="724000" />
+      <workItem from="1541064355879" duration="64000" />
+      <workItem from="1541065322043" duration="3955000" />
+      <workItem from="1541084070859" duration="9000" />
+      <workItem from="1541086979337" duration="274000" />
+      <workItem from="1541125436672" duration="10000" />
+      <workItem from="1541133595486" duration="963000" />
+      <workItem from="1541143572657" duration="736000" />
+      <workItem from="1541144682156" duration="6212000" />
+      <workItem from="1541172475947" duration="866000" />
+      <workItem from="1541175123960" duration="681000" />
+      <workItem from="1541211949300" duration="8652000" />
+      <workItem from="1541224314128" duration="196000" />
+      <workItem from="1541236189945" duration="1465000" />
+      <workItem from="1541242007567" duration="826000" />
+      <workItem from="1541262101525" duration="4000" />
+      <workItem from="1541345965947" duration="2022000" />
+      <workItem from="1541400798389" duration="12000" />
+      <workItem from="1541400873492" duration="11848000" />
+      <workItem from="1541427498839" duration="7890000" />
+      <workItem from="1541475553239" duration="14773000" />
+      <workItem from="1541518804726" duration="2217000" />
+      <workItem from="1541557835683" duration="4022000" />
+      <workItem from="1541562743703" duration="9985000" />
+      <workItem from="1541645640282" duration="19000" />
+      <workItem from="1541660741357" duration="9513000" />
+      <workItem from="1541693157132" duration="4345000" />
+      <workItem from="1541732543745" duration="710000" />
+      <workItem from="1541737271508" duration="1781000" />
+      <workItem from="1541821960282" duration="10197000" />
+      <workItem from="1541837769618" duration="333000" />
+      <workItem from="1541842053085" duration="2976000" />
+      <workItem from="1541864936523" duration="3936000" />
+      <workItem from="1541953561660" duration="1462000" />
+      <workItem from="1541989959291" duration="20235000" />
+      <workItem from="1542038069518" duration="3863000" />
+      <workItem from="1542081420430" duration="662000" />
+      <workItem from="1542082165376" duration="5860000" />
+      <workItem from="1542099231117" duration="5737000" />
+      <workItem from="1542169105259" duration="1274000" />
+      <workItem from="1542177811752" duration="2970000" />
+      <workItem from="1542360858622" duration="3229000" />
+      <workItem from="1542364994227" duration="173000" />
+      <workItem from="1542421122600" duration="662000" />
+      <workItem from="1542612828000" duration="7764000" />
+      <workItem from="1542696420683" duration="4254000" />
+      <workItem from="1542768538924" duration="6291000" />
+      <workItem from="1542793798050" duration="5517000" />
+      <workItem from="1542968933329" duration="1471000" />
+      <workItem from="1542981222819" duration="5357000" />
+      <workItem from="1543027100080" duration="19448000" />
+      <workItem from="1543163940212" duration="5882000" />
+      <workItem from="1543198394122" duration="3928000" />
+      <workItem from="1543478579129" duration="4858000" />
+      <workItem from="1543544986476" duration="7124000" />
+      <workItem from="1543633674566" duration="8087000" />
+      <workItem from="1543648668000" duration="5767000" />
+      <workItem from="1543657435894" duration="3164000" />
+      <workItem from="1543674494832" duration="1065000" />
+      <workItem from="1543676590884" duration="4636000" />
+      <workItem from="1543817444392" duration="7805000" />
+      <workItem from="1543833275138" duration="1999000" />
+      <workItem from="1543899703895" duration="10000" />
+      <workItem from="1544151638765" duration="3445000" />
+      <workItem from="1544171014414" duration="12831000" />
+      <workItem from="1544599068676" duration="3230000" />
+      <workItem from="1544683618659" duration="2155000" />
+      <workItem from="1544756220156" duration="11084000" />
+      <workItem from="1544787592506" duration="3466000" />
+      <workItem from="1544849716454" duration="1000" />
+      <workItem from="1544849822532" duration="2082000" />
+      <workItem from="1545016360214" duration="2082000" />
+      <workItem from="1545033624098" duration="103000" />
+      <workItem from="1545033761181" duration="10000" />
+      <workItem from="1545101101209" duration="8703000" />
+      <workItem from="1545189707099" duration="841000" />
+      <workItem from="1545190648396" duration="11979000" />
+      <workItem from="1545232950931" duration="665000" />
+      <workItem from="1545278230886" duration="1406000" />
+      <workItem from="1545318170183" duration="1788000" />
+      <workItem from="1545377308786" duration="5417000" />
+      <workItem from="1545402251406" duration="674000" />
+      <workItem from="1545405562019" duration="3081000" />
+      <workItem from="1545634980881" duration="856000" />
+      <workItem from="1545722587517" duration="2725000" />
+      <workItem from="1545806235133" duration="613000" />
+      <workItem from="1546361498313" duration="1093000" />
+      <workItem from="1546399929042" duration="4557000" />
+      <workItem from="1546485440583" duration="7600000" />
+      <workItem from="1546572312214" duration="4844000" />
+      <workItem from="1546795293305" duration="942000" />
+      <workItem from="1546797508662" duration="3495000" />
+      <workItem from="1546831002251" duration="3845000" />
+      <workItem from="1546846104198" duration="5591000" />
+      <workItem from="1546914996058" duration="7132000" />
+      <workItem from="1546934669520" duration="2399000" />
+      <workItem from="1547091361983" duration="2599000" />
+      <workItem from="1547101786580" duration="6726000" />
+      <workItem from="1547141665998" duration="57000" />
+      <workItem from="1547178062154" duration="837000" />
+      <workItem from="1547179182627" duration="5709000" />
+      <workItem from="1547195861888" duration="679000" />
+      <workItem from="1547268232576" duration="3061000" />
+      <workItem from="1547372982733" duration="661000" />
+      <workItem from="1547401750270" duration="837000" />
+      <workItem from="1547446485540" duration="2630000" />
+      <workItem from="1547453535647" duration="5409000" />
+      <workItem from="1547534361502" duration="1228000" />
+      <workItem from="1547620558242" duration="5207000" />
+      <workItem from="1547649548442" duration="2962000" />
+      <workItem from="1547691974843" duration="3607000" />
+      <workItem from="1547700575572" duration="1050000" />
+      <workItem from="1547706501296" duration="9806000" />
+      <workItem from="1547786559071" duration="3561000" />
+      <workItem from="1547796642073" duration="4359000" />
+      <workItem from="1548039771919" duration="181000" />
+      <workItem from="1548059794866" duration="2101000" />
+      <workItem from="1548178028753" duration="2058000" />
+      <workItem from="1548212233316" duration="8947000" />
+      <workItem from="1548303975911" duration="1866000" />
+      <workItem from="1548310928269" duration="6829000" />
+      <workItem from="1548320797518" duration="381000" />
+      <workItem from="1548342669919" duration="179000" />
+      <workItem from="1548343799780" duration="1687000" />
+      <workItem from="1548384543301" duration="11699000" />
+      <workItem from="1548597238689" duration="1944000" />
+      <workItem from="1548730656415" duration="11352000" />
+      <workItem from="1548819879957" duration="1804000" />
+      <workItem from="1549034064504" duration="4002000" />
+      <workItem from="1549771101673" duration="1288000" />
+      <workItem from="1549939840015" duration="20678000" />
+      <workItem from="1550200622212" duration="7516000" />
+      <workItem from="1550251025807" duration="3297000" />
+      <workItem from="1550423029207" duration="7580000" />
+      <workItem from="1550463932423" duration="2226000" />
+      <workItem from="1550475109408" duration="714000" />
+      <workItem from="1550544086853" duration="6613000" />
+      <workItem from="1550630802850" duration="2666000" />
+      <workItem from="1550731116343" duration="660000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="692012000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22734499" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3296582" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3296582" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50052744" side_tool="true" weight="0.17640573" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4994726" visible="true" weight="0.19893429" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
+      <window_info anchor="bottom" id="Thumbnails" order="12" weight="0.3296582" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js</url>
+          <line>224</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js</url>
+          <line>292</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js</url>
+          <line>220</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/login/Login.js</url>
+          <line>114</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/upload/TagEditor.js</url>
+          <line>23</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/home/Filter.js</url>
+          <line>30</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/home/Filter.js</url>
+          <line>88</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>273</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>284</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>292</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>262</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>246</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js</url>
+          <line>235</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/author/Author.js</url>
+          <line>22</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/module/component/search/ResultDocType.js</url>
+          <line>73</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="breakpointLogExpression">
+      <expression>
+        <expression-string>grade</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/module/component/tags/TagsFooter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="61" column="10" lean-forward="true" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Sidebar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Related.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="76" column="61" lean-forward="true" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/register/Register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4140">
+          <caret line="190" column="111" selection-start-line="190" selection-start-column="111" selection-end-line="190" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/login/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="48" column="55" lean-forward="true" selection-start-line="48" selection-start-column="55" selection-end-line="48" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/HomeListDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="71" column="82" lean-forward="true" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="60" column="100" selection-start-line="60" selection-start-column="100" selection-end-line="60" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/DocManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="214" column="56" lean-forward="true" selection-start-line="214" selection-start-column="56" selection-end-line="214" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/Filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="125" column="64" lean-forward="true" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/ClassesReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/TopWeekDoc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="19" column="47" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/ads.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/adsdownload.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/dialy.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/images/document-ads.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/tags/TagCategory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="92" column="42" lean-forward="true" selection-start-line="90" selection-start-column="36" selection-end-line="92" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Download.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/doc/Document.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="290" column="30" lean-forward="true" selection-start-line="290" selection-start-column="30" selection-end-line="290" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/HomeReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/TagCloud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="43" column="18" lean-forward="true" selection-start-line="33" selection-start-column="12" selection-end-line="43" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="8" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/FilterReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/DocReducer.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/MainReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="40" column="15" lean-forward="true" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/FilterBox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1346" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/SpecialDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2622">
+          <caret line="122" column="15" selection-start-line="122" selection-start-column="15" selection-end-line="122" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/support/Meta.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/home/Home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/CatDoc.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1434">
+          <caret line="42" column="25" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/UserCover.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/user/Pagination.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/author/Author.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="68" column="69" lean-forward="true" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#4014#5734#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/search/ResultClasses.js" />
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/FilterBarReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1288">
+          <caret line="56" column="14" selection-start-line="56" selection-start-column="14" selection-end-line="56" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/List.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3450">
+          <caret line="158" column="33" selection-start-line="158" selection-start-column="33" selection-end-line="158" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/const/ActionType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="134" column="31" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lib/sass/_base.sass">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="1349" column="7" selection-start-line="1349" selection-start-column="7" selection-end-line="1349" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/sidebar/FilterBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4140">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/SubjectReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/search/ResultDocType.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2326">
+          <caret line="128" column="34" lean-forward="true" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+            <element signature="e#3301#9769#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/listDoc/ListDocuments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="136" column="71" lean-forward="true" selection-start-line="136" selection-start-column="71" selection-end-line="136" selection-end-column="71" />
+          <folding>
+            <element signature="e#678#1579#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/class/ListSubject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="126" column="34" lean-forward="true" selection-start-line="122" selection-start-column="28" selection-end-line="126" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/subjects/ListChapter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="76" column="41" lean-forward="true" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/EditDocument.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1062">
+          <caret line="70" column="32" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/const/Api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/reducer/AuthReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/component/upload/OnUpload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-742">
+          <caret line="302" column="8" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/module/action/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="226" column="13" selection-start-line="226" selection-start-column="13" selection-end-line="226" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-router-dom/es/BrowserRouter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ScrollToTop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="41" column="6" selection-start-line="41" selection-start-column="6" selection-end-line="41" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

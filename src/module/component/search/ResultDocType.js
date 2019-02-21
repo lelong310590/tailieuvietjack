@@ -85,7 +85,8 @@ class ResultDocType extends Component {
 				docType: selectedDocTypes,
 				classes: selectedClasses,
 				subject: selectedSubject,
-				price: selectedPrice
+				price: selectedPrice,
+				chapter: selectedChapter
 			}
 		})
 			.then(response => {

@@ -63,7 +63,6 @@ let FilterBarReducer = (state = initialState, action) => {
 			};
 
 		case types.FILTER_BAR_CHANGE_PRICE:
-			console.log('price: ', action.data);
 			return {
 				...state,
 				selectedPrice: action.data
