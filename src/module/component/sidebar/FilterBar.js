@@ -20,7 +20,8 @@ class FilterBar extends Component {
 			selectedFormat: 0,
 			selectedPrice: 0,
 			selectedChapter: 0,
-			loading: false
+			loading: false,
+			alert: false
 		}
 	};
 
@@ -112,9 +113,16 @@ class FilterBar extends Component {
 		e.preventDefault();
 		let {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
-			keywords
+			keywords, chapters
 		} = this.state;
 
+		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
+			this.setState({
+				alert: true
+			});
+
+			return false;
+		}
 
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
@@ -122,6 +130,7 @@ class FilterBar extends Component {
 		let priceSlug = selectedPrice === 0 ? '-mien-phi' : '-co-phi';
 		let classesSlug = '';
 		let subjectSlug = '';
+		let chapterSlug = '';
 
 		if (selectedDocTypes !== 0) {
 			let findDocType = _.find(docTypes, {id: selectedDocTypes});
@@ -146,9 +155,24 @@ class FilterBar extends Component {
 			}
 		}
 
-		this.props.history.push({
-			pathname: '/' + docTypeSlug + subjectSlug + classesSlug + priceSlug
-		})
+		if (selectedChapter !== 0) {
+			let findChapter = _.find(chapters, {id: selectedChapter});
+			chapterSlug = findChapter.slug + '-';
+		}
+
+		this.setState({
+			alert: false
+		});
+
+		if (selectedChapter !== 0) {
+			this.props.history.push({
+				pathname: '/' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
+			})
+		} else {
+			this.props.history.push({
+				pathname: '/' + docTypeSlug + subjectSlug + classesSlug + priceSlug
+			})
+		}
 
 	};
 
@@ -216,7 +240,7 @@ class FilterBar extends Component {
 
 		let {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
-			keywords, chapters, loading
+			keywords, chapters, loading, alert
 		} = this.state;
 
 		return (
@@ -228,6 +252,12 @@ class FilterBar extends Component {
 						{loading && <Loading/> }
 
 						<form onSubmit={this.submitSearch}>
+
+							{alert &&
+								<div className="alert alert-danger">
+									Bạn chưa chọn tiêu chí để tìm tài liệu
+								</div>
+							}
 
 							<div className="form-group">
 								<input type="text" className="form-control" placeholder="Tìm theo từ khóa .." value={keywords} onChange={this.handleChangeKeyword}/>
