@@ -96,6 +96,12 @@ class HomeListDocument extends Component {
 											)
 										})}
 									</div>
+
+									<div className="document-view-more text-center">
+										<Link to={this.props.slug}>
+											Xem thêm <i className="fas fa-chevron-right"></i>
+										</Link>
+									</div>
 								</div>
 							</Fragment>
 						)}

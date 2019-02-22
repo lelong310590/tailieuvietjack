@@ -77,21 +77,24 @@ class Home extends Component {
 							</div>
 
 							<div className="col-xs-12 col-md-9">
-								<SpecialDocument/>
+								{/*<SpecialDocument/>*/}
 
 								<HomeListDocument
 									title={'Tài liệu THPT'}
 									documents={highSchool}
+									slug={'tai-lieu-trung-hoc-pho-thong'}
 								/>
 
 								<HomeListDocument
 									title={'Tài liệu THCS'}
 									documents={middleSchool}
+									slug={'tai-lieu-trung-hoc-co-so'}
 								/>
 
 								<HomeListDocument
 									title={'Tài liệu tiểu học'}
 									documents={elementarySchool}
+									slug={'tai-lieu-tieu-hoc'}
 								/>
 							</div>
 						</div>

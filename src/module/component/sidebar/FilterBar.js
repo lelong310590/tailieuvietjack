@@ -116,14 +116,6 @@ class FilterBar extends Component {
 			keywords, chapters
 		} = this.state;
 
-		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
-			this.setState({
-				alert: true
-			});
-
-			return false;
-		}
-
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeSlug = '';
@@ -160,10 +152,6 @@ class FilterBar extends Component {
 			chapterSlug = findChapter.slug + '-';
 		}
 
-		this.setState({
-			alert: false
-		});
-
 		if (selectedChapter !== 0) {
 			this.props.history.push({
 				pathname: '/' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
@@ -174,6 +162,11 @@ class FilterBar extends Component {
 			})
 		}
 
+		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
+			this.props.history.push({
+				pathname: '/cac-tai-lieu' + priceSlug
+			})
+		}
 	};
 
 	handleChangeDocTypes = (event) => {
@@ -249,7 +242,7 @@ class FilterBar extends Component {
 				<div className="widget-content">
 					<div className="filter-bar-wrapper-inner">
 
-						{loading && <Loading/> }
+						{/*{loading && <Loading/> }*/}
 
 						<form onSubmit={this.submitSearch}>
 
