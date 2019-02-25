@@ -26,7 +26,8 @@ class ResultDocType extends Component {
 			page: 1,
 			url: this.props.match.url,
 			documents: {
-				data: []
+				data: [],
+				total:0
 			},
 			viewStyle: 'list'
 		};
@@ -159,6 +160,14 @@ class ResultDocType extends Component {
 											<div className="category-document-filter-view-item"
 											     onClick={() => this.handleChangeViewStyle('grid')}>
 												<i className="fas fa-th-large" style={{ color: viewStyle === 'grid' ? '#ff9700': null }}></i>
+											</div>
+										</div>
+									</div>
+
+									<div className="category-document-filter" style={{ marginBottom: "20px" }}>
+										<div className="category-document-filter-order">
+											<div className="category-document-filter-order-item">
+												<span>Tổng số tài liệu: {documents.total}</span>
 											</div>
 										</div>
 									</div>
