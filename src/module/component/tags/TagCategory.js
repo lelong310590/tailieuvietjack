@@ -83,7 +83,7 @@ class TagCategory extends Component {
 
 				<div className="container">
 					<div className="tag-list-wrapper-inner col-xs-12">
-						<h1 className="tag-list-title">Từ khóa: "{singleTag.name}"</h1>
+						<h1 className="tag-list-title">Từ khóa: "{singleTag.name}" ({documents.total} kết quả)</h1>
 
 						<div className="tag-list-wrapper-container">
 							<div className="row">
