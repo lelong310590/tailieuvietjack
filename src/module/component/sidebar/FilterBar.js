@@ -315,7 +315,8 @@ class FilterBar extends Component {
 
 							<div className="form-group">
 								<select name="name" className="form-control" onChange={this.handleChangePrice} value={selectedPrice}>
-									<option value={0}>Tài liệu miễn phí</option>
+									<option value={-1}>Tất cả tài liệu</option>
+/									<option value={0}>Tài liệu miễn phí</option>
 									<option value={1}>Tài liệu có phí</option>
 								</select>
 							</div>
