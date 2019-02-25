@@ -101,6 +101,15 @@ class ResultDocType extends Component {
 			})
 	};
 
+	handleOrderBy = (order) => {
+		//console.log(this.props);
+		let {
+			keywords, selectedDocTypes,selectedClasses,selectedSubject,selectedChapter,selectedFormat,selectedPrice
+		} = this.props.FilterBarReducer;
+
+		this.props.getResult(keywords,selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, this.props.FilterBarReducer.documents.current_page, order);
+	}
+
 	handleChangeViewStyle = (viewStyle) => {
 		this.props.handleChangeView(viewStyle)
 	};
@@ -144,10 +153,14 @@ class ResultDocType extends Component {
 
 									<div className="category-document-filter" style={{ marginBottom: "20px" }}>
 										<div className="category-document-filter-order">
-											<div className="category-document-filter-order-item">
+											<div className="category-document-filter-order-item"
+												 onClick={() => this.handleOrderBy('new')}
+											>
 												<span>Mới nhất</span>
 											</div>
-											<div className="category-document-filter-order-item">
+											<div className="category-document-filter-order-item"
+												 onClick={() => this.handleOrderBy('view')}
+											>
 												<span>Được quan tâm nhất</span>
 											</div>
 										</div>
@@ -315,8 +328,8 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(action.handleChangeView(data));
 		},
 
-		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1) => {
-			dispatch(action.getResult(keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page));
+		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1, order='new') => {
+			dispatch(action.getResult(keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page,order));
 		}
 	};
 };

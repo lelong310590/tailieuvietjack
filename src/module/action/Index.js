@@ -910,12 +910,12 @@ export const getResultError = (err) => ({
 	payload: err
 });
 
-export const getResult = (keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page) => {
+export const getResult = (keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page,order) => {
 	return (dispatch) => {
 		dispatch(getResultRequest());
 		axios.get(api.API_LIST_DOC, {
 			params: {
-				keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page
+				keyword, docTypeId, classesId, subjectId, chapterId, formatId, price, page,order
 			}
 		})
 			.then(response => {
