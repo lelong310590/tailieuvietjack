@@ -15,7 +15,9 @@ class Author extends Component {
 			user: {
 				first_name: '',
 				last_name: '',
-				thumbnail: ''
+				thumbnail: '',
+                total_views:0,
+                total_downloaded:0
 			},
 			documents: {
 				data: []
@@ -128,15 +130,15 @@ class Author extends Component {
 								<div className="author-total-information">
 									<div className="author-total-stats text-center">
 										<span>LƯỢT XEM</span>
-										<b>32</b>
+										<b>{user.total_views}</b>
 									</div>
 									<div className="author-total-stats text-center">
 										<span>TÀI LIỆU</span>
-										<b>2</b>
+										<b>{documents.total}</b>
 									</div>
 									<div className="author-total-stats text-center">
 										<span>LƯỢT TẢI</span>
-										<b>0</b>
+										<b>{user.total_downloaded}</b>
 									</div>
 								</div>
 							</div>
