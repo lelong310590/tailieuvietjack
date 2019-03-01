@@ -167,14 +167,14 @@ class Login extends Component {
 								<i className="fab fa-facebook-square"></i> Facebook
 							</SocialLogin>
 
-							<SocialLogin
-								provider='google'
-								appId='265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com'
-								onLoginSuccess={this.handleSocialLogin}
-								onLoginFailure={this.handleSocialLoginFailure}
-							>
-								<i className="fab fa-google"></i> Google
-							</SocialLogin>
+							{/*<SocialLogin*/}
+								{/*provider='google'*/}
+								{/*appId='265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com'*/}
+								{/*onLoginSuccess={this.handleSocialLogin}*/}
+								{/*onLoginFailure={this.handleSocialLoginFailure}*/}
+							{/*>*/}
+								{/*<i className="fab fa-google"></i> Google*/}
+							{/*</SocialLogin>*/}
 						</div>
 						<form onSubmit={this.onLogin}>
 							{error !== '' &&
