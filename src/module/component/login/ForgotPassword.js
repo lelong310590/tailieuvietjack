@@ -18,7 +18,11 @@ class ForgotPassword extends Component {
 		event.preventDefault();
 		let {email} = this.state;
 		let formData = new FormData();
-
+		
+		formData.append('grant_type', 'password');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+		formData.append('scope', '');
 		formData.append('email', email);
 
 		this.setState({onProcess: true});
