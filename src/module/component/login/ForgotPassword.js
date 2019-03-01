@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios";
 import * as api from "../../const/Api";
 import {Alert} from "react-bootstrap";
+import * as helpers from "../../Support";
 
 class ForgotPassword extends Component {
 
@@ -10,6 +11,7 @@ class ForgotPassword extends Component {
 		this.state = {
 			email: '',
 			error: '',
+			validEmail: true,
 			onProcess: false
 		}
 	}
@@ -18,7 +20,7 @@ class ForgotPassword extends Component {
 		event.preventDefault();
 		let {email} = this.state;
 		let formData = new FormData();
-		
+
 		formData.append('grant_type', 'password');
 		formData.append('client_id', '8');
 		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
@@ -41,6 +43,15 @@ class ForgotPassword extends Component {
 			})
 	};
 
+	handleMail = (event) => {
+		let target = event.target;
+		let email = target.value;
+		let validEmail = helpers.validateEmail(email);
+		this.setState({
+			email, validEmail
+		});
+	};
+
 	render() {
 		let {error, onProcess} = this.state;
 		return (
@@ -55,7 +66,9 @@ class ForgotPassword extends Component {
 						}
 						<form onSubmit={this.onSubmit}>
 							<div className="form-group">
-								<input type="email" className="form-control" placeholder="Email " required />
+								<input type="email" className="form-control" placeholder="Email " required
+									   onChange={this.handleMail}
+								/>
 							</div>
 
 							<div className="form-group submit-form">
