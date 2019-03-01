@@ -14,7 +14,7 @@ class ForgotPassword extends Component {
 		}
 	}
 
-	onLogin = (event) => {
+	onSubmit = (event) => {
 		event.preventDefault();
 		let {email} = this.state;
 		let formData = new FormData();
