@@ -11,35 +11,13 @@ class ChangeForgotPassword extends Component {
 					<div className="authen-wrapper">
 						<h1 className="text-center">Tạo mới mật khẩu</h1>
 
-						<Alert bsStyle="danger">
-							<h4>Chú ý:</h4>
-							<p>
-								Nhập mã xác nhận gửi tới longlengoc90@gmail.com. Tạo một mật khẩu mới để đăng nhập
-							</p>
-						</Alert>
-
 						<form action="">
 							<div className="form-group">
-								<input type="text" className="form-control" placeholder="Mã xác thực " required />
-							</div>
-
-							<div className="form-group">
-								<input type="password" className="form-control" placeholder="Mật khẩu " required />
+								<input type="password" className="form-control" placeholder="Mật khẩu mới" required />
 							</div>
 
 							<div className="form-group">
 								<input type="password" className="form-control" placeholder="Xác thực mật khẩu " required />
-							</div>
-
-							<div className="form-recapcha">
-								<ReCAPTCHA
-									sitekey="Your client site key"
-									onChange={this.onChange}
-								/>
-							</div>
-
-							<div className="form-group reset-password-action text-center">
-								<Link to=""><i className="fas fa-sync-alt"></i> Gửi lại mã xác thực</Link>
 							</div>
 
 							<div className="form-group submit-form">
