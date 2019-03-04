@@ -237,10 +237,10 @@ class ResultDocType extends Component {
 																	{value.formated_price}
 																</div>
 																<div className="document-category-info">
-																	<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+																	<Link to={'/search/?class=' + value.get_class.slug} className="document-category-class">
 																		{value.get_class.name}
 																	</Link>
-																	<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+																	<Link to={'/search/?class=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
 																		{value.get_subject.name}
 																	</Link>
 																</div>
@@ -287,10 +287,10 @@ class ResultDocType extends Component {
 																	<div className="doc-item-horizontal-info-infomation">
 																		<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
 																		<div className="document-category-info">
-																			<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+																			<Link to={'/search/?cat=' + value.get_class.slug} className="document-category-class">
 																				{value.get_class.name}
 																			</Link>
-																			<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+																			<Link to={'/search/?cat=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
 																				{value.get_subject.name}
 																			</Link>
 																		</div>
