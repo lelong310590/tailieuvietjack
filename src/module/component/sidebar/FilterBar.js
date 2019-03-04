@@ -59,7 +59,7 @@ class FilterBar extends Component {
 		this.props.getDocType();
 		this.props.getSubjects();
 
-		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		//this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -186,17 +186,17 @@ class FilterBar extends Component {
 
 		if (selectedChapter !== 0) {
 			this.props.history.push({
-				pathname: '/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
+				pathname: '/search/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
 			})
 		} else {
 			this.props.history.push({
-				pathname: '/?tailieu=' + docTypeSlug + subjectSlug + classesSlug + priceSlug
+				pathname: '/search/?tailieu=' + docTypeSlug + subjectSlug + classesSlug + priceSlug
 			})
 		}
 
 		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
 			this.props.history.push({
-				pathname: '/?tailieu=cac-tai-lieu' + priceSlug
+				pathname: '/search/?tailieu=cac-tai-lieu' + priceSlug
 			})
 		}
 	};

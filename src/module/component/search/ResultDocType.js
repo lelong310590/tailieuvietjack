@@ -81,7 +81,7 @@ class ResultDocType extends Component {
 			keywords
 		} = props.FilterBarReducer;
 		if (_.has(value, 'class')) {
-			selectedClasses = value.class
+			selectedClasses = value.class;
 			if(selectedClasses=='trung-hoc-pho-thong'){
 				selectedClasses = -3;
 			}else if(selectedClasses=='trung-hoc-co-so'){
