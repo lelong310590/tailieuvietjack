@@ -95,19 +95,19 @@ class Home extends Component {
 										<HomeListDocument
 											title={'Tài liệu THPT'}
 											documents={highSchool}
-											slug={'/search/?subject=trung-hoc-pho-thong'}
+											slug={'/search/?class=trung-hoc-pho-thong'}
 										/>
 
 										<HomeListDocument
 											title={'Tài liệu THCS'}
 											documents={middleSchool}
-											slug={'/search/?subject=trung-hoc-co-so'}
+											slug={'/search/?class=trung-hoc-co-so'}
 										/>
 
 										<HomeListDocument
 											title={'Tài liệu tiểu học'}
 											documents={elementarySchool}
-											slug={'/search/?subject=tai-lieu-tieu-hoc'}
+											slug={'/search/?class=tieu-hoc'}
 										/>
 									</Fragment>
 								}

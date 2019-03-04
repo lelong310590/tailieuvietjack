@@ -29,7 +29,6 @@ class FilterBar extends Component {
 	componentDidMount = () => {
 		const search = this.props.location.search;
 		let value = queryString.parse(search);
-		console.log(value);
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
@@ -37,7 +36,7 @@ class FilterBar extends Component {
 
 		if (_.has(value, 'class')) {
 			this.setState({
-				selectedClasses: value.lop,
+				selectedClasses: value.class,
 			})
 		}
 		if (_.has(value, 'price')) {

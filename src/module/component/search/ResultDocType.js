@@ -73,12 +73,36 @@ class ResultDocType extends Component {
 
 	//Fetch data
 	fetchData = (props, page = 1) => {
+		const search = this.props.location.search;
+		let value = queryString.parse(search);
 
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = props.FilterBarReducer;
-
+		if (_.has(value, 'class')) {
+			selectedClasses = value.class
+			if(selectedClasses=='trung-hoc-pho-thong'){
+				selectedClasses = -3;
+			}else if(selectedClasses=='trung-hoc-co-so'){
+				selectedClasses = -2;
+			}else if(selectedClasses=='tieu-hoc'){
+				selectedClasses = -1;
+			}
+		}
+		if (_.has(value, 'price')) {
+			selectedPrice = value.price
+		}
+		if (_.has(value, 'subject')) {
+			selectedSubject = value.subject
+		}
+		if (_.has(value, 'tailieu')) {
+			selectedDocTypes = value.tailieu
+		}
+		console.log(selectedClasses);
+		console.log(selectedPrice);
+		console.log(selectedSubject);
+		console.log(selectedDocTypes);
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page);
 
 		axios.get(api.GET_META_DATA, {
