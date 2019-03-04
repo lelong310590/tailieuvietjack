@@ -90,9 +90,9 @@ class App extends Component {
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-chinh'} component={isAuthenticatedUser(FinanceManager)} />
 
-							<Route exact={true} path={'/cat/:class'} component={ListSubject} />
-							<Route exact={true} path={'/cat/:class/:subject'} component={ListChapter} />
-							<Route exact={true} path={'/chuyen-de/:thematic'} component={ThematicListDoc} />
+							{/*<Route exact={true} path={'/cat/:class'} component={ListSubject} />*/}
+							{/*<Route exact={true} path={'/cat/:class/:subject'} component={ListChapter} />*/}
+							{/*<Route exact={true} path={'/chuyen-de/:thematic'} component={ThematicListDoc} />*/}
 
 							<Route exact={true} path={'/tag/:slug'} component={TagCategory} />
 

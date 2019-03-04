@@ -3,6 +3,7 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import * as action from './../../action/Index';
 import Loading from "../support/Loading";
+import queryString from 'query-string';
 
 class FilterBar extends Component {
 
@@ -26,10 +27,34 @@ class FilterBar extends Component {
 	};
 
 	componentDidMount = () => {
+		const search = this.props.location.search;
+		let value = queryString.parse(search);
+		console.log(value);
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = this.state;
+
+		if (_.has(value, 'lop')) {
+			this.setState({
+				selectedClasses: value.lop,
+			})
+		}
+		if (_.has(value, 'price')) {
+			this.setState({
+				selectedPrice: value.price,
+			})
+		}
+		if (_.has(value, 'subject')) {
+			this.setState({
+				selectedSubject: value.subject,
+			})
+		}
+		if (_.has(value, 'tailieu')) {
+			this.setState({
+				selectedDocTypes: value.tailieu,
+			})
+		}
 
 		this.props.getFilterBarClass();
 		this.props.getDocType();
@@ -119,10 +144,18 @@ class FilterBar extends Component {
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeSlug = '';
-		let priceSlug = selectedPrice === 0 ? '-mien-phi' : '-co-phi';
-		let classesSlug = '';
-		let subjectSlug = '';
-		let chapterSlug = '';
+		let priceSlug = selectedPrice === 0 ? '&price=mien-phi' : '&price=co-phi';
+		let classesSlug = '&class=';
+		let subjectSlug = '&subject=';
+		let chapterSlug = '&chapter=';
+
+		if(selectedPrice === 0){
+			priceSlug =  '&price=mien-phi';
+		}else if(selectedPrice === -1){
+			priceSlug =  '&price=tat-ca';
+		}else{
+			priceSlug =  '&price=co-phi';
+		}
 
 		if (selectedDocTypes !== 0) {
 			let findDocType = _.find(docTypes, {id: selectedDocTypes});
@@ -134,7 +167,7 @@ class FilterBar extends Component {
 			if (selectedDocTypes === 0 && selectedSubject === 0) {
 				classesSlug = findClasses.slug;
 			} else {
-				classesSlug = '-' + findClasses.slug
+				classesSlug = '&lop=' + findClasses.slug
 			}
 		}
 
@@ -143,28 +176,28 @@ class FilterBar extends Component {
 			if (selectedDocTypes === 0) {
 				subjectSlug = findSubject.slug
 			} else {
-				subjectSlug = '-' + findSubject.slug
+				subjectSlug = '&mon=' + findSubject.slug
 			}
 		}
 
 		if (selectedChapter !== 0) {
 			let findChapter = _.find(chapters, {id: selectedChapter});
-			chapterSlug = findChapter.slug + '-';
+			chapterSlug = findChapter.slug + '&';
 		}
 
 		if (selectedChapter !== 0) {
 			this.props.history.push({
-				pathname: '/' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
+				pathname: '/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug
 			})
 		} else {
 			this.props.history.push({
-				pathname: '/' + docTypeSlug + subjectSlug + classesSlug + priceSlug
+				pathname: '/?tailieu=' + docTypeSlug + subjectSlug + classesSlug + priceSlug
 			})
 		}
 
 		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
 			this.props.history.push({
-				pathname: '/cac-tai-lieu' + priceSlug
+				pathname: '/?tailieu=cac-tai-lieu' + priceSlug
 			})
 		}
 	};

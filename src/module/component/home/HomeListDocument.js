@@ -72,10 +72,10 @@ class HomeListDocument extends Component {
 															{value.formated_price}
 														</div>
 														<div className="document-category-info">
-															<Link to={'/cat/' + value.get_class.slug} className="document-category-class">
+															<Link to={'/?lop=' + value.get_class.slug} className="document-category-class">
 																{value.get_class.name}
 															</Link>
-															<Link to={'/cat/' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
+															<Link to={'/?lop=' + value.get_class.slug + '/' + value.get_subject.slug} className="document-category-subject">
 																{value.get_subject.name}
 															</Link>
 														</div>

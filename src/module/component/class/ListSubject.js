@@ -123,6 +123,7 @@ class ListSubject extends Component {
 							<div className="col-xs-12 col-md-3">
 								<FilterBar
 									history={this.props.history}
+									location={this.props.location}
 								/>
 							</div>
 

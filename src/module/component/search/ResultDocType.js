@@ -137,6 +137,7 @@ class ResultDocType extends Component {
 
 								<FilterBar
 									history={this.props.history}
+									location={this.props.location}
 								/>
 
 								<div style={{marginTop: '20px'}}>

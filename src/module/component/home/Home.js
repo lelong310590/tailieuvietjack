@@ -67,6 +67,7 @@ class Home extends Component {
 
 								<FilterBar
 									history={this.props.history}
+									location={this.props.location}
 								/>
 
 								<div style={{marginTop: '20px'}}>
@@ -82,19 +83,19 @@ class Home extends Component {
 								<HomeListDocument
 									title={'Tài liệu THPT'}
 									documents={highSchool}
-									slug={'tai-lieu-trung-hoc-pho-thong'}
+									slug={'?lop=trung-hoc-pho-thong'}
 								/>
 
 								<HomeListDocument
 									title={'Tài liệu THCS'}
 									documents={middleSchool}
-									slug={'tai-lieu-trung-hoc-co-so'}
+									slug={'?lop=trung-hoc-co-so'}
 								/>
 
 								<HomeListDocument
 									title={'Tài liệu tiểu học'}
 									documents={elementarySchool}
-									slug={'tai-lieu-tieu-hoc'}
+									slug={'?lop=tai-lieu-tieu-hoc'}
 								/>
 							</div>
 						</div>
