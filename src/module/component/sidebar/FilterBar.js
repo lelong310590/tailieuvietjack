@@ -35,7 +35,7 @@ class FilterBar extends Component {
 			keywords
 		} = this.state;
 
-		if (_.has(value, 'lop')) {
+		if (_.has(value, 'class')) {
 			this.setState({
 				selectedClasses: value.lop,
 			})
@@ -167,7 +167,7 @@ class FilterBar extends Component {
 			if (selectedDocTypes === 0 && selectedSubject === 0) {
 				classesSlug = findClasses.slug;
 			} else {
-				classesSlug = '&lop=' + findClasses.slug
+				classesSlug = '&class=' + findClasses.slug
 			}
 		}
 
@@ -176,7 +176,7 @@ class FilterBar extends Component {
 			if (selectedDocTypes === 0) {
 				subjectSlug = findSubject.slug
 			} else {
-				subjectSlug = '&mon=' + findSubject.slug
+				subjectSlug = '&subject=' + findSubject.slug
 			}
 		}
 

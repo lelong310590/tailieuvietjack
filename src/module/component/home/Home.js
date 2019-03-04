@@ -9,6 +9,8 @@ import Ads from "./Ads";
 import TagCloud from "./TagCloud";
 import FilterBar from "../sidebar/FilterBar";
 import SpecialDocument from "../listDoc/SpecialDocument";
+import queryString from 'query-string';
+import _ from 'lodash';
 
 class Home extends Component {
 
@@ -17,11 +19,20 @@ class Home extends Component {
 		this.state = {
 			highSchool: [],
 			middleSchool: [],
-			elementarySchool: []
+			elementarySchool: [],
+			params: 0,
 		}
 	}
 
 	componentDidMount = () => {
+		const search = this.props.location.search;
+		let value = queryString.parse(search);
+		if(!_.isEmpty(value)){
+			this.setState({
+				params: 1
+			})
+		}
+
 		this.props.changeGrade(0);
 		this.props.changeClass(0);
 		this.props.getListSubjectViaClass();
@@ -53,7 +64,7 @@ class Home extends Component {
 
 	render() {
 
-		let {highSchool, middleSchool, elementarySchool} = this.state;
+		let {highSchool, middleSchool, elementarySchool,params} = this.state;
 
 		return (
 			<Fragment>
@@ -79,24 +90,33 @@ class Home extends Component {
 
 							<div className="col-xs-12 col-md-9">
 								{/*<SpecialDocument/>*/}
+								{params==0 &&
+									<Fragment>
+										<HomeListDocument
+											title={'Tài liệu THPT'}
+											documents={highSchool}
+											slug={'/search/?subject=trung-hoc-pho-thong'}
+										/>
 
-								<HomeListDocument
-									title={'Tài liệu THPT'}
-									documents={highSchool}
-									slug={'?lop=trung-hoc-pho-thong'}
-								/>
+										<HomeListDocument
+											title={'Tài liệu THCS'}
+											documents={middleSchool}
+											slug={'/search/?subject=trung-hoc-co-so'}
+										/>
 
-								<HomeListDocument
-									title={'Tài liệu THCS'}
-									documents={middleSchool}
-									slug={'?lop=trung-hoc-co-so'}
-								/>
+										<HomeListDocument
+											title={'Tài liệu tiểu học'}
+											documents={elementarySchool}
+											slug={'/search/?subject=tai-lieu-tieu-hoc'}
+										/>
+									</Fragment>
+								}
+								{params==1 &&
+								<Fragment>
 
-								<HomeListDocument
-									title={'Tài liệu tiểu học'}
-									documents={elementarySchool}
-									slug={'?lop=tai-lieu-tieu-hoc'}
-								/>
+								</Fragment>
+								}
+
 							</div>
 						</div>
 					</div>
