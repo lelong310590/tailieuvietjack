@@ -7,6 +7,7 @@ import * as action from './../../action/Index';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import queryString from 'query-string';
 
 class SpecialDocument extends Component {
 
@@ -18,7 +19,13 @@ class SpecialDocument extends Component {
 	}
 
 	componentDidMount = () => {
-		this.props.getMostView();
+		const search = this.props.location.search;
+		let value = queryString.parse(search);
+		let classes = '';
+		if (_.has(value, 'class')) {
+			classes = value.class;
+		}
+		this.props.getMostView(classes);
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -114,8 +121,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getMostView: () => {
-			dispatch(action.getMostView())
+		getMostView: (classes) => {
+			dispatch(action.getMostView(classes))
 		}
 	}
 };

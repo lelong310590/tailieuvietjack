@@ -739,10 +739,10 @@ export const getMostViewError = (err) => ({
 	payload: err
 });
 
-export const getMostView = () => {
+export const getMostView = (classes) => {
 	return (dispatch) => {
 		dispatch(getMostViewRequest());
-		axios.get(api.API_GET_MOST_VIEW_BY_WEEK)
+		axios.get(api.API_GET_MOST_VIEW_BY_WEEK+'?class='+classes)
 			.then(response => {
 				dispatch(getMostViewSuccess(response))
 			})

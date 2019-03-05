@@ -75,7 +75,7 @@ class ResultDocType extends Component {
 	fetchData = (props, page = 1) => {
 		const search = props.location.search;
 		let value = queryString.parse(search);
-		console.log(value);
+
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
@@ -174,7 +174,7 @@ class ResultDocType extends Component {
 							<div className="col-xs-12 col-md-9">
 
 								<div className="category-document-wrapper">
-									<SpecialDocument/>
+									<SpecialDocument location={this.props.location}/>
 
 									<div className="category-document-filter" style={{ marginBottom: "20px" }}>
 										<div className="category-document-filter-order">
