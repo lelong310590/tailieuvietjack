@@ -163,20 +163,20 @@ class FilterBar extends Component {
 
 		if (selectedClasses !== 0) {
 			let findClasses = _.find(classes, {id: selectedClasses});
-			if (selectedDocTypes === 0 && selectedSubject === 0) {
-				classesSlug = findClasses.slug;
-			} else {
+			// if (selectedDocTypes === 0 && selectedSubject === 0) {
+			// 	classesSlug = findClasses.slug;
+			// } else {
 				classesSlug = '&class=' + findClasses.slug
-			}
+			// }
 		}
 
 		if (selectedSubject !== 0) {
 			let findSubject = _.find(subjects, {id: selectedSubject});
-			if (selectedDocTypes === 0) {
-				subjectSlug = findSubject.slug
-			} else {
+			// if (selectedDocTypes === 0) {
+			// 	subjectSlug = findSubject.slug
+			// } else {
 				subjectSlug = '&subject=' + findSubject.slug
-			}
+			// }
 		}
 
 		if (selectedChapter !== 0) {
