@@ -99,10 +99,7 @@ class ResultDocType extends Component {
 		if (_.has(value, 'tailieu')) {
 			selectedDocTypes = value.tailieu
 		}
-		console.log(selectedClasses);
-		console.log(selectedPrice);
-		console.log(selectedSubject);
-		console.log(selectedDocTypes);
+
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page);
 
 		axios.get(api.GET_META_DATA, {
@@ -237,10 +234,10 @@ class ResultDocType extends Component {
 																	{value.formated_price}
 																</div>
 																<div className="document-category-info">
-																	<Link to={'/search/?class=' + value.get_class.slug} className="document-category-class">
+																	<Link to={'/search/?class=' + value.get_class.id} className="document-category-class">
 																		{value.get_class.name}
 																	</Link>
-																	<Link to={'/search/?class=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
+																	<Link to={'/search/?class=' + value.get_class.id + '&subject=' + value.get_subject.id} className="document-category-subject">
 																		{value.get_subject.name}
 																	</Link>
 																</div>
@@ -287,10 +284,10 @@ class ResultDocType extends Component {
 																	<div className="doc-item-horizontal-info-infomation">
 																		<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
 																		<div className="document-category-info">
-																			<Link to={'/search/?class=' + value.get_class.slug} className="document-category-class">
+																			<Link to={'/search/?class=' + value.get_class.id} className="document-category-class">
 																				{value.get_class.name}
 																			</Link>
-																			<Link to={'/search/?class=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
+																			<Link to={'/search/?class=' + value.get_class.id + '&subject=' + value.get_subject.id} className="document-category-subject">
 																				{value.get_subject.name}
 																			</Link>
 																		</div>

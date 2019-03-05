@@ -15,6 +15,7 @@ class FilterBar extends Component {
 			subjects: [],
 			chapters: [],
 			keywords: '',
+			format: [],
 			selectedDocTypes: 0,
 			selectedClasses: 0,
 			selectedSubject: 0,
@@ -81,40 +82,32 @@ class FilterBar extends Component {
 				subjects: nextProps.FilterBarReducer.subjects
 			})
 		}
+		console.log('cu ',this.props.location.search);
+		console.log('moi ',nextProps.location.search);
+		if (this.props.location.search!== nextProps.location.search) {
+			let oldSearch = this.props.location.search;
+			let oldValue = queryString.parse(oldSearch);
 
-		if (this.props.FilterBarReducer.selectedClasses !== nextProps.FilterBarReducer.selectedClasses) {
+			let search = nextProps.location.search;
+			let value = queryString.parse(search);
+			console.log(value.class);
 			this.setState({
-				selectedClasses: nextProps.FilterBarReducer.selectedClasses
+				selectedClasses: value.class
 			})
-		}
-
-		if (this.props.FilterBarReducer.selectedDocTypes !== nextProps.FilterBarReducer.selectedDocTypes) {
 			this.setState({
-				selectedDocTypes: nextProps.FilterBarReducer.selectedDocTypes
+				selectedDocTypes: value.tailieu
 			})
-		}
-
-		if (this.props.FilterBarReducer.selectedSubject !== nextProps.FilterBarReducer.selectedSubject) {
 			this.setState({
-				selectedSubject: nextProps.FilterBarReducer.selectedSubject
+				selectedSubject: value.subject
 			})
-		}
-
-		if (this.props.FilterBarReducer.selectedFormat !== nextProps.FilterBarReducer.selectedFormat) {
 			this.setState({
-				selectedFormat: nextProps.FilterBarReducer.selectedFormat
+				selectedFormat: value.format
 			})
-		}
-
-		if (this.props.FilterBarReducer.selectedPrice !== nextProps.FilterBarReducer.selectedPrice) {
 			this.setState({
-				selectedPrice: nextProps.FilterBarReducer.selectedPrice
+				selectedPrice: value.price
 			})
-		}
-
-		if (this.props.FilterBarReducer.selectedChapter !== nextProps.FilterBarReducer.selectedChapter) {
 			this.setState({
-				selectedChapter: nextProps.FilterBarReducer.selectedChapter
+				selectedChapter: value.chapter
 			})
 		}
 
@@ -137,7 +130,7 @@ class FilterBar extends Component {
 		e.preventDefault();
 		let {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
-			keywords, chapters
+			keywords, chapters,format
 		} = this.state;
 
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
@@ -147,7 +140,8 @@ class FilterBar extends Component {
 		let classesSlug = '&class=';
 		let subjectSlug = '&subject=';
 		let chapterSlug = '&chapter=';
-
+		let keywordSlug = '&keyword=';
+		let formatSlug = '&format=';
 		if(selectedPrice === 0){
 			priceSlug =  '&price=mien-phi';
 		}else if(selectedPrice === -1){
@@ -156,43 +150,40 @@ class FilterBar extends Component {
 			priceSlug =  '&price=co-phi';
 		}
 
+		if(keywords!=''){
+			keywordSlug = '&keyword='+keywords;
+		}
+
 		if (selectedDocTypes !== 0) {
-			let findDocType = _.find(docTypes, {id: selectedDocTypes});
-			docTypeSlug = findDocType.slug
+			docTypeSlug =  + selectedDocTypes
+		}
+
+		if (selectedFormat !== 0) {
+			formatSlug = '&format=' + selectedFormat
 		}
 
 		if (selectedClasses !== 0) {
-			let findClasses = _.find(classes, {id: selectedClasses});
-			// if (selectedDocTypes === 0 && selectedSubject === 0) {
-			// 	classesSlug = findClasses.slug;
-			// } else {
-				classesSlug = '&class=' + findClasses.slug
-			// }
+			classesSlug = '&class=' + selectedClasses
 		}
 
 		if (selectedSubject !== 0) {
-			let findSubject = _.find(subjects, {id: selectedSubject});
-			// if (selectedDocTypes === 0) {
-			// 	subjectSlug = findSubject.slug
-			// } else {
-				subjectSlug = '&subject=' + findSubject.slug
-			// }
+
+			subjectSlug = '&subject=' + selectedSubject
 		}
 
 		if (selectedChapter !== 0) {
-			let findChapter = _.find(chapters, {id: selectedChapter});
-			chapterSlug = findChapter.slug + '&';
+			chapterSlug = '&chapter=' + selectedChapter
 		}
 
-		if (selectedChapter !== 0) {
-			this.props.history.push('/search/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug)
-		} else {
-			this.props.history.push('/search/?tailieu=' + docTypeSlug + subjectSlug + classesSlug + priceSlug)
-		}
+		// if (selectedChapter !== 0) {
+		// 	this.props.history.push('/search/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug)
+		// } else {
+			this.props.history.push('/search/?tailieu=' + docTypeSlug + keywordSlug + formatSlug + chapterSlug + subjectSlug + classesSlug + priceSlug)
+		// }
 
-		if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
-			this.props.history.push('/search/?tailieu=cac-tai-lieu' + priceSlug)
-		}
+		// if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
+		// 	this.props.history.push('/search/?tailieu=cac-tai-lieu' + priceSlug)
+		// }
 	};
 
 	handleChangeDocTypes = (event) => {
