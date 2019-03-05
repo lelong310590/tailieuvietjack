@@ -96,13 +96,13 @@ class App extends Component {
 
 							<Route exact={true} path={'/tag/:slug'} component={TagCategory} />
 
-							<Route exact={true} path={'/tim-kiem'} component={CatDoc} />
+							{/*<Route exact={true} path={'/tim-kiem'} component={CatDoc} />*/}
 
 							<Route exact={true} path={'/static-post/:slug'} component={StaticPost} />
 
 							<Route exact={true} path={'/trang-ca-nhan/:userid'} component={Author} />
 
-							<Route exact={true} path={'/search'} component={ResultDocType}/>
+							<Route exact={true} path={'/search/'} component={ResultDocType}/>
 
 							<Route component={ErrorNoPage}/>
 						</Switch>

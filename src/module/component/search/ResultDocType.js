@@ -51,8 +51,8 @@ class ResultDocType extends Component {
 			}
 		}
 
-		if (this.props.match.url !== nextProps.match.url) {
-			let {slug} = nextProps.match.url;
+		if (this.props.location.search !== nextProps.location.search) {
+			// let {slug} = nextProps.match.url;
 			this.fetchData(nextProps);
 		}
 
@@ -73,9 +73,9 @@ class ResultDocType extends Component {
 
 	//Fetch data
 	fetchData = (props, page = 1) => {
-		const search = this.props.location.search;
+		const search = props.location.search;
 		let value = queryString.parse(search);
-
+		console.log(value);
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
@@ -287,10 +287,10 @@ class ResultDocType extends Component {
 																	<div className="doc-item-horizontal-info-infomation">
 																		<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
 																		<div className="document-category-info">
-																			<Link to={'/search/?cat=' + value.get_class.slug} className="document-category-class">
+																			<Link to={'/search/?class=' + value.get_class.slug} className="document-category-class">
 																				{value.get_class.name}
 																			</Link>
-																			<Link to={'/search/?cat=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
+																			<Link to={'/search/?class=' + value.get_class.slug + '&subject=' + value.get_subject.slug} className="document-category-subject">
 																				{value.get_subject.name}
 																			</Link>
 																		</div>
