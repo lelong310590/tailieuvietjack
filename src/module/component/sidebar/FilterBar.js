@@ -20,7 +20,7 @@ class FilterBar extends Component {
 			selectedClasses: 0,
 			selectedSubject: 0,
 			selectedFormat: 0,
-			selectedPrice: 0,
+			selectedPrice: -1,
 			selectedChapter: 0,
 			loading: false,
 			alert: false
@@ -175,19 +175,12 @@ class FilterBar extends Component {
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeSlug = '';
-		let priceSlug = selectedPrice === 0 ? '&price=mien-phi' : '&price=co-phi';
+		let priceSlug = '&price=';
 		let classesSlug = '&class=';
 		let subjectSlug = '&subject=';
 		let chapterSlug = '&chapter=';
 		let keywordSlug = '&keyword=';
 		let formatSlug = '&format=';
-		if(selectedPrice === 0){
-			priceSlug =  '&price=mien-phi';
-		}else if(selectedPrice === -1){
-			priceSlug =  '&price=tat-ca';
-		}else{
-			priceSlug =  '&price=co-phi';
-		}
 
 		if(keywords!=''){
 			keywordSlug = '&keyword='+keywords;
@@ -212,6 +205,10 @@ class FilterBar extends Component {
 
 		if (selectedChapter !== 0) {
 			chapterSlug = '&chapter=' + selectedChapter
+		}
+
+		if (selectedPrice !== 0) {
+			priceSlug = '&price=' + selectedPrice
 		}
 
 		// if (selectedChapter !== 0) {
