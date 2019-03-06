@@ -55,7 +55,11 @@ class FilterBar extends Component {
 				selectedDocTypes: value.tailieu,
 			})
 		}
-
+		if (_.has(value, 'format')) {
+			this.setState({
+				selectedFormat: value.format,
+			})
+		}
 		this.props.getFilterBarClass();
 		this.props.getDocType();
 		this.props.getSubjects();
@@ -82,8 +86,7 @@ class FilterBar extends Component {
 				subjects: nextProps.FilterBarReducer.subjects
 			})
 		}
-		console.log('cu ',this.props.location.search);
-		console.log('moi ',nextProps.location.search);
+
 		if (this.props.location.search!== nextProps.location.search) {
 			let oldSearch = this.props.location.search;
 			let oldValue = queryString.parse(oldSearch);
@@ -91,24 +94,60 @@ class FilterBar extends Component {
 			let search = nextProps.location.search;
 			let value = queryString.parse(search);
 			console.log(value.class);
-			this.setState({
-				selectedClasses: value.class
-			})
-			this.setState({
-				selectedDocTypes: value.tailieu
-			})
-			this.setState({
-				selectedSubject: value.subject
-			})
-			this.setState({
-				selectedFormat: value.format
-			})
-			this.setState({
-				selectedPrice: value.price
-			})
-			this.setState({
-				selectedChapter: value.chapter
-			})
+			if (_.has(value, 'tailieu')) {
+				this.setState({
+					selectedDocTypes: value.tailieu
+				})
+			}else{
+				this.setState({
+					selectedDocTypes: 0
+				})
+			}
+			if (_.has(value, 'subject')) {
+				this.setState({
+					selectedSubject: value.subject
+				})
+			}else{
+				this.setState({
+					selectedSubject: 0
+				})
+			}
+			if (_.has(value, 'class')) {
+				this.setState({
+					selectedClasses: value.class
+				})
+			}else{
+				this.setState({
+					selectedClasses: 0
+				})
+			}
+			if (_.has(value, 'price')) {
+				this.setState({
+					selectedPrice: value.price
+				})
+			}else{
+				this.setState({
+					selectedPrice: 0
+				})
+			}
+			if (_.has(value, 'chapter')) {
+				this.setState({
+					selectedChapter: value.chapter
+				})
+			}else{
+				this.setState({
+					selectedChapter: 0
+				})
+			}
+			if (_.has(value, 'format')) {
+				this.setState({
+					selectedFormat: value.format
+				})
+			}else{
+				this.setState({
+					selectedFormat: 0
+				})
+			}
 		}
 
 		if (this.props.FilterBarReducer.keywords !== nextProps.FilterBarReducer.keywords) {
@@ -188,14 +227,14 @@ class FilterBar extends Component {
 
 	handleChangeDocTypes = (event) => {
 		let selectedDocTypes = parseInt(event.target.value);
-		this.props.handleChangeDocType(selectedDocTypes);
+		//this.props.handleChangeDocType(selectedDocTypes);
 		this.setState({selectedDocTypes})
 	};
 
 	handleChangeClasses = (event) => {
 		let {selectedSubject} = this.state;
 		let selectedClasses = parseInt(event.target.value);
-		this.props.handleChangeClasses(selectedClasses);
+		//this.props.handleChangeClasses(selectedClasses);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
 		this.setState({
 			selectedClasses,
@@ -210,39 +249,36 @@ class FilterBar extends Component {
 	handleChangeSubject = (event) => {
 		let {selectedClasses} = this.state;
 		let selectedSubject = parseInt(event.target.value);
-		this.props.handleChangeSubject(selectedSubject);
+		//this.props.handleChangeSubject(selectedSubject);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
 		this.setState({
-			selectedClasses,
-			loading: true
+			//selectedClasses,
+			selectedSubject
 		});
 
-		setTimeout(() => {
-			this.setState({loading: false})
-		}, 1500)
 	};
 
 	handleChangeFormat = (event) => {
 		let selectedFormat = parseInt(event.target.value);
-		this.props.handleChangeFormat(selectedFormat);
+		//this.props.handleChangeFormat(selectedFormat);
 		this.setState({selectedFormat})
 	};
 
 	handleChangePrice = (event) => {
 		let selectedPrice = parseInt(event.target.value);
-		this.props.handleChangePrice(selectedPrice);
+		//this.props.handleChangePrice(selectedPrice);
 		this.setState({selectedPrice})
 	};
 
 	handleChangeKeyword = (event) => {
 		let keyword = event.target.value;
-		this.props.handleChangeKeyword(keyword);
+		//this.props.handleChangeKeyword(keyword);
 		this.setState({keyword})
 	};
 
 	handleChangeChapter = (event) => {
 		let chapter = parseInt(event.target.value);
-		this.props.handleChangeChapter(chapter);
+		//this.props.handleChangeChapter(chapter);
 		this.setState({chapter})
 	};
 
