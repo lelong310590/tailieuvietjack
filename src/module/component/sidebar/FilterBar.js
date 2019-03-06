@@ -60,6 +60,11 @@ class FilterBar extends Component {
 				selectedFormat: value.format,
 			})
 		}
+		if (_.has(value, 'keyword')) {
+			this.setState({
+				keywords: value.keyword,
+			})
+		}
 		this.props.getFilterBarClass();
 		this.props.getDocType();
 		this.props.getSubjects();
@@ -150,11 +155,11 @@ class FilterBar extends Component {
 			}
 		}
 
-		if (this.props.FilterBarReducer.keywords !== nextProps.FilterBarReducer.keywords) {
-			this.setState({
-				keywords: nextProps.FilterBarReducer.keywords
-			})
-		}
+		// if (this.props.FilterBarReducer.keywords !== nextProps.FilterBarReducer.keywords) {
+		// 	this.setState({
+		// 		keywords: nextProps.FilterBarReducer.keywords
+		// 	})
+		// }
 
 		if (this.props.FilterBarReducer.chapters !== nextProps.FilterBarReducer.chapters) {
 			this.setState({
@@ -268,9 +273,9 @@ class FilterBar extends Component {
 	};
 
 	handleChangeKeyword = (event) => {
-		let keyword = event.target.value;
+		let keywords = event.target.value;
 		//this.props.handleChangeKeyword(keyword);
-		this.setState({keyword})
+		this.setState({keywords})
 	};
 
 	handleChangeChapter = (event) => {
