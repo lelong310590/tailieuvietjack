@@ -107,10 +107,10 @@ class TagCategory extends Component {
 													<div className="doc-item-horizontal-info-infomation">
 														<h4><Link to={'/tai-lieu/' + d.id + '-' + d.slug} title={d.name}>{d.name}</Link></h4>
 														<div className="document-category-info">
-															<Link to={'/cat/' + d.get_class.slug} className="document-category-class">
+															<Link to={'/search/?class=' + d.get_class.slug} className="document-category-class">
 																{d.get_class.name}
 															</Link>
-															<Link to={'/cat/' + d.get_class.slug + '/' + d.get_subject.slug} className="document-category-subject">
+															<Link to={'/search/?class=' + d.get_class.slug + '&subject=' + d.get_subject.slug} className="document-category-subject">
 																{d.get_subject.name}
 															</Link>
 														</div>
