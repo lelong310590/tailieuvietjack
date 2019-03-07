@@ -926,3 +926,7 @@ export const getResult = (keyword, docTypeId, classesId, subjectId, chapterId, f
 			})
 	}
 };
+
+export const deactivedoc = () => ({
+	type: types.DEACTIVE_DOC,
+});

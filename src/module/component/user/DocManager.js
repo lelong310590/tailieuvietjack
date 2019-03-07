@@ -24,7 +24,7 @@ class DocManager extends Component {
 			onAction: false,
 
 			activeDoc: this.props.UserReducer.activeDoc,
-			unactiveDoc: this.props.UserReducer.unActiveDoc,
+			unactiveDoc: 0,
 		}
 	}
 
@@ -96,11 +96,11 @@ class DocManager extends Component {
 
 		if (this.props.UserReducer.unActiveDoc !== nextProps.UserReducer.unActiveDoc) {
 			this.setState({
-				unActiveDoc: nextProps.UserReducer.unActiveDoc,
+				unactiveDoc: nextProps.UserReducer.unActiveDoc,
 			})
 		}
 
-		return this.props === nextProps;
+		return true;
 	};
 
 	handleChangeFilter = (event) => {
@@ -139,12 +139,13 @@ class DocManager extends Component {
 			.then(response => {
 				//console.log(response);
 				this.props.postDeleteDocument(id);
+				this.props.deactiveDoc();
 			})
 			.catch(err => {
 				console.log(err)
 			})
 			.finally(() => {
-				this.setState({onAction: false})
+				this.setState({onAction: false});
 			});
 	};
 
@@ -271,6 +272,9 @@ const mapDispatchToProps = (dispatch) => {
 
 		postDeleteDocument: (id) => {
 			dispatch(actions.postDeleteDocument(id))
+		},
+		deactiveDoc: () => {
+			dispatch(actions.deactivedoc())
 		}
 	}
 };

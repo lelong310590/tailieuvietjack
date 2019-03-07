@@ -25,6 +25,7 @@ let UserReducer = (state = initialState, action) => {
 			let user = action.payload.data;
 			localStorage.setItem('userId', user.id);
 			localStorage.setItem('userEmail', user.email);
+
 			return {
 				...state,
 				id: user.id,
@@ -43,7 +44,14 @@ let UserReducer = (state = initialState, action) => {
 				...state,
 				onLoading: true
 			};
-
+		case types.DEACTIVE_DOC:
+			let currentActiveValue = state.activeDoc;
+			let currentDeactiveValue = state.unActiveDoc;
+			return {
+				...state,
+				activeDoc: currentActiveValue-1,
+				unActiveDoc: currentDeactiveValue+1
+			};
 		case types.POST_UPDATE_USER_SUCCESS:
 			console.log('sex: ', action.payload.data.sex);
 			let sex = 0;
