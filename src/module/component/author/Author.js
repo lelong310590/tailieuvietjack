@@ -121,7 +121,7 @@ class Author extends Component {
 						<div className="row">
 							<div className="author-document-user col-xs-12 col-md-3">
 								<div className="author-document-user-avatar">
-									<img src={user.thumbnail} alt={user.first_name + ' ' + user.last_name} className="img-responsive"/>
+									<img src={user.thumbnail? user.thumbnail : '/lib/images/user_small.png'} alt={user.first_name + ' ' + user.last_name} className="img-responsive"/>
 								</div>
 
 								<div className="author-document-name">
