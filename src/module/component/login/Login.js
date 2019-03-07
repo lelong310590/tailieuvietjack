@@ -35,6 +35,7 @@ class Login extends Component {
 	};
 
 	handleSocialLogin = (data) => {
+		console.log('fb data: ',data);
 		if (data._provider === 'facebook') {
 			let formData = new FormData();
 			formData.append('avatar', data._profile.profilePicURL);
