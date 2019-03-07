@@ -35,7 +35,7 @@ class Login extends Component {
 	};
 
 	handleSocialLogin = (data) => {
-		console.log('fb data: ',data);
+		//console.log('fb data: ',data);
 		if (data._provider === 'facebook') {
 			let formData = new FormData();
 			formData.append('avatar', data._profile.profilePicURL);
@@ -46,7 +46,7 @@ class Login extends Component {
 			formData.append('client_id', '8');
 			formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
 			formData.append('scope', '');
-
+			formData.append('token',data._token.accessToken);
 			this.socialLogin(data._provider, formData);
 		}
 
