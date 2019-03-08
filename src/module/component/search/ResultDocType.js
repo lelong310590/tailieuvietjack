@@ -80,24 +80,31 @@ class ResultDocType extends Component {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = props.FilterBarReducer;
-		if (_.has(value, 'class')) {
-			selectedClasses = value.class;
-			if(selectedClasses=='trung-hoc-pho-thong'){
-				selectedClasses = -3;
-			}else if(selectedClasses=='trung-hoc-co-so'){
-				selectedClasses = -2;
-			}else if(selectedClasses=='tieu-hoc'){
-				selectedClasses = -1;
-			}
+
+		if (_.has(value, 'q')) {
+			let str = value.q;
+			 selectedDocTypes = str.substring(
+				str.lastIndexOf("d") + 1,
+				str.lastIndexOf("s")
+			);
+
+			 selectedSubject = str.substring(
+				str.lastIndexOf("s") + 1,
+				str.lastIndexOf("c")
+			);
+
+			 selectedClasses = str.substring(
+				str.lastIndexOf("c") + 1,
+				str.lastIndexOf("t")
+			);
+
+			 selectedChapter = str.substring(
+				str.lastIndexOf("t") + 1,
+			);
 		}
+
 		if (_.has(value, 'price')) {
 			selectedPrice = value.price
-		}
-		if (_.has(value, 'subject')) {
-			selectedSubject = value.subject
-		}
-		if (_.has(value, 'tailieu')) {
-			selectedDocTypes = value.tailieu
 		}
 
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page);

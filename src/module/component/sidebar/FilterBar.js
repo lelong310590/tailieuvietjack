@@ -35,26 +35,38 @@ class FilterBar extends Component {
 			keywords
 		} = this.state;
 
-		if (_.has(value, 'class')) {
+		if (_.has(value, 'q')) {
+			let str = value.q;
+			let selectedDocTypes = str.substring(
+				str.lastIndexOf("d") + 1,
+				str.lastIndexOf("s")
+			);
+
+			let selectedSubject = str.substring(
+				str.lastIndexOf("s") + 1,
+				str.lastIndexOf("c")
+			);
+
+			let selectedClasses = str.substring(
+				str.lastIndexOf("c") + 1,
+				str.lastIndexOf("t")
+			);
+
+			let selectedChapter = str.substring(
+				str.lastIndexOf("t") + 1,
+			);
+
 			this.setState({
-				selectedClasses: value.class,
+				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
 			})
 		}
+
 		if (_.has(value, 'price')) {
 			this.setState({
 				selectedPrice: value.price,
 			})
 		}
-		if (_.has(value, 'subject')) {
-			this.setState({
-				selectedSubject: value.subject,
-			})
-		}
-		if (_.has(value, 'tailieu')) {
-			this.setState({
-				selectedDocTypes: value.tailieu,
-			})
-		}
+
 		if (_.has(value, 'format')) {
 			this.setState({
 				selectedFormat: value.format,
@@ -98,34 +110,33 @@ class FilterBar extends Component {
 
 			let search = nextProps.location.search;
 			let value = queryString.parse(search);
-			console.log(value.class);
-			if (_.has(value, 'tailieu')) {
+
+			if (_.has(value, 'q')) {
+				let str = value.q;
+				let selectedDocTypes = str.substring(
+					str.lastIndexOf("d") + 1,
+					str.lastIndexOf("s")
+				);
+
+				let selectedSubject = str.substring(
+					str.lastIndexOf("s") + 1,
+					str.lastIndexOf("c")
+				);
+
+				let selectedClasses = str.substring(
+					str.lastIndexOf("c") + 1,
+					str.lastIndexOf("t")
+				);
+
+				let selectedChapter = str.substring(
+					str.lastIndexOf("t") + 1,
+				);
+
 				this.setState({
-					selectedDocTypes: value.tailieu
-				})
-			}else{
-				this.setState({
-					selectedDocTypes: 0
-				})
-			}
-			if (_.has(value, 'subject')) {
-				this.setState({
-					selectedSubject: value.subject
-				})
-			}else{
-				this.setState({
-					selectedSubject: 0
-				})
-			}
-			if (_.has(value, 'class')) {
-				this.setState({
-					selectedClasses: value.class
-				})
-			}else{
-				this.setState({
-					selectedClasses: 0
+					selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
 				})
 			}
+
 			if (_.has(value, 'price')) {
 				this.setState({
 					selectedPrice: value.price
@@ -135,15 +146,7 @@ class FilterBar extends Component {
 					selectedPrice: 0
 				})
 			}
-			if (_.has(value, 'chapter')) {
-				this.setState({
-					selectedChapter: value.chapter
-				})
-			}else{
-				this.setState({
-					selectedChapter: 0
-				})
-			}
+
 			if (_.has(value, 'format')) {
 				this.setState({
 					selectedFormat: value.format
@@ -179,47 +182,95 @@ class FilterBar extends Component {
 
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
-		let docTypeSlug = '';
-		let priceSlug = '&price=';
-		let classesSlug = '&class=';
-		let subjectSlug = '&subject=';
-		let chapterSlug = '&chapter=';
-		let keywordSlug = '&keyword=';
-		let formatSlug = '&format=';
+		let docTypeParam = '';
+		let priceParam = '&price=';
+		let classesParam = '&class=';
+		let subjectParam = '&subject=';
+		let chapterParam = '&chapter=';
+		let keywordParam = '&keyword=';
+		let formatParam = '&format=';
 
-		if(keywords!=''){
-			keywordSlug = '&keyword='+keywords;
+		let docTypeSlug = '';
+		let classesSlug = '';
+		let subjectSlug = '';
+		let chapterSlug = '';
+
+		if (keywords != '') {
+			keywordParam = '&keyword='+keywords;
 		}
 
 		if (selectedDocTypes !== 0) {
-			docTypeSlug =  + selectedDocTypes
+			docTypeParam =  + selectedDocTypes;
+			let idx = _.findIndex(docTypes, (obj) => {
+				return obj.id == selectedDocTypes;
+			});
+
+			if (selectedClasses !== 0 || selectedSubject !== 0) {
+				if (idx >= 0) {
+					docTypeSlug = docTypes[idx].slug + '-';
+				}
+			}
+
+			if (selectedClasses === 0 && selectedSubject === 0) {
+				if (idx >= 0) {
+					docTypeSlug = docTypes[idx].slug
+				}
+			}
 		}
 
 		if (selectedFormat !== 0) {
-			formatSlug = '&format=' + selectedFormat
+			formatParam = '&format=' + selectedFormat
 		}
 
 		if (selectedClasses !== 0) {
-			classesSlug = '&class=' + selectedClasses
+			classesParam = '&class=' + selectedClasses;
+			let idx = _.findIndex(classes, (obj) => {
+				return obj.id == selectedClasses
+			});
+			if (idx >= 0) {
+				classesSlug = classes[idx].slug;
+			}
 		}
 
 		if (selectedSubject !== 0) {
+			subjectParam = '&subject=' + selectedSubject
+			let idx = _.findIndex(subjects, (obj) => {
+				return obj.id == selectedSubject;
+			});
+			if (idx >= 0) {
+				subjectSlug = subjects[idx].slug;
+			}
 
-			subjectSlug = '&subject=' + selectedSubject
+			if (selectedDocTypes !== 0) {
+				if (idx >= 0) {
+					subjectSlug = '-' + subjects[idx].slug;
+				}
+			}
+
+			if (selectedDocTypes !== 0 && selectedClasses !== 0) {
+				if (idx >= 0) {
+					subjectSlug = '-' + subjects[idx].slug + '-';
+				}
+			}
 		}
 
+		let slug = docTypeSlug + subjectSlug + classesSlug;
+
 		if (selectedChapter !== 0) {
-			chapterSlug = '&chapter=' + selectedChapter
+			chapterParam = '&chapter=' + selectedChapter
 		}
 
 		if (selectedPrice !== 0) {
-			priceSlug = '&price=' + selectedPrice
+			priceParam = '&price=' + selectedPrice
 		}
 
+
 		// if (selectedChapter !== 0) {
-		// 	this.props.history.push('/search/?tailieu=' + docTypeSlug + chapterSlug +  subjectSlug + classesSlug)
+		// 	this.props.history.push('/search/?tailieu=' + docTypeParam + chapterParam +  subjectParam + classesParam)
 		// } else {
-			this.props.history.push('/search/?tailieu=' + docTypeSlug + keywordSlug + formatSlug + chapterSlug + subjectSlug + classesSlug + priceSlug)
+
+		this.props.history.push('/' + slug +'/?q=d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + formatParam + priceParam);
+			//this.props.history.push('/' + slug +'/?tailieu=' + docTypeParam + keywordParam + formatParam + chapterParam + subjectParam + classesParam + priceParam)
 		// }
 
 		// if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
@@ -279,9 +330,9 @@ class FilterBar extends Component {
 	};
 
 	handleChangeChapter = (event) => {
-		let chapter = parseInt(event.target.value);
+		let selectedChapter = parseInt(event.target.value);
 		//this.props.handleChangeChapter(chapter);
-		this.setState({chapter})
+		this.setState({selectedChapter})
 	};
 
 	render() {

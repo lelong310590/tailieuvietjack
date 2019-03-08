@@ -72,6 +72,7 @@ class App extends Component {
 					<main className="main" id="main">
 						<Switch>
 							<Route exact={true} path={'/'} component={Home}/>
+
 							<Route exact={true} path={'/dang-ky'} component={isUnauthenticatedUser(Register)}/>
 							<Route exact={true} path={'/dang-nhap'} component={isUnauthenticatedUser(Login)}/>
 							<Route exact={true} path={'/dang-xuat'} component={isAuthenticatedUser(Logout)}/>
@@ -102,7 +103,7 @@ class App extends Component {
 
 							<Route exact={true} path={'/trang-ca-nhan/:userid'} component={Author} />
 
-							<Route exact={true} path={'/search/'} component={ResultDocType}/>
+							<Route exact={true} path={'/:slug/'} component={ResultDocType}/>
 
 							<Route component={ErrorNoPage}/>
 						</Switch>
