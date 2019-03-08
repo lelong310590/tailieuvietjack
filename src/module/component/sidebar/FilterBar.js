@@ -183,12 +183,12 @@ class FilterBar extends Component {
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeParam = '';
-		let priceParam = '&price=';
+		let priceParam = '';
 		let classesParam = '&class=';
 		let subjectParam = '&subject=';
 		let chapterParam = '&chapter=';
-		let keywordParam = '&keyword=';
-		let formatParam = '&format=';
+		let keywordParam = '';
+		let formatParam = '';
 
 		let docTypeSlug = '';
 		let classesSlug = '';
