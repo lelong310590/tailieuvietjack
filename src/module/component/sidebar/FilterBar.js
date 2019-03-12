@@ -215,13 +215,13 @@ class FilterBar extends Component {
 
 			if (selectedClasses !== 0 || selectedSubject !== 0) {
 				if (idx >= 0) {
-					docTypeSlug = docTypes[idx].slug + '-';
+					docTypeSlug = docTypes[idx].slug;
 				}
 			}
 
 			if (selectedClasses === 0 && selectedSubject === 0) {
 				if (idx >= 0) {
-					docTypeSlug = docTypes[idx].slug
+					docTypeSlug = docTypes[idx].slug;
 				}
 			}
 		}
@@ -251,17 +251,23 @@ class FilterBar extends Component {
 
 			if (selectedDocTypes !== 0) {
 				if (idx >= 0) {
-					subjectSlug = '-' + subjects[idx].slug;
+					subjectSlug =  subjects[idx].slug;
 				}
 			}
 
 			if (selectedDocTypes !== 0 && selectedClasses !== 0) {
 				if (idx >= 0) {
-					subjectSlug = '-' + subjects[idx].slug + '-';
+					subjectSlug =  subjects[idx].slug;
 				}
 			}
 		}
 
+		if(docTypeSlug!=''){
+			docTypeSlug+='-';
+		}
+		if(subjectSlug!=''&&classesSlug!=''){
+			subjectSlug+='-';
+		}
 		let slug = docTypeSlug + subjectSlug + classesSlug;
 
 		if (selectedChapter != 0) {
@@ -284,7 +290,6 @@ class FilterBar extends Component {
 		// } else {
 
 		//console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
-
 		if (selectedChapter != 0) {
 			this.props.history.push({
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
