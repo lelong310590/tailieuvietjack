@@ -79,6 +79,7 @@ class Home extends Component {
 								<FilterBar
 									history={this.props.history}
 									location={this.props.location}
+									match={this.props.match}
 								/>
 
 								<div style={{marginTop: '20px'}}>

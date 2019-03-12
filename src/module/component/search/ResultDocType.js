@@ -81,26 +81,32 @@ class ResultDocType extends Component {
 			keywords
 		} = props.FilterBarReducer;
 
-		if (_.has(value, 'q')) {
-			let str = value.q;
-			 selectedDocTypes = str.substring(
+		let {params} = props.match;
+
+		if (_.has(params, 'code')) {
+			let str = params.code.split('&')[0];
+			selectedDocTypes = str.substring(
 				str.lastIndexOf("d") + 1,
 				str.lastIndexOf("s")
 			);
 
-			 selectedSubject = str.substring(
+			selectedSubject = str.substring(
 				str.lastIndexOf("s") + 1,
 				str.lastIndexOf("c")
 			);
 
-			 selectedClasses = str.substring(
+			selectedClasses = str.substring(
 				str.lastIndexOf("c") + 1,
 				str.lastIndexOf("t")
 			);
 
-			 selectedChapter = str.substring(
+			selectedChapter = str.substring(
 				str.lastIndexOf("t") + 1,
 			);
+
+			this.setState({
+				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
+			})
 		}
 
 		if (_.has(value, 'price')) {
@@ -166,6 +172,7 @@ class ResultDocType extends Component {
 								<FilterBar
 									history={this.props.history}
 									location={this.props.location}
+									match={this.props.match}
 								/>
 
 								<div style={{marginTop: '20px'}}>

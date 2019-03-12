@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import * as action from './../../action/Index';
 import Loading from "../support/Loading";
 import queryString from 'query-string';
+import {withRouter} from 'react-router-dom';
 
 class FilterBar extends Component {
 
@@ -28,6 +29,9 @@ class FilterBar extends Component {
 	};
 
 	componentDidMount = () => {
+
+		let {params} = this.props.match;
+
 		const search = this.props.location.search;
 		let value = queryString.parse(search);
 		let {
@@ -35,24 +39,24 @@ class FilterBar extends Component {
 			keywords
 		} = this.state;
 
-		if (_.has(value, 'q')) {
-			let str = value.q;
-			let selectedDocTypes = str.substring(
+		if (_.has(params, 'code')) {
+			let str = params.code.split('&')[0];
+			selectedDocTypes = str.substring(
 				str.lastIndexOf("d") + 1,
 				str.lastIndexOf("s")
 			);
 
-			let selectedSubject = str.substring(
+			selectedSubject = str.substring(
 				str.lastIndexOf("s") + 1,
 				str.lastIndexOf("c")
 			);
 
-			let selectedClasses = str.substring(
+			selectedClasses = str.substring(
 				str.lastIndexOf("c") + 1,
 				str.lastIndexOf("t")
 			);
 
-			let selectedChapter = str.substring(
+			selectedChapter = str.substring(
 				str.lastIndexOf("t") + 1,
 			);
 
@@ -104,15 +108,11 @@ class FilterBar extends Component {
 			})
 		}
 
-		if (this.props.location.search!== nextProps.location.search) {
-			let oldSearch = this.props.location.search;
-			let oldValue = queryString.parse(oldSearch);
+		if (this.props.match.params !== nextProps.match.params) {
+			let {params} = nextProps.match;
 
-			let search = nextProps.location.search;
-			let value = queryString.parse(search);
-
-			if (_.has(value, 'q')) {
-				let str = value.q;
+			if (_.has(params, 'code')) {
+				let str = params.code.split('&')[0];
 				let selectedDocTypes = str.substring(
 					str.lastIndexOf("d") + 1,
 					str.lastIndexOf("s")
@@ -136,6 +136,14 @@ class FilterBar extends Component {
 					selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
 				})
 			}
+		}
+
+		if (this.props.location.search!== nextProps.location.search) {
+			let oldSearch = this.props.location.search;
+			let oldValue = queryString.parse(oldSearch);
+
+			let search = nextProps.location.search;
+			let value = queryString.parse(search);
 
 			if (_.has(value, 'price')) {
 				this.setState({
@@ -257,20 +265,39 @@ class FilterBar extends Component {
 		let slug = docTypeSlug + subjectSlug + classesSlug;
 
 		if (selectedChapter !== 0) {
-			chapterParam = '&chapter=' + selectedChapter
+			//chapterParam = '&chapter=' + selectedChapter;
+			let idx = _.findIndex(chapters, (obj) => {
+				return obj.id === selectedChapter;
+			});
+			if (idx >= 0) {
+				chapterSlug = chapters[idx].slug;
+			}
+			slug = chapterSlug;
 		}
 
 		if (selectedPrice !== 0) {
 			priceParam = '&price=' + selectedPrice
 		}
 
-
 		// if (selectedChapter !== 0) {
 		// 	this.props.history.push('/search/?tailieu=' + docTypeParam + chapterParam +  subjectParam + classesParam)
 		// } else {
 
-		this.props.history.push('/' + slug +'/?q=d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + formatParam + priceParam);
-			//this.props.history.push('/' + slug +'/?tailieu=' + docTypeParam + keywordParam + formatParam + chapterParam + subjectParam + classesParam + priceParam)
+		console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
+
+		if (selectedChapter !== 0) {
+			this.props.history.push({
+				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
+			});
+
+			return false;
+		}
+
+		this.props.history.push({
+			pathname: '/' + slug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
+		});
+
+		//this.props.history.push('/' + slug +'/?tailieu=' + docTypeParam + keywordParam + formatParam + chapterParam + subjectParam + classesParam + priceParam)
 		// }
 
 		// if (selectedDocTypes === 0 && selectedClasses === 0 && selectedSubject === 0) {
@@ -494,4 +521,4 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (FilterBar);
+export default withRouter (connect(mapStateToProps, mapDispatchToProps) (FilterBar));
