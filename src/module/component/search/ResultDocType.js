@@ -51,7 +51,7 @@ class ResultDocType extends Component {
 			}
 		}
 
-		if (this.props.location.search !== nextProps.location.search) {
+		if (this.props.location.pathname !== nextProps.location.pathname) {
 			// let {slug} = nextProps.match.url;
 			this.fetchData(nextProps);
 		}
