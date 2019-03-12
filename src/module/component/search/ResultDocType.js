@@ -72,7 +72,7 @@ class ResultDocType extends Component {
 	};
 
 	//Fetch data
-	fetchData = (props, page = 1) => {
+	fetchData = (props, page = 1,order='new') => {
 		const search = props.location.search;
 		let value = queryString.parse(search);
 
@@ -110,10 +110,20 @@ class ResultDocType extends Component {
 		}
 
 		if (_.has(value, 'price')) {
-			selectedPrice = value.price
-		}
+			selectedPrice = value.price;
 
-		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page);
+		}
+		let pathname = this.props.location.pathname;
+		let afterPrice = pathname.split('price=')[1];
+		if(afterPrice.length>0){
+			let firstPrice = afterPrice.charAt(0);
+			if(firstPrice=='-'){
+				selectedPrice = -1;
+			}else{
+				selectedPrice = firstPrice;
+			}
+		}
+		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page,order);
 
 		axios.get(api.GET_META_DATA, {
 			params: {
@@ -137,11 +147,12 @@ class ResultDocType extends Component {
 
 	handleOrderBy = (order) => {
 		//console.log(this.props);
-		let {
-			keywords, selectedDocTypes,selectedClasses,selectedSubject,selectedChapter,selectedFormat,selectedPrice
-		} = this.props.FilterBarReducer;
-
-		this.props.getResult(keywords,selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, this.props.FilterBarReducer.documents.current_page, order);
+		// let {
+		// 	keywords, selectedDocTypes,selectedClasses,selectedSubject,selectedChapter,selectedFormat,selectedPrice
+		// } = this.props.FilterBarReducer;
+		//
+		// this.props.getResult(keywords,selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, this.props.FilterBarReducer.documents.current_page, order);
+		this.fetchData(this.props,1,order);
 	}
 
 	handleChangeViewStyle = (viewStyle) => {
