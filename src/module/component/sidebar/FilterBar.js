@@ -292,6 +292,9 @@ class FilterBar extends Component {
 
 			return false;
 		}
+		if(slug.length===0){
+			slug = 'tim-kiem';
+		}
 		this.props.history.push({
 			pathname: '/' + slug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 		});
