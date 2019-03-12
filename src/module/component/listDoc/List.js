@@ -104,10 +104,10 @@ class List extends Component {
 							{value.formated_price}
 						</div>
 						<div className="document-category-info">
-							<Link to={'/search/?class=' + value.get_class.id} className="document-category-class">
+							<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
 								{value.get_class.name}
 							</Link>
-							<Link to={'/search/?class=' + value.get_class.id + '&subject=' + value.get_subject.id} className="document-category-subject">
+							<Link to={'/'+value.get_class.slug +'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
 								{value.get_subject.name}
 							</Link>
 						</div>

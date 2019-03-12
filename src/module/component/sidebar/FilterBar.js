@@ -264,7 +264,7 @@ class FilterBar extends Component {
 
 		let slug = docTypeSlug + subjectSlug + classesSlug;
 
-		if (selectedChapter !== 0) {
+		if (selectedChapter != 0) {
 			//chapterParam = '&chapter=' + selectedChapter;
 			let idx = _.findIndex(chapters, (obj) => {
 				return obj.id === selectedChapter;
@@ -283,16 +283,15 @@ class FilterBar extends Component {
 		// 	this.props.history.push('/search/?tailieu=' + docTypeParam + chapterParam +  subjectParam + classesParam)
 		// } else {
 
-		console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
+		//console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
 
-		if (selectedChapter !== 0) {
+		if (selectedChapter != 0) {
 			this.props.history.push({
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 			});
 
 			return false;
 		}
-
 		this.props.history.push({
 			pathname: '/' + slug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 		});
