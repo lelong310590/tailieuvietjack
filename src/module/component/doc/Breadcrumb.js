@@ -13,14 +13,16 @@ class Breadcrumb extends Component {
 			chapter: '',
 			chapterSlug: '',
 			thematic: '',
-			thematicSlug: ''
+			thematicSlug: '',
+			classId:'',
+			subjectId:'',
 		}
 	}
 
 	componentDidMount = () => {
-		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug} = this.props;
+		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug,classId,subjectId} = this.props;
 		this.setState({
-			classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug
+			classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug,classId,subjectId
 		})
 	};
 
@@ -35,7 +37,9 @@ class Breadcrumb extends Component {
 				subjectSlug: nextProps.subjectSlug,
 				chapterSlug: nextProps.chapterSlug,
 				thematic: nextProps.thematic,
-				thematicSlug: nextProps.thematicSlug
+				thematicSlug: nextProps.thematicSlug,
+				classId: nextProps.classId,
+				subjectId: nextProps.subjectId
 			})
 		}
 
@@ -44,15 +48,15 @@ class Breadcrumb extends Component {
 
 	render() {
 
-		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug} = this.state;
+		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug,classId,subjectId} = this.state;
 
 		return (
 			<div className="breadcrumb-wrapper">
 				<ul>
 					<li><Link to="/"><i className="fas fa-home"></i> Trang chủ</Link></li>
-					<li><Link to={'/cat/' + classSlug}><i className="fas fa-chevron-right"></i> {classLevel}</Link></li>
+					<li><Link to={'/'+classSlug+'/d0s0c'+classId+'t0'}><i className="fas fa-chevron-right"></i> {classLevel}</Link></li>
 					{subject &&
-						<li><Link to={'/cat/' + classSlug + '/' + subjectSlug}><i className="fas fa-chevron-right"></i> {subject}</Link></li>
+						<li><Link to={'/'+subjectSlug+'-'+classSlug+'/d0s'+subjectId+'c'+classId+'t0'}><i className="fas fa-chevron-right"></i> {subject}</Link></li>
 					}
 
 					{(chapter && thematic) &&

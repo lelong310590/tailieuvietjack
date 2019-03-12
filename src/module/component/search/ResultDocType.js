@@ -251,7 +251,7 @@ class ResultDocType extends Component {
 																	<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
 																		{value.get_class.name}
 																	</Link>
-																	<Link to={'/'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
+																	<Link to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
 																		{value.get_subject.name}
 																	</Link>
 																</div>
@@ -301,7 +301,7 @@ class ResultDocType extends Component {
 																			<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
 																				{value.get_class.name}
 																			</Link>
-																			<Link to={'/'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
+																			<Link to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
 																				{value.get_subject.name}
 																			</Link>
 																		</div>

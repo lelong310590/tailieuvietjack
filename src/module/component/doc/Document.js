@@ -199,6 +199,8 @@ class Document extends Component {
 						subject={subject.name}
 						classSlug={classLevel.slug}
 						subjectSlug={subject.slug}
+						classId={classLevel.id}
+						subjectId={subject.id}
 					/>
 
 					<div className="row">
