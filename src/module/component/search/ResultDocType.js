@@ -115,13 +115,15 @@ class ResultDocType extends Component {
 		}
 		let pathname = this.props.location.pathname;
 		let afterPrice = pathname.split('price=')[1];
-		if(afterPrice.length>0){
+		if(afterPrice!==undefined&&afterPrice.length>0){
 			let firstPrice = afterPrice.charAt(0);
 			if(firstPrice=='-'){
 				selectedPrice = -1;
 			}else{
 				selectedPrice = firstPrice;
 			}
+		}else{
+			selectedPrice = -1;
 		}
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice, page,order);
 

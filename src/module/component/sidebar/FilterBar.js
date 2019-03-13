@@ -283,6 +283,11 @@ class FilterBar extends Component {
 
 		if (selectedPrice !== 0) {
 			priceParam = '&price=' + selectedPrice
+			if(selectedPrice==-1){
+				priceParam = '';
+			}
+		}else{
+			priceParam = '&price=0';
 		}
 
 		// if (selectedChapter !== 0) {
