@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SocialLogin from "../support/SocialLogin";
+import SocialButton from "../support/SocialButton";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import * as helpers from './../../Support';
@@ -159,23 +159,23 @@ class Login extends Component {
 
 						<h1 className="text-center">ĐĂNG NHẬP</h1>
 						<div className="social-login-wrapper">
-							<SocialLogin
+							<SocialButton
 								provider='facebook'
 								appId='185415292298335'
 								onLoginSuccess={this.handleSocialLogin}
 								onLoginFailure={this.handleSocialLoginFailure}
 							>
 								<i className="fab fa-facebook-square"></i> Facebook
-							</SocialLogin>
+							</SocialButton>
 
-							{/*<SocialLogin*/}
+							{/*<SocialButton*/}
 								{/*provider='google'*/}
 								{/*appId='265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com'*/}
 								{/*onLoginSuccess={this.handleSocialLogin}*/}
 								{/*onLoginFailure={this.handleSocialLoginFailure}*/}
 							{/*>*/}
 								{/*<i className="fab fa-google"></i> Google*/}
-							{/*</SocialLogin>*/}
+							{/*</SocialButton>*/}
 						</div>
 						<form onSubmit={this.onLogin}>
 							{error !== '' &&
