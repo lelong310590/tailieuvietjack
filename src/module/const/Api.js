@@ -65,3 +65,4 @@ export const API_FILTER_BAR_CHAPTER = BASE_URL + 'chapter/get-chapter';
 export const GET_META_DATA = BASE_URL + 'get-meta-data';
 //comment
 export const API_GET_COMMENT_LIST = BASE_URL + 'comment/get-comment';
+export const API_POST_COMMENT = BASE_URL + 'comment/post-comment';

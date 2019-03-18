@@ -10,7 +10,9 @@ class Comment extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            comments: []
+            comments: [],
+            newcomment:'',
+            id:0
         }
     }
 
@@ -21,6 +23,7 @@ class Comment extends Component{
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if(this.props.doc_id!==nextProps.doc_id){
             this.fetchData(nextProps.doc_id);
+            this.setState({id:nextProps.doc_id});
         }
         return true;
     }
@@ -45,15 +48,45 @@ class Comment extends Component{
                 this.setState({pageLoadDone: true})
             })
     };
+
+    postComment = (e)=>{
+        e.preventDefault();
+        let config = {
+            headers: {'Content-Type': 'multipart/form-data' }
+        };
+        let {newcomment,id} = this.state;
+        let formData = new FormData();
+        formData.append('doc_id',id);
+        formData.append('user_id',this.props.UserReducer.id);
+        formData.append('content',newcomment);
+        formData.append('parent','');
+        axios.post(api.API_POST_COMMENT,formData,config)
+            .then(response => {
+                alert('Gửi bình luận thành công. Vui lòng chờ ban quản trị duyệt bình luận!');
+                this.setState({newcomment:''});
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                this.setState({pageLoadDone: true})
+            })
+    }
+
+    typeComment = (e) => {
+        let newcomment = e.target.value;
+        this.setState({newcomment})
+    }
+
     render(){
-        let {comments} = this.state;
+        let {comments,newcomment} = this.state;
 
         return(
             <div className="facebook-comment">
                 <h4>0 Comments</h4>
-                <form>
+                <form onSubmit={this.postComment}>
                     <div className="form-group">
-                        <textarea placeholder="Thêm bình luận" className="form-control"></textarea>
+                        <textarea value={newcomment} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
                     </div>
                     <div className="form-group">
                         <button type="submit">Gửi</button>
@@ -123,4 +156,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default Comment;
+export default connect(mapStateToProps, mapDispatchToProps) (Comment);
