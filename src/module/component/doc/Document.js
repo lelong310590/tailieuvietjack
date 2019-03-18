@@ -3,6 +3,7 @@ import List from "../listDoc/List";
 import Infomation from "./Infomation";
 import Tags from "./Tags";
 import FacebookComment from "./FacebookComment";
+import Comment from "./Comment";
 import Breadcrumb from "./Breadcrumb";
 import Sidebar from "./Sidebar";
 import _ from 'lodash';
@@ -21,6 +22,7 @@ class Document extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			id: 0,
 			slug: this.props.match.params,
 			status: 'active',
 			name: '',
@@ -121,7 +123,8 @@ class Document extends Component {
 					classLevel: response.data.get_class,
 					subject: response.data.get_subject,
 					tags: response.data.get_tags,
-					content: response.data.content
+					content: response.data.content,
+					id: response.data.id
 				})
 			})
 			.catch(err => {
@@ -173,7 +176,7 @@ class Document extends Component {
 	render() {
 
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
-			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags} = this.state;
+			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id} = this.state;
 
 		let {slug} = this.props.match.params;
 
@@ -291,6 +294,7 @@ class Document extends Component {
 							/>
 
 							<FacebookComment/>
+							<Comment doc_id={id}/>
 
 						</div>
 

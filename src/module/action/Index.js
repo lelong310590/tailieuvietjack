@@ -543,6 +543,32 @@ export const getHomeList = () => {
 	}
 };
 
+export const getCommentListRequest = () => ({
+	type: types.GET_COMMENT_LIST_REQUEST
+});
+
+export const getCommentListSuccess = (payload) => ({
+	type: types.GET_COMMENT_LIST_SUCCESS,
+	payload
+});
+
+export const getCommentListError = (err) => ({
+	type: types.GET_COMMENT_LIST_ERROR,
+	err
+});
+
+export const getCommentList = (doc_id) => {
+	return (dispatch) => {
+		dispatch(getCommentListRequest());
+		axios.get(api.API_GET_COMMENT_LIST,{params:{doc_id}})
+			.then(resp => {
+				dispatch(getCommentListSuccess(resp))
+			})
+			.catch(err => {
+				dispatch(getCommentListError(err))
+			})
+	}
+};
 //reset list subjects
 export const resetListSubject = () => ({
 	type: types.RESET_LIST_SUBJECT,
