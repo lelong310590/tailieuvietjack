@@ -15,6 +15,7 @@ import Loading from "../support/Loading";
 import {Alert} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import ReportDocument from "./ReportDocument";
+import LoginPopup from "./LoginPopup";
 import * as helper from './../../Support';
 
 class Document extends Component {
@@ -51,7 +52,8 @@ class Document extends Component {
 
 			pageLoadDone: false,
 			showReport: false,
-			footerDocument: true
+			footerDocument: true,
+			showLoginPopup: false,
 		};
 	}
 
@@ -141,6 +143,7 @@ class Document extends Component {
 
 		if (_.isEmpty(token)) {
 			alert('Bạn phải đăng nhập để tải tài liệu');
+			this.setState({showLoginPopup: true})
 			return false;
 		}
 
@@ -160,6 +163,10 @@ class Document extends Component {
 		this.setState({showReport: false})
 	};
 
+	closeLoginPopup = () => {
+		this.setState({showLoginPopup: false})
+	};
+
 	fullScreen = () => {
 		var elem = document.getElementById("document-content");
 		if (elem.requestFullscreen) {
@@ -176,7 +183,7 @@ class Document extends Component {
 	render() {
 
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
-			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id} = this.state;
+			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 
 		let {slug} = this.props.match.params;
 
@@ -188,6 +195,13 @@ class Document extends Component {
 						docId={slug}
 						closeReport={this.closeReport}
 					/>
+				}
+
+				{showLoginPopup &&
+				<LoginPopup
+					docId={slug}
+					closeLoginPopup={this.closeLoginPopup}
+				/>
 				}
 
 				<Meta
