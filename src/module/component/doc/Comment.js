@@ -12,7 +12,8 @@ class Comment extends Component{
         this.state = {
             comments: [],
             newcomment:'',
-            id:0
+            id:0,
+            newreply:''
         }
     }
 
@@ -78,8 +79,37 @@ class Comment extends Component{
         this.setState({newcomment})
     }
 
+    typeReply = (e) => {
+        let newreply = e.target.value;
+        this.setState({newreply})
+    }
+
+    postReply = (e,parent)=>{
+        e.preventDefault();
+        let config = {
+            headers: {'Content-Type': 'multipart/form-data' }
+        };
+        let {newreply,id} = this.state;
+        let formData = new FormData();
+        formData.append('doc_id',id);
+        formData.append('user_id',this.props.UserReducer.id);
+        formData.append('content',newreply);
+        formData.append('parent',parent);
+        axios.post(api.API_POST_COMMENT,formData,config)
+            .then(response => {
+                alert('Gửi câu trả lời thành công. Vui lòng chờ ban quản trị duyệt bình luận!');
+                this.setState({newreply:''});
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                this.setState({pageLoadDone: true})
+            })
+    }
+
     render(){
-        let {comments,newcomment} = this.state;
+        let {comments,newcomment,newreply} = this.state;
 
         return(
             <div className="facebook-comment">
@@ -107,8 +137,10 @@ class Comment extends Component{
                                         <a onClick={(e) => this.handleReply(e, index, value.reply)}>Reply</a>
                                         {value.reply === true &&
                                             <Fragment>
-                                                <textarea></textarea>
-                                                <button>Gửi</button>
+                                                <form onSubmit={(e)=>this.postReply(e,value.id)}>
+                                                    <textarea value={newreply} onChange={this.typeReply} />
+                                                    <button type="submit">Gửi</button>
+                                                </form>
                                             </Fragment>
                                         }
                                     </div>
