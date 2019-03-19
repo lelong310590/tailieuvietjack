@@ -1,0 +1,11 @@
+/* comment box */
+.facebook-comment .btn-submit{
+    float: right;
+    box-shadow: none;
+    background: #ff9700;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
