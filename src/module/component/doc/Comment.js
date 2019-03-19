@@ -24,12 +24,11 @@ class Comment extends Component{
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
 
-
         if(this.props.doc_id!==nextProps.doc_id){
             this.fetchData(nextProps.doc_id);
             this.setState({id:nextProps.doc_id});
         }
-        
+
         return true;
     }
 
@@ -57,6 +56,10 @@ class Comment extends Component{
 
     postComment = (e)=>{
         e.preventDefault();
+        if(!this.props.AuthReducer.loggedIn){
+            this.props.requiredLogin();
+            return;
+        }
         let config = {
             headers: {'Content-Type': 'multipart/form-data' }
         };
@@ -91,6 +94,10 @@ class Comment extends Component{
 
     postReply = (e,parent)=>{
         e.preventDefault();
+        if(!this.props.AuthReducer.loggedIn){
+            this.props.requiredLogin();
+            return;
+        }
         let config = {
             headers: {'Content-Type': 'multipart/form-data' }
         };
@@ -113,6 +120,10 @@ class Comment extends Component{
             })
     }
 
+    clickCommentBox = (e) => {
+        this.props.requiredLogin()
+    }
+
     render(){
         let {comments,newcomment,newreply,total_comment} = this.state;
 
@@ -121,7 +132,7 @@ class Comment extends Component{
                 <h4>{total_comment} Comments</h4>
                 <form onSubmit={this.postComment}>
                     <div className="form-group">
-                        <textarea value={newcomment} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
+                        <textarea value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
                     </div>
                     <div className="form-group">
                         <button className="btn-submit" type="submit">Gửi</button>
@@ -143,7 +154,7 @@ class Comment extends Component{
                                         {value.reply === true &&
                                             <Fragment>
                                                 <form onSubmit={(e)=>this.postReply(e,value.id)}>
-                                                    <textarea value={newreply} onChange={this.typeReply} />
+                                                    <textarea onClick={this.clickCommentBox} value={newreply} onChange={this.typeReply} />
                                                     <button type="submit">Gửi</button>
                                                 </form>
                                             </Fragment>

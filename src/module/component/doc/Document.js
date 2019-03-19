@@ -168,6 +168,14 @@ class Document extends Component {
 		this.setState({showLoginPopup: false})
 	};
 
+	commentfeedback = () => {
+		if(!this.props.AuthReducer.loggedIn){
+			this.setState({showLoginPopup: true});
+		}else{
+			this.setState({showLoginPopup: false});
+		}
+	}
+
 	fullScreen = () => {
 		var elem = document.getElementById("document-content");
 		if (elem.requestFullscreen) {
@@ -310,9 +318,10 @@ class Document extends Component {
 							/>
 
 							{/*<FacebookComment/>*/}
-							{AuthReducer.loggedIn &&
-							< Comment doc_id={id}/>
-							}
+							<Comment
+								doc_id={id}
+								requiredLogin={this.commentfeedback}
+							/>
 
 						</div>
 
