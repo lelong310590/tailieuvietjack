@@ -17,6 +17,7 @@ import {Link} from 'react-router-dom';
 import ReportDocument from "./ReportDocument";
 import LoginPopup from "./LoginPopup";
 import * as helper from './../../Support';
+import {connect} from "react-redux";
 
 class Document extends Component {
 
@@ -186,6 +187,7 @@ class Document extends Component {
 			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 
 		let {slug} = this.props.match.params;
+		let {AuthReducer, UserReducer} = this.props;
 
 		return (
 			<section className="document-wrapper single-document-wrapper">
@@ -307,8 +309,10 @@ class Document extends Component {
 								tags={tags}
 							/>
 
-							<FacebookComment/>
-							<Comment doc_id={id}/>
+							{/*<FacebookComment/>*/}
+							{AuthReducer.loggedIn &&
+							< Comment doc_id={id}/>
+							}
 
 						</div>
 
@@ -345,4 +349,8 @@ class Document extends Component {
 	}
 }
 
-export default Document;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (Document);
