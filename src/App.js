@@ -77,7 +77,7 @@ class App extends Component {
 							<Route exact={true} path={'/dang-nhap'} component={isUnauthenticatedUser(Login)}/>
 							<Route exact={true} path={'/dang-xuat'} component={isAuthenticatedUser(Logout)}/>
 							<Route exact={true} path={'/quen-mat-khau'} component={isUnauthenticatedUser(ForgotPassword)}/>
-							<Route exact={true} path={'/doi-lai-mat-khau/:token'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
+							<Route exact={true} path={'/doi-lai-mat-khau'} component={isUnauthenticatedUser(ChangeForgotPassword)}/>
 
 							<Route exact={true} path={'/upload-tai-lieu'} component={Intro}/>
 							{/*<Route exact={true} path={'cat/:class/:subject'} component={List}/>*/}

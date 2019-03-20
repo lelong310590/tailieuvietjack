@@ -5,6 +5,7 @@ export const API_POST_GOOGLE_LOGIN = BASE_URL + 'auth/login/google';
 
 export const API_LOGIN = BASE_URL + 'auth/login';
 export const API_SEND_RESET_PASSWORD_EMAIL = BASE_URL + 'auth/send-reset-email';
+export const API_SEND_RESET_PASSWORD = BASE_URL + 'auth/send-reset-password';
 export const API_GET_USER = BASE_URL + 'user/profile';
 export const API_GET_USER_DOCUMENT = BASE_URL + 'user/document';
 export const API_POST_DELETE_DOCUMENT = BASE_URL + 'doc/delete';
