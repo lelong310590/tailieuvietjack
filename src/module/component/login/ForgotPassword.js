@@ -3,7 +3,7 @@ import axios from "axios";
 import * as api from "../../const/Api";
 import {Alert} from "react-bootstrap";
 import * as helpers from "../../Support";
-import Loading from "../register/Register";
+import Loading from "../support/Loading";
 
 class ForgotPassword extends Component {
 

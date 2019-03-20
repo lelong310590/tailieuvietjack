@@ -7,7 +7,7 @@ import axios from "axios";
 import * as api from "../../const/Api";
 import queryString from 'query-string';
 import _ from "lodash";
-import Loading from "../register/Register";
+import Loading from "../support/Loading";
 
 class ChangeForgotPassword extends Component {
 	constructor(props) {
