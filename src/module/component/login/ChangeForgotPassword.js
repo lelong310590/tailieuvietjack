@@ -7,6 +7,7 @@ import axios from "axios";
 import * as api from "../../const/Api";
 import queryString from 'query-string';
 import _ from "lodash";
+import Loading from "../register/Register";
 
 class ChangeForgotPassword extends Component {
 	constructor(props) {
@@ -76,6 +77,7 @@ class ChangeForgotPassword extends Component {
 			<div className="page-wrapper">
 				<div className="container">
 					<div className="authen-wrapper">
+						{onProcess && <Loading/>}
 						<h1 className="text-center">Tạo mới mật khẩu</h1>
 						{error !== '' &&
 						<Alert bsStyle="success">

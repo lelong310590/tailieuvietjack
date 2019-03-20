@@ -3,6 +3,7 @@ import axios from "axios";
 import * as api from "../../const/Api";
 import {Alert} from "react-bootstrap";
 import * as helpers from "../../Support";
+import Loading from "../register/Register";
 
 class ForgotPassword extends Component {
 
@@ -58,6 +59,7 @@ class ForgotPassword extends Component {
 			<div className="page-wrapper">
 				<div className="container">
 					<div className="authen-wrapper forgot-password">
+						{onProcess && <Loading/>}
 						<h1 className="text-center">Trợ giúp lấy lại mật khẩu</h1>
 						{error !== '' &&
 						<Alert bsStyle="success">
