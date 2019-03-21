@@ -10,7 +10,6 @@ import {Alert} from 'react-bootstrap';
 
 import Meta from "../support/Meta";
 import Loading from "../support/Loading";
-import FacebookLogin from 'react-facebook-login';
 
 class Login extends Component {
 
@@ -164,10 +163,6 @@ class Login extends Component {
 
 						<h1 className="text-center">ĐĂNG NHẬP</h1>
 						<div className="social-login-wrapper">
-							<FacebookLogin
-								appId="185415292298335"
-								autoLoad={true}
-								callback={this.responseFacebook} />
 
 							<SocialButton
 								provider='facebook'
