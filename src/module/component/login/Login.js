@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SocialButton from "../support/SocialButton";
+// import SocialButton from "../support/SocialButton";
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import * as helpers from './../../Support';
@@ -10,6 +10,9 @@ import {Alert} from 'react-bootstrap';
 
 import Meta from "../support/Meta";
 import Loading from "../support/Loading";
+// import FacebookLogin from 'react-facebook-login';
+import { FacebookLogin } from 'react-facebook-login-component';
+import GoogleLogin from 'react-google-login';
 
 class Login extends Component {
 
@@ -145,6 +148,10 @@ class Login extends Component {
 		console.log(response);
 	}
 
+	responseGoogle = (response) => {
+		console.log(response);
+	}
+
 	render() {
 
 		let {validEmail, validPassword, error, onProcess} = this.state;
@@ -158,20 +165,39 @@ class Login extends Component {
 
 				<div className="container">
 					<div className="authen-wrapper">
-
 						{onProcess && <Loading/>}
 
 						<h1 className="text-center">ĐĂNG NHẬP</h1>
 						<div className="social-login-wrapper">
+							{/*<FacebookLogin*/}
+								{/*appId="185415292298335" //APP ID NOT CREATED YET*/}
+								{/*fields="name,email,picture"*/}
+								{/*callback={this.responseFacebook}*/}
+							{/*/>*/}
+							<FacebookLogin socialId="185415292298335"
+										   language="en_US"
+										   scope="public_profile,email"
+										   responseHandler={this.responseFacebook}
+										   xfbml={true}
+										   fields="id,email,name"
+										   version="v2.5"
+										   className="facebook-login"
+										   buttonText="Login With Facebook"/>
 
-							<SocialButton
-								provider='facebook'
-								appId='185415292298335'
-								onLoginSuccess={this.handleSocialLogin}
-								onLoginFailure={this.handleSocialLoginFailure}
-							>
-								<i className="fab fa-facebook-square"></i> Facebook
-							</SocialButton>
+							<GoogleLogin
+								clientId="265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+								buttonText="LOGIN WITH GOOGLE"
+								onSuccess={this.responseGoogle}
+								onFailure={this.responseGoogle}
+							/>
+							{/*<SocialButton*/}
+								{/*provider='facebook'*/}
+								{/*appId='185415292298335'*/}
+								{/*onLoginSuccess={this.handleSocialLogin}*/}
+								{/*onLoginFailure={this.handleSocialLoginFailure}*/}
+							{/*>*/}
+								{/*<i className="fab fa-facebook-square"></i> Facebook*/}
+							{/*</SocialButton>*/}
 
 							{/*<SocialButton*/}
 								{/*provider='google'*/}
