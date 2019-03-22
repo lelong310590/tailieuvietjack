@@ -145,6 +145,17 @@ class Login extends Component {
 	};
 
 	responseFacebook = (response) => {
+		let formData = new FormData();
+		formData.append('avatar', response.profilePicURL);
+		formData.append('name', response.name);
+		formData.append('email', response.email);
+		formData.append('id', response.id);
+		formData.append('grant_type', 'password');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+		formData.append('scope', '');
+		formData.append('token',response.accessToken);
+		this.socialLogin('facebook', formData);
 		console.log(response);
 	}
 
@@ -179,7 +190,7 @@ class Login extends Component {
 										   scope="public_profile,email"
 										   responseHandler={this.responseFacebook}
 										   xfbml={true}
-										   fields="id,email,name"
+										   fields="id,email,name,profilePicURL"
 										   version="v2.5"
 										   className="facebook-login"
 										   buttonText="Login With Facebook"/>
