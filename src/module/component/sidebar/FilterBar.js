@@ -382,95 +382,127 @@ class FilterBar extends Component {
 		} = this.state;
 
 		return (
-			<div className="widget filter-box-wrapper filter-bar-wrapper">
-				<div className="widget-title"><h4 className="text-center">Tìm kiếm tài liệu</h4></div>
-				<div className="widget-content">
-					<div className="filter-bar-wrapper-inner">
-
-						{/*{loading && <Loading/> }*/}
-
-						<form onSubmit={this.submitSearch}>
-
-							{alert &&
-								<div className="alert alert-danger">
-									Bạn chưa chọn tiêu chí để tìm tài liệu
+			<div className="sidebar">
+				<div className="vj-widgets">
+					<h4>Tìm kiếm tài liệu</h4>
+					<div className="widget-content">
+						<div className="filter-bar-wrapper-inner">
+							<form onSubmit={this.submitSearch}>
+								{alert &&
+									<div className="alert alert-danger">
+										Bạn chưa chọn tiêu chí để tìm tài liệu
+									</div>
+								}
+								<div className="form-group">
+									<input type="text" className="form-control" placeholder="Tìm theo từ khóa .." value={keywords} onChange={this.handleChangeKeyword}/>
 								</div>
-							}
+								<div className="form-group">
+									<select name="name" className="form-control" onChange={this.handleChangeDocTypes} value={selectedDocTypes}>
+										<option value={0}> -- Chọn loại tài liệu --</option>
+										{_.map(docTypes, (value, idx) => {
+											return (
+												<option value={value.id} key={idx}>{value.name}</option>
+											)
+										})}
+									</select>
+								</div>
+								<div className="form-group">
+									<select name="name" className="form-control" onChange={this.handleChangeClasses} value={selectedClasses}>
+										<option value={0}> -- Chọn lớp --</option>
+										{_.map(classes, (value, idx) => {
 
-							<div className="form-group">
-								<input type="text" className="form-control" placeholder="Tìm theo từ khóa .." value={keywords} onChange={this.handleChangeKeyword}/>
-							</div>
+											let elem = (value.id > 0) ? ` + ${value.name}` : value.name;
 
-							<div className="form-group">
-								<select name="name" className="form-control" onChange={this.handleChangeDocTypes} value={selectedDocTypes}>
-									<option value={0}> -- Chọn loại tài liệu --</option>
-									{_.map(docTypes, (value, idx) => {
-										return (
-											<option value={value.id} key={idx}>{value.name}</option>
-										)
-									})}
-								</select>
-							</div>
-
-							<div className="form-group">
-								<select name="name" className="form-control" onChange={this.handleChangeClasses} value={selectedClasses}>
-									<option value={0}> -- Chọn lớp --</option>
-									{_.map(classes, (value, idx) => {
-
-										let elem = (value.id > 0) ? ` + ${value.name}` : value.name;
-
-										return (
-											<option value={value.id} key={idx}>
-												{elem}
-											</option>
-										)
-									})}
-								</select>
-							</div>
-
-							<div className="form-group">
-								<select name="name" className="form-control" onChange={this.handleChangeSubject} value={selectedSubject}>
-									<option value={0}> -- Chọn môn --</option>
-									{_.map(subjects, (value, idx) => {
-										return (
-											<option value={value.id} key={idx}>{value.name}</option>
-										)
-									})}
-								</select>
-							</div>
-
-							<div className="form-group">
-								<select name="name" className="form-control" value={selectedChapter} onChange={this.handleChangeChapter}>
-									<option value={0}> -- Chọn chuyên đề --</option>
-									{_.map(chapters, (value, idx) => {
-										return (
-											<option value={value.id} key={idx}>{value.name}</option>
-										)
-									})}
-								</select>
-							</div>
-
-							<div className="form-group">
-								<select name="name" className="form-control" onChange={this.handleChangeFormat} value={selectedFormat}>
-									<option value={0}> -- Chọn định dạng --</option>
-									<option value={1}>DOCX</option>
-									<option value={2}>PDF</option>
-								</select>
-							</div>
-
-							<div className="form-group">
-								<select name="name" className="form-control" onChange={this.handleChangePrice} value={selectedPrice}>
-									<option value={-1}>Tất cả tài liệu</option>
-/									<option value={0}>Tài liệu miễn phí</option>
-									<option value={1}>Tài liệu có phí</option>
-								</select>
-							</div>
-
-							<button type="submit" className="btn btn-primary center-block">
-								<i className="fas fa-search"></i> Tìm kiếm
-							</button>
-						</form>
+											return (
+												<option value={value.id} key={idx}>
+													{elem}
+												</option>
+											)
+										})}
+									</select>
+								</div>
+								<div className="form-group">
+									<select name="name" className="form-control" onChange={this.handleChangeSubject} value={selectedSubject}>
+										<option value={0}> -- Chọn môn --</option>
+										{_.map(subjects, (value, idx) => {
+											return (
+												<option value={value.id} key={idx}>{value.name}</option>
+											)
+										})}
+									</select>
+								</div>
+								<div className="form-group">
+									<select name="name" className="form-control" value={selectedChapter} onChange={this.handleChangeChapter}>
+										<option value={0}> -- Chọn chuyên đề --</option>
+										{_.map(chapters, (value, idx) => {
+											return (
+												<option value={value.id} key={idx}>{value.name}</option>
+											)
+										})}
+									</select>
+								</div>
+								<div className="form-group">
+									<select name="name" className="form-control" onChange={this.handleChangeFormat} value={selectedFormat}>
+										<option value={0}> -- Chọn định dạng --</option>
+										<option value={1}>DOCX</option>
+										<option value={2}>PDF</option>
+									</select>
+								</div>
+								<div className="form-group">
+									<select name="name" className="form-control" onChange={this.handleChangePrice} value={selectedPrice}>
+										<option value={-1}>Tất cả tài liệu</option>
+	/									<option value={0}>Tài liệu miễn phí</option>
+										<option value={1}>Tài liệu có phí</option>
+									</select>
+								</div>
+								<button type="submit" className="btn vj-btn center-block">
+									Tìm kiếm &nbsp;<i className="far fa-search"></i>
+								</button>
+							</form>
+						</div>
 					</div>
+				</div>
+				<div className="vj-widgets col-2">
+					<h4>Theo lop</h4>
+					<ul>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+						<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
+					</ul>
+				</div>
+				<div className="vj-widgets">
+					<h4>Theo mon</h4>
+					<ul>
+						<li><a>Mon Toan</a></li>
+						<li><a>Mon Ly</a></li>
+						<li><a>Mon hoa</a></li>
+						<li><a>Mon van</a></li>
+						<li><a>Mon anh van</a></li>
+						<li><a>Mon sinh</a></li>
+						<li>
+							<a>Cac mon khac <i className="fal fa-angle-right"></i></a>
+							<ul>
+								<li><a href="#">Mon su</a></li>
+								<li><a href="#">Mon dia</a></li>
+								<li><a href="#">Mon tin hoc</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div className="vj-widgets">
+					<h4>Theo loai</h4>
+					<ul>
+						<li><a>Bai giang</a></li>
+						<li><a>Chuyen de</a></li>
+						<li><a>De thi</a></li>
+					</ul>
 				</div>
 			</div>
 		);

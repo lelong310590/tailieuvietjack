@@ -31,16 +31,12 @@ class TagCloud extends Component {
 		let {tags} = this.state;
 
 		return (
-			<div className="widget filter-box-wrapper">
-				<div className="widget-title"><h4 className="text-center">Từ khóa nổi bật</h4></div>
-				<div className="widget-content">
-					<div className="featured-document-wrapper tag-cloud-wrapper">
-						<TagClouds minSize={14}
+			<div className="vj-widgets">
+				<h4>Từ khóa nổi bật</h4>
+				<TagClouds minSize={14}
 						          maxSize={32}
 						          tags={tags}
 						          onClick={tag => {this.props.history.push('/tag/' + tag.slug)}} />
-					</div>
-				</div>
 			</div>
 		);
 	}

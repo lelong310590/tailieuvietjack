@@ -3,13 +3,13 @@ import React, {Component} from 'react';
 class DocumentTag extends Component {
 	render() {
 		return (
-			<div className="document-tags">
+			<div className="document-tag">
 				{this.props.format === 'pdf' &&
-					<img src="/lib/images/pdf.png" alt="" className="img-responsive"/>
+					<span className="btn pdf">PDF</span>
 				}
 
 				{(this.props.format === 'doc' || this.props.format === 'docx') &&
-					<img src="/lib/images/doc.png" alt="" className="img-responsive"/>
+					<span className="btn doc">W</span>
 				}
 			</div>
 		);

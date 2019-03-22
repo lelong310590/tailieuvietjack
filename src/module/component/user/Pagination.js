@@ -55,8 +55,8 @@ class Pagination extends Component {
 		let rightPage = current_page + 1;
 
 		return (
-			<div className="document-manager-pagination text-center">
-				<ul className="pagination">
+			<div className="vj-paging">
+				<ul>
 					{current_page > 1 &&
 						<li><Link to={helper.renderNavLink(url, onsort, 1, keyword)}>1</Link></li>
 					}

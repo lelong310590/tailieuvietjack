@@ -68,61 +68,50 @@ class Home extends Component {
 
 		return (
 			<Fragment>
-
 				<Meta/>
+				<div className="container wrap__page">
+					<div className="wrap__left">
+						<FilterBar
+							history={this.props.history}
+							location={this.props.location}
+							match={this.props.match}
+						/>
+						<TagCloud
+							history={this.props.history}
+						/>
+					</div>
 
-				<div className="document-wrapper home-wrapper">
-					<div className="container">
-						<div className="row">
-							<div className="col-xs-12 col-md-3">
-
-								<FilterBar
-									history={this.props.history}
-									location={this.props.location}
-									match={this.props.match}
+					<div className="wrap__right">
+						<div className="banner"><img src="/lib/images/banner.jpg" alt=""/></div>
+						{/*<SpecialDocument/>*/}
+						{params==0 &&
+							<Fragment>
+								<HomeListDocument
+									title={'Tài liệu THPT'}
+									documents={highSchool}
+									slug={'/trung-hoc-pho-thong/d0s0c-3t0'}
 								/>
 
-								<div style={{marginTop: '20px'}}>
-									<TagCloud
-										history={this.props.history}
-									/>
-								</div>
-							</div>
+								<HomeListDocument
+									title={'Tài liệu THCS'}
+									documents={middleSchool}
+									slug={'/trung-hoc-co-so/d0s0c-2t0'}
+								/>
 
-							<div className="col-xs-12 col-md-9">
-								{/*<SpecialDocument/>*/}
-								{params==0 &&
-									<Fragment>
-										<HomeListDocument
-											title={'Tài liệu THPT'}
-											documents={highSchool}
-											slug={'/trung-hoc-pho-thong/d0s0c-3t0'}
-										/>
+								<HomeListDocument
+									title={'Tài liệu tiểu học'}
+									documents={elementarySchool}
+									slug={'/tieu-hoc/d0s0c-1t0'}
+								/>
+							</Fragment>
+						}
+						{params==1 &&
+						<Fragment>
 
-										<HomeListDocument
-											title={'Tài liệu THCS'}
-											documents={middleSchool}
-											slug={'/trung-hoc-co-so/d0s0c-2t0'}
-										/>
-
-										<HomeListDocument
-											title={'Tài liệu tiểu học'}
-											documents={elementarySchool}
-											slug={'/tieu-hoc/d0s0c-1t0'}
-										/>
-									</Fragment>
-								}
-								{params==1 &&
-								<Fragment>
-
-								</Fragment>
-								}
-
-							</div>
-						</div>
+						</Fragment>
+						}
 					</div>
 				</div>
-
 			</Fragment>
 		);
 	}

@@ -20,53 +20,115 @@ class Header extends Component {
 		let {firstName, lastName, thumbnail} = UserReducer;
 
 		return (
-			<header className="header" id="header">
+			<header className="main">
 				<div className="container">
-					<div className="header-wrapper">
-						<div className="header-main">
-							<div className="main-logo">
-								<Link to="/">
-									<img src="/lib/images/logo.png" alt=""
-									     className="img-responsive logo"/>
-								</Link>
-							</div>
-							{/*<div className="menu-button">*/}
-								{/*<a href="#"><i className="fas fa-bars"></i></a>*/}
-								{/*<Menu/>*/}
-							{/*</div>*/}
+					<a href="javascript:void(0)" className="mb__menu-main"><i className="fal fa-list"></i></a>
+					<Link to="/" className="logo"><img src="/lib/images/logo.png" alt=""/></Link>
+					<a href="javascript:void(0)" className="mb__menu-main"><i className="fas fa-bars"></i></a>
+					<nav className="main">
+						<a href="javascript:void(0)" className="mb_menu_close"><i className="fal fa-times"></i></a>
+						<div className="menu">
+							<ul className="menu-main">
+								<li>
+									<a href="javascript:void(0)">Danh mục <i className="far fa-chevron-down"></i></a>
+									<ul className="menu-sub">
+										<li>
+											<h5><Link to="/">Bài giảng</Link></h5>
+											<ul>
+												<li><Link to="/">Bài giảng 1</Link></li>
+												<li><Link to="/">Bài giảng 2</Link></li>
+												<li><Link to="/">Bài giảng 3</Link></li>
+												<li><Link to="/">Bài giảng 1</Link></li>
+												<li><Link to="/">Bài giảng 2</Link></li>
+												<li><Link to="/">Bài giảng 3</Link></li>
+											</ul>
+										</li>
+										<li>
+											<h5><Link to="/">Chuyên đề</Link></h5>
+											<ul>
+												<li><Link to="/">Bài giảng 1</Link></li>
+												<li><Link to="/">Bài giảng 2</Link></li>
+												<li><Link to="/">Bài giảng 3</Link></li>
+												<li><Link to="/">Bài giảng 1</Link></li>
+												<li><Link to="/">Bài giảng 2</Link></li>
+												<li><Link to="/">Bài giảng 3</Link></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
 						</div>
-
-						<div className="header-sub">
-							<div className="header-action">
-								<span onClick={() => alert('Tính năng này đang được phát triển')} className="action-button button-green"><i
-									className="fas fa-piggy-bank"></i> Nạp tiền</span>
-								<Link to="/upload-tai-lieu" className="action-button button-yellow">
-									<i className="fas fa-file-upload"></i> Tải lên
-								</Link>
+						<div className="search">
+							<input type="text" className="ipt" />
+							<button className="btn-search"><i className="fal fa-search"></i></button>
+						</div>
+						<a href="javascript:void(0)" onClick={() => alert('Tính năng này đang được phát triển')} className="btn-pay"><i className="fal fa-hand-holding-usd"></i> Nạp tiền</a>
+						<Link to="/upload-tai-lieu" className="btn-upload"><i className="fal fa-upload"></i> Tải lên</Link>
+						{!AuthReducer.loggedIn ? (
+							<div className="header-authentication nologged">
+								<Link to={'/dang-ky'} className="btn vj-btn register">Đăng ký</Link>
+								<Link to={'/dang-nhap'} className="login">Đăng nhập</Link>
 							</div>
-							<div className="header-about">
-								<Link to={'/static-post/gioi-thieu'}><i className="fas fa-award"></i></Link>
-							</div>
-
-							{!AuthReducer.loggedIn ? (
-								<div className="header-authentication">
-									<Link to={'/dang-ky'} className="action-button button-blank">Đăng ký</Link>
-									<Link to={'/dang-nhap'} className="action-button button-blank">Đăng nhập</Link>
-								</div>
 							) : (
-								<div className="header-authentication logged-in">
-									<div className="header-user">
-										<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
-										<p className="header-user-name">{firstName} {lastName}</p>
-									</div>
-
-									<UserMenu/>
+							<div className="header-authentication logged-in">
+								<div className="header-user">
+									<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
+									<p className="header-user-name">{firstName} {lastName}</p>
 								</div>
+								<UserMenu/>
+							</div>
 							)}
-						</div>
-					</div>
+					</nav>
 				</div>
 			</header>
+
+			// <header className="header" id="header">
+			// 	<div className="container">
+			// 		<div className="header-wrapper">
+			// 			<div className="header-main">
+			// 				<div className="main-logo">
+			// 					<Link to="/">
+			// 						<img src="/lib/images/logo.png" alt=""
+			// 						     className="img-responsive logo"/>
+			// 					</Link>
+			// 				</div>
+			// 				{/*<div className="menu-button">*/}
+			// 					{/*<a href="#"><i className="fas fa-bars"></i></a>*/}
+			// 					{/*<Menu/>*/}
+			// 				{/*</div>*/}
+			// 			</div>
+
+			// 			<div className="header-sub">
+			// 				<div className="header-action">
+			// 					<span onClick={() => alert('Tính năng này đang được phát triển')} className="action-button button-green"><i
+			// 						className="fas fa-piggy-bank"></i> Nạp tiền</span>
+			// 					<Link to="/upload-tai-lieu" className="action-button button-yellow">
+			// 						<i className="fas fa-file-upload"></i> Tải lên
+			// 					</Link>
+			// 				</div>
+			// 				<div className="header-about">
+			// 					<Link to={'/static-post/gioi-thieu'}><i className="fas fa-award"></i></Link>
+			// 				</div>
+
+			// 				{!AuthReducer.loggedIn ? (
+			// 					<div className="header-authentication">
+			// 						<Link to={'/dang-ky'} className="action-button button-blank">Đăng ký</Link>
+			// 						<Link to={'/dang-nhap'} className="action-button button-blank">Đăng nhập</Link>
+			// 					</div>
+			// 				) : (
+			// 					<div className="header-authentication logged-in">
+			// 						<div className="header-user">
+			// 							<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
+			// 							<p className="header-user-name">{firstName} {lastName}</p>
+			// 						</div>
+
+			// 						<UserMenu/>
+			// 					</div>
+			// 				)}
+			// 			</div>
+			// 		</div>
+			// 	</div>
+			// </header>
 		);
 	}
 }

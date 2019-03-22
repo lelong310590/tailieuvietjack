@@ -26,3 +26,7 @@ yarn-error.log*
 =======
 /.idea
 >>>>>>> master
+public/lib/vendor/highlight/README.html
+public/lib/vendor/highlight/CHANGES.html
+public/lib/vendor/ckeditor/README.html
+public/index.html.orig

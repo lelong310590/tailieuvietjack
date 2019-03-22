@@ -16,6 +16,8 @@
     "react-dom": "^16.5.2",
     "react-dropzone": "^6.2.4",
     "react-facebook": "^6.0.14",
+    "react-facebook-login-component": "^0.9.2",
+    "react-google-login": "^5.0.2",
     "react-google-recaptcha": "^1.0.4",
     "react-html-parser": "^2.0.2",
     "react-meta-tags": "^0.7.1",

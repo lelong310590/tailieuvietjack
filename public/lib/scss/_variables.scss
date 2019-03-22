@@ -1,0 +1,33 @@
+// Variables
+// --------------------------
+$color-black:  		#000 !default;
+$color-white:  		#fff !default;
+$color-ccc:    		#ccc !default;
+$color-8:    		#888 !default;
+$color-6:    		#666 !default;
+$color-input:  		#333 !default;
+$color-default:  	#333 !default;
+$bg-default:		#ff9701 !default;
+$bg-disable:		#eee !default;
+$font-default:		14px !default;
+$font:				'Roboto', sans-serif !default;
+$zero:				0 !default;
+$pb15:				0 0 15px !default;
+$alink:				#333 !default;
+$avisited:			#111 !default;
+$ahover:			#ff9701 !default;
+$aactive:			#111 !default;
+$bg-button:         #ff9701 !default;
+$bg-button-ac:      darken(#ff9701, 5%) !default;
+$bg-line:           #dcdcdc !default;
+$color-second:    	#ff5501 !default;
+$border-color: #b7b7b7;
+$color-blue: #0084cc;
+
+//opacity
+$opcity-15: rgba($color-black, .15);
+$opcity-2: rgba($color-black, .2);
+$opcity-3: rgba($color-black, .3);
+$vj-opcity: rgba($bg-button, .6);
+
+$header-height:68px;

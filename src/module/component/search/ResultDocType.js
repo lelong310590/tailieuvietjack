@@ -177,191 +177,236 @@ class ResultDocType extends Component {
 					title={title}
 				/>
 
-				<div className="document-wrapper home-wrapper">
-					<div className="container">
-						<div className="row">
-							<div className="col-xs-12 col-md-3">
+				<div className="container wrap__page">
+					<div className="wrap__left">
+						<FilterBar
+							history={this.props.history}
+							location={this.props.location}
+							match={this.props.match}
+						/>
+						<TagCloud
+							history={this.props.history}
+						/>
+					</div>
 
-								<FilterBar
-									history={this.props.history}
-									location={this.props.location}
-									match={this.props.match}
-								/>
-
-								<div style={{marginTop: '20px'}}>
-									<TagCloud
-										history={this.props.history}
-									/>
-								</div>
+					<div className="wrap__right">
+						<div className="vj-breadcrumb">
+							<a href="/">Trang chủ</a>
+							<span>Tìm kiếm 'Ôn thi'</span>
+						</div>
+						<div className="wrap__title">Tài liệu nổi bật</div>
+						<div className="docment-top">
+							<div className="document-list-wrapper">
+								{
+									_.map(documents.data, (value, index) => {
+										if(index < 4){
+											return (
+												<div className="document-items" key={index}>
+													<div className="document-img">
+														<div className="document-link">
+															<Link title={value.get_class.name} to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="btn vj-btn document-class">
+																{value.get_class.name}
+															</Link>
+															<Link title={value.get_subject.name} to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id+'c'+value.get_class.id+'t0'} className="btn document-subject">
+																{value.get_subject.name}
+															</Link>
+														</div>
+														<DocumentTag format={value.formats} />
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
+															{_.isEmpty(value.thumbnail) ? (
+																<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+															) : (
+																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+															)}
+														</Link>
+													</div>
+													<div className="document-content">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
+															{value.name}
+														</Link>
+														<div className="document-price">
+															<span className="price">{value.formated_price}</span>
+															<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
+														</div>
+														<NavLink
+															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+															className="document-author"
+															title={value.get_member.first_name + ' ' + value.get_member.last_name}
+														>
+															<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}
+														</NavLink>
+													</div>
+													<div className="document-info">
+														<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+														<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+														<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
+													</div>
+												</div>
+											)
+										}
+									})
+								}
 							</div>
+						</div>
 
-							<div className="col-xs-12 col-md-9">
+						<div className="wrap__title search_title">
+							<SpecialDocument location={this.props.location}/>
+							<div className="search-title">Tìm kiếm: “Ôn thi” <span className="count">Tổng số tài liệu: {documents.total}</span></div>
+							<div className="search-sort">
+								<ul>
+									<li>
+										<span>Sắp xếp theo <i className="far fa-chevron-down"></i></span>
+										<ul>
+											<li><a href="javascript:void(0)" onClick={() => this.handleOrderBy('new')}>Mới nhất</a></li>
+											<li><a href="javascript:void(0)" onClick={() => this.handleOrderBy('view')}>Được quan tâm nhất</a></li>
+										</ul>
+									</li>
+								</ul>
+								<a className="btn-view" onClick={() => this.handleChangeViewStyle('list')}>
+									<i className="fal fa-list" style={{ color: viewStyle === 'list' ? '#ff9700': null }}></i>
+								</a>
+								<a className="btn-view" onClick={() => this.handleChangeViewStyle('grid')}>
+									<i className="fal fa-th-large" style={{ color: viewStyle === 'grid' ? '#ff9700': null }}></i>
+								</a>
+							</div>
+						</div>
+						<div className="category-document-wrapper">
 
-								<div className="category-document-wrapper">
-									<SpecialDocument location={this.props.location}/>
-
-									<div className="category-document-filter" style={{ marginBottom: "20px" }}>
-										<div className="category-document-filter-order">
-											<div className="category-document-filter-order-item"
-												 onClick={() => this.handleOrderBy('new')}
-											>
-												<span>Mới nhất</span>
-											</div>
-											<div className="category-document-filter-order-item"
-												 onClick={() => this.handleOrderBy('view')}
-											>
-												<span>Được quan tâm nhất</span>
-											</div>
-										</div>
-										<div className="category-document-filter-view">
-											<div className="category-document-filter-view-item"
-											     onClick={() => this.handleChangeViewStyle('list')}
-											>
-												<i className="fas fa-th-list" style={{ color: viewStyle === 'list' ? '#ff9700': null }}></i>
-											</div>
-											<div className="category-document-filter-view-item"
-											     onClick={() => this.handleChangeViewStyle('grid')}>
-												<i className="fas fa-th-large" style={{ color: viewStyle === 'grid' ? '#ff9700': null }}></i>
-											</div>
-										</div>
-									</div>
-
-									<div className="category-document-filter" style={{ marginBottom: "20px" }}>
-										<div className="category-document-filter-order">
-											<div className="category-document-filter-order-item">
-												<span>Tổng số tài liệu: {documents.total}</span>
-											</div>
-										</div>
-									</div>
-
-									{(viewStyle === 'grid') ? (
-										<div className="row">
-											{
-												_.map(documents.data, (value, index) => {
-													return (
-														<div className="col-xs-6 col-md-3 col-lg-3" key={index}>
-															<div className="document-item">
-																<Link to={'/tai-lieu/' + value.id} className="document-thumbnail">
-																	<DocumentTag
-																		format={value.formats}
-																	/>
-
-																	{value.thumbnail !== null ? (
-																		<img src={value.thumbnail} alt=""
-																		     className="img-responsive center-block"/>
-																	) : (
-																		<img src="/lib/images/thumbnail.jpg" alt=""
-																		     className="img-responsive center-block"/>
-																	)}
+							{(viewStyle === 'grid') ? (
+								<div className="document-list-wrapper">
+									{
+										_.map(documents.data, (value, index) => {
+											return (
+												<div className="document-items" key={index}>
+													<div className="document-img">
+														<div className="document-link">
+															<Link title={value.get_class.name} to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="btn vj-btn document-class">
+																{value.get_class.name}
+															</Link>
+															<Link title={value.get_subject.name} to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id+'c'+value.get_class.id+'t0'} className="btn document-subject">
+																{value.get_subject.name}
+															</Link>
+														</div>
+														<DocumentTag format={value.formats} />
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
+															{_.isEmpty(value.thumbnail) ? (
+																<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+															) : (
+																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+															)}
+														</Link>
+													</div>
+													<div className="document-content">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
+															{value.name}
+														</Link>
+														<div className="document-price">
+															<span className="price">{value.formated_price}</span>
+															<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
+														</div>
+														<NavLink
+															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+															className="document-author"
+															title={value.get_member.first_name + ' ' + value.get_member.last_name}
+														>
+															<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}
+														</NavLink>
+													</div>
+													<div className="document-info">
+														<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+														<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+														<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
+													</div>
+												</div>
+											)
+										})
+									}
+								</div>
+							) : (
+								<div className="document-list-wrapper document-view_list">
+									{
+										_.map(documents.data, (value, index) => {
+											return (
+												<Fragment key={index}>
+													<div className="document-items" key={index}>
+														<div className="document-img">
+															<div className="document-link">
+																<Link title={value.get_class.name} to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="btn vj-btn document-class">
+																	{value.get_class.name}
 																</Link>
-																<Link to={'/tai-lieu/' + value.id} className="document-title">
-																	{value.name}
+																<Link title={value.get_subject.name} to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id+'c'+value.get_class.id+'t0'} className="btn document-subject">
+																	{value.get_subject.name}
 																</Link>
-																<div className="document-price">
-																	{value.formated_price}
-																</div>
-																<div className="document-category-info">
-																	<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
-																		{value.get_class.name}
-																	</Link>
-																	<Link to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
-																		{value.get_subject.name}
-																	</Link>
-																</div>
-																<NavLink
-																	to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
-																	className="document-author"
-																	title={value.get_member.first_name + ' ' + value.get_member.last_name}
-																>
-																	{value.get_member.first_name} {value.get_member.last_name}
-																</NavLink>
-																<div className="document-info">
-																	<div className="document-info-page">
-																		<i className="far fa-file-alt"></i> {value.pages}
-																	</div>
-																	<div className="document-info-view">
-																		<i className="far fa-eye"></i> {value.views}
-																	</div>
-																	<div className="document-info-download">
-																		<i className="fas fa-file-download"></i> {value.downloaded}
-																	</div>
-																</div>
+															</div>
+															<DocumentTag format={value.formats} />
+															<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
+																{_.isEmpty(value.thumbnail) ? (
+																	<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+																) : (
+																	<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+																)}
+															</Link>
+														</div>
+														<div className="document-content">
+															<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
+																{value.name}
+															</Link>
+															<div className="document-excerpt">{value.excerpt}</div>
+															<div className="document-type">
+																<strong>Loại: </strong>
+																<a href="#">Bài giảng</a>, 
+																<a href="#">Chuyên đề</a>
 															</div>
 														</div>
-													)
-												})
-											}
-										</div>
-									) : (
-										<div className="tag-list-wrapper">
-											{
-												_.map(documents.data, (value, index) => {
-													return (
-														<Fragment key={index}>
-															<div className="doc-item-horizontal">
-																<div className="doc-item-horizontal-image">
-																	<DocumentTag
-																		format={value.formats}
-																	/>
-																	<Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>
-																		<img src={value.thumbnail ? value.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
-																	</Link>
-																</div>
-																<div className="doc-item-horizontal-info">
-																	<div className="doc-item-horizontal-info-infomation">
-																		<h4><Link to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>{value.name}</Link></h4>
-																		<div className="document-category-info">
-																			<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
-																				{value.get_class.name}
-																			</Link>
-																			<Link to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
-																				{value.get_subject.name}
-																			</Link>
-																		</div>
-																		<div className="doc-item-horizontal-info-infomation-content">
-																			{value.excerpt}
-																		</div>
-																	</div>
-																	<div className="document-info">
-																		<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
-																		<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
-																		<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
-																		<div className="document-info-price">{helper.convertPrice(value.price)}</div>
-																	</div>
-																</div>
+														<div className="document-right">
+															<div className="document-price">
+																<span className="price">{value.formated_price}</span>
 															</div>
-
-															{((index + 1) % 5 === 0) &&
-															<div className="document-middle-ads">
-																<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+															<div className="document-star">
+																<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
 															</div>
-															}
-														</Fragment>
-													)
-												})
-											}
-										</div>
-									)}
-
-									{documents.last_page > 1 &&
-										<Pagination
-											url={url}
-											current_page={documents.current_page}
-											first_page_url={documents.first_page_url}
-											last_page={documents.last_page}
-											last_page_url={documents.last_page_url}
-											next_page_url={documents.next_page_url}
-											prev_page_url={documents.prev_page_url}
-											clickPage={this.clickPage}
-										/>
+															<NavLink
+																to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+																className="document-author"
+																title={value.get_member.first_name + ' ' + value.get_member.last_name}
+															>
+																<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}
+															</NavLink>
+															<div className="document-info">
+																<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+																<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+																<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
+															</div>
+														</div>
+													</div>
+													{((index + 1) % 5 === 0) &&
+													<div className="document-middle-ads">
+														<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
+													</div>
+													}
+												</Fragment>
+											)
+										})
 									}
-
 								</div>
-							</div>
+							)}
+
+							{documents.last_page > 1 &&
+								<Pagination
+									url={url}
+									current_page={documents.current_page}
+									first_page_url={documents.first_page_url}
+									last_page={documents.last_page}
+									last_page_url={documents.last_page_url}
+									next_page_url={documents.next_page_url}
+									prev_page_url={documents.prev_page_url}
+									clickPage={this.clickPage}
+								/>
+							}
+
 						</div>
 					</div>
 				</div>
-
 			</Fragment>
 		);
 	}

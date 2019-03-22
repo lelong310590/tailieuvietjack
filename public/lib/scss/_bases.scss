@@ -1,0 +1,154 @@
+// Bases
+// --------------------------
+*{
+	@include p-box-sizing(border-box);
+}
+html, body{
+	background: $color-white;
+	font-family: $font;
+	font-size: $font-default;
+	color: $color-default;
+	margin: $zero;
+	padding: $zero;
+}
+body{
+	padding-top: $header-height + 30;
+}
+::-moz-selection{ 
+	background: $bg-default;
+	color: $color-white;
+	text-shadow:none;
+}
+::selection { 
+	background: $bg-default;
+	color: $color-white;
+	text-shadow:none;
+}
+a,a:visited, input, a:focus{
+	@include p-transition(all .2s ease-out);
+	text-decoration: none;
+}
+p{
+	margin: $zero;
+	padding: $pb15;
+}
+h1, h2, h3, h4, h5, h6{
+	margin: $zero;
+	padding: $pb15;
+}
+a{
+	text-decoration: none;
+	color:$alink;
+	&:hover{
+		color:$ahover;
+		text-decoration: none;
+	}
+	img{
+		border: none;
+	}
+}
+
+img{
+	max-width: 100%;
+	height: auto;
+}
+
+form{
+	margin: $zero;
+	padding: $zero;
+}
+textarea, button, input{
+	resize: initial;
+	outline: none;
+}
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+	display:block;
+}
+.clear{
+	clear:both;
+}
+
+.p-box{
+	@include p-display();
+	@include p-flex-auto(0 auto);
+	@include p-direction(row);
+	@include p-flex-wrap(wrap);
+	& > .p-box {
+		@include p-flex(100%);
+	}
+}
+.p-flex{
+	@include p-display();
+	@include p-align-items(center);
+	@include p-direction(row);
+	@include p-flex-wrap(nowrap);
+}
+
+.btn{
+	background: #888;
+	color: #fff;
+	&:hover{
+		background: #666;
+		color: #fff;
+		text-decoration: none!important;
+	}
+	&.vj-btn{
+		background: $bg-button;
+		color: $color-white;
+		@include p-border-radius(3px);
+		&:hover{
+			background: $bg-button-ac;
+		}
+	}
+	&.pdf{
+		background: #b83838;
+		color: #fff;
+	}
+	&.doc{
+		background: #0084ce;
+		color: #fff;
+	}
+	i{
+		vertical-align: middle;
+	}
+}
+
+.wrap__page{
+    @include p-display();
+    @include p-flex-wrap(nowrap);
+    margin-bottom: 50px;
+    .wrap__left{
+        width: 220px;
+        padding-right: 30px;
+    }
+    .wrap__right{
+        flex: 1;
+        .mb__wrap-left{
+            vertical-align: top;
+            font-size: 16px;
+            display: none;
+            padding: 5px 7px;
+            margin-right: 5px;
+            border:1px solid $color-ccc;
+            @include p-border-radius(3px);
+        }
+    }
+}
+
+.tag-cloud{
+	.tag-cloud-tag{
+		cursor: pointer;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
