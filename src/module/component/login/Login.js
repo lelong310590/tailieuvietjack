@@ -146,7 +146,7 @@ class Login extends Component {
 
 	responseFacebook = (response) => {
 		let formData = new FormData();
-		formData.append('avatar', response.profilePicURL);
+		formData.append('avatar', response.picture.data.url);
 		formData.append('name', response.name);
 		formData.append('email', response.email);
 		formData.append('id', response.id);
