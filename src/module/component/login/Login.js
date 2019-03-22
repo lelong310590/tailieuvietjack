@@ -190,7 +190,7 @@ class Login extends Component {
 										   scope="public_profile,email"
 										   responseHandler={this.responseFacebook}
 										   xfbml={true}
-										   fields="id,email,name,profilePicURL"
+										   // fields="id,email,name,profilePicURL"
 										   version="v2.5"
 										   className="facebook-login"
 										   buttonText="Login With Facebook"/>
