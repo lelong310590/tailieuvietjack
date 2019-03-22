@@ -160,6 +160,8 @@ class Login extends Component {
 	}
 
 	responseGoogle = (response) => {
+		console.log(response);
+		console.log(response.WE);
 		let formData = new FormData();
 		formData.append('avatar', response.WE.w3.Paa);
 		formData.append('name', response.WE.w3.ig);
@@ -171,7 +173,6 @@ class Login extends Component {
 		formData.append('scope', '');
 		formData.append('token',response.WE.accessToken);
 		this.socialLogin('google', formData);
-		console.log(response.WE);
 	}
 
 	render() {
