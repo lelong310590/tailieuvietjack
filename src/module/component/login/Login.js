@@ -161,17 +161,17 @@ class Login extends Component {
 
 	responseGoogle = (response) => {
 		console.log(response);
-		console.log(response.WE);
+		console.log(response.accessToken);
 		let formData = new FormData();
-		formData.append('avatar', response.WE.w3.Paa);
-		formData.append('name', response.WE.w3.ig);
-		formData.append('email', response.WE.w3.U3);
-		formData.append('id', response.WE.googleId);
+		formData.append('avatar', response.w3.Paa);
+		formData.append('name', response.w3.ig);
+		formData.append('email', response.w3.U3);
+		formData.append('id', response.googleId);
 		formData.append('grant_type', 'password');
 		formData.append('client_id', '8');
 		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
 		formData.append('scope', '');
-		formData.append('token',response.WE.accessToken);
+		formData.append('token',response.accessToken);
 		this.socialLogin('google', formData);
 	}
 
