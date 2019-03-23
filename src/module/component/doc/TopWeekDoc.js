@@ -41,30 +41,26 @@ class TopWeekDoc extends Component {
 
 		let listWeekDocs = _.map(doc, (value, index) => {
 			return (
-				<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="featured-document-item" key={index} title={value.name}>
-					<div className="no-document-item">{index + 1}</div>
-					<div className="featured-document-info">
-						<h4 className="featured-document-info-title">
-							<DocumentTag
-								format={value.formats}
-							/>
-							{value.name}
-						</h4>
-						<div className="document-info">
-							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
-							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
-							<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
-						</div>
+				<div className="featured-document-item" key={index}>
+					<Link className="featured-document-title" to={'/tai-lieu/' + value.id + '-' + value.slug} title={value.name}>
+						<span className="no-document">{index + 1}.</span>
+						<DocumentTag
+							format={value.formats}
+						/>
+						{value.name}
+					</Link>
+					<div className="document-info">
+						<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+						<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+						<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
 					</div>
-				</Link>
+				</div>
 			)
 		})
 
 		return (
-			<div className="widget">
-				<div className="widget-title">
-					<h4 className="text-center">TOP TÀI LIỆU TUẦN</h4>
-				</div>
+			<div className="vj-widgets">
+				<h4>Top tài liệu tuần</h4>
 				<div className="widget-content">
 					{onLoading ? (
 						<Loading/>

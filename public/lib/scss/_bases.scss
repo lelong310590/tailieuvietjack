@@ -12,7 +12,7 @@ html, body{
 	padding: $zero;
 }
 body{
-	padding-top: $header-height + 30;
+	padding-top: $header-height;
 }
 ::-moz-selection{ 
 	background: $bg-default;
@@ -117,10 +117,11 @@ footer, header, nav, section, audio, video {
 .wrap__page{
     @include p-display();
     @include p-flex-wrap(nowrap);
-    margin-bottom: 50px;
+    padding-bottom: 50px;
     .wrap__left{
         width: 220px;
-        padding-right: 30px;
+		padding-right: 30px;
+		padding-top: 30px;
     }
     .wrap__right{
         flex: 1;
@@ -133,7 +134,16 @@ footer, header, nav, section, audio, video {
             border:1px solid $color-ccc;
             @include p-border-radius(3px);
         }
-    }
+	}
+	&.wrap__detail{
+		.wrap__left{
+			padding-left: 30px;
+			padding-right: 0;
+		}
+		.filterOther{
+			display: none;
+		}
+	}
 }
 
 .tag-cloud{

@@ -733,8 +733,6 @@
 .document-detail-nfomation-content, .document-detail-tags-list, .facebook-comment
 	background: #fff
 	border-radius: 5px
-.facebook-comment
-	padding: 15px
 .facebook-comment, .document-detail-infomation
 	margin-bottom: 30px
 .document-detail-tags
@@ -746,13 +744,15 @@
 		padding: 0
 		overflow: hidden
 		li
-			float: left
+			display: inline-block
 			margin-right: 10px
 			margin-bottom: 10px
 			a
 				font-size: 13px
-				color: #333
-				border: 1px solid #ddd
+				display: inline-block
+				color: #666
+				line-height: 20px
+				border: 1px solid #b7b7b7
 				border-radius: 3px
 				padding: 0 10px
 				&:hover, &:focus, &:active
@@ -1253,11 +1253,11 @@
 .document-detail-content-loading
 	width: 100%
 	clear: both
-	padding: 5px
+	padding: 20px
 	box-sizing: border-box
-	border: 1px solid #ccc
+	border: 1px solid #b7b7b7
 	border-radius: 2px
-	margin-bottom: 15px
+	margin-bottom: 35px
 	background-color: #fff
 	position: relative
 	vertical-align: baseline
@@ -1265,18 +1265,19 @@
 .document-detail-content-item
 	width: 100%
 	clear: both
-	padding: 5px
+	padding: 20px
 	box-sizing: border-box
-	border: 1px solid #ccc
+	border: 1px solid #b7b7b7
 	border-radius: 2px
-	margin-bottom: 15px
+	margin-bottom: 35px
 	background-color: #fff
 	position: relative
 	vertical-align: baseline
 	& > div
 		& > div
-			transform-origin: 0px 0px 0px
-			transform: scale(0.83)
+			width: 100%!important
+			height: 100%!important
+			overflow: auto
 	img
 		display: block
 		max-width: 100%
@@ -1768,7 +1769,7 @@
 	bottom: 0
 	left: 0
 	width: 100%
-	z-index: 999
+	z-index: 99
 	padding: 5px 0
 	border-top: 1px solid #ddd
 	.document-footer-wrapper

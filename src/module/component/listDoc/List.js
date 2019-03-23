@@ -84,45 +84,45 @@ class List extends Component {
 
 		let documents = _.map(items, (value, index) => {
 			return (
-				<div className={itemClass} key={index}>
-					<div className="document-item">
+				<div className={itemClass} key={index} className="document-items">
+					<div className="document-img">
+						<div className="document-link">
+							<Link title={value.get_class.name} to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="btn vj-btn document-class">
+								{value.get_class.name}
+							</Link>
+							<Link title={value.get_subject.name} to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id+'c'+value.get_class.id+'t0'} className="btn document-subject">
+								{value.get_subject.name}
+							</Link>
+						</div>
+						<DocumentTag format={value.formats} />
 						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
-							<DocumentTag
-								format={value.formats}
-							/>
-
-							{value.thumbnail !== null ? (
-								<img src={value.thumbnail} alt={value.name} className="img-responsive center-block"/>
+							{_.isEmpty(value.thumbnail) ? (
+								<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
 							) : (
-								<img src="/lib/images/thumbnail.jpg" alt={value.name} className="img-responsive center-block"/>
+								<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
 							)}
 						</Link>
+					</div>
+					<div className="document-content">
 						<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
 							{value.name}
 						</Link>
 						<div className="document-price">
-							{value.formated_price}
-						</div>
-						<div className="document-category-info">
-							<Link to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="document-category-class">
-								{value.get_class.name}
-							</Link>
-							<Link to={'/'+value.get_class.slug +'/d0s' + value.get_subject.id + 'c' + value.get_class.id+'t0'} className="document-category-subject">
-								{value.get_subject.name}
-							</Link>
+							<span className="price">{value.formated_price}</span>
+							<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
 						</div>
 						<NavLink
 							to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
 							className="document-author"
 							title={value.get_member.first_name + ' ' + value.get_member.last_name}
 						>
-							{value.get_member.first_name} {value.get_member.last_name}
+							<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}
 						</NavLink>
-						<div className="document-info">
-							<div className="document-info-page"><i className="far fa-file-alt"></i> {value.pages}</div>
-							<div className="document-info-view"><i className="far fa-eye"></i> {value.views}</div>
-							<div className="document-info-download"><i className="fas fa-file-download"></i> {value.downloaded}</div>
-						</div>
+					</div>
+					<div className="document-info">
+						<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+						<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+						<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
 					</div>
 				</div>
 			)
@@ -135,30 +135,14 @@ class List extends Component {
 				) : (
 					<Fragment>
 						{title &&
-						<h4 className="document-list-title">{title}</h4>
+							<h4 className="wrap__title">{title}</h4>
 						}
-
 						{filterBar &&
 						<FilterList/>
 						}
-
 						<div className="document-list-wrapper">
-							<div className="row">
-								{documents}
-							</div>
+							{documents}
 						</div>
-
-						{(!_.isEmpty(this.props.match) && !_.isEmpty(items)) &&
-							<Fragment>
-								{(this.props.match.path === '/tai-lieu/:slug') &&
-									<div className="document-list-view-more text-center">
-										<Link
-											to={{ pathname: '/trang-ca-nhan/'+ items[0].get_member.id, search: 'onsort=all'}}
-										>Xem thêm</Link>
-									</div>
-								}
-							</Fragment>
-						}
 					</Fragment>
 				)}
 			</div>

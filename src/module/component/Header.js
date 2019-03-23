@@ -13,6 +13,28 @@ class Header extends Component {
 			loggedIn: false
 		}
 	}
+	getInitialState() {
+        return { showMenu: false, showSidebar: false };
+    }
+
+	showMenu = () => {
+		this.setState({ showMenu: true});
+	};
+
+	colseMenu = () => {
+		this.setState({ showMenu: false });
+	};
+
+	showSidebar = () => {
+		document.body.classList.add('show__sidebar');
+		this.setState({ showSidebar: true});
+	};
+
+	colseSidebar = () => {
+		document.body.classList.remove('show__sidebar');
+		this.setState({ showSidebar: false });
+	};
+
 
 	render() {
 		let {AuthReducer, UserReducer} = this.props;
@@ -22,11 +44,12 @@ class Header extends Component {
 		return (
 			<header className="main">
 				<div className="container">
-					<a href="javascript:void(0)" className="mb__menu-main"><i className="fal fa-list"></i></a>
+					<a href="javascript:void(0)" className="mb__menu-main mb__left" onClick={this.showSidebar}><i className="fas fa-list"></i></a>
 					<Link to="/" className="logo"><img src="/lib/images/logo.png" alt=""/></Link>
-					<a href="javascript:void(0)" className="mb__menu-main"><i className="fas fa-bars"></i></a>
-					<nav className="main">
-						<a href="javascript:void(0)" className="mb_menu_close"><i className="fal fa-times"></i></a>
+					<a href="javascript:void(0)" onClick={this.showMenu} className="mb__menu-main mb__menu"><i className="fas fa-bars"></i></a>
+					<a href="javascript:void(0)" onClick={this.colseMenu} className={this.state.showMenu ? 'mb_menu_close show__menu':'mb_menu_close'}><i className="fal fa-times"></i></a>
+					<a href="javascript:void(0)" onClick={this.colseSidebar} className="mb_wrap-left_close"><i className="fal fa-times"></i></a>
+					<nav className={this.state.showMenu ? 'main show__menu':'main'}>
 						<div className="menu">
 							<ul className="menu-main">
 								<li>
@@ -62,22 +85,22 @@ class Header extends Component {
 							<input type="text" className="ipt" />
 							<button className="btn-search"><i className="fal fa-search"></i></button>
 						</div>
-						<a href="javascript:void(0)" onClick={() => alert('Tính năng này đang được phát triển')} className="btn-pay"><i className="fal fa-hand-holding-usd"></i> Nạp tiền</a>
-						<Link to="/upload-tai-lieu" className="btn-upload"><i className="fal fa-upload"></i> Tải lên</Link>
+						<a href="javascript:void(0)" onClick={() => alert('Tính năng này đang được phát triển')} className="btn-pay"><i className="fal fa-hand-holding-usd"></i> <span>Nạp tiền</span></a>
+						<Link to="/upload-tai-lieu" className="btn-upload"><i className="fal fa-upload"></i> <span>Tải lên</span></Link>
 						{!AuthReducer.loggedIn ? (
-							<div className="header-authentication nologged">
-								<Link to={'/dang-ky'} className="btn vj-btn register">Đăng ký</Link>
-								<Link to={'/dang-nhap'} className="login">Đăng nhập</Link>
+						<div className="header-authentication nologged">
+							<Link to={'/dang-ky'} className="btn vj-btn register">Đăng ký</Link>
+							<Link to={'/dang-nhap'} className="login">Đăng nhập</Link>
+						</div>
+						) : (
+						<div className="header-authentication logged-in">
+							<div className="header-user">
+								<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
+								<p className="header-user-name">{firstName} {lastName}</p>
 							</div>
-							) : (
-							<div className="header-authentication logged-in">
-								<div className="header-user">
-									<img src={thumbnail ? thumbnail : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
-									<p className="header-user-name">{firstName} {lastName}</p>
-								</div>
-								<UserMenu/>
-							</div>
-							)}
+							<UserMenu/>
+						</div>
+						)}
 					</nav>
 				</div>
 			</header>

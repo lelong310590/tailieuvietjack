@@ -90,7 +90,7 @@ class LoginPopup extends Component {
 				<div className="document-report-content">
 
 					<div className="document-report-close">
-						<span onClick={() => {this.props.closeLoginPopup()}}>X</span>
+						<span onClick={() => {this.props.closeLoginPopup()}}><i className="fal fa-times"></i></span>
 					</div>
 
 					{/*{onSending &&*/}
@@ -136,7 +136,7 @@ class LoginPopup extends Component {
 							</div>
 
 							<div className="form-group submit-form">
-								<button type="submit">Đăng nhập</button>
+								<button type="submit" className="btn vj-btn">Đăng nhập</button>
 							</div>
 
 						</form>

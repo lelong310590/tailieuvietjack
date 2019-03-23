@@ -21,8 +21,8 @@ class Infomation extends Component {
 		let {expand} = this.state;
 
 		return (
-			<div className="document-detail-infomation">
-				<h4>THÔNG TIN TÀI LIỆU</h4>
+			<div className="document-list document-detail-infomation">
+				<h4 className="wrap__title">Thông tin tài liệu</h4>
 				<div className="document-detail-nfomation-content">
 					<div className={expand ? ' text-justify' : 'text-justify collapse-detail-document'} style={{wordBreak: 'break-all'}}>
 						{this.props.content}

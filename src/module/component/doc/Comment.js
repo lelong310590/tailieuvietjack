@@ -132,10 +132,10 @@ class Comment extends Component{
                 <h4>{total_comment} Comments</h4>
                 <form onSubmit={this.postComment}>
                     <div className="form-group">
-                        <textarea value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
+                        <textarea rows="5" value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
                     </div>
                     <div className="form-group">
-                        <button className="btn-submit" type="submit">Gửi</button>
+                        <button className="btn-submit" type="submit" className="btn vj-btn">Gửi</button>
                     </div>
                 </form>
                 <div className="comment-list">
@@ -155,7 +155,7 @@ class Comment extends Component{
                                             <Fragment>
                                                 <form onSubmit={(e)=>this.postReply(e,value.id)}>
                                                     <textarea onClick={this.clickCommentBox} value={newreply} onChange={this.typeReply} />
-                                                    <button type="submit">Gửi</button>
+                                                    <button type="submit" className="btn vj-btn">Gửi</button>
                                                 </form>
                                             </Fragment>
                                         }

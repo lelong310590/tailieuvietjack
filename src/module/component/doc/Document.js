@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import List from "../listDoc/List";
+import Related from "./Related";
 import Infomation from "./Infomation";
 import Tags from "./Tags";
 import FacebookComment from "./FacebookComment";
@@ -198,8 +199,7 @@ class Document extends Component {
 		let {AuthReducer, UserReducer} = this.props;
 
 		return (
-			<section className="document-wrapper single-document-wrapper">
-
+			<section className="container wrap__page wrap__detail">
 				{showReport &&
 					<ReportDocument
 						docId={slug}
@@ -220,7 +220,7 @@ class Document extends Component {
 					keywords={seo_description}
 				/>
 
-				<div className="container">
+				<div className="wrap__right">
 					<Breadcrumb
 						classLevel={classLevel.name}
 						subject={subject.name}
@@ -229,125 +229,127 @@ class Document extends Component {
 						classId={classLevel.id}
 						subjectId={subject.id}
 					/>
+					<div className="document-detail">
 
-					<div className="row">
-						<div className="col-xs-12 col-md-9 document-detail">
-
-							{(status === 'disable') &&
-								<Alert bsStyle="danger">
-									<div className="text-center">Tài liệu này đang chờ ban quản trị duyệt</div>
-								</Alert>
-							}
-
-							<h1 className="document-detail-title">{name}</h1>
-							<div className="document-info">
-								<div className="document-info-page"><i className="far fa-file-alt"></i> {pages}</div>
-								<div className="document-info-view"><i className="far fa-eye"></i> {views}</div>
-								<div className="document-info-download"><i className="fas fa-file-download"></i> {download}</div>
-							</div>
-
-							<div className="document-middle-ads">
-								<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive center-block"/>
-							</div>
-
-							<div className="document-stats">
-								<div className="document-user">
+						{(status === 'disable') &&
+							<Alert bsStyle="danger">
+								<div className="text-center">Tài liệu này đang chờ ban quản trị duyệt</div>
+							</Alert>
+						}
+						<div className="detail_header">
+							<div className="detail_left">
+								<h1 className="wrap__title">{name}</h1>
+								<div className="detail_user">
 									<Link className="header-user" to={'/trang-ca-nhan/' + ownerId + '?onsort=all'}>
-										<img src={ownerAvatar ? ownerAvatar : '/lib/images/user_small.png'} alt="" className="img-responsive user-avatar"/>
-										<p className="header-user-name">{ownerFirstName} {ownerLastName}</p>
+										<i className="fal fa-user"></i>
+										{ownerFirstName} {ownerLastName}
 									</Link>
-									<div className="document-report">
-										<button onClick={this.reportDocument}>Báo tài liệu vi phạm</button>
+									<div className="detail-price">
+										<span className="price">Miễn phí</span>
+										<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
 									</div>
+									<button className="zoom" onClick={this.fullScreen}><i className="far fa-search-plus"></i></button>
 								</div>
-
-								<div className="document-button" onClick={() => this.clickToDownload(slug)}>
-									<div className="document-download-top-button">
-										<span className="document-download-text text-uppercase">Tải xuống</span>
-										<span className="document-download-count">{download}</span>
+								<div className="detail_tyle">
+									<div>
+										<strong>Đối tượng: </strong> 
+										<a href="#">Tiếng anh</a>, 
+										<a href="#">Toán</a>
+									</div>
+									<div>
+										<strong>Lớp: </strong>
+										<a href="#">Lớp 6</a>, 
+										<a href="#">Lớp 10</a>
 									</div>
 								</div>
 							</div>
+							<div className="detail_right">
+								<button className="document-button btn vj-btn" onClick={() => this.clickToDownload(slug)}>
+									<span className="document-download-text text-uppercase">Tải xuống ({download})</span>
+									<i className="fal fa-download"></i>
+								</button>
+								<div className="document-report">
+									<a href="javascript:void(0)" onClick={this.reportDocument}>Báo tài liệu vi phạm</a>
+								</div>
+								<div className="document-info">
+									<div className="document-info-page"><i className="fal fa-file-alt"></i> {pages}</div>
+									<div className="document-info-view"><i className="fal fa-eye"></i> {views}</div>
+									<div className="document-info-download"><i className="fal fa-download"></i> {download}</div>
+								</div>
+							</div>
+						</div>
+						<div className="document-detail-content" id="document-content">
+							{pageLoadDone ? (
+								<Fragment>
+									{_.map(pageHtml, (page, i) => {
+										return (
+											<Fragment key={i}>
+												<div className="document-detail-content-item" >
+													{ReactHtmlParser(page)}
+												</div>
 
-							<div className="document-detail-content" id="document-content">
-								{pageLoadDone ? (
-									<Fragment>
-										{_.map(pageHtml, (page, i) => {
-											return (
-												<Fragment key={i}>
-													<div className="document-detail-content-item" >
-														{ReactHtmlParser(page)}
+												{(i !== (pageHtml.length - 1)) &&
+													<div className="document-middle-ads">
+														<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 													</div>
-
-													{(i !== (pageHtml.length - 1)) &&
-														<div className="document-middle-ads">
-															<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
-														</div>
-													}
-												</Fragment>
-												
-											)
-										})}
-									</Fragment>
-								) : (
-									<div className="document-detail-content-loading">
-										<Loading/>
-									</div>
-								)}
-
-							</div>
-
-							<div className="document-detail-download-button">
-								<button onClick={() => this.clickToDownload(slug)}><i className="fas fa-file-download"></i> Tải xuống ( {pages} trang )</button>
-							</div>
-
-							<List
-								title={'Tài liệu cùng tác giả'}
-								itemClass={'col-xs-6 col-md-3 col-lg-3'}
-								user={ownerId}
-								currentId={slug}
-								match={this.props.match}
-							/>
-							
-							<Infomation
-								content={content}
-							/>
-
-							<Tags
-								tags={tags}
-							/>
-
-							{/*<FacebookComment/>*/}
-							<Comment
-								doc_id={id}
-								requiredLogin={this.commentfeedback}
-							/>
+												}
+											</Fragment>
+											
+										)
+									})}
+								</Fragment>
+							) : (
+								<div className="document-detail-content-loading">
+									<Loading/>
+								</div>
+							)}
 
 						</div>
 
-						<Sidebar
-							tags={tags}
-							currentDocId={slug}
+						<div className="document-detail-download-button">
+							<button onClick={() => this.clickToDownload(slug)} className="btn vj-btn"><i className="fal fa-download"></i> Tải xuống ( {pages} trang )</button>
+						</div>
+
+						<Related
+							tags={this.props.tags}
+							currentDocId={this.props.currentDocId}
 						/>
+						<List
+							title={'Tài liệu cùng tác giả'}
+							itemClass={'col-xs-6 col-md-3 col-lg-3'}
+							user={ownerId}
+							currentId={slug}
+							match={this.props.match}
+						/>
+						
+						<Infomation
+							content={content}
+						/>
+
+						<Tags
+							tags={tags}
+						/>
+
+						{/*<FacebookComment/>*/}
+						<Comment
+							doc_id={id}
+							requiredLogin={this.commentfeedback}
+						/>
+
 					</div>
 				</div>
+				<Sidebar
+					tags={tags}
+					currentDocId={slug}
+				/>
 
 				{footerDocument &&
 					<div className="document-footer">
 						<div className="container">
-							<div className="row">
-								<div className="col-xs-12 col-md-9 document-footer-wrapper">
-
-									<div className="document-footer-button">
-										<span onClick={this.fullScreen}><i className="fas fa-search-plus"></i></span>
-									</div>
-
-									<div className="document-button" onClick={() => this.clickToDownload(slug)}>
-										<div className="document-download-top-button">
-											<span className="document-download-text text-uppercase">Tải xuống</span>
-											<span className="document-download-count">{download}</span>
-										</div>
-									</div>
+							<div className="document-button" onClick={() => this.clickToDownload(slug)}>
+								<div className="document-download-top-button">
+									<span className="document-download-text text-uppercase">Tải xuống</span>
+									<span className="document-download-count">{download}</span>
 								</div>
 							</div>
 						</div>

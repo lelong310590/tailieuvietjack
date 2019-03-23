@@ -36,8 +36,8 @@ class Tags extends Component {
 				{_.isEmpty(tags) ? (
 					<Fragment></Fragment>
 				) : (
-					<div className="document-detail-tags">
-						<h4>TỪ KHÓA LIÊN QUAN</h4>
+					<div className="document-detail-tags document-list">
+						<h4 className="wrap__title">Tags</h4>
 						<div className="document-detail-tags-list">
 							<ul>
 								{_.map(tags, (tag, idx) => {

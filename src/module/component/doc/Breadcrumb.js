@@ -51,26 +51,24 @@ class Breadcrumb extends Component {
 		let {classSlug, classLevel, subject, subjectSlug, chapter, chapterSlug, thematic, thematicSlug,classId,subjectId} = this.state;
 
 		return (
-			<div className="breadcrumb-wrapper">
-				<ul>
-					<li><Link to="/"><i className="fas fa-home"></i> Trang chủ</Link></li>
-					<li><Link to={'/'+classSlug+'/d0s0c'+classId+'t0'}><i className="fas fa-chevron-right"></i> {classLevel}</Link></li>
+			<div className="vj-breadcrumb">
+					<Link to="/">Trang chủ</Link>
+					<Link to={'/'+classSlug+'/d0s0c'+classId+'t0'}>{classLevel}</Link>
 					{subject &&
-						<li><Link to={'/'+subjectSlug+'-'+classSlug+'/d0s'+subjectId+'c'+classId+'t0'}><i className="fas fa-chevron-right"></i> {subject}</Link></li>
+						<Link to={'/'+subjectSlug+'-'+classSlug+'/d0s'+subjectId+'c'+classId+'t0'}>{subject}</Link>
 					}
 
 					{(chapter && thematic) &&
-						<li><i className="fas fa-chevron-right"></i> {chapter}</li>
+						<span>{chapter}</span>
 					}
 
 					{chapter && //Url den chapter la url cuoi cung
-						<li><i className="fas fa-chevron-right"></i> {chapter}</li>
+						<span>{chapter}</span>
 					}
 
 					{thematic &&
-						<li><i className="fas fa-chevron-right"></i> {thematic}</li>
+						<span>{thematic}</span>
 					}
-				</ul>
 			</div>
 		);
 	}

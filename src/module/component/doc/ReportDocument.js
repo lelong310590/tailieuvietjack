@@ -135,7 +135,7 @@ class ReportDocument extends Component {
 				<div className="document-report-content">
 
 					<div className="document-report-close">
-						<span onClick={() => {this.props.closeReport()}}>X</span>
+						<span onClick={() => {this.props.closeReport()}}><i className="fal fa-times"></i></span>
 					</div>
 
 					{onSending &&
@@ -186,7 +186,7 @@ class ReportDocument extends Component {
 							}
 
 							<div className="form-group">
-								<button type="submit" className="btn btn-primary center-block">Gửi phản hồi</button>
+								<button type="submit" className="btn vj-vj-btn center-block">Gửi phản hồi</button>
 							</div>
 						</form>
 					</div>
