@@ -158,7 +158,7 @@ class Comment extends Component{
                                         {value.reply === true &&
                                             <Fragment>
                                                 <form onSubmit={(e)=>this.postReply(e,value.id)}>
-                                                    <textarea onClick={this.clickCommentBox} value={newreply} onChange={this.typeReply} />
+                                                    <textarea className="form-control" onClick={this.clickCommentBox} value={newreply} onChange={this.typeReply} />
                                                     <button type="submit" className="btn vj-btn">Gửi</button>
                                                 </form>
                                             </Fragment>
