@@ -144,8 +144,12 @@ class Comment extends Component{
                             <div className="comment-item" key={index}>
                                 <div className="comment-item-parent">
                                     <div className="parent-left">
-                                        <img src="" />
-                                        <p>{value.user_id}</p>
+                                        {_.isEmpty(value.get_user.thumbnail) ? (
+                                            <img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+                                        ) : (
+                                            <img src={value.get_user.thumbnail} alt="" className="img-responsive center-block"/>
+                                        )}
+                                        <p>{value.get_user.first_name}</p>
                                     </div>
                                     <div className="parent-right">
                                         <p>{value.content}</p>
@@ -168,7 +172,11 @@ class Comment extends Component{
                                                 <div className="comment-item-child" key={idx}>
                                                     <div className="comment-child">
                                                         <div className="child-left">
-                                                            <img src={c.get_user.thumbnail} />
+                                                            {_.isEmpty(c.get_user.thumbnail) ? (
+                                                                <img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+                                                            ) : (
+                                                                <img src={c.get_user.thumbnail} alt="" className="img-responsive center-block"/>
+                                                            )}
                                                             <p>{c.get_user.first_name}</p>
                                                         </div>
                                                         <div className="child-right">
