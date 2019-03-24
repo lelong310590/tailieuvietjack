@@ -98,35 +98,26 @@ class ThematicListDoc extends Component {
 		let {chapters, catName, catSlug, subjectName, subjectSlug, subjectThumbnail, items} = this.state;
 
 		return (
-			<div className="document-wrapper home-wrapper">
-				<div className="container">
+			<div className="container wrap__page">
+				<div className="wrap__left">
+					<Filter
+						history={this.props.history}
+						chapters={chapters}
+						subjectName={subjectName}
+						subjectThumbnail={subjectThumbnail}
+					/>
+					<List
+						title={'Tài liệu nổi bật'}
+					/>
+				</div>
+				<div className="wrap__right">
 					<Breadcrumb
 						classSlug={catSlug}
 						classLevel={catName}
 						subject={subjectName}
 						subjectSlug={subjectSlug}
 					/>
-
-					<div className="col-xs-12 col-md-9">
-
-						<Filter
-							history={this.props.history}
-							chapters={chapters}
-							subjectName={subjectName}
-							subjectThumbnail={subjectThumbnail}
-						/>
-
-						<div className="row">
-							<ListDocuments items={items}/>
-						</div>
-
-						<div className="row">
-							<List
-								title={'Tài liệu nổi bật'}
-								itemClass={'col-xs-6 col-md-3 col-lg-3'}
-							/>
-						</div>
-					</div>
+					<ListDocuments items={items}/>
 				</div>
 			</div>
 		);

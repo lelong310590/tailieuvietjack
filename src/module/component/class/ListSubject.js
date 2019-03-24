@@ -110,39 +110,32 @@ class ListSubject extends Component {
 		let {subjects, catSlug, catName, catId, tagFooter, items} = this.state;
 
 		return (
-				<div className="document-wrapper home-wrapper">
-
+			<div className="container wrap__page">
+				<div className="wrap__left">
+					<FilterBar
+						history={this.props.history}
+						location={this.props.location}
+					/>
+				</div>
+				<div className="wrap__right">
 					<Meta
 						title={catName}
 						description={catName}
 						keywords={catName}
 					/>
+					<Breadcrumb
+						catSlug={catSlug}
+						classLevel={catName}
+					/>
 
-					<div className="container">
-						<div className="row">
-							<div className="col-xs-12 col-md-3">
-								<FilterBar
-									history={this.props.history}
-									location={this.props.location}
-								/>
-							</div>
-
-							<div className="col-xs-12 col-md-9">
-								<Breadcrumb
-									catSlug={catSlug}
-									classLevel={catName}
-								/>
-
-								<ListDocuments items={items.data}/>
-							</div>
-						</div>
-					</div>
+					<ListDocuments items={items.data}/>
 
 					<TagsFooter
 						classLevel={catName}
 						tags={tagFooter}
 					/>
 				</div>
+			</div>
 		);
 	}
 }

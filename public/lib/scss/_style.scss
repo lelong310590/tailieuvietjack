@@ -688,7 +688,7 @@ footer {
 }
 .document-list-wrapper{
     @include p-display();
-    @include p-justify(space-between);
+    @include p-justify(flex-start);
     @include p-align-items(stretch);
     @include p-flex-wrap(wrap);
     margin-left: -12px;
