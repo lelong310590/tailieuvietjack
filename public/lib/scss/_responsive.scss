@@ -119,6 +119,16 @@
         }
         .header-authentication{
             margin-top: 15px;
+            &.logged-in{
+                .user-menu{
+                    display: block;
+                    position: static;
+                    box-shadow: none;
+                    li{
+                        padding-left: 0
+                    }
+                }
+            }
         }
     }
     
