@@ -252,14 +252,12 @@ class Document extends Component {
 								</div>
 								<div className="detail_tyle">
 									<div>
-										<strong>Đối tượng: </strong> 
-										<a href="#">Tiếng anh</a>, 
-										<a href="#">Toán</a>
+										<strong>Môn: </strong>
+										<Link to={'/'+subject.slug+'/d0s'+subject.id+'c0t0'}>{subject.name}</Link>
 									</div>
 									<div>
 										<strong>Lớp: </strong>
-										<a href="#">Lớp 6</a>, 
-										<a href="#">Lớp 10</a>
+										<Link to={'/'+classLevel.slug+'/d0s0c'+classLevel.id+'t0'}>{classLevel.name}</Link>
 									</div>
 								</div>
 							</div>

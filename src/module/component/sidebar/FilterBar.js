@@ -204,7 +204,7 @@ class FilterBar extends Component {
 		let chapterSlug = '';
 
 		if (keywords != '') {
-			keywordParam = '&keyword='+keywords;
+			keywordParam = '?keyword='+keywords;
 		}
 
 		if (selectedDocTypes !== 0) {

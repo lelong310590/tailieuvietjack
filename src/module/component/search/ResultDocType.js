@@ -29,7 +29,8 @@ class ResultDocType extends Component {
 				data: [],
 				total:0
 			},
-			viewStyle: 'list'
+			viewStyle: 'list',
+			keyword: ''
 		};
 	}
 
@@ -113,6 +114,12 @@ class ResultDocType extends Component {
 			selectedPrice = value.price;
 
 		}
+		if (_.has(value, 'keyword')) {
+			this.setState({
+				keyword: value.keyword
+			})
+
+		}
 		let pathname = this.props.location.pathname;
 		let afterPrice = pathname.split('price=')[1];
 		if(afterPrice!==undefined&&afterPrice.length>0){
@@ -168,7 +175,7 @@ class ResultDocType extends Component {
 
 	render() {
 
-		let {title, viewStyle, documents, url} = this.state;
+		let {title, viewStyle, documents, url,keyword} = this.state;
 
 		return (
 			<Fragment>
@@ -192,7 +199,7 @@ class ResultDocType extends Component {
 					<div className="wrap__right">
 						<div className="vj-breadcrumb">
 							<a href="/">Trang chủ</a>
-							<span>Tìm kiếm 'Ôn thi'</span>
+							<span>Tìm kiếm {keyword}</span>
 						</div>
 						<div className="wrap__title">Tài liệu nổi bật</div>
 						<div className="docment-top">
@@ -251,7 +258,7 @@ class ResultDocType extends Component {
 
 						<div className="wrap__title search_title">
 							<SpecialDocument location={this.props.location}/>
-							<div className="search-title">Tìm kiếm: “Ôn thi” <span className="count">Tổng số tài liệu: {documents.total}</span></div>
+							<div className="search-title">Tìm kiếm: {keyword} <span className="count">Tổng số tài liệu: {documents.total}</span></div>
 							<div className="search-sort">
 								<ul>
 									<li>
