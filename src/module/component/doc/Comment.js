@@ -128,7 +128,7 @@ class Comment extends Component{
         let {comments,newcomment,newreply,total_comment} = this.state;
 
         return(
-            <div className="facebook-comment">
+            <div className="facebook-comment vj-comment">
                 <h4>{total_comment} Comments</h4>
                 <form onSubmit={this.postComment}>
                     <div className="form-group">
@@ -149,12 +149,11 @@ class Comment extends Component{
                                         ) : (
                                             <img src={value.get_user.thumbnail} alt="" className="img-responsive center-block"/>
                                         )}
-                                        <p>{value.get_user.first_name}</p>
                                     </div>
                                     <div className="parent-right">
+                                        <p className="name">{value.get_user.first_name}</p>
                                         <p>{value.content}</p>
-                                        <span>{value.created_at}</span>
-                                        <a onClick={(e) => this.handleReply(e, index, value.reply)}>Reply</a>
+                                        <a onClick={(e) => this.handleReply(e, index, value.reply)}>Reply</a><span>{value.created_at}</span>
                                         {value.reply === true &&
                                             <Fragment>
                                                 <form onSubmit={(e)=>this.postReply(e,value.id)}>
@@ -177,11 +176,10 @@ class Comment extends Component{
                                                             ) : (
                                                                 <img src={c.get_user.thumbnail} alt="" className="img-responsive center-block"/>
                                                             )}
-                                                            <p>{c.get_user.first_name}</p>
                                                         </div>
                                                         <div className="child-right">
+                                                            <p className="name">{c.get_user.first_name} <span>{c.created_at}</span></p>
                                                             <p>{c.content}</p>
-                                                            <span>{c.created_at}</span>
                                                         </div>
                                                     </div>
                                                 </div>

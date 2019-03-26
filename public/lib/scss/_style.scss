@@ -1053,3 +1053,69 @@ footer {
     }
   }
 }
+
+.vj-comment{
+  .comment-list{
+    margin-top: 25px;
+    .comment-item-parent, .comment-child{
+      @include p-display();
+      @include p-justify(flex-start);
+    }
+    .comment-item{
+      & + .comment-item{
+        margin-top: 20px;
+      }
+    }
+    .comment-item-child{
+      margin-left: 63px;
+      margin-top: 15px;
+      .comment-child{
+        padding: 15px;
+        background: #eff9ff;
+        @include p-border-radius(5px);
+        & + .comment-child{
+          margin-top: 5px;
+        }
+      }
+    }
+    .parent-left, .child-left{
+      flex: 0 0 48px;
+      flex-basis: 48px;
+      width: 48px;
+      overflow: hidden;
+      @include p-border-radius(50%);
+      height: 48px;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .parent-right, .child-right{
+      flex: 1;
+      padding-left: 15px;
+      textarea{
+        margin: 10px 0;
+      }
+      p{
+        padding-bottom: 5px;
+        &.name{
+          font-weight: 500;
+        }
+      }
+      span{
+        color: $color-6;
+        font-size: 13px;
+        font-weight: 300;
+        display: inline-block;
+        margin-left: 25px;
+      }
+      a{
+        color: $bg-button;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
