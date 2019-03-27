@@ -35,7 +35,16 @@ class ResultDocType extends Component {
 	}
 
 	componentDidMount = () => {
-		this.fetchData(this.props);
+		let search = this.props.location.search;
+		let value = queryString.parse(search);
+		if (_.has(value, 'keyword')) {
+			let {
+				selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
+			} = this.props.FilterBarReducer;
+			this.props.getResult(value.keyword, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		}else{
+			this.fetchData(this.props);
+		}
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
