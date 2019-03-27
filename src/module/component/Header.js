@@ -10,7 +10,8 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loggedIn: false
+			loggedIn: false,
+			keywords:''
 		}
 	}
 	getInitialState() {
@@ -35,10 +36,25 @@ class Header extends Component {
 		this.setState({ showSidebar: false });
 	};
 
+	handleChangeKeyword = (event) => {
+		let keywords = event.target.value;
+		this.setState({keywords})
+	};
+
+	submitSearch = (e) => {
+		e.preventDefault();
+		let {keywords} = this.state;
+		let keywordParam = '';
+		if (keywords != '') {
+			keywordParam = '?keyword='+keywords;
+		}
+
+		window.location.href='/tim-kiem/d0s0c0t0' + keywordParam;
+	}
 
 	render() {
 		let {AuthReducer, UserReducer} = this.props;
-
+		let {keywords} = this.state;
 		let {firstName, lastName, thumbnail} = UserReducer;
 
 		return (
@@ -81,10 +97,12 @@ class Header extends Component {
 								</li>
 							</ul>
 						</div>
+						<form onSubmit={this.submitSearch}>
 						<div className="search">
-							<input type="text" className="ipt" />
-							<button className="btn-search"><i className="fal fa-search"></i></button>
+							<input type="text" onChange={this.handleChangeKeyword} className="ipt" />
+							<button type="submit" className="btn-search"><i className="fal fa-search"></i></button>
 						</div>
+						</form>
 						<a href="javascript:void(0)" onClick={() => alert('Tính năng này đang được phát triển')} className="btn-pay"><i className="fal fa-hand-holding-usd"></i> <span>Nạp tiền</span></a>
 						<Link to="/upload-tai-lieu" className="btn-upload"><i className="fal fa-upload"></i> <span>Tải lên</span></Link>
 						{!AuthReducer.loggedIn ? (
