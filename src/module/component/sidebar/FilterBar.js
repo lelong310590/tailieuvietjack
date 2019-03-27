@@ -24,21 +24,26 @@ class FilterBar extends Component {
 			selectedPrice: -1,
 			selectedChapter: 0,
 			loading: false,
-			alert: false
+			alert: false,
+			currentDoctype:0,
+			currentSubject:0,
+			currentClass:0,
 		}
 	};
 
 	componentDidMount = () => {
 
 		let {params} = this.props.match;
-
 		const search = this.props.location.search;
 		let value = queryString.parse(search);
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = this.state;
-
+		let {currentDoctype, currentSubject, currentClass} = this.props;
+		this.setState({
+			currentDoctype, currentSubject, currentClass,
+		})
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
 			selectedDocTypes = str.substring(
@@ -89,7 +94,21 @@ class FilterBar extends Component {
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-
+		if(this.props.currentClass!==nextProps.currentClass){
+			this.setState({
+				selectedClasses: nextProps.currentClass
+			});
+		}
+		if(this.props.currentSubject!==nextProps.currentSubject){
+			this.setState({
+				selectedSubject: nextProps.currentSubject
+			});
+		}
+		if(this.props.currentDoctype!==nextProps.currentDoctype){
+			this.setState({
+				selectedDocTypes: nextProps.currentDoctype
+			});
+		}
 		if (this.props.FilterBarReducer.classes !== nextProps.FilterBarReducer.classes) {
 			this.setState({
 				classes: nextProps.FilterBarReducer.classes

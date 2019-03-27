@@ -56,6 +56,7 @@ class Document extends Component {
 			showReport: false,
 			footerDocument: true,
 			showLoginPopup: false,
+			type:0
 		};
 	}
 
@@ -128,7 +129,8 @@ class Document extends Component {
 					subject: response.data.get_subject,
 					tags: response.data.get_tags,
 					content: response.data.content,
-					id: response.data.id
+					id: response.data.id,
+					type: response.data.type
 				})
 			})
 			.catch(err => {
@@ -193,11 +195,10 @@ class Document extends Component {
 	render() {
 
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
-			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
+			ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
-
 		return (
 			<section className="container wrap__page wrap__detail">
 				{showReport &&
@@ -339,6 +340,9 @@ class Document extends Component {
 				<Sidebar
 					tags={tags}
 					currentDocId={slug}
+					currentDoctype={type}
+					currentSubject={subject.id}
+					currentClass={classLevel.id}
 				/>
 
 				{footerDocument &&
