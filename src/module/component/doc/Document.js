@@ -309,10 +309,19 @@ class Document extends Component {
 							<button onClick={() => this.clickToDownload(slug)} className="btn vj-btn"><i className="fal fa-download"></i> Tải xuống ( {pages} trang )</button>
 						</div>
 
-						<Related
-							tags={this.props.tags}
-							currentDocId={this.props.currentDocId}
+						{/*<Related*/}
+							{/*tags={this.props.tags}*/}
+							{/*currentDocId={this.props.currentDocId}*/}
+						{/*/>*/}
+						<List
+							title={'Tài liệu liên quan'}
+							itemClass={'col-xs-6 col-md-3 col-lg-3'}
+							classLevel={classLevel.id}
+							//user={ownerId}
+							//currentId={slug}
+							match={this.props.match}
 						/>
+
 						<List
 							title={'Tài liệu cùng tác giả'}
 							itemClass={'col-xs-6 col-md-3 col-lg-3'}
