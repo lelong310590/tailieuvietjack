@@ -1,8 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux';
 //import Menu from "./support/Menu";
 import UserMenu from "./support/UserMenu";
+import axios from "axios";
+import * as api from "../const/Api";
+import _ from "lodash";
 //import MainSearch from "./home/MainSearch";
 
 class Header extends Component {
@@ -11,7 +14,9 @@ class Header extends Component {
 		super(props);
 		this.state = {
 			loggedIn: false,
-			keywords:''
+			keywords:'',
+			classes: [],
+			subjects: []
 		}
 	}
 	getInitialState() {
@@ -52,11 +57,33 @@ class Header extends Component {
 		window.location.href='/tim-kiem/d0s0c0t0' + keywordParam;
 	}
 
+	componentDidMount() {
+		axios.get(api.API_FILTER_BAR_CLASS)
+			.then(response => {
+				this.setState({
+					classes: response.data
+				})
+			})
+			.catch(err => {
+
+			})
+		axios.get(api.API_GET_SUBJECTS)
+			.then(response => {
+				console.log(response);
+				this.setState({
+					subjects: response.data
+				})
+			})
+			.catch(err => {
+
+			})
+	}
+
+
 	render() {
 		let {AuthReducer, UserReducer} = this.props;
-		let {keywords} = this.state;
+		let {keywords,classes,subjects} = this.state;
 		let {firstName, lastName, thumbnail} = UserReducer;
-
 		return (
 			<header className="main">
 				<div className="container">
@@ -71,28 +98,30 @@ class Header extends Component {
 								<li>
 									<a href="javascript:void(0)">Danh mục <i className="far fa-chevron-down"></i></a>
 									<ul className="menu-sub">
-										<li>
-											<h5><Link to="/">Bài giảng</Link></h5>
-											<ul>
-												<li><Link to="/">Bài giảng 1</Link></li>
-												<li><Link to="/">Bài giảng 2</Link></li>
-												<li><Link to="/">Bài giảng 3</Link></li>
-												<li><Link to="/">Bài giảng 1</Link></li>
-												<li><Link to="/">Bài giảng 2</Link></li>
-												<li><Link to="/">Bài giảng 3</Link></li>
-											</ul>
-										</li>
-										<li>
-											<h5><Link to="/">Chuyên đề</Link></h5>
-											<ul>
-												<li><Link to="/">Bài giảng 1</Link></li>
-												<li><Link to="/">Bài giảng 2</Link></li>
-												<li><Link to="/">Bài giảng 3</Link></li>
-												<li><Link to="/">Bài giảng 1</Link></li>
-												<li><Link to="/">Bài giảng 2</Link></li>
-												<li><Link to="/">Bài giảng 3</Link></li>
-											</ul>
-										</li>
+										{_.map(classes, (value, idx) => {
+											return (
+												<Fragment>
+													{![-3, -2, -1].includes(value.id) &&
+													<li key={idx}>
+														<h5><Link to={'/'+value.slug+'/d0s0c' + value.id+'t0'}>{value.name}</Link></h5>
+
+														<ul>
+															<Fragment>
+															{_.map(subjects, (s, idxx) => {
+																return (
+
+																	<li key={idxx}><Link to={'/'+s.slug+'-'+value.slug+'/d0s' + s.id+'c'+value.id+'t0'}>{s.name}</Link></li>
+
+																)
+															})}
+															</Fragment>
+														</ul>
+													</li>
+													}
+												</Fragment>
+											)
+
+										})}
 									</ul>
 								</li>
 							</ul>
