@@ -62,8 +62,8 @@ class FilterBar extends Component {
 				str.indexOf("t")
 			);
 
-			selectedChapter = str.substring(
-				str.lastIndexOf("t") + 1,
+			selectedChapter = str.substr(
+				str.indexOf("t") + 1,1
 			);
 			this.setState({
 				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
@@ -147,8 +147,8 @@ class FilterBar extends Component {
 					str.indexOf("t")
 				);
 
-				let selectedChapter = str.substring(
-					str.indexOf("t") + 1,
+				let selectedChapter = str.substr(
+					str.indexOf("t") + 1,1
 				);
 
 				this.setState({
@@ -320,7 +320,7 @@ class FilterBar extends Component {
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 			});
 
-			return false;
+			return;
 		}
 		if(slug.length===0){
 			slug = 'tim-kiem';
