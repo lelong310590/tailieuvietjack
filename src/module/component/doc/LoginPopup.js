@@ -97,7 +97,6 @@ class LoginPopup extends Component {
 		formData.append('scope', '');
 		formData.append('token',response.accessToken);
 		this.socialLogin('facebook', formData);
-		console.log(response);
 	}
 
 	responseGoogle = (response) => {
@@ -142,7 +141,7 @@ class LoginPopup extends Component {
 				this.props.getUserInfo(accessToken);
 
 				this.props.handleLogedIn();
-				this.props.history.push("/");
+				this.props.closeLoginPopup();
 			})
 			.catch(err => {
 				console.log(err)
