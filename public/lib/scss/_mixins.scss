@@ -62,6 +62,11 @@
    	-webkit-transform: rotate($rotate);
     transform: rotate($rotate);
 }
+@mixin p-scale($scale) {
+	-ms-transform: scale($scale);
+   	-webkit-transform: scale($scale);
+	transform: scale($scale);
+}
 @mixin p-ul($style, $margin, $padding) {
 	list-style:$style;
 	margin:$margin;
