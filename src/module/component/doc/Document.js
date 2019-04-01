@@ -146,7 +146,7 @@ class Document extends Component {
 		let token = localStorage.getItem('accessToken');
 
 		if (_.isEmpty(token)) {
-			alert('Bạn phải đăng nhập để tải tài liệu');
+			//alert('Bạn phải đăng nhập để tải tài liệu');
 			this.setState({showLoginPopup: true})
 			return false;
 		}

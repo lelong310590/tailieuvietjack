@@ -7,6 +7,8 @@ import {Alert} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import * as helpers from "../../Support";
 import * as actions from "../../action/Index";
+import { FacebookLogin } from 'react-facebook-login-component';
+import GoogleLogin from 'react-google-login';
 
 class LoginPopup extends Component {
 
@@ -83,6 +85,70 @@ class LoginPopup extends Component {
 			})
 	};
 
+	responseFacebook = (response) => {
+		let formData = new FormData();
+		formData.append('avatar', response.picture.data.url);
+		formData.append('name', response.name);
+		formData.append('email', response.email);
+		formData.append('id', response.id);
+		formData.append('grant_type', 'password');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+		formData.append('scope', '');
+		formData.append('token',response.accessToken);
+		this.socialLogin('facebook', formData);
+		console.log(response);
+	}
+
+	responseGoogle = (response) => {
+		console.log(response);
+		console.log(response.accessToken);
+		let formData = new FormData();
+		formData.append('avatar', response.w3.Paa);
+		formData.append('name', response.w3.ig);
+		formData.append('email', response.w3.U3);
+		formData.append('id', response.googleId);
+		formData.append('grant_type', 'password');
+		formData.append('client_id', '8');
+		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
+		formData.append('scope', '');
+		formData.append('token',response.tokenId);
+		this.socialLogin('google', formData);
+	}
+
+	/**
+	 *  Social login
+	 * */
+	socialLogin = (provider, formData) => {
+		let config = {
+			headers: {'Content-Type': 'multipart/form-data' }
+		};
+
+		let url = '';
+
+		if (provider === 'facebook') {
+			url = api.API_POST_FACEBOOK_LOGIN;
+		} else if (provider === 'google') {
+			url = api.API_POST_GOOGLE_LOGIN;
+		}
+
+		axios.post(url, formData, config)
+			.then(response => {
+				let data = response.data;
+				let accessToken = 'Bearer ' + data.access_token;
+
+				localStorage.setItem('accessToken', accessToken);
+
+				this.props.getUserInfo(accessToken);
+
+				this.props.handleLogedIn();
+				this.props.history.push("/");
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	};
+
 	render() {
 		let {validEmail, validPassword, error, onProcess} = this.state;
 		return (
@@ -98,6 +164,24 @@ class LoginPopup extends Component {
 					{/*}*/}
 
 					<h4 className="document-report-title text-center">Đăng nhập </h4>
+					<div className="social-login-wrapper">
+						<FacebookLogin socialId="185415292298335"
+									   language="en_US"
+									   scope="public_profile,email"
+									   responseHandler={this.responseFacebook}
+									   xfbml={true}
+									   fields="id,email,name,picture"
+									   version="v2.5"
+									   className="facebook-login"
+									   buttonText="Login With Facebook"/>
+
+						<GoogleLogin
+							clientId="265995590514-tpvljrouj5jfdqvr7a2isunrkg9n2c17.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+							buttonText="LOGIN WITH GOOGLE"
+							onSuccess={this.responseGoogle}
+							onFailure={this.responseGoogle}
+						/>
+					</div>
 					<div className="document-report-form">
 						<form onSubmit={this.onLogin}>
 							{error !== '' &&
