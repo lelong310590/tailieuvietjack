@@ -98,30 +98,58 @@ class Header extends Component {
 								<li>
 									<a href="javascript:void(0)">Danh mục <i className="far fa-chevron-down"></i></a>
 									<ul className="menu-sub">
-										{_.map(classes, (value, idx) => {
-											return (
-												<Fragment>
-													{![-3, -2, -1].includes(value.id) &&
-													<li key={idx}>
-														<h5><Link to={'/'+value.slug+'/d0s0c' + value.id+'t0'}>{value.name}</Link></h5>
+                                        <li>
+                                            <h5><a href="#">Theo lớp</a></h5>
+                                            <ul>
+                                                <Fragment>
+                                                    {_.map(classes, (s, idxx) => {
+                                                        return (
 
-														<ul>
-															<Fragment>
-															{_.map(subjects, (s, idxx) => {
-																return (
+                                                            <li key={idxx}><Link to={'/'+s.slug+'/d0s0c'+s.id+'t0'}>{s.name}</Link></li>
 
-																	<li key={idxx}><Link to={'/'+s.slug+'-'+value.slug+'/d0s' + s.id+'c'+value.id+'t0'}>{s.name}</Link></li>
+                                                        )
+                                                    })}
+                                                </Fragment>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h5><a href="#">Theo môn</a></h5>
+                                            <ul>
+                                                <Fragment>
+                                                    {_.map(subjects, (s, idxx) => {
+                                                        return (
 
-																)
-															})}
-															</Fragment>
-														</ul>
-													</li>
-													}
-												</Fragment>
-											)
+                                                            <li key={idxx}><Link to={'/'+s.slug+'/d0s' + s.id+'c0t0'}>{s.name}</Link></li>
 
-										})}
+                                                        )
+                                                    })}
+                                                </Fragment>
+                                            </ul>
+                                        </li>
+										{/*{_.map(classes, (value, idx) => {*/}
+											{/*return (*/}
+												{/*<Fragment>*/}
+													{/*{![-3, -2, -1].includes(value.id) &&*/}
+													{/*<li key={idx}>*/}
+														{/*<h5><Link to={'/'+value.slug+'/d0s0c' + value.id+'t0'}>{value.name}</Link></h5>*/}
+
+														{/*<ul>*/}
+															{/*<Fragment>*/}
+															{/*{_.map(subjects, (s, idxx) => {*/}
+																{/*return (*/}
+
+																	{/*<li key={idxx}><Link to={'/'+s.slug+'-'+value.slug+'/d0s' + s.id+'c'+value.id+'t0'}>{s.name}</Link></li>*/}
+
+																{/*)*/}
+															{/*})}*/}
+															{/*</Fragment>*/}
+														{/*</ul>*/}
+													{/*</li>*/}
+													{/*}*/}
+												{/*</Fragment>*/}
+											{/*)*/}
+
+										{/*})}*/}
 									</ul>
 								</li>
 							</ul>
