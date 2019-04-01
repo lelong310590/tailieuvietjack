@@ -46,25 +46,25 @@ class FilterBar extends Component {
 		})
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
+
 			selectedDocTypes = str.substring(
-				str.lastIndexOf("d") + 1,
-				str.lastIndexOf("s")
+				str.indexOf("d") + 1,
+				str.indexOf("s")
 			);
 
 			selectedSubject = str.substring(
-				str.lastIndexOf("s") + 1,
-				str.lastIndexOf("c")
+				str.indexOf("s") + 1,
+				str.indexOf("c")
 			);
 
 			selectedClasses = str.substring(
-				str.lastIndexOf("c") + 1,
-				str.lastIndexOf("t")
+				str.indexOf("c") + 1,
+				str.indexOf("t")
 			);
 
 			selectedChapter = str.substring(
 				str.lastIndexOf("t") + 1,
 			);
-
 			this.setState({
 				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
 			})
@@ -133,22 +133,22 @@ class FilterBar extends Component {
 			if (_.has(params, 'code')) {
 				let str = params.code.split('&')[0];
 				let selectedDocTypes = str.substring(
-					str.lastIndexOf("d") + 1,
-					str.lastIndexOf("s")
+					str.indexOf("d") + 1,
+					str.indexOf("s")
 				);
 
 				let selectedSubject = str.substring(
-					str.lastIndexOf("s") + 1,
-					str.lastIndexOf("c")
+					str.indexOf("s") + 1,
+					str.indexOf("c")
 				);
 
 				let selectedClasses = str.substring(
-					str.lastIndexOf("c") + 1,
-					str.lastIndexOf("t")
+					str.indexOf("c") + 1,
+					str.indexOf("t")
 				);
 
 				let selectedChapter = str.substring(
-					str.lastIndexOf("t") + 1,
+					str.indexOf("t") + 1,
 				);
 
 				this.setState({
@@ -206,7 +206,6 @@ class FilterBar extends Component {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords, chapters,format
 		} = this.state;
-
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeParam = '';
@@ -221,11 +220,13 @@ class FilterBar extends Component {
 		let classesSlug = '';
 		let subjectSlug = '';
 		let chapterSlug = '';
-
 		if (keywords != '') {
 			keywordParam = '?keyword='+keywords;
 		}
+		let urlParams = new URLSearchParams(window.location.search);
+		if(urlParams.has('keyword')){
 
+		}
 		if (selectedDocTypes !== 0) {
 			docTypeParam =  + selectedDocTypes;
 			let idx = _.findIndex(docTypes, (obj) => {
