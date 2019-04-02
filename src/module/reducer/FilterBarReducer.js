@@ -86,6 +86,12 @@ let FilterBarReducer = (state = initialState, action) => {
 				chapters: action.payload.data
 			};
 
+		case types.GET_FILTER_BAR_SUBJECT_SUCCESS:
+			return {
+				...state,
+				subjects: action.payload.data
+			};
+
 		case types.RESULT_FILTER_SUCCESS:
 			return {
 				...state,

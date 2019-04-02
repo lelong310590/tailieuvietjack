@@ -354,6 +354,7 @@ class FilterBar extends Component {
 		let {selectedSubject} = this.state;
 		let selectedClasses = parseInt(event.target.value);
 		//this.props.handleChangeClasses(selectedClasses);
+		this.props.getFilterBarSubject(selectedClasses);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
 		this.setState({
 			selectedClasses,
@@ -586,6 +587,10 @@ const mapDispatchToProps = (dispatch) => {
 
 		getFilterBarChapter: (classId, subjectId) => {
 			dispatch(action.getFilterBarChapter(classId, subjectId))
+		},
+
+		getFilterBarSubject: (classId) => {
+			dispatch(action.getFilterBarSubject(classId))
 		},
 
 		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1) => {

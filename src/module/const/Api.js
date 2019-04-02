@@ -62,6 +62,7 @@ export const API_POST_REPORT_DOCUMENT = BASE_URL + 'contact/report-document';
 export const API_FILTER_BAR_CLASS = BASE_URL + 'class/get-class-filter-bar';
 export const API_FILTER_BAR_DOC_TYPE = BASE_URL + 'doc/type';
 export const API_FILTER_BAR_CHAPTER = BASE_URL + 'chapter/get-chapter';
+export const API_FILTER_BAR_SUBJECT = BASE_URL + 'subject/get-subject';
 
 export const GET_META_DATA = BASE_URL + 'get-meta-data';
 //comment
