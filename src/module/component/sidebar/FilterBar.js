@@ -206,7 +206,7 @@ class FilterBar extends Component {
 			classes, docTypes, subjects, selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords, chapters,format
 		} = this.state;
-		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+
 
 		let docTypeParam = '';
 		let priceParam = '';
@@ -313,8 +313,15 @@ class FilterBar extends Component {
 		// if (selectedChapter !== 0) {
 		// 	this.props.history.push('/search/?tailieu=' + docTypeParam + chapterParam +  subjectParam + classesParam)
 		// } else {
+		this.props.handleChangeDocType(selectedDocTypes);
+		this.props.handleChangeClasses(selectedClasses);
+		this.props.handleChangeSubject(selectedSubject);
+		this.props.handleChangeFormat(selectedFormat);
+		this.props.handleChangePrice(selectedPrice);
+		this.props.handleChangeKeyword(keywords);
+		this.props.handleChangeChapter(selectedChapter);
+		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
-		//console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
 		if (selectedChapter != 0) {
 			this.props.history.push({
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
@@ -384,13 +391,13 @@ class FilterBar extends Component {
 
 	handleChangeKeyword = (event) => {
 		let keywords = event.target.value;
-		//this.props.handleChangeKeyword(keyword);
+		//this.props.handleChangeKeyword(keywords);
 		this.setState({keywords})
 	};
 
 	handleChangeChapter = (event) => {
 		let selectedChapter = parseInt(event.target.value);
-		//this.props.handleChangeChapter(chapter);
+		//this.props.handleChangeChapter(selectedChapter);
 		this.setState({selectedChapter})
 	};
 

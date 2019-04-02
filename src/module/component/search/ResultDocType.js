@@ -35,16 +35,16 @@ class ResultDocType extends Component {
 	}
 
 	componentDidMount = () => {
-		let search = this.props.location.search;
-		let value = queryString.parse(search);
-		if (_.has(value, 'keyword')) {
-			let {
-				selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
-			} = this.props.FilterBarReducer;
-			this.props.getResult(value.keyword, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
-		}else{
-			this.fetchData(this.props);
-		}
+		// let search = this.props.location.search;
+		// let value = queryString.parse(search);
+		// if (_.has(value, 'keyword')) {
+		// 	let {
+		// 		selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
+		// 	} = this.props.FilterBarReducer;
+		// 	this.props.getResult(value.keyword, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		// }else{
+		// 	this.fetchData(this.props);
+		// }
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -73,11 +73,12 @@ class ResultDocType extends Component {
 		}
 
 		if (this.props.FilterBarReducer.documents !== nextProps.FilterBarReducer.documents) {
+			console.log(nextProps.FilterBarReducer);
 			this.setState({
-				documents: nextProps.FilterBarReducer.documents
+				documents: nextProps.FilterBarReducer.documents,
+				keyword: nextProps.FilterBarReducer.keywords
 			});
 		}
-
 		return true;
 	};
 
@@ -96,22 +97,22 @@ class ResultDocType extends Component {
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
 			selectedDocTypes = str.substring(
-				str.lastIndexOf("d") + 1,
-				str.lastIndexOf("s")
+				str.indexOf("d") + 1,
+				str.indexOf("s")
 			);
 
 			selectedSubject = str.substring(
-				str.lastIndexOf("s") + 1,
-				str.lastIndexOf("c")
+				str.indexOf("s") + 1,
+				str.indexOf("c")
 			);
 
 			selectedClasses = str.substring(
-				str.lastIndexOf("c") + 1,
-				str.lastIndexOf("t")
+				str.indexOf("c") + 1,
+				str.indexOf("t")
 			);
 
-			selectedChapter = str.substring(
-				str.lastIndexOf("t") + 1,
+			selectedChapter = str.substr(
+				str.indexOf("t") + 1,1
 			);
 
 			this.setState({
