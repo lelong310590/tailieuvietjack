@@ -321,7 +321,13 @@ class FilterBar extends Component {
 		this.props.handleChangeKeyword(keywords);
 		this.props.handleChangeChapter(selectedChapter);
 		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
-
+		this.props.handleChangeDocType(0);
+		this.props.handleChangeClasses(0);
+		this.props.handleChangeSubject(0);
+		this.props.handleChangeFormat(0);
+		this.props.handleChangePrice(-1);
+		this.props.handleChangeKeyword('');
+		this.props.handleChangeChapter(0);
 		if (selectedChapter != 0) {
 			this.props.history.push({
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
