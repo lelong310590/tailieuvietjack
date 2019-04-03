@@ -130,14 +130,7 @@ class Comment extends Component{
         return(
             <div className="facebook-comment vj-comment">
                 <h4>{total_comment} Comments</h4>
-                <form onSubmit={this.postComment}>
-                    <div className="form-group">
-                        <textarea rows="5" value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <button className="btn-submit" type="submit" className="btn vj-btn">Gửi</button>
-                    </div>
-                </form>
+
                 <div className="comment-list">
                     { _.map(comments,(value,index)=>{
                         return (
@@ -192,6 +185,15 @@ class Comment extends Component{
                     })}
 
                 </div>
+
+                <form onSubmit={this.postComment}>
+                    <div className="form-group">
+                        <textarea rows="5" value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn-submit" type="submit" className="btn vj-btn">Gửi</button>
+                    </div>
+                </form>
             </div>
         )
     }
