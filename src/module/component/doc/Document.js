@@ -352,6 +352,7 @@ class Document extends Component {
 					currentDoctype={type}
 					currentSubject={subject.id}
 					currentClass={classLevel.id}
+					history={this.props.history}
 				/>
 
 				{footerDocument &&
