@@ -56,6 +56,7 @@ class Document extends Component {
 			showReport: false,
 			footerDocument: true,
 			showLoginPopup: false,
+			type:0
 		};
 	}
 
@@ -128,7 +129,8 @@ class Document extends Component {
 					subject: response.data.get_subject,
 					tags: response.data.get_tags,
 					content: response.data.content,
-					id: response.data.id
+					id: response.data.id,
+					type: response.data.type
 				})
 			})
 			.catch(err => {
@@ -144,7 +146,7 @@ class Document extends Component {
 		let token = localStorage.getItem('accessToken');
 
 		if (_.isEmpty(token)) {
-			alert('Bạn phải đăng nhập để tải tài liệu');
+			//alert('Bạn phải đăng nhập để tải tài liệu');
 			this.setState({showLoginPopup: true})
 			return false;
 		}
@@ -193,11 +195,10 @@ class Document extends Component {
 	render() {
 
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
-			ownerAvatar, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
+			ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
-
 		return (
 			<section className="container wrap__page wrap__detail">
 				{showReport &&
@@ -252,14 +253,12 @@ class Document extends Component {
 								</div>
 								<div className="detail_tyle">
 									<div>
-										<strong>Đối tượng: </strong> 
-										<a href="#">Tiếng anh</a>, 
-										<a href="#">Toán</a>
+										<strong>Môn: </strong>
+										<Link to={'/'+subject.slug+'/d0s'+subject.id+'c0t0'}>{subject.name}</Link>
 									</div>
 									<div>
 										<strong>Lớp: </strong>
-										<a href="#">Lớp 6</a>, 
-										<a href="#">Lớp 10</a>
+										<Link to={'/'+classLevel.slug+'/d0s0c'+classLevel.id+'t0'}>{classLevel.name}</Link>
 									</div>
 								</div>
 							</div>
@@ -310,10 +309,19 @@ class Document extends Component {
 							<button onClick={() => this.clickToDownload(slug)} className="btn vj-btn"><i className="fal fa-download"></i> Tải xuống ( {pages} trang )</button>
 						</div>
 
-						<Related
-							tags={this.props.tags}
-							currentDocId={this.props.currentDocId}
+						{/*<Related*/}
+							{/*tags={this.props.tags}*/}
+							{/*currentDocId={this.props.currentDocId}*/}
+						{/*/>*/}
+						<List
+							title={'Tài liệu liên quan'}
+							itemClass={'col-xs-6 col-md-3 col-lg-3'}
+							classLevel={classLevel.id}
+							//user={ownerId}
+							//currentId={slug}
+							match={this.props.match}
 						/>
+
 						<List
 							title={'Tài liệu cùng tác giả'}
 							itemClass={'col-xs-6 col-md-3 col-lg-3'}
@@ -341,6 +349,10 @@ class Document extends Component {
 				<Sidebar
 					tags={tags}
 					currentDocId={slug}
+					currentDoctype={type}
+					currentSubject={subject.id}
+					currentClass={classLevel.id}
+					history={this.props.history}
 				/>
 
 				{footerDocument &&

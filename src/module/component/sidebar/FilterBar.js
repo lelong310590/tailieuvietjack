@@ -24,42 +24,47 @@ class FilterBar extends Component {
 			selectedPrice: -1,
 			selectedChapter: 0,
 			loading: false,
-			alert: false
+			alert: false,
+			currentDoctype:0,
+			currentSubject:0,
+			currentClass:0,
 		}
 	};
 
 	componentDidMount = () => {
 
 		let {params} = this.props.match;
-
 		const search = this.props.location.search;
 		let value = queryString.parse(search);
 		let {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = this.state;
-
+		let {currentDoctype, currentSubject, currentClass} = this.props;
+		this.setState({
+			currentDoctype, currentSubject, currentClass,
+		})
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
+
 			selectedDocTypes = str.substring(
-				str.lastIndexOf("d") + 1,
-				str.lastIndexOf("s")
+				str.indexOf("d") + 1,
+				str.indexOf("s")
 			);
 
 			selectedSubject = str.substring(
-				str.lastIndexOf("s") + 1,
-				str.lastIndexOf("c")
+				str.indexOf("s") + 1,
+				str.indexOf("c")
 			);
 
 			selectedClasses = str.substring(
-				str.lastIndexOf("c") + 1,
-				str.lastIndexOf("t")
+				str.indexOf("c") + 1,
+				str.indexOf("t")
 			);
 
-			selectedChapter = str.substring(
-				str.lastIndexOf("t") + 1,
+			selectedChapter = str.substr(
+				str.indexOf("t") + 1,1
 			);
-
 			this.setState({
 				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
 			})
@@ -89,7 +94,21 @@ class FilterBar extends Component {
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
-
+		if(this.props.currentClass!==nextProps.currentClass){
+			this.setState({
+				selectedClasses: nextProps.currentClass
+			});
+		}
+		if(this.props.currentSubject!==nextProps.currentSubject){
+			this.setState({
+				selectedSubject: nextProps.currentSubject
+			});
+		}
+		if(this.props.currentDoctype!==nextProps.currentDoctype){
+			this.setState({
+				selectedDocTypes: nextProps.currentDoctype
+			});
+		}
 		if (this.props.FilterBarReducer.classes !== nextProps.FilterBarReducer.classes) {
 			this.setState({
 				classes: nextProps.FilterBarReducer.classes
@@ -114,22 +133,22 @@ class FilterBar extends Component {
 			if (_.has(params, 'code')) {
 				let str = params.code.split('&')[0];
 				let selectedDocTypes = str.substring(
-					str.lastIndexOf("d") + 1,
-					str.lastIndexOf("s")
+					str.indexOf("d") + 1,
+					str.indexOf("s")
 				);
 
 				let selectedSubject = str.substring(
-					str.lastIndexOf("s") + 1,
-					str.lastIndexOf("c")
+					str.indexOf("s") + 1,
+					str.indexOf("c")
 				);
 
 				let selectedClasses = str.substring(
-					str.lastIndexOf("c") + 1,
-					str.lastIndexOf("t")
+					str.indexOf("c") + 1,
+					str.indexOf("t")
 				);
 
-				let selectedChapter = str.substring(
-					str.lastIndexOf("t") + 1,
+				let selectedChapter = str.substr(
+					str.indexOf("t") + 1,1
 				);
 
 				this.setState({
@@ -188,7 +207,6 @@ class FilterBar extends Component {
 			keywords, chapters,format
 		} = this.state;
 
-		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
 
 		let docTypeParam = '';
 		let priceParam = '';
@@ -202,11 +220,13 @@ class FilterBar extends Component {
 		let classesSlug = '';
 		let subjectSlug = '';
 		let chapterSlug = '';
-
 		if (keywords != '') {
-			keywordParam = '&keyword='+keywords;
+			keywordParam = '?keyword='+keywords;
 		}
+		let urlParams = new URLSearchParams(window.location.search);
+		if(urlParams.has('keyword')){
 
+		}
 		if (selectedDocTypes !== 0) {
 			docTypeParam =  + selectedDocTypes;
 			let idx = _.findIndex(docTypes, (obj) => {
@@ -293,20 +313,33 @@ class FilterBar extends Component {
 		// if (selectedChapter !== 0) {
 		// 	this.props.history.push('/search/?tailieu=' + docTypeParam + chapterParam +  subjectParam + classesParam)
 		// } else {
-
-		//console.log('d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter);
+		this.props.handleChangeDocType(selectedDocTypes);
+		this.props.handleChangeClasses(selectedClasses);
+		this.props.handleChangeSubject(selectedSubject);
+		this.props.handleChangeFormat(selectedFormat);
+		this.props.handleChangePrice(selectedPrice);
+		this.props.handleChangeKeyword(keywords);
+		this.props.handleChangeChapter(selectedChapter);
+		this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		// this.props.handleChangeDocType(0);
+		// this.props.handleChangeClasses(0);
+		// this.props.handleChangeSubject(0);
+		// this.props.handleChangeFormat(0);
+		// this.props.handleChangePrice(-1);
+		// this.props.handleChangeKeyword('');
+		// this.props.handleChangeChapter(0);
 		if (selectedChapter != 0) {
 			this.props.history.push({
 				pathname: '/' + chapterSlug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 			});
 
-			return false;
+			return;
 		}
 		if(slug.length===0){
 			slug = 'tim-kiem';
 		}
 		this.props.history.push({
-			pathname: '/' + slug +'/d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
+			pathname: '/' + slug +'/f1d' + selectedDocTypes + 's' + selectedSubject + 'c' + selectedClasses + 't' + selectedChapter + keywordParam + priceParam  + formatParam
 		});
 
 		//this.props.history.push('/' + slug +'/?tailieu=' + docTypeParam + keywordParam + formatParam + chapterParam + subjectParam + classesParam + priceParam)
@@ -327,6 +360,7 @@ class FilterBar extends Component {
 		let {selectedSubject} = this.state;
 		let selectedClasses = parseInt(event.target.value);
 		//this.props.handleChangeClasses(selectedClasses);
+		this.props.getFilterBarSubject(selectedClasses);
 		this.props.getFilterBarChapter(selectedClasses, selectedSubject);
 		this.setState({
 			selectedClasses,
@@ -364,13 +398,13 @@ class FilterBar extends Component {
 
 	handleChangeKeyword = (event) => {
 		let keywords = event.target.value;
-		//this.props.handleChangeKeyword(keyword);
+		//this.props.handleChangeKeyword(keywords);
 		this.setState({keywords})
 	};
 
 	handleChangeChapter = (event) => {
 		let selectedChapter = parseInt(event.target.value);
-		//this.props.handleChangeChapter(chapter);
+		//this.props.handleChangeChapter(selectedChapter);
 		this.setState({selectedChapter})
 	};
 
@@ -560,6 +594,10 @@ const mapDispatchToProps = (dispatch) => {
 
 		getFilterBarChapter: (classId, subjectId) => {
 			dispatch(action.getFilterBarChapter(classId, subjectId))
+		},
+
+		getFilterBarSubject: (classId) => {
+			dispatch(action.getFilterBarSubject(classId))
 		},
 
 		getResult: (keyword = null, docTypeId = null, classesId = null, subjectId = null, chapterId = null, formatId = null, price = null, page = 1) => {

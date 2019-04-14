@@ -37,6 +37,14 @@ class List extends Component {
 			this.fetchData(classLevel, user, week, getRelated);
 		}
 
+		if (this.props.classLevel !== nextProps.classLevel) {
+			let {classLevel, user, week, getRelated} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated);
+		}
+		if (this.props.user !== nextProps.user) {
+			let {classLevel, user, week, getRelated} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated);
+		}
 		return true;
 	};
 

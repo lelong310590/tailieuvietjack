@@ -866,6 +866,37 @@ export const getFilterBarChapter = (classId, subjectId) => {
 	}
 }
 
+export const getFilterBarSubjectRequest = () => ({
+	type: types.GET_FILTER_BAR_SUBJECT_REQUEST
+});
+
+export const getFilterBarSubjectSuccess = (payload) => ({
+	type: types.GET_FILTER_BAR_SUBJECT_SUCCESS,
+	payload
+});
+
+export const getFilterBarSubjectError = (err) => ({
+	type: types.GET_FILTER_BAR_SUBJECT_ERROR,
+	err
+});
+
+export const getFilterBarSubject = (classId, subjectId) => {
+	return (dispatch) => {
+		dispatch(getFilterBarSubjectRequest());
+		axios.get(api.API_FILTER_BAR_SUBJECT, {
+			params: {
+				classId
+			}
+		})
+			.then(response => {
+				dispatch(getFilterBarSubjectSuccess(response))
+			})
+			.catch(err => {
+				dispatch(getFilterBarSubjectError(err))
+			})
+	}
+}
+
 export const handleChangeClasses = (data) => {
 	return {
 		type: types.FILTER_BAR_CHANGE_CLASS,

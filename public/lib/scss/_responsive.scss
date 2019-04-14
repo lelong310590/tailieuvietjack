@@ -2,6 +2,12 @@
     header .search .ipt{
         width: 160px;
     }
+    .document-detail-content-item{
+        & > div {
+            transform-origin: 0px 0px;
+            @include p-scale(.8);
+        }
+    }
 }
 
 
@@ -119,6 +125,16 @@
         }
         .header-authentication{
             margin-top: 15px;
+            &.logged-in{
+                .user-menu{
+                    display: block;
+                    position: static;
+                    box-shadow: none;
+                    li{
+                        padding-left: 0
+                    }
+                }
+            }
         }
     }
     
@@ -211,6 +227,19 @@
     }
 }
 
+@media all and (max-width: 992px){
+    .static-post-wrapper .static-post-sidebar{
+        position: static;
+        top: auto;
+    }
+    .col-xs-12{
+        margin-bottom: 15px;
+    }
+    iframe{
+        max-width: 100%!important;
+    }
+}
+
 @media all and (max-width: 768px) {
     .document-list-wrapper{
         .document-items{
@@ -240,6 +269,34 @@
             }
         }
     }
+    .document-detail-content-item{
+        & > div {
+            @include p-scale(.78);
+        }
+    }
+}
+
+@media all and (max-width: 680px) {
+    .detail_header{
+        display: block;
+        .detail_right{
+            width: auto;
+            margin: 12px 0 0;
+        }
+    }
+    .document-detail-content-item{
+        & > div {
+            @include p-scale(.6);
+        }
+    }
+}
+
+@media all and (max-width: 580px) {
+    .document-detail-content-item{
+        & > div {
+            @include p-scale(.45);
+        }
+    }
 }
 
 @media all and (max-width: 480px) {
@@ -261,6 +318,29 @@
         }
         .social-icons-top {
           text-align: left; margin-top: 3px;
+        }
+    }
+
+    .detail_header{
+        .detail_left{
+            .detail_user{
+                flex-wrap: wrap;
+                .header-user{
+                    width: 100%;
+                }
+                .detail-price{
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+
+}
+
+@media all and (max-width: 360px) {
+    .document-detail-content-item{
+        & > div {
+            @include p-scale(.35);
         }
     }
 }

@@ -16,7 +16,7 @@ class UserMenu extends Component {
 					<li><p>Số dư: <span className="money">{numeral(totalMoney).format('0,0')} đ</span></p></li>
 					<li><NavLink to="">Nạp tiền</NavLink> <i className="fas fa-angle-right"></i></li>
 					<li><NavLink to="">Rút tiền</NavLink> <i className="fas fa-angle-right"></i></li>
-					<li><Link to="/dang-xuat">Đăng xuất</Link></li>
+					<li className="logout"><Link to="/dang-xuat">Đăng xuất</Link></li>
 				</ul>
 			</div>
 		);

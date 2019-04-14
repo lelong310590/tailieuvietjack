@@ -168,7 +168,7 @@ class ReportDocument extends Component {
 								</select>
 							</div>
 
-							{(reportType === 4 || reportType === 5) &&
+							{/*{(reportType === 4 || reportType === 5) &&*/}
 								<div className="form-group">
 									<label>Nội dung báo xấu</label>
 									<textarea
@@ -183,7 +183,7 @@ class ReportDocument extends Component {
 										onChange={this.changeMessage}
 									></textarea>
 								</div>
-							}
+							{/*}*/}
 
 							<div className="form-group">
 								<button type="submit" className="btn vj-vj-btn center-block">Gửi phản hồi</button>

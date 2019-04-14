@@ -29,12 +29,85 @@ class ResultDocType extends Component {
 				data: [],
 				total:0
 			},
-			viewStyle: 'list'
+			viewStyle: 'list',
+			keyword: ''
 		};
 	}
 
 	componentDidMount = () => {
-		this.fetchData(this.props);
+		// let search = this.props.location.search;
+		// let value = queryString.parse(search);
+		// if (_.has(value, 'keyword')) {
+		// 	let {
+		// 		selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
+		// 	} = this.props.FilterBarReducer;
+		// 	this.props.getResult(value.keyword, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		// }else{
+		// 	this.fetchData(this.props);
+		// }
+		const search = this.props.location.search;
+		let value = queryString.parse(search);
+
+		let selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedChapter,fromfilterbar = 0;
+		let selectedPrice = -1;
+		let keywords = ''
+		let {params} = this.props.match;
+		if (_.has(params, 'code')) {
+			let str = params.code.split('&')[0];
+			selectedDocTypes = str.substring(
+				str.indexOf("d") + 1,
+				str.indexOf("s")
+			);
+			if(str.substr(
+				str.indexOf("f") + 1,1
+			)==='1'){
+				fromfilterbar = 1;
+			}
+			selectedSubject = str.substring(
+				str.indexOf("s") + 1,
+				str.indexOf("c")
+			);
+
+			selectedClasses = str.substring(
+				str.indexOf("c") + 1,
+				str.indexOf("t")
+			);
+
+			selectedChapter = str.substr(
+				str.indexOf("t") + 1,1
+			);
+
+			this.setState({
+				selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
+			})
+		}
+		if (_.has(value, 'price')) {
+			selectedPrice = value.price;
+
+		}
+		if (_.has(value, 'keyword')) {
+			keywords = value.keyword;
+			this.setState({
+				keyword: value.keyword
+			})
+
+		}
+		let pathname = this.props.location.pathname;
+		let afterPrice = pathname.split('price=')[1];
+		if(afterPrice!==undefined&&afterPrice.length>0){
+			let firstPrice = afterPrice.charAt(0);
+			if(firstPrice=='-'){
+				selectedPrice = -1;
+			}else{
+				selectedPrice = firstPrice;
+			}
+		}else{
+			selectedPrice = -1;
+		}
+		if(fromfilterbar===0){
+			this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+		}
+
 	};
 
 	shouldComponentUpdate = (nextProps, nextState) => {
@@ -63,11 +136,12 @@ class ResultDocType extends Component {
 		}
 
 		if (this.props.FilterBarReducer.documents !== nextProps.FilterBarReducer.documents) {
+			console.log(nextProps.FilterBarReducer);
 			this.setState({
-				documents: nextProps.FilterBarReducer.documents
+				documents: nextProps.FilterBarReducer.documents,
+				keyword: nextProps.FilterBarReducer.keywords
 			});
 		}
-
 		return true;
 	};
 
@@ -86,22 +160,22 @@ class ResultDocType extends Component {
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
 			selectedDocTypes = str.substring(
-				str.lastIndexOf("d") + 1,
-				str.lastIndexOf("s")
+				str.indexOf("d") + 1,
+				str.indexOf("s")
 			);
 
 			selectedSubject = str.substring(
-				str.lastIndexOf("s") + 1,
-				str.lastIndexOf("c")
+				str.indexOf("s") + 1,
+				str.indexOf("c")
 			);
 
 			selectedClasses = str.substring(
-				str.lastIndexOf("c") + 1,
-				str.lastIndexOf("t")
+				str.indexOf("c") + 1,
+				str.indexOf("t")
 			);
 
-			selectedChapter = str.substring(
-				str.lastIndexOf("t") + 1,
+			selectedChapter = str.substr(
+				str.indexOf("t") + 1,1
 			);
 
 			this.setState({
@@ -111,6 +185,12 @@ class ResultDocType extends Component {
 
 		if (_.has(value, 'price')) {
 			selectedPrice = value.price;
+
+		}
+		if (_.has(value, 'keyword')) {
+			this.setState({
+				keyword: value.keyword
+			})
 
 		}
 		let pathname = this.props.location.pathname;
@@ -168,7 +248,7 @@ class ResultDocType extends Component {
 
 	render() {
 
-		let {title, viewStyle, documents, url} = this.state;
+		let {title, viewStyle, documents, url,keyword} = this.state;
 
 		return (
 			<Fragment>
@@ -192,7 +272,7 @@ class ResultDocType extends Component {
 					<div className="wrap__right">
 						<div className="vj-breadcrumb">
 							<a href="/">Trang chủ</a>
-							<span>Tìm kiếm 'Ôn thi'</span>
+							<span>Tìm kiếm {keyword}</span>
 						</div>
 						<div className="wrap__title">Tài liệu nổi bật</div>
 						<div className="docment-top">
@@ -251,7 +331,7 @@ class ResultDocType extends Component {
 
 						<div className="wrap__title search_title">
 							<SpecialDocument location={this.props.location}/>
-							<div className="search-title">Tìm kiếm: “Ôn thi” <span className="count">Tổng số tài liệu: {documents.total}</span></div>
+							<div className="search-title">Tìm kiếm: {keyword} <span className="count">Tổng số tài liệu: {documents.total}</span></div>
 							<div className="search-sort">
 								<ul>
 									<li>

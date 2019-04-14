@@ -128,16 +128,9 @@ class Comment extends Component{
         let {comments,newcomment,newreply,total_comment} = this.state;
 
         return(
-            <div className="facebook-comment">
+            <div className="facebook-comment vj-comment">
                 <h4>{total_comment} Comments</h4>
-                <form onSubmit={this.postComment}>
-                    <div className="form-group">
-                        <textarea rows="5" value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <button className="btn-submit" type="submit" className="btn vj-btn">Gửi</button>
-                    </div>
-                </form>
+
                 <div className="comment-list">
                     { _.map(comments,(value,index)=>{
                         return (
@@ -149,12 +142,11 @@ class Comment extends Component{
                                         ) : (
                                             <img src={value.get_user.thumbnail} alt="" className="img-responsive center-block"/>
                                         )}
-                                        <p>{value.get_user.first_name}</p>
                                     </div>
                                     <div className="parent-right">
+                                        <p className="name">{value.get_user.first_name}</p>
                                         <p>{value.content}</p>
-                                        <span>{value.created_at}</span>
-                                        <a onClick={(e) => this.handleReply(e, index, value.reply)}>Reply</a>
+                                        <a onClick={(e) => this.handleReply(e, index, value.reply)}>Reply</a><span>{value.created_at}</span>
                                         {value.reply === true &&
                                             <Fragment>
                                                 <form onSubmit={(e)=>this.postReply(e,value.id)}>
@@ -177,11 +169,10 @@ class Comment extends Component{
                                                             ) : (
                                                                 <img src={c.get_user.thumbnail} alt="" className="img-responsive center-block"/>
                                                             )}
-                                                            <p>{c.get_user.first_name}</p>
                                                         </div>
                                                         <div className="child-right">
+                                                            <p className="name">{c.get_user.first_name} <span>{c.created_at}</span></p>
                                                             <p>{c.content}</p>
-                                                            <span>{c.created_at}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -194,6 +185,15 @@ class Comment extends Component{
                     })}
 
                 </div>
+
+                <form onSubmit={this.postComment}>
+                    <div className="form-group">
+                        <textarea rows="5" value={newcomment} onClick={this.clickCommentBox} onChange={this.typeComment} placeholder="Thêm bình luận" className="form-control" />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn-submit" type="submit" className="btn vj-btn">Gửi</button>
+                    </div>
+                </form>
             </div>
         )
     }

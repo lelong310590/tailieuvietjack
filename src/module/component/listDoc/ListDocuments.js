@@ -27,7 +27,7 @@ class ListDocuments extends Component {
 
 				<SpecialDocument/>
 
-				<div className="category-document-filter" style={{ marginBottom: "20px" }}>
+				<div className="category-document-filter">
 					<div className="category-document-filter-order">
 						<div className="category-document-filter-order-item">
 							<span>Mới nhất</span>

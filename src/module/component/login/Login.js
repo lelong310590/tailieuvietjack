@@ -171,7 +171,7 @@ class Login extends Component {
 		formData.append('client_id', '8');
 		formData.append('client_secret', 'TjnV7lkM8c7jIXHk2DvyVAlYDMshqMQ0OdzZZNnf');
 		formData.append('scope', '');
-		formData.append('token',response.accessToken);
+		formData.append('token',response.tokenId);
 		this.socialLogin('google', formData);
 	}
 
