@@ -174,13 +174,6 @@ class Author extends Component {
 														<span className="price">{value.formated_price}</span>
 														<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
 													</div>
-													{/*<NavLink*/}
-														{/*to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}*/}
-														{/*className="document-author"*/}
-														{/*title={value.get_member.first_name + ' ' + value.get_member.last_name}*/}
-													{/*>*/}
-														{/*<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}*/}
-													{/*</NavLink>*/}
 												</div>
 												<div className="document-info">
 													<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
