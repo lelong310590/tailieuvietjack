@@ -138,7 +138,7 @@ class FilterBar extends Component {
 			}
 		}
 
-		if (this.props.location.search!== nextProps.location.search) {
+		if (this.props.location.search !== nextProps.location.search) {
 			let oldSearch = this.props.location.search;
 			let oldValue = queryString.parse(oldSearch);
 
@@ -210,7 +210,7 @@ class FilterBar extends Component {
 		if (selectedDocTypes !== 0) {
 			docTypeParam =  + selectedDocTypes;
 			let idx = _.findIndex(docTypes, (obj) => {
-				return obj.id == selectedDocTypes;
+				return obj.id === selectedDocTypes;
 			});
 
 			if (selectedClasses !== 0 || selectedSubject !== 0) {
@@ -233,7 +233,7 @@ class FilterBar extends Component {
 		if (selectedClasses !== 0) {
 			classesParam = '&class=' + selectedClasses;
 			let idx = _.findIndex(classes, (obj) => {
-				return obj.id == selectedClasses
+				return obj.id === selectedClasses
 			});
 			if (idx >= 0) {
 				classesSlug = classes[idx].slug;
@@ -243,7 +243,7 @@ class FilterBar extends Component {
 		if (selectedSubject !== 0) {
 			subjectParam = '&subject=' + selectedSubject
 			let idx = _.findIndex(subjects, (obj) => {
-				return obj.id == selectedSubject;
+				return obj.id === selectedSubject;
 			});
 			if (idx >= 0) {
 				subjectSlug = subjects[idx].slug;
@@ -462,50 +462,51 @@ class FilterBar extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="filterOther">
-					<div className="vj-widgets col-2">
-						<h4>Theo lop</h4>
-						<ul>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-							<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>
-						</ul>
-					</div>
-					<div className="vj-widgets">
-						<h4>Theo mon</h4>
-						<ul>
-							<li><a>Mon Toan</a></li>
-							<li><a>Mon Ly</a></li>
-							<li><a>Mon hoa</a></li>
-							<li><a>Mon van</a></li>
-							<li><a>Mon anh van</a></li>
-							<li><a>Mon sinh</a></li>
-							<li>
-								<a>Cac mon khac <i className="fal fa-angle-right"></i></a>
-								<ul>
-									<li><a href="#">Mon su</a></li>
-									<li><a href="#">Mon dia</a></li>
-									<li><a href="#">Mon tin hoc</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<div className="vj-widgets">
-						<h4>Theo loai</h4>
-						<ul>
-							<li><a>Bai giang</a></li>
-							<li><a>Chuyen de</a></li>
-							<li><a>De thi</a></li>
-						</ul>
-					</div>
-				</div>
+
+				{/*<div className="filterOther">*/}
+					{/*<div className="vj-widgets col-2">*/}
+						{/*<h4>Theo lop</h4>*/}
+						{/*<ul>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+							{/*<li><label className="vj-checkbox"><input type="checkbox" /><span>Lớp 12</span></label></li>*/}
+						{/*</ul>*/}
+					{/*</div>*/}
+					{/*<div className="vj-widgets">*/}
+						{/*<h4>Theo mon</h4>*/}
+						{/*<ul>*/}
+							{/*<li><a>Mon Toan</a></li>*/}
+							{/*<li><a>Mon Ly</a></li>*/}
+							{/*<li><a>Mon hoa</a></li>*/}
+							{/*<li><a>Mon van</a></li>*/}
+							{/*<li><a>Mon anh van</a></li>*/}
+							{/*<li><a>Mon sinh</a></li>*/}
+							{/*<li>*/}
+								{/*<a>Cac mon khac <i className="fal fa-angle-right"></i></a>*/}
+								{/*<ul>*/}
+									{/*<li><a href="#">Mon su</a></li>*/}
+									{/*<li><a href="#">Mon dia</a></li>*/}
+									{/*<li><a href="#">Mon tin hoc</a></li>*/}
+								{/*</ul>*/}
+							{/*</li>*/}
+						{/*</ul>*/}
+					{/*</div>*/}
+					{/*<div className="vj-widgets">*/}
+						{/*<h4>Theo loai</h4>*/}
+						{/*<ul>*/}
+							{/*<li><a>Bai giang</a></li>*/}
+							{/*<li><a>Chuyen de</a></li>*/}
+							{/*<li><a>De thi</a></li>*/}
+						{/*</ul>*/}
+					{/*</div>*/}
+				{/*</div>*/}
 			</div>
 		);
 	}

@@ -84,7 +84,7 @@ class Home extends Component {
 					<div className="wrap__right">
 						<div className="banner"><img src="/lib/images/banner.jpg" alt=""/></div>
 						{/*<SpecialDocument/>*/}
-						{params==0 &&
+						{params === 0 &&
 							<Fragment>
 								<HomeListDocument
 									title={'Tài liệu THPT'}

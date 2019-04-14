@@ -22,7 +22,6 @@ class DocManager extends Component {
 			url: this.props.location.pathname,
 			keyword: '',
 			onAction: false,
-
 			activeDoc: this.props.UserReducer.activeDoc,
 			unactiveDoc: 0,
 		}
