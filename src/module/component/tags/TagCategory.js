@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Ads from "../home/Ads";
 import DocumentTag from "../support/DocumentTag";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import * as helper from "../../Support";
 import {connect} from 'react-redux';
 import * as actions from './../../action/Index';
@@ -92,42 +92,64 @@ class TagCategory extends Component {
 										<img src="/lib/images/adsdownload.png" alt="" className="img-responsive center-block"/>
 									</div>
 
-									{_.map(documents.data, (d, idx) => {
-										return (
-											<div className="doc-item-horizontal" key={idx}>
-												<div className="doc-item-horizontal-image">
-													<DocumentTag
-														format={d.formats}
-													/>
-													<Link to={'/tai-lieu/' + d.id + '-' + d.slug} title={d.name}>
-														<img src={d.thumbnail ? d.thumbnail : '/lib/images/thumbnail.jpg'} alt="" className="img-responsive center-block"/>
-													</Link>
-												</div>
-												<div className="doc-item-horizontal-info">
-													<div className="doc-item-horizontal-info-infomation">
-														<h4><Link to={'/tai-lieu/' + d.id + '-' + d.slug} title={d.name}>{d.name}</Link></h4>
-														<div className="document-category-info">
-															<Link to={'/'+d.get_class.slug+'/d0s0c' + d.get_class.id+'t0'} className="document-category-class">
-																{d.get_class.name}
+									<div className="document-list-wrapper document-view_list">
+										{_.map(documents.data, (value, index) => {
+											console.log(value);
+											return (
+												<div className="document-items" key={index}>
+													<div className="document-img">
+														<div className="document-link">
+															<Link title={value.get_class.name} to={'/'+value.get_class.slug+'/d0s0c' + value.get_class.id+'t0'} className="btn vj-btn document-class">
+																{value.get_class.name}
 															</Link>
-															<Link to={'/'+d.get_class.slug+'/d0s' + d.get_subject.id + 'c' + d.get_class.id+'t0/'} className="document-category-subject">
-																{d.get_subject.name}
+															<Link title={value.get_subject.name} to={'/'+value.get_subject.slug+'-'+value.get_class.slug+'/d0s' + value.get_subject.id+'c'+value.get_class.id+'t0'} className="btn document-subject">
+																{value.get_subject.name}
 															</Link>
 														</div>
-														<div className="doc-item-horizontal-info-infomation-content">
-															{d.excerpt}
+														<DocumentTag format={value.formats} />
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-thumbnail" title={value.name}>
+															{_.isEmpty(value.thumbnail) ? (
+																<img src="/lib/images/thumbnail.jpg" alt="" className="img-responsive center-block"/>
+															) : (
+																<img src={value.thumbnail} alt="" className="img-responsive center-block"/>
+															)}
+														</Link>
+													</div>
+													<div className="document-content">
+														<Link to={'/tai-lieu/' + value.id + '-' + value.slug} className="document-title" title={value.name}>
+															{value.name}
+														</Link>
+														<div className="document-excerpt">{value.excerpt}</div>
+														<div className="document-type">
+															<strong>Loại: </strong>
+															<a href="#">Bài giảng</a>,
+															<a href="#">Chuyên đề</a>
 														</div>
 													</div>
-													<div className="document-info">
-														<div className="document-info-page"><i className="far fa-file-alt"></i> {d.pages}</div>
-														<div className="document-info-view"><i className="far fa-eye"></i> {d.views}</div>
-														<div className="document-info-download"><i className="fas fa-file-download"></i> {d.downloaded}</div>
-														<div className="document-info-price">{helper.convertPrice(d.price)}</div>
+													<div className="document-right">
+														<div className="document-price">
+															<span className="price">{value.formated_price}</span>
+														</div>
+														<div className="document-star">
+															<span className="star"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fal fa-star"></i></span>
+														</div>
+														<NavLink
+															to={{ pathname: '/trang-ca-nhan/'+ value.get_member.id, search: 'onsort=all'}}
+															className="document-author"
+															title={value.get_member.first_name + ' ' + value.get_member.last_name}
+														>
+															<i className="fal fa-user"></i> {value.get_member.first_name} {value.get_member.last_name}
+														</NavLink>
+														<div className="document-info">
+															<div className="document-info-page"><i className="fal fa-file-alt"></i> {value.pages}</div>
+															<div className="document-info-view"><i className="fal fa-eye"></i> {value.views}</div>
+															<div className="document-info-download"><i className="fal fa-download"></i> {value.downloaded}</div>
+														</div>
 													</div>
 												</div>
-											</div>
-										)
-									})}
+											)
+										})}
+									</div>
 
 									{documents.last_page > 1 &&
 										<Pagination
