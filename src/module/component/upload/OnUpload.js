@@ -18,6 +18,7 @@ class OnUpload extends Component {
 		super(props);
 		this.state = {
 			name: helpers.trimFileName(this.props.name),
+			preview: null,
 			customPrice: false,
 			customPagePreview: 0, //0: manual - 1: 20% - 2: 50%
 			tempThumbnail: null, //store file while first upload
@@ -154,6 +155,13 @@ class OnUpload extends Component {
 		this.setState({customPagePreview})
 	};
 
+	handleChangePreview = (event) => {
+		let previewfile = event.target.files;
+		this.setState({
+			preview: previewfile[0],
+		})
+	}
+
 	actionChangeThumbnail = () => {
 		this.refs.fileUploader.click();
 	};
@@ -233,7 +241,7 @@ class OnUpload extends Component {
 		event.preventDefault();
 		let {email} = this.props.UserReducer;
 		let {
-			name, customPagePreview, thumbnail, classes, selectedDocTypes,
+			name, customPagePreview, thumbnail, classes, selectedDocTypes,preview,
 			subject, description, price, pagePreview, id, tags, totalPage, thematic, chapter
 		} = this.state;
 
@@ -255,6 +263,7 @@ class OnUpload extends Component {
 		formData.append('doctype', selectedDocTypes);
 		formData.append('excerpt', description);
 		//formData.append('thematic', description);
+		formData.append('preview', preview);
 		formData.append('chapter', chapter);
 		formData.append('price', price);
 		formData.append('thumbnail', thumbnail);
@@ -276,7 +285,6 @@ class OnUpload extends Component {
 
 		if (errorMess === '') {
 			this.setState({isSubmit: true});
-
 			axios.post(api.API_UPDATE_DOC_AFTER_UPLOAD, formData, config)
 				.then(response => {
 					this.setState({
@@ -423,7 +431,21 @@ class OnUpload extends Component {
 									<form className="upload-result-right" onSubmit={this.handleEditFile}>
 
 										<input type="file" ref="fileUploader" className="hidden" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleChangeThumbnail}/>
-
+										<div className="upload-result-content">
+											<div className="upload-result-content-title">
+												Bản xem trước <span className="upload-result-content-required">(*)</span>
+											</div>
+											<div className="upload-result-content-input form-group">
+												<input
+													type="file"
+													className="form-control"
+													name="review"
+													onChange={this.handleChangePreview}
+													accept="application/pdf,application/msword"
+													required
+												/>
+											</div>
+										</div>
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
 												Tên tài liệu <span className="upload-result-content-required">(*)</span>
