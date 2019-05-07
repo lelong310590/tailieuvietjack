@@ -117,7 +117,6 @@ class Document extends Component {
 				if(response.data.preview_file!==null){
 					previewfile = true;
 				}
-				console.log('fap',response.data);
 				this.setState({
 					name: response.data.name,
 					pages: response.data.pages,
