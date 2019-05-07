@@ -199,6 +199,11 @@ class Document extends Component {
 
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
+		let styles = {
+			width: '100%',
+			height: '500px',
+		};
+
 		return (
 			<section className="container wrap__page wrap__detail">
 				{showReport &&
@@ -280,29 +285,18 @@ class Document extends Component {
 						<div className="document-detail-content" id="document-content">
 							{pageLoadDone ? (
 								<Fragment>
-									{_.map(pageHtml, (page, i) => {
-										return (
-											<Fragment key={i}>
-												<div className="document-detail-content-item" >
-													{ReactHtmlParser(page)}
-												</div>
-
-												{(i !== (pageHtml.length - 1)) &&
-													<div className="document-middle-ads">
-														<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
-													</div>
-												}
-											</Fragment>
-											
-										)
-									})}
+									{/*<div className="document-detail-content-item" >*/}
+									<iframe style={styles} src="https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true"></iframe>
+									{/*</div>*/}
+									<div className="document-middle-ads">
+										<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
+									</div>
 								</Fragment>
 							) : (
 								<div className="document-detail-content-loading">
 									<Loading/>
 								</div>
 							)}
-
 						</div>
 
 						<div className="document-detail-download-button">
