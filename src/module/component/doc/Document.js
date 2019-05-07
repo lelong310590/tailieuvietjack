@@ -56,7 +56,8 @@ class Document extends Component {
 			showReport: false,
 			footerDocument: true,
 			showLoginPopup: false,
-			type:0
+			type:0,
+			previewfile: true,
 		};
 	}
 
@@ -112,6 +113,11 @@ class Document extends Component {
 			}
 		})
 			.then(response => {
+				let previewfile=false;
+				if(response.data.preview_file!==null){
+					previewfile = true;
+				}
+				console.log('fap',response.data);
 				this.setState({
 					name: response.data.name,
 					pages: response.data.pages,
@@ -130,7 +136,8 @@ class Document extends Component {
 					tags: response.data.get_tags,
 					content: response.data.content,
 					id: response.data.id,
-					type: response.data.type
+					type: response.data.type,
+					previewfile: previewfile
 				})
 			})
 			.catch(err => {
@@ -195,8 +202,7 @@ class Document extends Component {
 	render() {
 
 		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
-			ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
-
+			previewfile,ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
 		let styles = {
@@ -285,12 +291,35 @@ class Document extends Component {
 						<div className="document-detail-content" id="document-content">
 							{pageLoadDone ? (
 								<Fragment>
-									{/*<div className="document-detail-content-item" >*/}
-									<iframe style={styles} src="https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true"></iframe>
-									{/*</div>*/}
-									<div className="document-middle-ads">
-										<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
-									</div>
+									{previewfile ?
+										(
+											<Fragment>
+												<iframe style={styles} src="https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true"></iframe>
+												<div className="document-middle-ads">
+													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
+												</div>
+											</Fragment>
+										):(
+											<Fragment>
+											{_.map(pageHtml, (page, i) => {
+													return (
+													<Fragment key={i}>
+													<div className="document-detail-content-item" >
+														{ReactHtmlParser(page)}
+													</div>
+
+													{(i !== (pageHtml.length - 1)) &&
+													<div className="document-middle-ads">
+														<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
+													</div>
+													}
+													</Fragment>
+
+													)
+												})}
+											</Fragment>
+										)
+									}
 								</Fragment>
 							) : (
 								<div className="document-detail-content-loading">
