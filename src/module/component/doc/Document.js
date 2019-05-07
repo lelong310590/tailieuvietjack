@@ -57,7 +57,7 @@ class Document extends Component {
 			footerDocument: true,
 			showLoginPopup: false,
 			type:0,
-			previewfile: true,
+			previewfile: '',
 		};
 	}
 
@@ -113,9 +113,9 @@ class Document extends Component {
 			}
 		})
 			.then(response => {
-				let previewfile=false;
+				let previewfile='';
 				if(response.data.preview_file!==null){
-					previewfile = true;
+					previewfile = response.data.preview_file;
 				}
 				this.setState({
 					name: response.data.name,
@@ -290,10 +290,10 @@ class Document extends Component {
 						<div className="document-detail-content" id="document-content">
 							{pageLoadDone ? (
 								<Fragment>
-									{previewfile ?
+									{previewfile!=='' ?
 										(
 											<Fragment>
-												<iframe style={styles} src="https://docs.google.com/gview?url=http://infolab.stanford.edu/pub/papers/google.pdf&embedded=true"></iframe>
+												<iframe style={styles} src={"https://docs.google.com/gview?url="+previewfile+"&embedded=true"}></iframe>
 												<div className="document-middle-ads">
 													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 												</div>
