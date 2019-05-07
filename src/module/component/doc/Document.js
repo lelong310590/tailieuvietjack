@@ -293,7 +293,7 @@ class Document extends Component {
 									{previewfile!=='' ?
 										(
 											<Fragment>
-												<iframe style={styles} src={"https://docs.google.com/gview?url="+previewfile+"&embedded=true"}></iframe>
+												<iframe style={styles} src={"https://docs.google.com/gview?url="+process.env.REACT_APP_API_URL+previewfile+"&embedded=true"}></iframe>
 												<div className="document-middle-ads">
 													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 												</div>
