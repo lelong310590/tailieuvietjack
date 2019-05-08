@@ -12,10 +12,7 @@ class UserMenu extends Component {
 			<div className="user-menu">
 				<ul>
 					<li><NavLink to={'/tai-khoan/'+ id +'/thong-tin'} exact={true} activeClassName={'active'}>Thông tin cá nhân</NavLink> <i className="fas fa-angle-right"></i></li>
-					<li><p>Doanh thu: <span className="money">{numeral(profit).format('0,0')} đ</span></p></li>
-					<li><p>Số dư: <span className="money">{numeral(totalMoney).format('0,0')} đ</span></p></li>
-					<li><NavLink to="">Nạp tiền</NavLink> <i className="fas fa-angle-right"></i></li>
-					<li><NavLink to="">Rút tiền</NavLink> <i className="fas fa-angle-right"></i></li>
+					<li><NavLink to={'/tai-khoan/'+ id +'/quan-ly-tai-lieu?onsort=active'}>Tài liệu của tôi</NavLink> <i className="fas fa-angle-right"></i></li>
 					<li className="logout"><Link to="/dang-xuat">Đăng xuất</Link></li>
 				</ul>
 			</div>

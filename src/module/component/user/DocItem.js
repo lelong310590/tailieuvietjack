@@ -70,14 +70,14 @@ class DocItem extends Component {
 							</button>
 						}
 
-						{this.props.status === 'disable' &&
-							<Fragment>
+						{/*{this.props.status === 'disable' &&*/}
+							{/*<Fragment>*/}
 								<Link to={'/tai-lieu/sua-tai-lieu/' + this.props.id} exact="true"><i className="far fa-edit"></i> Sửa</Link>
 								<button onClick={() => this.deleteDoc('Bạn muốn xóa tài liệu đã chọn')}>
 									<i className="far fa-trash-alt"></i> Xóa
 								</button>
-							</Fragment>
-						}
+							{/*</Fragment>*/}
+						{/*}*/}
 					</div>
 				</div>
 			</div>
