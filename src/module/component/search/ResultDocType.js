@@ -136,11 +136,14 @@ class ResultDocType extends Component {
 		}
 
 		if (this.props.FilterBarReducer.documents !== nextProps.FilterBarReducer.documents) {
-			console.log(nextProps.FilterBarReducer);
 			this.setState({
 				documents: nextProps.FilterBarReducer.documents,
 				keyword: nextProps.FilterBarReducer.keywords
 			});
+			this.changemetadata(nextProps.FilterBarReducer.selectedDocTypes,nextProps.FilterBarReducer.selectedClasses,
+				nextProps.FilterBarReducer.selectedSubject,nextProps.FilterBarReducer.selectedPrice,
+				nextProps.FilterBarReducer.selectedChapter,
+			);
 		}
 		return true;
 	};
@@ -227,6 +230,27 @@ class ResultDocType extends Component {
 			})
 	};
 
+	changemetadata = (selectedDocTypes,selectedClasses,selectedSubject,selectedPrice,selectedChapter) => {
+		axios.get(api.GET_META_DATA, {
+			params: {
+				docType: selectedDocTypes,
+				classes: selectedClasses,
+				subject: selectedSubject,
+				price: selectedPrice,
+				chapter: selectedChapter
+			}
+		})
+			.then(response => {
+				this.setState({
+					title: response.data.title,
+					description: response.data.description,
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
+
 	handleOrderBy = (order) => {
 		//console.log(this.props);
 		// let {
@@ -272,7 +296,7 @@ class ResultDocType extends Component {
 					<div className="wrap__right">
 						<div className="vj-breadcrumb">
 							<a href="/">Trang chủ</a>
-							<span>Tìm kiếm {keyword}</span>
+							<span>Tìm kiếm {keyword!==''?"'"+keyword+"' ":' '}{title}</span>
 						</div>
 						<div className="wrap__title">Tài liệu nổi bật</div>
 						<div className="docment-top">
@@ -331,7 +355,7 @@ class ResultDocType extends Component {
 
 						<div className="wrap__title search_title">
 							<SpecialDocument location={this.props.location}/>
-							<div className="search-title">Tìm kiếm: {keyword} <span className="count">Tổng số tài liệu: {documents.total}</span></div>
+							<div className="search-title">Tìm kiếm: {keyword!==''?"'"+keyword+"' ":' '}{title} <span className="count">Tổng số tài liệu: {documents.total}</span></div>
 							<div className="search-sort">
 								<ul>
 									<li>
