@@ -458,8 +458,7 @@ class ResultDocType extends Component {
 															<div className="document-excerpt">{value.excerpt}</div>
 															<div className="document-type">
 																<strong>Loại: </strong>
-																<a href="#">Bài giảng</a>, 
-																<a href="#">Chuyên đề</a>
+																<Link to={'/tat-ca-'+value.get_type.slug+'/d'+value.get_type.id+'s0c0t0'}>{value.get_type.name}</Link>
 															</div>
 														</div>
 														<div className="document-right">
