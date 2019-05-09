@@ -433,7 +433,7 @@ class OnUpload extends Component {
 										<input type="file" ref="fileUploader" className="hidden" accept="image/x-png,image/gif,image/jpeg" onChange={this.handleChangeThumbnail}/>
 										<div className="upload-result-content">
 											<div className="upload-result-content-title">
-												Bản xem trước <span className="upload-result-content-required">(*)</span>
+												Bản xem trước
 											</div>
 											<div className="upload-result-content-input form-group">
 												<input
@@ -442,7 +442,6 @@ class OnUpload extends Component {
 													name="review"
 													onChange={this.handleChangePreview}
 													accept="application/pdf,application/msword"
-													required
 												/>
 											</div>
 										</div>
