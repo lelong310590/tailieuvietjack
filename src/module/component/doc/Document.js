@@ -50,6 +50,7 @@ class Document extends Component {
 				name: '',
 				slug: ''
 			},
+			chapter:0,
 			tags: [],
 
 			pageLoadDone: false,
@@ -136,7 +137,8 @@ class Document extends Component {
 					content: response.data.content,
 					id: response.data.id,
 					type: response.data.type,
-					previewfile: previewfile
+					previewfile: previewfile,
+					chapter:response.data.chapter_id
 				})
 			})
 			.catch(err => {
@@ -200,7 +202,7 @@ class Document extends Component {
 
 	render() {
 
-		let {name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
+		let {chapter,name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
 			previewfile,ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
@@ -397,6 +399,7 @@ class Document extends Component {
 					currentDoctype={type}
 					currentSubject={subject.id}
 					currentClass={classLevel.id}
+					chapter={chapter}
 					history={this.props.history}
 				/>
 

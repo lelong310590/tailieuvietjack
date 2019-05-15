@@ -10,13 +10,14 @@ class Sidebar extends Component {
 			currentDoctype:0,
 			currentSubject:0,
 			currentClass:0,
+			chapter:0
 		}
 	}
 
 	componentDidMount = () => {
-		let {currentDoctype, currentSubject, currentClass} = this.props;
+		let {currentDoctype, currentSubject, currentClass,chapter} = this.props;
 		this.setState({
-			currentDoctype, currentSubject, currentClass
+			currentDoctype, currentSubject, currentClass,chapter
 		})
 	};
 
@@ -27,6 +28,7 @@ class Sidebar extends Component {
 				currentDoctype: nextProps.currentDoctype,
 				currentSubject: nextProps.currentSubject,
 				currentClass: nextProps.currentClass,
+				chapter: nextProps.chapter,
 			})
 		}
 
@@ -34,7 +36,7 @@ class Sidebar extends Component {
 	};
 
 	render() {
-		let {currentDoctype, currentSubject, currentClass} = this.state;
+		let {currentDoctype, currentSubject, currentClass,chapter} = this.state;
 		return (
 			<div className="wrap__left">
 				<FilterBar
@@ -44,6 +46,7 @@ class Sidebar extends Component {
 					currentDoctype={currentDoctype}
 					currentSubject={currentSubject}
 					currentClass={currentClass}
+					currentChapter={chapter}
 				/>
 				<TopWeekDoc/>
 				<TagCloud

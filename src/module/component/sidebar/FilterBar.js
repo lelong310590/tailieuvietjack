@@ -28,6 +28,7 @@ class FilterBar extends Component {
 			currentDoctype:0,
 			currentSubject:0,
 			currentClass:0,
+			currentChapter:0
 		}
 	};
 
@@ -40,9 +41,9 @@ class FilterBar extends Component {
 			selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedPrice, selectedChapter,
 			keywords
 		} = this.state;
-		let {currentDoctype, currentSubject, currentClass} = this.props;
+		let {currentDoctype, currentSubject, currentClass,currentChapter} = this.props;
 		this.setState({
-			currentDoctype, currentSubject, currentClass,
+			currentDoctype, currentSubject, currentClass,currentChapter
 		})
 		if (_.has(params, 'code')) {
 			let str = params.code.split('&')[0];
@@ -100,8 +101,14 @@ class FilterBar extends Component {
 			});
 		}
 		if(this.props.currentSubject!==nextProps.currentSubject){
+			this.props.getFilterBarChapter(nextProps.currentClass, nextProps.currentSubject);
 			this.setState({
-				selectedSubject: nextProps.currentSubject
+				selectedSubject: nextProps.currentSubject,
+			});
+		}
+		if(this.props.currentChapter!==nextProps.currentChapter){
+			this.setState({
+				selectedChapter: nextProps.currentChapter
 			});
 		}
 		if(this.props.currentDoctype!==nextProps.currentDoctype){
