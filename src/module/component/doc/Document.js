@@ -295,8 +295,8 @@ class Document extends Component {
 									{previewfile!=='' ?
 										(
 											<Fragment>
-												<embed src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"} width="100%" height="500px" />
-												{/*<iframe style={styles} src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"}></iframe>*/}
+												{/*<embed src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"} width="100%" height="500px" />*/}
+												<iframe style={styles} src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"}></iframe>
 												<div className="document-middle-ads">
 													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 												</div>
