@@ -33,30 +33,41 @@ class List extends Component {
 		// console.log('nextProps: ', nextProps.getRelated);
 
 		if (this.props.getRelated !== nextProps.getRelated) {
-			let {classLevel, user, week, getRelated} = nextProps;
-			this.fetchData(classLevel, user, week, getRelated);
+			let {classLevel, user, week, getRelated,subject} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated,subject);
 		}
 
 		if (this.props.classLevel !== nextProps.classLevel) {
-			let {classLevel, user, week, getRelated} = nextProps;
-			this.fetchData(classLevel, user, week, getRelated);
+			let {classLevel, user, week, getRelated,subject} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated,subject);
+            this.setState({
+                title: nextProps.title,
+            })
 		}
+        if (this.props.subject !== nextProps.subject) {
+            let {classLevel, user, week, getRelated,subject} = nextProps;
+            this.fetchData(classLevel, user, week, getRelated,subject);
+            this.setState({
+                title: nextProps.title,
+            })
+        }
 		if (this.props.user !== nextProps.user) {
-			let {classLevel, user, week, getRelated} = nextProps;
-			this.fetchData(classLevel, user, week, getRelated);
+			let {classLevel, user, week, getRelated,subject} = nextProps;
+			this.fetchData(classLevel, user, week, getRelated,subject);
 		}
 		return true;
 	};
 
 	componentDidMount() {
-		let {classLevel, user, week, getRelated} = this.props;
-		this.fetchData(classLevel, user, week, getRelated);
+		let {classLevel, user, week, getRelated,subject} = this.props;
+		this.fetchData(classLevel, user, week, getRelated,subject);
 	}
 
-	fetchData = (classLevel, user, week, getRelated) => {
+	fetchData = (classLevel, user, week, getRelated,subject) => {
 
 		let apiUrl = api.API_GET_LIST_DOC_BY_CAT;
 		let defaultParams = {
+            subject,
 			classLevel,
 			user,
 			week
@@ -151,6 +162,13 @@ class List extends Component {
 						<div className="document-list-wrapper">
 							{documents}
 						</div>
+                        {this.props.showmore && (
+                            <div className="document-view-more text-center">
+                                <Link className="btn vj-btn" to={this.props.linkto}>
+                                    Xem thêm <i className="fal fa-angle-right"></i>
+                                </Link>
+                            </div>
+                        )}
 					</Fragment>
 				)}
 			</div>

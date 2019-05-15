@@ -335,13 +335,35 @@ class Document extends Component {
 							{/*tags={this.props.tags}*/}
 							{/*currentDocId={this.props.currentDocId}*/}
 						{/*/>*/}
+						{/*<List*/}
+							{/*title={'Tài liệu liên quan'}*/}
+							{/*itemClass={'col-xs-6 col-md-3 col-lg-3'}*/}
+							{/*classLevel={classLevel.id}*/}
+							{/*//user={ownerId}*/}
+							{/*//currentId={slug}*/}
+							{/*match={this.props.match}*/}
+						{/*/>*/}
+
 						<List
-							title={'Tài liệu liên quan'}
+							title={'Tài liệu '+classLevel.name+' nổi bật'}
 							itemClass={'col-xs-6 col-md-3 col-lg-3'}
 							classLevel={classLevel.id}
+							linkto={'/'+classLevel.slug+'/d0s0c'+classLevel.id+'t0'}
 							//user={ownerId}
 							//currentId={slug}
 							match={this.props.match}
+							showmore={true}
+						/>
+
+						<List
+							title={'Tài liệu '+subject.name+' nổi bật'}
+							itemClass={'col-xs-6 col-md-3 col-lg-3'}
+							subject={subject.id}
+							linkto={'/'+subject.slug+'/d0s'+subject.id+'c0t0'}
+							//user={ownerId}
+							//currentId={slug}
+							match={this.props.match}
+							showmore={true}
 						/>
 
 						<List
@@ -350,6 +372,7 @@ class Document extends Component {
 							user={ownerId}
 							currentId={slug}
 							match={this.props.match}
+							showmore={false}
 						/>
 						
 						<Infomation
