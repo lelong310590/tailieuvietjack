@@ -6,6 +6,7 @@ import Countdown from 'react-countdown-now';
 import { FacebookProvider, Like } from 'react-facebook';
 import List from "../listDoc/List";
 import _ from 'lodash';
+import {connect} from "react-redux";
 
 class Download extends Component {
 
@@ -91,7 +92,7 @@ class Download extends Component {
 				}
 
 				if (response.data.status === 'success') {
-					window.open(api.API_GET_FILE_DOWNLOAD + '?name=' +  response.data.document);
+					window.open(api.API_GET_FILE_DOWNLOAD + '?name=' +  response.data.document+'&id='+slug+'&userId='+this.props.UserReducer.id);
 				}
 			})
 			.catch(err => {
@@ -185,4 +186,8 @@ class Download extends Component {
 	}
 }
 
-export default Download;
+const mapStateToProps = (state) => {
+	return state;
+};
+
+export default connect(mapStateToProps, null) (Download);
