@@ -59,6 +59,7 @@ class Document extends Component {
 			showLoginPopup: false,
 			type:0,
 			previewfile: '',
+			formats: ''
 		};
 	}
 
@@ -138,7 +139,8 @@ class Document extends Component {
 					id: response.data.id,
 					type: response.data.type,
 					previewfile: previewfile,
-					chapter:response.data.chapter_id
+					chapter:response.data.chapter_id,
+					formats:response.data.formats
 				})
 			})
 			.catch(err => {
@@ -202,7 +204,7 @@ class Document extends Component {
 
 	render() {
 
-		let {chapter,name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
+		let {formats,chapter,name, pages, views, download, ownerFirstName, ownerLastName, ownerId, status, content, showReport, footerDocument,
 			previewfile,ownerAvatar,type, seo_title, seo_description, pageHtml, pageLoadDone, classLevel, subject, tags,id,showLoginPopup} = this.state;
 		let {slug} = this.props.match.params;
 		let {AuthReducer, UserReducer} = this.props;
@@ -295,8 +297,12 @@ class Document extends Component {
 									{previewfile!=='' ?
 										(
 											<Fragment>
-												{/*<embed src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"} width="100%" height="500px" />*/}
-												<iframe style={styles} src={"https://docs.google.com/gview?url="+process.env.REACT_APP_BASE_URL+previewfile+"&embedded=true"}></iframe>
+												{formats=='pdf'?(
+													<iframe style={styles} src={process.env.REACT_APP_BASE_URL+previewfile}></iframe>
+												):(
+													<iframe style={styles} src={"https://view.officeapps.live.com/op/view.aspx?src="+process.env.REACT_APP_BASE_URL+previewfile}></iframe>
+												)}
+
 												<div className="document-middle-ads">
 													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 												</div>
