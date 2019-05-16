@@ -298,9 +298,9 @@ class Document extends Component {
 										(
 											<Fragment>
 												{formats=='pdf'?(
-													<iframe style={styles} src={process.env.REACT_APP_BASE_URL+previewfile}></iframe>
+													<iframe style={styles} src={process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>
 												):(
-													<iframe style={styles} src={"https://view.officeapps.live.com/op/view.aspx?src="+process.env.REACT_APP_BASE_URL+previewfile}></iframe>
+													<iframe style={styles} src={"https://view.officeapps.live.com/op/view.aspx?src="+process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>
 												)}
 
 												<div className="document-middle-ads">
