@@ -45,7 +45,10 @@
     -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script>
-      document.querySelector('iframe').contentWindow.document.querySelector("#WACRibbonPanel").style.display = "none";
+      $('iframe').load( function() {
+        $('iframe').contents().find("head")
+                .append($("<style type='text/css'>  #WACRibbonPanel{display:none;}  </style>"));
+      });
     </script>
   </body>
 </html>
