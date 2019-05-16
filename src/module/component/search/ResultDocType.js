@@ -204,6 +204,10 @@ class ResultDocType extends Component {
                     keyword: value.keyword
                 })
 
+            }else{
+                this.setState({
+                    keyword: ''
+                })
             }
             let pathname = this.props.location.pathname;
             let afterPrice = pathname.split('price=')[1];
