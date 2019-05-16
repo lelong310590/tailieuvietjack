@@ -15,6 +15,7 @@ import Document from "./module/component/doc/Document";
 import ErrorNoPage from "./module/component/support/ErrorNoPage";
 import Information from "./module/component/user/Information";
 import DocManager from "./module/component/user/DocManager";
+import DocDownloaded from "./module/component/user/DocDownloaded";
 import { connectedRouterRedirect } from 'redux-auth-wrapper/history4/redirect';
 import LocationHelper from 'redux-auth-wrapper/history4/locationHelper';
 import * as actions from "./module/action/Index";
@@ -89,6 +90,7 @@ class App extends Component {
 
 							<Route exact={true} path={'/tai-khoan/:id/thong-tin'} component={isAuthenticatedUser(Information)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-lieu'} component={isAuthenticatedUser(DocManager)} />
+							<Route exact={true} path={'/tai-khoan/:id/tai-lieu-da-tai'} component={isAuthenticatedUser(DocDownloaded)} />
 							<Route exact={true} path={'/tai-khoan/:id/quan-ly-tai-chinh'} component={isAuthenticatedUser(FinanceManager)} />
 
 							{/*<Route exact={true} path={'/cat/:class'} component={ListSubject} />*/}

@@ -42,6 +42,7 @@ export const API_GET_LIST_DOC_BY_CAT = BASE_URL + 'doc/get-doc-by-cat';
 export const API_GET_DOC_DETAIL = BASE_URL + 'doc/doc-detail';
 export const API_GET_RELATED_DOC = BASE_URL + 'doc/get-related-doc';
 export const API_GET_MOST_VIEW_BY_WEEK = BASE_URL + 'doc/most-view-by-week';
+export const API_GET_DOWNLOADED_DOC = BASE_URL + 'doc/downloaded';
 
 export const API_GET_DOCUMENT_IN_CAT = BASE_URL + 'class/document-in-class';
 
