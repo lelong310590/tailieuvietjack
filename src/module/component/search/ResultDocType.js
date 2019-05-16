@@ -106,6 +106,24 @@ class ResultDocType extends Component {
 		}
 		if(fromfilterbar===0){
 			this.props.getResult(keywords, selectedDocTypes, selectedClasses, selectedSubject, selectedChapter, selectedFormat, selectedPrice);
+            axios.get(api.GET_META_DATA, {
+                params: {
+                    docType: selectedDocTypes,
+                    classes: selectedClasses,
+                    subject: selectedSubject,
+                    price: selectedPrice,
+                    chapter: selectedChapter
+                }
+            })
+                .then(response => {
+                    this.setState({
+                        title: response.data.title,
+                        description: response.data.description,
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
 		}
 
 	};
@@ -140,9 +158,68 @@ class ResultDocType extends Component {
 				documents: nextProps.FilterBarReducer.documents,
 				keyword: nextProps.FilterBarReducer.keywords
 			});
-			this.changemetadata(nextProps.FilterBarReducer.selectedDocTypes,nextProps.FilterBarReducer.selectedClasses,
-				nextProps.FilterBarReducer.selectedSubject,nextProps.FilterBarReducer.selectedPrice,
-				nextProps.FilterBarReducer.selectedChapter,
+            const search = this.props.location.search;
+            let value = queryString.parse(search);
+
+            let selectedDocTypes, selectedClasses, selectedSubject, selectedFormat, selectedChapter,fromfilterbar = 0;
+            let selectedPrice = -1;
+            let keywords = ''
+            let {params} = this.props.match;
+            if (_.has(params, 'code')) {
+                let str = params.code.split('&')[0];
+                selectedDocTypes = str.substring(
+                    str.indexOf("d") + 1,
+                    str.indexOf("s")
+                );
+                if(str.substr(
+                    str.indexOf("f") + 1,1
+                )==='1'){
+                    fromfilterbar = 1;
+                }
+                selectedSubject = str.substring(
+                    str.indexOf("s") + 1,
+                    str.indexOf("c")
+                );
+
+                selectedClasses = str.substring(
+                    str.indexOf("c") + 1,
+                    str.indexOf("t")
+                );
+
+                selectedChapter = str.substr(
+                    str.indexOf("t") + 1,1
+                );
+
+                this.setState({
+                    selectedDocTypes, selectedSubject, selectedClasses, selectedChapter
+                })
+            }
+            if (_.has(value, 'price')) {
+                selectedPrice = value.price;
+
+            }
+            if (_.has(value, 'keyword')) {
+                keywords = value.keyword;
+                this.setState({
+                    keyword: value.keyword
+                })
+
+            }
+            let pathname = this.props.location.pathname;
+            let afterPrice = pathname.split('price=')[1];
+            if(afterPrice!==undefined&&afterPrice.length>0){
+                let firstPrice = afterPrice.charAt(0);
+                if(firstPrice=='-'){
+                    selectedPrice = -1;
+                }else{
+                    selectedPrice = firstPrice;
+                }
+            }else{
+                selectedPrice = -1;
+            }
+			this.changemetadata(selectedDocTypes,selectedClasses,
+				selectedSubject,selectedPrice,
+				selectedChapter,
 			);
 		}
 		return true;
@@ -273,7 +350,6 @@ class ResultDocType extends Component {
 	render() {
 
 		let {title, viewStyle, documents, url,keyword} = this.state;
-
 		return (
 			<Fragment>
 
