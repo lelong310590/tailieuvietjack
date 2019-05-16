@@ -430,5 +430,5 @@ class Document extends Component {
 const mapStateToProps = (state) => {
 	return state;
 };
-
+document.querySelector('iframe').contentWindow.document.querySelector("#WACRibbonPanel").style.display = "none";
 export default connect(mapStateToProps, null) (Document);
