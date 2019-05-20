@@ -297,12 +297,12 @@ class Document extends Component {
 									{previewfile!=='' ?
 										(
 											<Fragment>
-												{formats=='pdf'?(
-													<iframe style={styles} src={process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>
-												):(
-													<iframe style={styles} src={"https://view.officeapps.live.com/op/view.aspx?src="+process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>
-												)}
-
+												{/*{formats=='pdf'?(*/}
+													{/*<iframe style={styles} src={process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>*/}
+												{/*):(*/}
+													{/*<iframe style={styles} src={"https://view.officeapps.live.com/op/view.aspx?src="+process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>*/}
+												{/*)}*/}
+												<iframe style={styles} src={"https://docs.google.com/a/tailieu.vietjack.com/viewer?url="+process.env.REACT_APP_BASE_URL+previewfile+"#toolbar=0"}></iframe>
 												<div className="document-middle-ads">
 													<img src="/lib/images/document-ads.jpg" alt="" className="img-responsive"/>
 												</div>
